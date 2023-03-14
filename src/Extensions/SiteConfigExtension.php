@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
+use NSWDPC\Waratah\Services\Analytics\AbstractAnalyticsService;
 use Silverstripe\Assets\File;
 use Silverstripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
@@ -18,6 +19,7 @@ use Silverstripe\Forms\TabSet;
 use Silverstripe\Forms\TextField;
 use Silverstripe\Forms\TextareaField;
 use Silverstripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 
@@ -34,7 +36,7 @@ class SiteConfigExtension extends DataExtension
 
         // GTM
         'GoogleTagManagerCode' => 'Varchar(255)',
-        'GoogleImplementation' => "Enum('GTM,Custom,GA3,GA4', 'GTM')",
+        'GoogleImplementation' => 'Varchar(16)',
 
         // global settings
         'FooterLinksCol1Title' => 'Varchar(255)',
@@ -138,22 +140,15 @@ class SiteConfigExtension extends DataExtension
                 DropdownField::create(
                     'GoogleImplementation',
                     'Implementation',
-                    [
-                        'GTM' => 'Google Tag Manager (gtm.js)',
-                        'GA3' => 'Google Analytics v3 (analytics.js)',
-                        'GA4' => 'Google Analytics v4 (gtag.js)',
-                        'Custom' => 'Custom implementation (advanced)'
-                    ]
-                )->setRightTitle(
-                    'Choosing \'Custom\' requires the application to have a pre-existing custom solution.'
-                ),
+                    $this->owner->getAnalyticsImplementations()
+                )->setEmptyString( _t('nswds.SELECT_ONE', '(select)') ),
                 TextField::create(
                     'GoogleTagManagerCode',
                     'Code'
                 )->setDescription(
                     "Eg. GTM-XXXX (GTM), UA-XXXX (GA3), G-XXXX (GA4)"
                 )
-            )->setTitle('Google Tag Manager / Google Analytics')
+            )->setTitle('Analytics')
         ]);
 
         $fields->addFieldToTab(
@@ -307,6 +302,32 @@ class SiteConfigExtension extends DataExtension
             );
         }
         return $value;
+    }
+
+    /**
+     * Get the current analytics implementation
+     */
+    public function getAnalyticsImplementation() : ?AbstractAnalyticsService {
+        $inst = null;
+        if($implementationCode = $this->owner->GoogleImplementation) {
+            $inst = AbstractAnalyticsService::getImplementation( $implementationCode );
+        }
+        return $inst;
+    }
+
+    /**
+     * Template method to provide implementation of analytics
+     */
+    public function ProvideAnalyticsImplementation() : ?DBHTMLText {
+        if($this->owner->GoogleTagManagerCode && ($inst = $this->getAnalyticsImplementation())) {
+            return $inst->provide($this->owner->GoogleTagManagerCode);
+        } else {
+            return null;
+        }
+    }
+
+    public function getAnalyticsImplementations() : array {
+        return AbstractAnalyticsService::getImplementations();
     }
 
 }

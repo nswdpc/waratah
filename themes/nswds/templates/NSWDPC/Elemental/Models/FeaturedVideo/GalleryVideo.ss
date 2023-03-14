@@ -9,7 +9,7 @@
             <% if $UseVideoThumbnail == 1 && $VideoThumbnail %>
                 <img src="{$VideoThumbnail}" class="video" referrerpolicy="no-referrer" loading="lazy">
             <% else_if $Image %>
-                {$Image.ScaleWidth(720)}
+                {$Image.FocusFill(720,405)}
             <% else %>
                 <div class="noimage"></div>
             <% end_if %>
