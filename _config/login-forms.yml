@@ -16,6 +16,11 @@ SilverStripe\Security\Security:
   extensions:
     - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'
     - 'NSWDPC\Waratah\Extensions\SecurityExtension'
+---
+Name: nswdpc-waratah-oauthloginforms
+Only:
+  moduleexists: 'bigfork/silverstripe-oauth-login'
+---
 Bigfork\SilverStripeOAuth\Client\Form\LoginForm:
   extensions:
     - 'NSWDPC\Waratah\Extensions\OAuthLoginFormExtension'
