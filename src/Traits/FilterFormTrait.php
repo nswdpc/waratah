@@ -30,6 +30,17 @@ trait FilterFormTrait {
 
     /**
      * @var string
+     * '', 'down', 'right'
+     */
+    public $panelDisplay = '';
+
+    /**
+     * @var bool
+     */
+    public $filtersCollapsed = false;
+
+    /**
+     * @var string
      */
     public function getTemplate()
     {
@@ -105,6 +116,39 @@ trait FilterFormTrait {
     }
 
     /**
+     * Set panel display option
+     * @param string $display on of empty string, 'down', or 'right'
+     */
+    public function setPanelDisplay(string $display) : Form {
+        $this->getExtendedForm()->panelDisplay = $display;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return panel display value
+     */
+    public function PanelDisplay() : string {
+        return $this->getExtendedForm()->panelDisplay;
+    }
+
+    /**
+     * Set filters collapsed option
+     * @param bool
+     */
+    public function setFiltersCollapsed(bool $collapsed) : Form {
+        $this->getExtendedForm()->filtersCollapsed = $collapsed;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return filters collapsed value
+     */
+    public function FiltersCollapsed() : bool {
+        return $this->getExtendedForm()->filtersCollapsed;
+    }
+
+
+    /**
      * Return the default filter results string, override in implementing forms
      */
     public function FilterResultsString() : string {
@@ -142,19 +186,36 @@ trait FilterFormTrait {
      */
     public function extraClass()
     {
+        $panelDisplay = $this->PanelDisplay();
         if($this instanceof Form) {
             // gather any parent classes
             $extraClass = parent::extraClass();
             $extraClasses = explode(' ', $extraClass);
+            $extraClasses = array_filter($extraClasses);
         } else {
             $extraClasses = [];
         }
         $extraClasses[] = 'nsw-filters';
         if($this->IsInstant()) {
             $extraClasses[] = 'nsw-filters--instant';
+            if($panelDisplay == 'down') {
+                $extraClasses[] = 'nsw-filters--down';
+                // down requires js-filters
+                $extraClasses[] = 'js-filters';
+            }
+            if($this->FiltersCollapsed()) {
+                // collapsed filters requires js-filters
+                $extraClasses[] = 'js-filters';
+            }
         } else {
-            $extraClasses[] = 'nsw-filters--fixed';
+            // $extraClasses[] = 'nsw-filters--fixed';
             $extraClasses[] = 'js-filters';
+            if($panelDisplay == 'right') {
+                $extraClasses[] = 'nsw-filters--right';
+            } else {
+                // batch mode default option is 'down'
+                $extraClasses[] = 'nsw-filters--down';
+            }
         }
         return implode(' ', array_unique($extraClasses));
     }

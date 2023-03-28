@@ -28,4 +28,27 @@ class FormFieldExtension extends Extension
         return $classes;
     }
 
+    /**
+     * Helper method to return whether the field is in a filter form
+     */
+    public function InFilterForm() : bool {
+        $form = $this->owner->getForm();
+        if($form && $form->hasMethod('IsFilterForm')) {
+            return $form->IsFilterForm() ? true: false;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Return the FieldHolder template for inclusion within a FilterForm
+     * in the context of the field being collapsed
+     */
+    public function FiltersCollapsedFieldHolder() {
+        $properties = [
+            'Title' => ''
+        ];
+        return $this->owner->FieldHolder( $properties );
+    }
+
 }

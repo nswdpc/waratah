@@ -37,9 +37,25 @@
         <div class="nsw-filters__list">
 
             <% loop $VisibleFields %>
-            <div class="nsw-filters__item">
-                {$FieldHolder}
-            </div>
+
+                <% if $Up.FiltersCollapsed %>
+                    <div class="nsw-filters__item">
+                        <button class="nsw-filters__item-button">
+                            <span class="nsw-filters__item-name">{$Title}</span>
+                            <% include nswds/Icon Icon_Icon='keyboard_arrow_down' %>
+                        </button>
+                        <div class="nsw-filters__item-content">
+                            {$FiltersCollapsedFieldHolder}
+                        </div>
+                    </div>
+                <% else %>
+                    <div class="nsw-filters__item">
+                        <div class="nsw-filters__item-content">
+                            {$FieldHolder}
+                        </div>
+                    </div>
+                <% end_if %>
+
             <% end_loop %>
 
             <% loop $HiddenFields %>
