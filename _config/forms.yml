@@ -6,7 +6,7 @@ SilverStripe\Forms\TextField:
 SilverStripe\Forms\TextareaField:
   default_classes: ['nsw-form__input']
 SilverStripe\Forms\FileField:
-  default_classes: ['nsw-form__input']
+  default_classes: ['nsw-file-upload__input']
 #SilverStripe\Forms\ReadonlyField:
 #  default_classes: ['nsw-form-input']
 SilverStripe\Forms\FormAction:
