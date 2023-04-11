@@ -40,6 +40,11 @@ trait FilterFormTrait {
     public $filtersCollapsed = false;
 
     /**
+     * @var bool
+     */
+    public $showFilterCount = true;
+
+    /**
      * @var string
      */
     public function getTemplate()
@@ -145,6 +150,22 @@ trait FilterFormTrait {
      */
     public function FiltersCollapsed() : bool {
         return $this->getExtendedForm()->filtersCollapsed;
+    }
+
+    /**
+     * Set show filter count option
+     * @param bool
+     */
+    public function setShowFilterCount(bool $show) : Form {
+        $this->getExtendedForm()->showFilterCount = $show;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return showFilterCount value
+     */
+    public function ShowFilterCount() : bool {
+        return $this->getExtendedForm()->showFilterCount;
     }
 
 
