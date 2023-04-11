@@ -10,8 +10,13 @@ export default function initSlimSelect() {
         let searchText = listbox.dataset.searchText;
         new SlimSelect({
             select: listbox,
-            placeholder: placeholder ? placeholder : 'Select one or more items',
-            searchText: searchText ? searchText : 'Sorry couldn\'t find anything..'
+            settings: {
+              placeholder: placeholder ? placeholder : 'Select one or more items',
+              searchText: searchText ? searchText : 'Sorry couldn\'t find anything..',
+              searchHighlight: true,
+              allowDeselect: true,
+              closeOnSelect: false
+            }
         });
       } catch (e) {
         console.error(e);
