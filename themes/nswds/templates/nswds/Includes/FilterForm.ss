@@ -8,9 +8,7 @@
     <div class="nsw-filters__controls<% if $ShowFilterCount %> js-filters--count<% end_if %><% if $HasFilterResults %> nsw-filters__controls--active<% end_if %>">
         <button type="button">
             <% include nswds/Icon Icon_Icon='tune' %>
-            <span>
-            {$FilterResultsTitle}
-            </span>
+            <span>{$FilterResultsTitle}</span>
         </button>
     </div>
     <% end_if %>
