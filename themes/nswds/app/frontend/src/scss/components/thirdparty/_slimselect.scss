@@ -3,38 +3,97 @@
  */
 .ss-main {
 
-  @extend .nsw-form__input;
+  @extend .nsw-form__select;
   margin-top: rem(4px);
+  padding-left: rem(11px);
 
-  .ss-multi-selected {
+  .ss-arrow {
+    display: none;
+  }
 
-    border: none;
-    background: transparent;
-    min-height : auto;
-    padding: 0;
-    border-radius: 0;
+  .ss-values {
 
-    .ss-values {
+    .ss-value {
+      padding: rem(4px) rem(8px);
+      margin: 0;
+      background-color: var(--nsw-brand-dark);
+      color: var(--nsw-text-light);
+      border-radius: var(--nsw-border-radius);
 
-      .ss-value {
+      .ss-value-text {
         @include font-size('sm');
-        padding: rem(4px) rem(12px);
-        margin: 0 rem(2px) rem(2px) 0;
-        background-color: var(--nsw-brand-dark);
-        color: var(--nsw-text-light);
-        border-radius: var(--nsw-border-radius);
+        padding: 0px rem(4px) 0 0;
       }
 
-      .ss-disabled {
-        @include font-size('sm');
+      .ss-value-delete {
+        border-left: 1px solid var(--nsw-white);
+      }
+    }
+
+    .ss-disabled {
+      color: var(--nsw-grey-01);
+      background: var(--nsw-grey-02);
+    }
+
+  }
+
+}
+
+.ss-content {
+
+  border: 1px solid var(--nsw-grey-01);
+  border-top: none;
+
+  .ss-search {
+
+    padding: rem(16px);
+
+    input {
+      @extend .nsw-form__input;
+    }
+
+  }
+
+  .ss-list {
+
+    padding: 0;
+
+    .ss-option {
+
+      @include font-size('sm');
+      padding: rem(8px);
+      margin-bottom: 1px;
+      white-space: break-spaces;
+
+      &:hover {
+        background-color: var(--nsw-brand-light);
+        color: var(--nsw-text-dark);
+      }
+
+      &:not(.ss-disabled).ss-selected {
+        background-color: var(--nsw-brand-supplementary);
+        color: var(--nsw-text-light);
+      }
+
+      &.ss-disabled,
+      &.ss-disabled:hover {
         color: var(--nsw-grey-01);
-        background: transparent;
-        padding: rem(4px) 0;
-        margin: 0 0 rem(2px) 0;
+        background-color: var(--nsw-grey-04);
+      }
+
+      mark {
+        padding: 0;
+        color: var(--nsw-grey-01);
+        background: var(--nsw-palette-yellow-03);
       }
 
     }
 
+  }
+
+  &.ss-open-above {
+    border: 1px solid var(--nsw-grey-01);
+    border-bottom: none;
   }
 
 }
