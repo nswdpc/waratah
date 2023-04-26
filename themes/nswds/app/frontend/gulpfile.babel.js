@@ -1,24 +1,24 @@
 import gulp from 'gulp';
 import gulpSass from 'gulp-sass';
-import nodeSass from 'node-sass';
+import sassCompiler from 'sass';
 import postcss from 'gulp-postcss';
 import sourcemaps from 'gulp-sourcemaps';
 import rollup from 'gulp-better-rollup';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import cssnano from 'cssnano';
 import concat from 'gulp-concat';
 import svgSprite from 'gulp-svg-sprite';
 import gulpTerser from 'gulp-terser';
 import terser from 'terser';
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import del from 'del';
 import rename from 'gulp-rename';
 import filter from 'gulp-filter';
 import gulpDebug from 'gulp-debug';
 import mkdirp from 'mkdirp';
 
-const sass = gulpSass(nodeSass);
+const sass = gulpSass(sassCompiler);
 
 const designSystem = {
   'src': {
@@ -143,7 +143,7 @@ gulp.task('componentJsBuild', function() {
             rollup(
                 {
                     plugins: [
-                        babel(), resolve(), commonjs()
+                        babel({ babelHelpers: 'bundled' }), resolve(), commonjs()
                     ],
                 },
                 { name: 'NSWDPC', format: 'umd', }
