@@ -7,7 +7,6 @@ import rollup from 'gulp-better-rollup';
 import babel from '@rollup/plugin-babel';
 import cssnano from 'cssnano';
 import concat from 'gulp-concat';
-import svgSprite from 'gulp-svg-sprite';
 import gulpTerser from 'gulp-terser';
 import terser from 'terser';
 import resolve from '@rollup/plugin-node-resolve'
@@ -42,23 +41,11 @@ const config = {
         ],
         'js': [
           './src/js/app.js'
-        ],
-        'svg': [
-          './src/svg/**/*.svg'
-        ],
-        'svgSprite': {
-            'mode': {
-                'defs': {
-                    'dest': "",
-                    'sprite': 'sprite.svg'
-                }
-            }
-        }
+        ]
     },
     'dist': {
         'css': 'dist/css',
-        'js': 'dist/js',
-        'svg': 'dist/assets/svg'
+        'js': 'dist/js'
     },
     'build': {
         'css': 'build/css',
@@ -115,17 +102,6 @@ gulp.task('appCssBuildCleanup', function(done) {
 
 // CSS processing
 gulp.task('css' , gulp.series('sassBuild', 'cssBuild', 'appCssBuild') );
-
-// SVG
-gulp.task('svg', function() {
-    return gulp.src(config.src.svg)
-        .pipe( gulpDebug( {'title': 'SVG process' }))
-        .pipe(svgSprite(config.src.svgSprite))
-        .on('error', (error) => {
-            console.log(error)
-        })
-        .pipe(gulp.dest(config.dist.svg));
-});
 
 // JS
 gulp.task('designSystemJsBuild', function() {
@@ -185,9 +161,9 @@ gulp.task('appJsBuildCleanup', function(done) {
 gulp.task('js' , gulp.series('designSystemJsBuild', 'componentJsBuild', 'appJsBuild') );
 
 // Build task, clean first
-gulp.task('build', gulp.series( 'clean', gulp.parallel( 'js', 'css', 'svg' ) ) );
+gulp.task('build', gulp.series( 'clean', gulp.parallel( 'js', 'css' ) ) );
 
 // Watch, build
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*', gulp.parallel( 'js', 'scss', 'svg' ));
+  gulp.watch('./src/**/*', gulp.parallel( 'js', 'scss' ));
 });
