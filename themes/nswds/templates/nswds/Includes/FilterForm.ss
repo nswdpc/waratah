@@ -4,18 +4,23 @@
 
     <% include NSWDPC/Waratah/Forms/Notifications %>
 
-    <% if not $IsInstant %>
-    <div class="nsw-filters__controls<% if $ShowFilterCount %> js-filters--count<% end_if %><% if $HasFilterResults %> nsw-filters__controls--active<% end_if %>">
+    <% if $PanelDisplay %>
+    <div class="nsw-filters__controls<% if $ShowFilterCount %> js-filters--count<% end_if %>">
         <button type="button">
             <% include nswds/Icon Icon_Icon='tune' %>
             <span>{$FilterResultsTitle}</span>
+            <% if $PanelDisplay == 'right' %>
+            <% include nswds/Icon Icon_Icon='keyboard_arrow_right' %>
+            <% else_if $PanelDisplay == 'down' %>
+            <% include nswds/Icon Icon_Icon='keyboard_arrow_down' %>
+            <% end_if %>
         </button>
     </div>
     <% end_if %>
 
     <div class="nsw-filters__wrapper">
 
-        <% if not $IsInstant %>
+        <% if $PanelDisplay == 'right' %>
         <div class="nsw-filters__back">
             <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav">
                 <% include nswds/Icon Icon_Icon='keyboard_arrow_left' %>
