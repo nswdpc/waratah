@@ -4,7 +4,7 @@ export default function initSlimSelect() {
     /**
      * Apply slim-select to any multiple select inputs
      */
-    document.querySelectorAll('select[multiple]').forEach( (listbox) => {
+    document.querySelectorAll('div:not(.nsw-multi-select) > select[multiple]').forEach( (listbox) => {
       try {
         let placeholder = listbox.getAttribute('placeholder');
         let searchText = listbox.dataset.searchText;
