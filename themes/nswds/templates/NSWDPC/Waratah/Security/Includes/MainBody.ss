@@ -55,9 +55,32 @@
 
             <div class="nsw-block">
 
-                <% include NSWDPC/Waratah/PageContentTitle %>
+                <% include NSWDPC/Waratah/PageContentTitle Title=$Title %>
 
-                {$Layout}
+                <% if $Layout %>
+
+                    {$Layout}
+
+                <% else %>
+
+                    <% if $Message %>
+                        <% include nswds/InPageAlert InPageAlert_Content=$Message, InPageAlert_Level='info', InPageAlert_Icon='info',InPageAlert_Title='Information' %>
+                    <% end_if %>
+
+                    <% if $Content && $Content != $Message %>
+                        <p class="nsw-intro">
+                            {$Content}
+                        </p>
+                    <% end_if %>
+
+
+                    <% if $Form %>
+                        <div class="nsw-form">
+                            {$Form}
+                        </div>
+                    <% end_if %>
+
+                <% end_if %>
 
             </div>
 
