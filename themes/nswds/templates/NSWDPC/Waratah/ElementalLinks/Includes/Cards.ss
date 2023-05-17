@@ -25,11 +25,11 @@
                         <% if $Up.Up.CardStyle == "title-abstract" || $Up.Up.CardStyle == "title-image-abstract" %>
                             <% if $Description %>
                                 <div class="nsw-card__copy">
-                                    {$Description.XML}
+                                    <p>{$Description.XML}</p>
                                 </div>
                             <% else_if $SiteTree.Abstract %>
                                 <div class="nsw-card__copy">
-                                    {$SiteTree.Abstract.XML}
+                                    <p>{$SiteTree.Abstract.XML}</p>
                                 </div>
                             <% end_if %>
                         <% end_if %>

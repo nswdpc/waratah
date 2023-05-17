@@ -60,9 +60,9 @@
 
                 <div class="nsw-card__copy">
                 <% if $Card_Description %>
-                    {$Card_Description.XML}
+                    <p>{$Card_Description.XML}</p>
                 <% else_if $Card_Content %>
-                    {$Card_Content.XML}
+                    <p>{$Card_Content.XML}</p>
                 <% end_if %>
                 </div>
 

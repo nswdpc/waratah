@@ -1,7 +1,7 @@
 <div class="nsw-m-bottom-sm">
     <div class="nsw-callout">
         <div class="nsw-callout__content">
-            <h4 class="nsw-callout__title">Upload requirements</h4>
+            <p class="nsw-h4">Upload requirements</p>
             <div class="dfu-uploader-meta">
             <ul>
                 <li>Allowed files: $AcceptedExtensions</li>

@@ -80,9 +80,9 @@
                         </div>
 
                         <% if $MetaDescription %>
-                            <div class="nsw-card__copy">{$MetaDescription.ContextSummary(350)}</div>
+                            <div class="nsw-card__copy"><p>{$MetaDescription.XML}</p></div>
                         <% else_if $Abstract %>
-                            <div class="nsw-card__copy">{$Abstract.ContextSummary(350)}</div>
+                            <div class="nsw-card__copy"><p>{$Abstract.XML}</p></div>
                         <% end_if %>
 
                         <% include nswds/Icon Icon_Icon='east' %>

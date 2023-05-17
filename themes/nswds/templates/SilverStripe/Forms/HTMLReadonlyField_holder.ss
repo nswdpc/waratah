@@ -3,7 +3,7 @@
     <div class="nsw-callout">
         <div class="nsw-callout__content">
             <% if $Title %>
-            <h4>{$Title.XML}</h4>
+            <p class="nsw-h4">{$Title.XML}</p>
             <% end_if %>
             {$Value}
         </div>
@@ -18,7 +18,7 @@
         <% end_if %>
         <div class="nsw-in-page-alert__content">
             <% if $Title %>
-            <h5>{$Title.XML}</h5>
+            <p class="nsw-h5">{$Title.XML}</p>
             <% end_if %>
             {$Value}
         </div>

@@ -8,7 +8,7 @@
             <div class="nsw-callout__content">
             <% loop $FieldList %>
                 <% if $Pos == 1 && $Up.Title %>
-                    <h4>{$Up.Title.XML}</h4>
+                    <p class="nsw-h4">{$Up.Title.XML}</p>
                 <% end_if %>
                 {$FieldHolder}
             <% end_loop %>
@@ -27,7 +27,7 @@
             <div class="nsw-in-page-alert__content">
                 <% loop $FieldList %>
                     <% if $Pos == 1 && $Up.Title %>
-                        <h5>{$Up.Title.XML}</h5>
+                        <p class="nsw-h5">{$Up.Title.XML}</p>
                     <% end_if %>
                     {$FieldHolder}
                 <% end_loop %>
