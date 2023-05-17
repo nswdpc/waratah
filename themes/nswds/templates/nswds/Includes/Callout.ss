@@ -1,6 +1,6 @@
 <div class="nsw-callout">
     <div class="nsw-callout__content">
-        <h4>{$Callout_Title.XML}</h4>
+        <p class="nsw-h4">{$Callout_Title.XML}</p>
         <% if $Callout_HTML %>
             {$Callout_HTML}
         <% else_if $Callout_Content %>

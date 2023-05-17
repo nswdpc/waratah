@@ -217,26 +217,22 @@ trait FilterFormTrait {
             $extraClasses = [];
         }
         $extraClasses[] = 'nsw-filters';
-        if($this->IsInstant()) {
-            $extraClasses[] = 'nsw-filters--instant';
+        if($panelDisplay) {
+            $extraClasses[] = 'js-filters';
             if($panelDisplay == 'down') {
                 $extraClasses[] = 'nsw-filters--down';
-                // down requires js-filters
-                $extraClasses[] = 'js-filters';
+            } else if($panelDisplay == 'right') {
+                $extraClasses[] = 'nsw-filters--right';
             }
-            if($this->FiltersCollapsed()) {
-                // collapsed filters requires js-filters
-                $extraClasses[] = 'js-filters';
-            }
+        }
+        if($this->FiltersCollapsed()) {
+            // collapsed filters requires js-filters
+            $extraClasses[] = 'js-filters';
+        }
+        if($this->IsInstant()) {
+            $extraClasses[] = 'nsw-filters--instant';
         } else {
             // $extraClasses[] = 'nsw-filters--fixed';
-            $extraClasses[] = 'js-filters';
-            if($panelDisplay == 'right') {
-                $extraClasses[] = 'nsw-filters--right';
-            } else {
-                // batch mode default option is 'down'
-                $extraClasses[] = 'nsw-filters--down';
-            }
         }
         return implode(' ', array_unique($extraClasses));
     }
