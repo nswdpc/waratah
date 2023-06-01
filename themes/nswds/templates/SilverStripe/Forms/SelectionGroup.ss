@@ -5,15 +5,13 @@
     <% include NSWDPC/Waratah/Forms/Legend %>
 
     <% loop $FieldSet %>
-        <section class="nsw-section nsw-section--half-padding nsw-section--off-white">
-            <div class="nsw-container">
-                {$RadioButton}
-                <label class="nsw-form__radio-label" for="{$Up.ID}_{$Pos}">{$RadioLabel}</label>
-                <div class="nsw-form__group">
-                {$Field}
-                </div>
+        <div class="nsw-p-left-xs nsw-p-bottom-lg">
+            {$RadioButton}
+            <label class="nsw-form__radio-label" for="{$Up.ID}_{$Pos}">{$RadioLabel}</label>
+            <div class="nsw-form__group">
+            {$Field}
             </div>
-        </section>
+        </div>
     <% end_loop %>
 
 </fieldset>
