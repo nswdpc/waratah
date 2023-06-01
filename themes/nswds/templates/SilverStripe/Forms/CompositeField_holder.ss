@@ -40,21 +40,17 @@
 
             <% include NSWDPC/Waratah/Forms/Legend %>
 
-            <section class="nsw-section nsw-section--half-padding nsw-section--off-white">
+            <div class="nsw-p-left-xs nsw-p-bottom-lg">
 
-                <div class="nsw-container">
+                <% include NSWDPC/Waratah/Forms/Description %>
 
-                    <% include NSWDPC/Waratah/Forms/Description %>
-
-                    <div class="field">
-                    {$Field}
-                    </div>
-
-                    <% include NSWDPC/Waratah/Forms/RightTitle %>
-
+                <div class="field">
+                {$Field}
                 </div>
 
-            </section>
+                <% include NSWDPC/Waratah/Forms/RightTitle %>
+
+            </div>
 
         </fieldset>
 
