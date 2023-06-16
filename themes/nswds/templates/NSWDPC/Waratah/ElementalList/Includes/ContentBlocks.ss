@@ -2,4 +2,4 @@
 <% if $HTML %>
     {$HTML}
 <% end_if %>
-<% include nswds/ContentBlocks ContentBlocks_Items=$Elements.Elements, ContentBlock_ColumnOptions=$ColumnClass($OverrideColumns) %>
+<% include nswds/ContentBlocks ContentBlocks_Items=$Elements.Elements %>
