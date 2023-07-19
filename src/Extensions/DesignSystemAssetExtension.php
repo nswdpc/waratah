@@ -26,13 +26,16 @@ class DesignSystemAssetExtension extends Extension {
     private $configurator = null;
 
     /**
-     * Include the Design System after controller init
-     * Note that some modules call controller->init(), so need to check here that the current
-     * controller actually has this class as an extension
+     * @var bool
+     */
+    protected static $_requirements_loaded = false;
+
+    /**
+     * Include the Design System after controller init (once)
      */
     public function onAfterInit()
     {
-        if(!Controller::curr()->hasExtension(DesignSystemAssetExtension::class)) {
+        if(self::$_requirements_loaded) {
             return;
         }
         if(!$this->getConfigurationValue('frontend_provided')) {
@@ -160,6 +163,8 @@ class DesignSystemAssetExtension extends Extension {
                 ]
             );
         }
+
+        self::$_requirements_loaded = true;
 
     }
 
