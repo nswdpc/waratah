@@ -12,7 +12,18 @@
             <% end_if %>
 
             <div class="wrth-mm__content nsw-block">
-                <p>{$Modal_Content}</p>
+                <% if $Modal_Content %>
+                <p>
+                    {$Modal_Content}
+                </p>
+                <% end_if %>
+                <% if $Modal_Image %>
+                    <figure class="nsw-media nsw-media--left-50">
+                        <% if $Modal_Link %><a href="$Modal_Link.LinkURL"><% end_if %>
+                        <img src="{$Modal_Image.FitMax(600,600).URL}" alt="{$Modal_Image.AltText.XML}" loading="lazy">
+                        <% if $Modal_Link %></a><% end_if %>
+                    </figure>
+                <% end_if %>
             </div>
 
             <div class="wrth-mm__footer nsw-block">
