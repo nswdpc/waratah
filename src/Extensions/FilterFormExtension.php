@@ -2,7 +2,7 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
-use NSWDPC\Waratah\Services\FilterFormTrait;
+use NSWDPC\Waratah\Traits\FilterFormTrait;
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\Form;
 
