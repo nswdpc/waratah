@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "micromodal": "^0.4.10",
-    "nsw-design-system": "^3.7.0",
+    "nsw-design-system": "^3.11.0",
     "slim-select": "^2.4.5"
   },
   "devDependencies": {
