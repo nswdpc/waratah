@@ -1,8 +1,7 @@
 <?php
 
-namespace NSWDPC\Waratah\Services;
+namespace NSWDPC\Waratah\Traits;
 
-use SilverStripe\Core\Extension;
 use SilverStripe\Forms\Form;
 
 /**
