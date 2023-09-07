@@ -26,18 +26,10 @@ class DesignSystemAssetExtension extends Extension {
     private $configurator = null;
 
     /**
-     * @var bool
-     */
-    protected static $_requirements_loaded = false;
-
-    /**
      * Include the Design System after controller init (once)
      */
     public function onAfterInit()
     {
-        if(self::$_requirements_loaded) {
-            return;
-        }
         if(!$this->getConfigurationValue('frontend_provided')) {
             $this->requireDesignSystem();
         }
@@ -163,8 +155,6 @@ class DesignSystemAssetExtension extends Extension {
                 ]
             );
         }
-
-        self::$_requirements_loaded = true;
 
     }
 
