@@ -20,25 +20,27 @@
     </div>
 
 
-    <% if $Media_Caption || $Media_Credit %>
-        <figcaption>
-        <% if $Media_Caption && $Media_ShowCaption %>
-            <p>
-            <% if $Media_CaptionCharacterLimit > 0 %>
-                <% if $Media_CaptionEllipsis != '' %>
-                    {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit, $Media_CaptionEllipsis)}
+    <% if $Media_ShowCaption %>
+        <% if $Media_Caption || $Media_Credit %>
+            <figcaption>
+            <% if $Media_Caption %>
+                <p class="caption">
+                <% if $Media_CaptionCharacterLimit > 0 %>
+                    <% if $Media_CaptionEllipsis != '' %>
+                        {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit, $Media_CaptionEllipsis)}
+                    <% else %>
+                        {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit)}
+                    <% end_if %>
                 <% else %>
-                    {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit)}
+                    {$Media_Caption.XML}
                 <% end_if %>
-            <% else %>
-                {$Media_Caption.XML}
+                </p>
             <% end_if %>
-            </p>
+            <% if $Media_Credit %>
+                <p class="credit"><%t nswds.MEDIA_CREDIT 'Credit' %>: <span>{$Media_Credit.XML}</span></p>
+            <% end_if %>
+            </figcaption>
         <% end_if %>
-        <% if $Media_Credit %>
-            <p class="credit"><%t nswds.MEDIA_CREDIT 'Credit' %>: <span>{$Media_Credit.XML}</span></p>
-        <% end_if %>
-        </figcaption>
     <% end_if %>
 
 <% else_if $Media_Video %>
@@ -47,32 +49,34 @@
         {$Media_EmbedCode.RAW}
     </div>
 
-    <% if $Media_Caption || $Media_Credit || $Media_AltVideoURL %>
-        <figcaption>
-        <% if $Media_Caption && $Media_ShowCaption %>
-            <p>
-            <% if $Media_CaptionCharacterLimit > 0 %>
-                <% if $Media_CaptionEllipsis != '' %>
-                    {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit, $Media_CaptionEllipsis)}
+    <% if $Media_ShowCaption %>
+        <% if $Media_Caption || $Media_Credit || $Media_AltVideoURL %>
+            <figcaption>
+            <% if $Media_Caption %>
+                <p class="caption">
+                <% if $Media_CaptionCharacterLimit > 0 %>
+                    <% if $Media_CaptionEllipsis != '' %>
+                        {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit, $Media_CaptionEllipsis)}
+                    <% else %>
+                        {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit)}
+                    <% end_if %>
                 <% else %>
-                    {$Media_Caption.LimitCharacters($Media_CaptionCharacterLimit)}
+                    {$Media_Caption.XML}
                 <% end_if %>
-            <% else %>
-                {$Media_Caption.XML}
+                </p>
             <% end_if %>
-            </p>
+            <% if $Media_Credit %>
+                <p class="credit"><%t nswds.MEDIA_CREDIT 'Credit' %>: <span>{$Media_Credit.XML}</span></p>
+            <% end_if %>
+            <% if $Media_AltVideoURL %>
+                <p class="alt-url">
+                    <a href="$Media_AltVideoURL">
+                        <% _t('nswds.WATCHWITHAUDIODESC','Watch this video with an audio description') %>
+                    </a>
+                </p>
+            <% end_if %>
+            </figcaption>
         <% end_if %>
-        <% if $Media_Credit %>
-            <p class="credit"><%t nswds.MEDIA_CREDIT 'Credit' %>: <span>{$Media_Credit.XML}</span></p>
-        <% end_if %>
-        <% if $Media_AltVideoURL %>
-            <p class="alt-url">
-                <a href="$Media_AltVideoURL">
-                    <% _t('nswds.WATCHWITHAUDIODESC','Watch this video with an audio description') %>
-                </a>
-            </p>
-        <% end_if %>
-        </figcaption>
     <% end_if %>
 
     <% if $Media_Transcript %>
