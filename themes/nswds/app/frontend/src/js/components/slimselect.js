@@ -6,17 +6,26 @@ export default function initSlimSelect() {
      */
     document.querySelectorAll('div:not(.nsw-multi-select) > select[multiple]').forEach( (listbox) => {
       try {
-        let placeholder = listbox.getAttribute('placeholder');
+        let placeholderText = listbox.getAttribute('placeholder');
         let searchText = listbox.dataset.searchText;
-        new SlimSelect({
+        let searchPlaceholder = listbox.dataset.searchPlaceholder;
+        let settings = {
+          searchHighlight: true,
+          allowDeselect: true,
+          closeOnSelect: false
+        };
+        if(placeholderText) {
+          settings.placeholderText = placeholderText;
+        }
+        if(searchText) {
+          settings.searchText = searchText;
+        }
+        if(searchPlaceholder) {
+          settings.searchPlaceholder = searchPlaceholder;
+        }
+        let slim = new SlimSelect({
             select: listbox,
-            settings: {
-              placeholder: placeholder ? placeholder : 'Select one or more items',
-              searchText: searchText ? searchText : 'Sorry couldn\'t find anything..',
-              searchHighlight: true,
-              allowDeselect: true,
-              closeOnSelect: false
-            }
+            settings: settings
         });
       } catch (e) {
         console.error(e);
