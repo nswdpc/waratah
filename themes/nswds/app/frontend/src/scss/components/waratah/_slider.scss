@@ -6,14 +6,14 @@
  * <figure> elements in the gallery grid have no margin top/bottom
  */
 
-.no-image {
-  background-color: var(--nsw-grey-04);
-  min-height : 100px;
-}
-
 .nsw-grid[data-gallery] {
 
   align-items: stretch;
+
+  .no-image {
+    background-color: var(--nsw-palette-grey-04);
+    width: 100%;
+  }
 
   figure.nsw-media {
 
@@ -28,15 +28,29 @@
     }
 
     figcaption {
+
       display: flex;
       flex-direction: column;
       height: 100%;
+      background-color: var(--nsw-palette-off-white);
+      color: var(--nsw-text-dark);
+      padding: rem(16px);
+
+      & > * {
+        display: block;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
 
       .credit {
         span {
           font-style: italic;
         }
       }
+
     }
 
   }
@@ -47,7 +61,7 @@
 
   .nsw-grid[data-gallery="slideshow"] {
 
-    background-color: var(--nsw-grey-04);
+    background-color: var(--nsw-palette-white);
     box-shadow: none;
 
     .nsw-media {
@@ -62,8 +76,28 @@
 
   }
 
+  .nsw-grid[data-gallery="mayo"] {
+
+    figure.nsw-media {
+
+      border: 1px solid var(--nsw-palette-white);
+
+      figcaption {
+        margin-top: auto;
+        padding: 0;
+        background-color: var(--nsw-palette-white);
+        color: var(--nsw-text-dark);
+      }
+
+    }
+
+  }
+
 }
 
+/**
+ * Slideshow
+ */
 .nsw-grid[data-gallery="slideshow"] {
   overflow-x : scroll;
   flex-wrap: nowrap;
@@ -136,6 +170,67 @@
       }
 
     }
+  }
+
+}
+
+/**
+ * Grid of images
+ */
+.nsw-grid[data-gallery="grid"] {}
+
+/**
+ * Grid+extras
+ */
+.nsw-grid[data-gallery="mayo"] {
+
+  figure.nsw-media {
+
+    border: 1px solid var(--nsw-palette-black);
+    box-shadow: var(--nsw-box-shadow);
+
+    a {
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        background: none;
+      }
+
+      img {
+        object-fit: cover;
+      }
+
+      img,
+      .no-image {
+        height: rem(304px);
+        display: block;
+      }
+
+    }
+
+    figcaption {
+      margin-top: auto;
+      padding: 0;
+      background-color: var(--nsw-palette-black);
+      color: var(--nsw-text-light);
+
+      a {
+        margin: 0;
+        padding: rem(16px);
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-weight: var(--nsw-font-normal);
+      }
+
+    }
+
+
   }
 
 }
