@@ -1,5 +1,17 @@
 import SlimSelect from 'slim-select';
 
+let listBoxFilterHandler = function(listbox, optionsSelected) {
+  let form = listbox.form;
+  if(form && form.classList.contains('js-filters')) {
+    // The 'checked' property is toggled for nswds filters component
+    if(optionsSelected.length == 0) {
+      delete listbox.checked;
+    } else {
+      listbox.checked = true;
+    }
+  }
+}
+
 export function applySlimSelect(listbox) {
   try {
     let placeholderText = listbox.getAttribute('placeholder');
@@ -34,10 +46,14 @@ export function applySlimSelect(listbox) {
         return option.text.toLowerCase().substr(0, search.length) === search.toLowerCase();
       };
     }
+    events.beforeChange = function(n, o) {
+      listBoxFilterHandler(listbox, n);
+      return true;
+    };
     let slim = new SlimSelect({
-        select: listbox,
-        settings: settings,
-        events: events
+      select: listbox,
+      settings: settings,
+      events: events
     });
   } catch (e) {
     console.error(e);
@@ -50,6 +66,7 @@ export default function initSlimSelect() {
        * Apply slim-select to any multiple select inputs
        */
       document.querySelectorAll('div:not(.nsw-multi-select) > select[multiple]').forEach( (listbox) => {
+        listBoxFilterHandler(listbox, listbox.selectedOptions);
         applySlimSelect(listbox);
       });
     } catch (e) {
