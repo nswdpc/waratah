@@ -45,10 +45,14 @@ export function applySlimSelect(listbox) {
 };
 
 export default function initSlimSelect() {
-    /**
-     * Apply slim-select to any multiple select inputs
-     */
-    document.querySelectorAll('div:not(.nsw-multi-select) > select[multiple]').forEach( (listbox) => {
-      applySlimSelect(listbox);
-    });
+    try {
+      /**
+       * Apply slim-select to any multiple select inputs
+       */
+      document.querySelectorAll('div:not(.nsw-multi-select) > select[multiple]').forEach( (listbox) => {
+        applySlimSelect(listbox);
+      });
+    } catch (e) {
+      console.warn('initSlimSelect', e);
+    }
 }

@@ -4,6 +4,7 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FormField;
+use SilverStripe\Forms\ListboxField;
 
 class FormFieldExtension extends Extension
 {
@@ -38,6 +39,18 @@ class FormFieldExtension extends Extension
         } else {
             return false;
         }
+    }
+
+    /**
+     * Whether to use the nsw-design-system multi select component
+     * This only applies to ListboxField fields. To enable this component,
+     * set an attribute 'data-nsw-multiselect'on the field
+     *
+     * The default is to not use the component.
+     */
+    public function UseMultiSelectComponent() : bool {
+        return ($this->owner instanceof ListboxField)
+            && $this->owner->getAttribute('data-nsw-multiselect');
     }
 
     /**
