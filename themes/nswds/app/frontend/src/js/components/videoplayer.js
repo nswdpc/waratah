@@ -1,4 +1,5 @@
 export default function initVideoPlayer() {
+  try {
     /**
      * Handle video playing in dialogs
      */
@@ -115,4 +116,7 @@ export default function initVideoPlayer() {
         console.error(e);
       }
     });
+  } catch (e) {
+    console.warn('initVideoPlayer', e);
+  }
 }
