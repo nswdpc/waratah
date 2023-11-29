@@ -1,4 +1,4 @@
-<div id="{$ID}" class="readonly nsw-bg--off-white nsw-border nsw-border-1 nsw-border-grey-03 nsw-border-radius nsw-p-sm">
+<div id="{$ID}" class="readonly nsw-bg--off-white nsw-border nsw-border--1 nsw-border--grey-03 nsw-border-radius nsw-p-sm">
     {$Value}
 </div>
 <% if $IncludeHiddenField %>
