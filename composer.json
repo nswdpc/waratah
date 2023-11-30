@@ -50,7 +50,6 @@
     "require": {
         "nswdpc/silverstripe-content-boilerplate": "<1",
         "nswdpc/silverstripe-notification-boilerplate": "<1",
-        "nswdpc/silverstripe-feedback-assist": "^0.2",
         "nswdpc/silverstripe-field-hint": "^0.1",
         "nswdpc/silverstripe-grid-helpers": "^0.2",
         "nswdpc/silverstripe-datetime-inputs": "^0.1.1",
@@ -59,6 +58,9 @@
     "require-dev": {
         "phpunit/phpunit": "^9.5",
         "friendsofphp/php-cs-fixer": "^3"
+    },
+    "suggest": {
+        "nswdpc/silverstripe-feedback-assist": "For projects that use Feedback Assist"
     },
     "extra": {
         "expose": [
