@@ -33,8 +33,6 @@
 
 <% include nswds/Footer %>
 
-<% include FeedbackAssist %>
-
 <% include NSWDPC/Waratah/GlobalNotice %>
 
 </body>
