@@ -1,3 +1,4 @@
+<div id="{$HolderID}" class="nsw-form__group<% if $ParentExtraClass %> {$ParentExtraClass}<%end_if %>">
 <% if $FormFieldHint == 'callout' %>
     <%-- render as callout --%>
     <div class="nsw-callout">
@@ -26,3 +27,4 @@
 <% else %>
     {$Field}
 <% end_if %>
+</div>

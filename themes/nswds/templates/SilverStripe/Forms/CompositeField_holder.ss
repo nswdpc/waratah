@@ -40,7 +40,7 @@
 
             <% include NSWDPC/Waratah/Forms/Legend %>
 
-            <div class="nsw-p-left-xs nsw-p-bottom-lg">
+            <div class="nsw-p-left-xs">
 
                 <% include NSWDPC/Waratah/Forms/Description %>
 
