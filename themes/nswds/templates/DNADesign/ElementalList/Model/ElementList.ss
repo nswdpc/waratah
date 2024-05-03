@@ -3,6 +3,8 @@
     {$Elements}
 <% else_if $Subtype == 'cards' %>
     <% include NSWDPC/Waratah/ElementalList/Cards %>
+<% else_if $Subtype == 'carousel' %>
+    <% include NSWDPC/Waratah/ElementalList/CardCarousel %>
 <% else_if $Subtype == 'content-blocks' %>
     <% include NSWDPC/Waratah/ElementalList/ContentBlocks %>
 <% else_if $Subtype == 'accordion' %>
