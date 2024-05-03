@@ -2,6 +2,8 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
+use SilverStripe\Admin\LeftAndMain;
+use SilverStripe\Control\Controller;
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\ListboxField;
@@ -33,25 +35,41 @@ class DateFieldExtension extends Extension
 {
 
     /**
+     * Test whether the modifications can be applied (or not)
+     */
+    protected function isApplicable() : bool {
+        $controller = Controller::curr();
+        if($controller && ($controller instanceof LeftAndMain)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Update the available attributes for the input
      */
     public function updateAttributes(&$attributes) {
-        $attributes['autocomplete'] = 'off';
-        $attributes['type'] = 'text';// component blocks native browser type
-        if(!isset($attributes['class'])) {
-            $attributes['class'] = '';
+        if($this->isApplicable()) {
+            $attributes['autocomplete'] = 'off';
+            $attributes['type'] = 'text';// component blocks native browser type
+            if(!isset($attributes['class'])) {
+                $attributes['class'] = '';
+            }
+            $attributes['class'] .= ' nsw-form__input js-date-input__text';
+            $attributes['class'] = trim($attributes['class']);
         }
-        $attributes['class'] .= ' nsw-form__input js-date-input__text';
-        $attributes['class'] = trim($attributes['class']);
     }
 
     /**
      * Update render templates
      */
     public function onBeforeRenderHolder($context, $properties) {
-        $this->owner->setInputType('text');
-        $this->owner->setTemplate('NSWDPC/Waratah/Forms/DateField');
-        $this->owner->setFieldHolderTemplate('NSWDPC/Waratah/Forms/DateField_holder');
+        if($this->isApplicable()) {
+            $this->owner->setInputType('text');
+            $this->owner->setTemplate('NSWDPC/Waratah/Forms/DateField');
+            $this->owner->setFieldHolderTemplate('NSWDPC/Waratah/Forms/DateField_holder');
+        }
     }
 
 }
