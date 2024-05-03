@@ -1,4 +1,4 @@
-<div id="$HolderID" class="nsw-form__date-input nsw-form__date-input--large<% if $ParentExtraClass %> {$ParentExtraClass}<%end_if %>">
+<div id="{$HolderID}" class="nsw-form__date-input nsw-form__date-input--large<% if $ParentExtraClass %> {$ParentExtraClass}<%end_if %>">
 
     <% if $Title %><label class="nsw-form__label nsw-form__label--small left<% if $Required %> nsw-form__required<% end_if %>" for="{$ID}">{$Title}</label><% end_if %>
 
