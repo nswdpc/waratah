@@ -53,7 +53,7 @@
         "nswdpc/silverstripe-feedback-assist": "^0.2.3",
         "nswdpc/silverstripe-field-hint": "^0.1",
         "nswdpc/silverstripe-grid-helpers": "^0.2",
-        "nswdpc/silverstripe-datetime-inputs": "^0.1.1",
+        "nswdpc/silverstripe-datetime-inputs": "<1",
         "nswdpc/silverstripe-notices": "^0.1",
         "nswdpc/silverstripe-analytics-chooser": "<1"
     },
