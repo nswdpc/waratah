@@ -1,7 +1,6 @@
-<div id="{$HolderID}" class="nsw-form__group wrth-form__composite<% if $ExtraClass %> {$ExtraClass}<% end_if %>" data-is-composite="1">
+<div id="{$HolderID}" class="nsw-form__group nsw-form__date wrth-form__composite<% if $ExtraClass %> {$ExtraClass}<% end_if %>" data-is-composite="1">
 
-    <label class="nsw-form__label left">{$Title.XML}</label>
-
+    <label class="nsw-form__label<% if $Required %> nsw-form__required<% end_if %>" for="{$Children.First.ID}">{$Title.XML}</label>
     <% include NSWDPC/Waratah/Forms/Description %>
 
     <% if $FieldWarning %>
@@ -10,7 +9,7 @@
 
     <% include nswds/FormFieldMessage FormFieldMessage_IsCompact=1, FormFieldMessage_Message=$Message, FormFieldMessage_MessageType=$MessageType, FormFieldMessage_MessageCast=$MessageCast %>
 
-    <div class="inputs">
+    <div class="nsw-form__date-wrapper">
         {$Field}
     </div>
     <% if $FormatExample %><span class="nsw-form__helper">{$FormatExample.XML}</span><% end_if %>
