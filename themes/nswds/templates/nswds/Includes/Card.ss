@@ -1,4 +1,6 @@
+<% if not $Card_Carousel %>
 <div class="nsw-col<% if $Card_ColumnOptions %> $Card_ColumnOptions.XML<% else %> nsw-col-md-4<% end_if %>">
+<% end_if %>
 
     <div class="nsw-card<% if $Card_Horizontal %> nsw-card--horizontal<% end_if %><% if $Card_Highlight %> nsw-card--highlight<% end_if %><% if $Card_HeadlineOnly %> nsw-card--headline<% end_if %><% if $Card_Brand %> nsw-card--{$Card_Brand.XML}<% end_if %>">
 
@@ -77,4 +79,7 @@
         <% end_if %>
 
     </div>
+
+<% if not $Card_Carousel %>
 </div>
+<% end_if %.
