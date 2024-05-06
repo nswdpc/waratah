@@ -44,4 +44,70 @@ form {
     @extend .nsw-button--danger;
   }
 
+
+  @include breakpoint("sm") {
+    /**
+     * Composite field grid options
+     */
+    .wrth-form__composite {
+
+      &[data-grid-option] {
+        .field.cp {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: rem(16px);
+
+          > * {
+            margin-top: 0;
+            flex: 1 1 100%;
+          }
+
+          /**
+           * A flex break is full width
+           */
+          .wrth-flex__break {
+            flex-basis: 100%;
+          }
+        }
+      }
+
+      &[data-grid-option="equal-width-fields"] {
+        .field.cp {
+          > * {
+            flex: 1;
+          }
+        }
+      }
+
+      &[data-grid-option="2-across"] {
+        .field.cp {
+
+          align-items: flex-start;
+
+          > * {
+            /* grow shrink basis */
+            flex: 0 1 calc(50% - rem(16px));
+          }
+        }
+      }
+
+      &[data-grid-option="3-across"] {
+        .field.cp {
+
+          align-items: flex-start;
+
+          > * {
+            /* grow shrink basis */
+            flex: 0 1 calc((100%/3) - rem(16px));
+          }
+        }
+      }
+
+    }
+
+  }
+
 }
