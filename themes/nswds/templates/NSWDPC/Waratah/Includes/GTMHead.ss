@@ -1,5 +1,3 @@
 <% if not $AnalyticsOptOut %>
-    <% with $SiteConfig %>
-        {$ProvideAnalyticsImplementation}
-    <% end_with %>
+    <% include NSWDPC/AnalyticsChooser/Implementation %>
 <% end_if %>

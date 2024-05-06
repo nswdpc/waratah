@@ -90,9 +90,8 @@ class ElementContentExtension extends DataExtension
         }
 
         $fields->removeByName(['ContentLinkID']);
-        $fields->addFieldsToTab(
-            'Root.Main',
-            [
+        $fields->addFieldToTab(
+            'Root.Image',
                 UploadField::create(
                     'ContentImage',
                     _t('nswds.IMAGE', 'Image')
@@ -107,11 +106,12 @@ class ElementContentExtension extends DataExtension
                             'types' => implode(",", $this->owner->getAllowedFileTypes())
                         ]
                     )
-                ),
-                $this->getLinkField()
-            ], 'ParentID'
+                )
         );
-
+        $fields->addFieldToTab(
+            'Root.Link',
+                $this->getLinkField()
+        );
     }
 
     /**

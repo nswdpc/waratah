@@ -3,7 +3,6 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
-use NSWDPC\Waratah\Services\Analytics\AbstractAnalyticsService;
 use Silverstripe\Assets\File;
 use Silverstripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
@@ -33,10 +32,6 @@ class SiteConfigExtension extends DataExtension
 
         // Copyright and ownership
         'CopyrightOwner' => 'Varchar(255)',
-
-        // GTM
-        'GoogleTagManagerCode' => 'Varchar(255)',
-        'GoogleImplementation' => 'Varchar(16)',
 
         // global settings
         'FooterLinksCol1Title' => 'Varchar(255)',
@@ -132,24 +127,6 @@ class SiteConfigExtension extends DataExtension
                 ]
             );
         }
-
-        // application codes and the like
-        $fields->addFieldsToTab('Root.Applications', [
-            HeaderField::create('ApplicationsHeader', 'Applications'),
-            CompositeField::create(
-                DropdownField::create(
-                    'GoogleImplementation',
-                    'Implementation',
-                    $this->owner->getAnalyticsImplementations()
-                )->setEmptyString( _t('nswds.SELECT_ONE', '(select)') ),
-                TextField::create(
-                    'GoogleTagManagerCode',
-                    'Code'
-                )->setDescription(
-                    "Eg. GTM-XXXX (GTM), UA-XXXX (GA3), G-XXXX (GA4)"
-                )
-            )->setTitle('Analytics')
-        ]);
 
         $fields->addFieldToTab(
             'Root',
@@ -302,32 +279,6 @@ class SiteConfigExtension extends DataExtension
             );
         }
         return $value;
-    }
-
-    /**
-     * Get the current analytics implementation
-     */
-    public function getAnalyticsImplementation() : ?AbstractAnalyticsService {
-        $inst = null;
-        if($implementationCode = $this->owner->GoogleImplementation) {
-            $inst = AbstractAnalyticsService::getImplementation( $implementationCode );
-        }
-        return $inst;
-    }
-
-    /**
-     * Template method to provide implementation of analytics
-     */
-    public function ProvideAnalyticsImplementation() : ?DBHTMLText {
-        if($this->owner->GoogleTagManagerCode && ($inst = $this->getAnalyticsImplementation())) {
-            return $inst->provide($this->owner->GoogleTagManagerCode);
-        } else {
-            return null;
-        }
-    }
-
-    public function getAnalyticsImplementations() : array {
-        return AbstractAnalyticsService::getImplementations();
     }
 
 }
