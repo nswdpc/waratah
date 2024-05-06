@@ -4,9 +4,9 @@
     {$HTML}
 </div>
 <% end_if %>
-<% if $Elements.Elements %>
+<% if $ElementLinks.Sort('Sort') %>
     <div class="nsw-block">
-        <% loop $Elements.Elements %>
+        <% loop $ElementLinks.Sort('Sort') %>
             <% if $ContentLink %>
                 <% include nswds/ListItem ListItem_PrimaryLabel=$CallToAction, ListItem_Date=$PublicDate, ListItem_Title=$Title, ListItem_Abstract=$HTML.Plain, ListItem_LinkURL=$ContentLink.LinkURL, ListItem_Image=$ContentImage, ListItem_Info=$Subtitle, ListItem_Tags=$Tags %>
             <% else %>

@@ -4,6 +4,6 @@
     {$HTML}
 </div>
 <% end_if %>
-<% if $Elements.Elements %>
-    <% include nswds/Accordion Accordion_Items=$Elements.Elements %>
+<% if $ElementLinks.Sort('Sort') %>
+    <% include nswds/Accordion Accordion_Items=$ElementLinks %>
 <% end_if %>

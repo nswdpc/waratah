@@ -7,7 +7,9 @@
 <% if $ElementLinks.Sort('Sort') %>
     <div class="nsw-grid">
         <% loop $ElementLinks.Sort('Sort') %>
-        <% include nswds/Card Card_ColumnOptions=$Up.Up.Columns, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$Image, Card_Description=$Description %>
+            <div class="nsw-col {$Up.Up.ColumnClass($Up.OverrideColumns)}">
+                {$Me}
+            </div>
         <% end_loop %>
     </div>
 <% end_if %>

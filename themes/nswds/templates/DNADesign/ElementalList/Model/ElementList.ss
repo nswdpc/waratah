@@ -17,4 +17,6 @@
     <% include NSWDPC/Waratah/ElementalList/ListItems %>
 <% else_if $Subtype == 'linklist' %>
     <% include NSWDPC/Waratah/ElementalList/LinkList %>
+<% else %>
+    <% include NSWDPC/Waratah/ElementalList/CustomListing Subtype=$Subtype %>
 <% end_if %>

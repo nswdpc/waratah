@@ -1,8 +1,9 @@
 <% include NSWDPC/Waratah/ElementTitle ShowTitle=$ShowTitle, Title=$Title, HeadingLevel=$HeadingLevel %>
 <% if $HTML %>
+<div class="nsw-block">
     {$HTML}
+</div>
 <% end_if %>
-
 <% if $Elements.Elements %>
 
     <div class="nsw-carousel js-carousel"<% if $Abstract %> data-description="{$Abstract}"<% end_if %> data-navigation-pagination="on">

@@ -7,12 +7,12 @@
         <% if $ContentBlock_Image || $ContentBlock_IconImage || ContentBlock_IconSVG || $ContentBlock_ImageURL %>
             <div class="nsw-content-block__image">
             <% if $ContentBlock_Image %>
-                <img src="$ContentBlock_Image.FocusFillMax(600,400).URL" alt="{$ContentBlock_Image.AltText.XML}" loading="lazy">
+                {$ContentBlock_Image.FocusFillMax(600,400)}
             <% else_if $ContentBlock_ImageURL %>
                 <img src="{$ContentBlock_ImageURL.XML}" width="600" height="400" alt="{$ContentBlock_Image.AltText.XML}" loading="lazy">
             <% else_if $ContentBlock_IconImage %>
                 <div class="nsw-content-block__icon">
-                <img src="{$ContentBlock_IconImage.FocusFillMax(64,64).URL}" alt="{$ContentBlock_IconImage.AltText.XML}" loading="lazy">
+                {$ContentBlock_IconImage.FocusFillMax(64,64)}
                 </div>
             <% else_if $ContentBlock_IconSVG %>
                 <div class="nsw-content-block__icon">
