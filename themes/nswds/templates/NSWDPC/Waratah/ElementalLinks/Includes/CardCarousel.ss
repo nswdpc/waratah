@@ -4,7 +4,7 @@
 <% end_if %>
 <% if $ElementLinks %>
 
-    <div class="nsw-carousel js-carousel" data-description="Highlighted latest news" data-navigation-pagination="on">
+    <div class="nsw-carousel js-carousel"<% if $Abstract %> data-description="{$Abstract}"<% end_if %> data-navigation-pagination="on">
 
         <p class="sr-only"><%t nswds.CAROUSEL_ITEMS 'Items' %></p>
 
@@ -14,7 +14,7 @@
 
             <% loop $ElementLinks.Sort('Sort') %>
                 <li class="nsw-carousel__item">
-                    <% include NSWDPC/Waratah/CardInList Card_Title=$Title, Card_Link=$Me, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$Image, Card_Content=$Description %>
+                    <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$Image, Card_Description=$Description %>
                 </li>
             <% end_loop %>
 

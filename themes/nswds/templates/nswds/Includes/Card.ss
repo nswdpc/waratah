@@ -9,7 +9,7 @@
             <div class="nsw-card__content">
 
                 <div class="nsw-card__title">
-                    <a href="{$Card_LinkURL}">{$Card_Title.XML}</a>
+                    <a href="{$Card_LinkURL}"<% if $Card_LinkOpenInNewWindow %> target="_blank" rel="noopener noreferrer"<% end_if %>>{$Card_Title.XML}</a>
                 </div>
 
                 <% if $Card_LinkIcon == '' %>
@@ -57,7 +57,7 @@
                 <% end_if %>
 
                 <div class="nsw-card__title">
-                    <a href="{$Card_LinkURL}">{$Card_Title.XML}</a>
+                    <a href="{$Card_LinkURL}"<% if $Card_LinkOpenInNewWindow %> target="_blank" rel="noopener noreferrer"<% end_if %>>{$Card_Title.XML}</a>
                 </div>
 
                 <div class="nsw-card__copy">
@@ -82,4 +82,4 @@
 
 <% if not $Card_Carousel %>
 </div>
-<% end_if %.
+<% end_if %>
