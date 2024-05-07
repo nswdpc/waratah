@@ -1,0 +1,36 @@
+/**
+ * Flex definition list
+ * A semantic definition list displayed visually in a flex grid
+ * At sm viewport, the element renders in the flex column direction
+ * Above sm viewport, in the flex row direction
+ */
+
+dl.wrth__flex_list {
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @include breakpoint("sm") {
+    flex-direction: row;
+  }
+
+  dt {
+    flex-basis: 25%;
+    padding : 0 0 rem(16px) 0;
+    margin: 0;
+    @include font-size('sm');
+    font-weight: var(--nsw-font-bold);
+  }
+
+  dd {
+    flex-basis: 75%;
+    padding : 0 0 rem(16px) 0;
+    margin: 0;
+    @include font-size('sm');
+    font-weight: var(--nsw-font-normal);
+  }
+
+}

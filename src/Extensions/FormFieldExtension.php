@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
+use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\ListboxField;
 
@@ -62,6 +63,23 @@ class FormFieldExtension extends Extension
             'Title' => ''
         ];
         return $this->owner->FieldHolder( $properties );
+    }
+
+    /**
+     * Set a grid option via a data attribute, with one of the supported grid options
+     */
+    public function setGridOption(string $gridOption) {
+        if(!($this->owner instanceof CompositeField)) {
+            throw new \RuntimeException("Only composite fields can have a grid option set");
+        }
+        return $this->owner->setAttribute('data-grid-option', $gridOption);
+    }
+
+    /**
+     * Template variable for returning a grid option. See CompositeField_holder
+     */
+    public function GridOption() : ?string {
+        return $this->owner->getAttribute('data-grid-option');
     }
 
 }
