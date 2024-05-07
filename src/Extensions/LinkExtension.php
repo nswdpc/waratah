@@ -29,11 +29,28 @@ class LinkExtension extends DataExtension
         "Image" => Image::class,
     ];
 
-    private static $allowed_file_types = ["jpg", "jpeg", "gif", "png", "webp"];
+    /**
+     * @var array
+     */
+    private static $allowed_file_types = [
+        "jpg",
+        "jpeg",
+        "gif",
+        "png",
+        "webp"
+    ];
 
-    private static $owns = ["Image"];
+    /**
+     * @var array
+     */
+    private static $owns = [
+        "Image"
+    ];
 
-    public function getAllowedFileTypes()
+    /**
+     * Get allowed file types
+     */
+    public function getAllowedFileTypes() : array
     {
         $types = $this->owner->config()->get("allowed_file_types");
         if (empty($types)) {
@@ -43,6 +60,9 @@ class LinkExtension extends DataExtension
         return $types;
     }
 
+    /**
+     * Update CMS fields for administration of link
+     */
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -55,14 +75,16 @@ class LinkExtension extends DataExtension
                         'nswds.DESCRIPTION',
                         'Description'
                     )
-                )
-                ->setDescription("Links to pages on this site will use its Abstract if set, otherwise you can override it here.")
-                ->setTargetLength(100, 50, 150),
+                )->setRightTitle(
+                    _t(
+                        'nswds.DESCRIPTION_DESCRIPTION',
+                        "Links to 'Pages on this website' will use their Abstract, if set. You can provide a specific description here, just for this link, to override the Page value."
+                    )
+                )->setTargetLength(100, 50, 150),
                 UploadField::create(
                     "Image",
                     _t("nswds.IMAGE", "Image")
-                )
-                ->setAllowedExtensions($this->owner->getAllowedFileTypes())
+                )->setAllowedExtensions($this->owner->getAllowedFileTypes())
                 ->setIsMultiUpload(false)
                 ->setDescription(
                     _t(
@@ -71,6 +93,11 @@ class LinkExtension extends DataExtension
                         [
                             'types' => implode(",", $this->owner->getAllowedFileTypes())
                         ]
+                    )
+                )->setRightTitle(
+                    _t(
+                        'nswds.LINK_IMAGE_HELP_TEXT',
+                        "Links to 'Pages on this website' will use their Image, if set. You can provide a specific image here, just for this link, to override the Page value."
                     )
                 )
             ]
