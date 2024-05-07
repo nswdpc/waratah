@@ -7,11 +7,7 @@
 <% if $ElementLinks.Sort('Sort') %>
     <div class="nsw-block">
         <% loop $ElementLinks.Sort('Sort') %>
-            <% if $ContentLink %>
-                <% include nswds/ListItem ListItem_PrimaryLabel=$CallToAction, ListItem_Date=$PublicDate, ListItem_Title=$Title, ListItem_Abstract=$HTML.Plain, ListItem_LinkURL=$ContentLink.LinkURL, ListItem_Image=$ContentImage, ListItem_Info=$Subtitle, ListItem_Tags=$Tags %>
-            <% else %>
-                <% include nswds/ListItem ListItem_PrimaryLabel=$CallToAction, ListItem_Date=$PublicDate, ListItem_Title=$Title, ListItem_Abstract=$HTML.Plain, ListItem_Image=$ContentImage, ListItem_Info=$Subtitle, ListItem_Tags=$Tags %>
-            <% end_if %>
+            <% include nswds/ListItem ListItem_PrimaryLabel=$CallToAction, ListItem_Date=$PublicDate, ListItem_Title=$Title, ListItem_Abstract=$Description, ListItem_LinkURL=$Me.LinkURL, ListItem_Image=$Image, ListItem_Info=$Subtitle, ListItem_Tags=$Tags %>
         <% end_loop %>
     </div>
 <% end_if %>
