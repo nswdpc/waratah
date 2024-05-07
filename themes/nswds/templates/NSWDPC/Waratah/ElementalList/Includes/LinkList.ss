@@ -5,6 +5,7 @@
 </div>
 <% end_if %>
 <% if $Elements.Elements %>
+<div class="nsw-block">
     <div class="nsw-link-list">
         <ul>
         <% loop $Elements.Elements %>
@@ -12,4 +13,5 @@
         <% end_loop %>
         </ul>
     </div>
+</div>
 <% end_if %>

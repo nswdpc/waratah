@@ -5,7 +5,7 @@
 </div>
 <% end_if %>
 <% if $ElementLinks.Sort('Sort') %>
-
+<div class="nsw-block">
     <div class="nsw-carousel js-carousel"<% if $Abstract %> data-description="{$Abstract}"<% end_if %> data-navigation-pagination="on">
 
         <p class="sr-only"><%t nswds.CAROUSEL_ITEMS 'Items' %></p>
@@ -27,4 +27,5 @@
         <% include nswds/CardCarousel_Navigation %>
 
     </div>
+</div>
 <% end_if %>
