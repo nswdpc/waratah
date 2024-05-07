@@ -3,13 +3,16 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use gorriecoe\Link\Models\Link;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\Forms\TextareaField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\ORM\DataExtension;
 
-
+/**
+ * Decorate \gorriecoe\Link\Models\Link with extra fields and other
+ * requirements
+ */
 class LinkExtension extends DataExtension
 {
     /**
@@ -73,6 +76,48 @@ class LinkExtension extends DataExtension
             ]
         );
 
+    }
+
+    /**
+     * Provides a compatibility method for returning the description
+     * for a link from the linked SiteTree record, if the link is of type SiteTree
+     * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
+     */
+    public function LinkDescription() {
+        $type = $this->owner->Type;
+        $description = '';
+        if($type == 'SiteTree') {
+            $record = $this->owner->SiteTree();
+            if($record && $record->isInDB() && $record->hasField('Abstract')) {
+                $description = trim($record->Abstract ?? '');
+            }
+        }
+        if(!$description) {
+            // use this record's Description field, instead
+            $description = $this->owner->Description;
+        }
+        return $description;
+    }
+
+    /**
+     * Provides a compatibility method for returning the image
+     * for a link from the linked SiteTree record, if the link is of type SiteTree
+     * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
+     */
+    public function LinkImage() : ?Image {
+        $type = $this->owner->Type;
+        $image = null;
+        if($type == 'SiteTree') {
+            $record = $this->owner->SiteTree();
+            if($record && $record->isInDB() && $record->hasField('Image')) {
+                $image = $record->Image();
+            }
+        }
+        if(!$image || !$image->exists()) {
+            // use this record's Image field, instead
+            $image = $this->owner->Image();
+        }
+        return $image;
     }
 
 }
