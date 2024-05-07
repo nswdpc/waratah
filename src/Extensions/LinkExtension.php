@@ -112,16 +112,12 @@ class LinkExtension extends DataExtension
      */
     public function LinkDescription() {
         $type = $this->owner->Type;
-        $description = '';
-        if($type == 'SiteTree') {
+        $description = $this->owner->Description;
+        if(!$description && $type == 'SiteTree') {
             $record = $this->owner->SiteTree();
             if($record && $record->isInDB() && $record->hasField('Abstract')) {
                 $description = trim($record->Abstract ?? '');
             }
-        }
-        if(!$description) {
-            // use this record's Description field, instead
-            $description = $this->owner->Description;
         }
         return $description;
     }
@@ -133,16 +129,12 @@ class LinkExtension extends DataExtension
      */
     public function LinkImage() : ?Image {
         $type = $this->owner->Type;
-        $image = null;
-        if($type == 'SiteTree') {
+        $image = $this->owner->Image();
+        if((!$image || !$image->exists()) && $type == 'SiteTree') {
             $record = $this->owner->SiteTree();
             if($record && $record->isInDB() && $record->hasField('Image')) {
                 $image = $record->Image();
             }
-        }
-        if(!$image || !$image->exists()) {
-            // use this record's Image field, instead
-            $image = $this->owner->Image();
         }
         return $image;
     }
