@@ -15,7 +15,7 @@
     <% include NSWDPC/Waratah/ElementalList/Grid %>
 <% else_if $Subtype == 'listitem' %>
     <% include NSWDPC/Waratah/ElementalList/ListItems %>
-<% else_if $Subtype == 'linklist' %>
+<% else_if $Subtype == 'linklist' || $Subtype == 'link-list' %>
     <% include NSWDPC/Waratah/ElementalList/LinkList %>
 <% else %>
     <% include NSWDPC/Waratah/ElementalList/CustomListing Subtype=$Subtype %>
