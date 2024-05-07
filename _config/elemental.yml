@@ -79,15 +79,10 @@ Name: 'nswdpc-waratah-elemental-links-subtypes'
 # Subtypes available to the ElementalLinks model
 NSWDPC\Elemental\Models\LinksBlock\ElementalLinks:
   subtypes:
-    accordion: 'Accordion'
     cards: 'Cards'
     carousel: 'Carousel'
-    'content-blocks': 'Content blocks'
     'feature-tile': 'Feature tile (deprecated)'
-    grid: 'Grid'
-    'listitem': 'List items'
     'link-list': 'Link list'
-    tabs: 'Tabs'
 
 ---
 Name: nswdpc-waratah-elemental-gridhelpers
