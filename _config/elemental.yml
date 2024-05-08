@@ -74,6 +74,18 @@ DNADesign\ElementalList\Model\ElementList:
 Dynamic\Elements\Section\Elements\ElementSectionNavigation:
   extensions:
     - 'NSWDPC\Waratah\Extensions\ElementSectionNavigationExtension'
+
+---
+Name: 'nswdpc-waratah-elemental-links-subtypes'
+---
+# Subtypes available to the ElementalLinks model
+NSWDPC\Elemental\Models\LinksBlock\ElementalLinks:
+  subtypes:
+    cards: 'Cards'
+    carousel: 'Carousel'
+    'feature-tile': 'Feature tile (deprecated)'
+    'link-list': 'Link list'
+
 ---
 Name: nswdpc-waratah-elemental-gridhelpers
 After:
