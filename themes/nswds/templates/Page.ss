@@ -35,5 +35,7 @@
 
 <% include NSWDPC/Waratah/GlobalNotice %>
 
+<% include NSWDPC/Waratah/BackToTop %>
+
 </body>
 </html>

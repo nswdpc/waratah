@@ -50,7 +50,8 @@ class PageExtension extends DataExtension
         'ShowBannerImage' => 'Boolean',
         'HideBreadcrumbs' => 'Boolean',
         'DisableLastUpdated' => 'Boolean',
-        'PublicLastUpdated' => 'Date'
+        'PublicLastUpdated' => 'Date',
+        'ShowBackToTop' => 'Boolean'
     ];
 
     /**
@@ -58,7 +59,8 @@ class PageExtension extends DataExtension
      */
     private static $defaults = [
         "ShowAbstractOnPage" => 1,
-        "HideBreadcrumbs" => 0
+        "HideBreadcrumbs" => 0,
+        "ShowBackToTop" => 0
     ];
 
     /**
@@ -220,6 +222,17 @@ class PageExtension extends DataExtension
             $publicLastUpdated
         );
 
+        // Add BackToTop button component
+        $fields->insertBefore(
+            'Visibility',
+            CheckboxField::create(
+                'ShowBackToTop',
+                _t(
+                    'nswds.SHOW_BACK_TO_TOP_BUTTON',
+                    'Include the \'Back to top\' button on the page'
+                )
+            )
+        );
 
     }
 
