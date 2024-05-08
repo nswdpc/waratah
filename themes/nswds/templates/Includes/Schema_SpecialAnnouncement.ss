@@ -5,7 +5,7 @@
 
         <div class="nsw-callout__content">
             <% if $Title %>
-                <h2 class="nsw-callout__title">{$Title.XML}</h2>
+                <p class="nsw-h4">{$Title.XML}</p>
             <% end_if %>
             <% if $ShortDescription %>
                 <p>{$ShortDescription}</p>

@@ -34,6 +34,6 @@ export default function initMicroModal() {
       }
     }
   } catch(e) {
-    console.log(e);
+    console.warn('initMicroModal', e);
   }
 }

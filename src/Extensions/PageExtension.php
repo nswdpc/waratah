@@ -7,10 +7,13 @@ use SilverStripe\Control\Director;
 use SilverStripe\CMS\Model\SiteTree;
 use Silverstripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\DateField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
+use SilverStripe\View\ArrayData;
 
 class PageExtension extends DataExtension
 {
@@ -21,6 +24,22 @@ class PageExtension extends DataExtension
     private static $allowed_file_types = ["jpg", "jpeg", "gif", "png", "webp"];
 
     /**
+     * Show LastEdited date on page
+     *
+     * @config
+     * @var bool
+     */
+    private static $show_last_updated = false;
+
+    /**
+     * Set LastEdited date format
+     *
+     * @config
+     * @var string
+     */
+    private static $date_format = 'dd LLLL y';
+
+    /**
      * @var array
      */
     private static $db = [
@@ -29,7 +48,9 @@ class PageExtension extends DataExtension
         'IsLandingPage' => 'Boolean',
         'ShowSectionNav' => 'Boolean',
         'ShowBannerImage' => 'Boolean',
-        'HideBreadcrumbs' => 'Boolean'
+        'HideBreadcrumbs' => 'Boolean',
+        'DisableLastUpdated' => 'Boolean',
+        'PublicLastUpdated' => 'Date'
     ];
 
     /**
@@ -167,5 +188,66 @@ class PageExtension extends DataExtension
 
         ]);
 
+    }
+
+    public function updateSettingsFields(FieldList $fields)
+    {
+
+        $disableLastUpdated = FieldGroup::create(
+            CheckboxField::create(
+                'DisableLastUpdated',
+                _t('nswds.DISABLELASTUPDATED', 'Disable last updated date on this page')
+            )
+        );
+        $disableLastUpdated->setTitle('Last updated');
+        $disableLastUpdated->setName('LastUpdatedGroup');
+
+        $publicLastUpdated = FieldGroup::create(
+            DateField::create(
+                'PublicLastUpdated',
+                _t('nswds.PUBLICLASTUPDATED', 'Show a custom last updated date')
+            )
+        );
+        $publicLastUpdated->setName('PublicUpdatedGroup');
+
+        $fields->insertAfter(
+            'Visibility',
+            $disableLastUpdated
+        );
+
+        $fields->insertAfter(
+            'LastUpdatedGroup',
+            $publicLastUpdated
+        );
+
+
+    }
+
+    /**
+     * Return Last Updated date for record, if enabled
+     * If LastUpdated has no value, use record LastEdited value
+     * @param string|null optional date format, if none passed the configured date format is used
+     * @return ArrayData|null
+     */
+    public function PageLastUpdated() : ?ArrayData
+    {
+        $showLastUpdated = $this->owner->config()->get('show_last_updated');
+        $disableDateOnPage = $this->owner->DisableLastUpdated;
+        if (!$showLastUpdated || $disableDateOnPage) {
+            return null;
+        } else {
+            $format = $this->owner->config()->get('last_updated_format');
+            $publicDateOnPage = $this->owner->dbObject('PublicLastUpdated');
+            if($publicDateOnPage->getValue()) {
+                $displayDate = $publicDateOnPage;
+            } else {
+                $displayDate = $this->owner->dbObject('LastEdited');
+            }
+            $result = ArrayData::create([
+                'Machine' => $displayDate->Format('yyyy-MM-dd'),
+                'Human' => $displayDate->Format($format)
+            ]);
+            return $result;
+        }
     }
 }

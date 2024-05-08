@@ -10,3 +10,8 @@ SilverStripe\MimeValidator\MimeUploadValidator:
 SilverStripe\Assets\File:
     allowed_extensions:
     - svg
+
+Page:
+  show_last_updated: false
+  # date format eg 14 Feb 2001
+  last_updated_format: 'dd LLL y'

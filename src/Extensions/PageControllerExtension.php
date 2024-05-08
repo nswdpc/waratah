@@ -4,7 +4,6 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 
-
 class PageControllerExtension extends Extension
 {
 

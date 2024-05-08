@@ -21,7 +21,7 @@ use Silverstripe\Forms\Form;
 class SomeFilterForm extends Form
 {
 
-    use \NSWDPC\Waratah\Services\FilterFormTrait;
+    use \NSWDPC\Waratah\Traits\FilterFormTrait;
     
     /**
      * Clear link used for filter form

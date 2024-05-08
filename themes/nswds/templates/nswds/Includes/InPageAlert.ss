@@ -17,7 +17,7 @@
     <% else %>
 
         <% if $InPageAlert_Title %>
-            <h5>{$InPageAlert_Title.XML}</h5>
+            <p class="nsw-h5">{$InPageAlert_Title.XML}</p>
         <% end_if %>
 
         <% if $InPageAlert_Content %>

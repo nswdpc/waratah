@@ -28,7 +28,8 @@ $(document).ready(function(){
     $('#{$anchor} [data-gallery]').slickLightbox({
         itemSelector: 'figure a:first-child',
         caption: function(element, info) {
-            return $(element).parent().next('figcaption').html()
+            let cElem = $(element).parent().next('figcaption');
+            return cElem.length > 0 ? $(cElem).html() : '';
         },
         captionPosition: 'dynamic',
         lazy: true

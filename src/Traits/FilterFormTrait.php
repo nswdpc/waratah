@@ -1,8 +1,7 @@
 <?php
 
-namespace NSWDPC\Waratah\Services;
+namespace NSWDPC\Waratah\Traits;
 
-use SilverStripe\Core\Extension;
 use SilverStripe\Forms\Form;
 
 /**
@@ -22,6 +21,27 @@ trait FilterFormTrait {
      * @var bool
      */
     public $isFilterForm = true;
+
+    /**
+     * @var bool
+     */
+    public $isInstant = false;
+
+    /**
+     * @var string
+     * '', 'down', 'right'
+     */
+    public $panelDisplay = '';
+
+    /**
+     * @var bool
+     */
+    public $filtersCollapsed = false;
+
+    /**
+     * @var bool
+     */
+    public $showFilterCount = true;
 
     /**
      * @var string
@@ -85,22 +105,134 @@ trait FilterFormTrait {
     }
 
     /**
+     * Set whether this form is an 'instant' filter form
+     */
+    public function setIsInstant(bool $is = false) : Form {
+        $this->getExtendedForm()->isInstant = $is;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Get whether this form is an 'instant' filter form
+     */
+    public function IsInstant() : bool {
+        return $this->getExtendedForm()->isInstant;
+    }
+
+    /**
+     * Set panel display option
+     * @param string $display on of empty string, 'down', or 'right'
+     */
+    public function setPanelDisplay(string $display) : Form {
+        $this->getExtendedForm()->panelDisplay = $display;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return panel display value
+     */
+    public function PanelDisplay() : string {
+        return $this->getExtendedForm()->panelDisplay;
+    }
+
+    /**
+     * Set filters collapsed option
+     * @param bool
+     */
+    public function setFiltersCollapsed(bool $collapsed) : Form {
+        $this->getExtendedForm()->filtersCollapsed = $collapsed;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return filters collapsed value
+     */
+    public function FiltersCollapsed() : bool {
+        return $this->getExtendedForm()->filtersCollapsed;
+    }
+
+    /**
+     * Set show filter count option
+     * @param bool
+     */
+    public function setShowFilterCount(bool $show) : Form {
+        $this->getExtendedForm()->showFilterCount = $show;
+        return $this->getExtendedForm();
+    }
+
+    /**
+     * Return showFilterCount value
+     */
+    public function ShowFilterCount() : bool {
+        return $this->getExtendedForm()->showFilterCount;
+    }
+
+
+    /**
+     * Return the default filter results string, override in implementing forms
+     */
+    public function FilterResultsString() : string {
+        return _t('nswds.FILTER_RESULTS', 'Filter results');
+    }
+
+    /**
+     * Return the default filter results title, override in implementing forms
+     */
+    final public function FilterResultsTitle() : string {
+        if($this->HasFilterResults()) {
+            return _t(
+                'nswds.FILTER_RESULTS_WITH_COUNT',
+                '{filterResultsString} ({filterResultsCount}',
+                [
+                    'filterResultsString' => $this->FilterResultsString(),
+                    'filterResultsCount' => $this->FilterFormResultCount()
+                ]
+            );
+        } else {
+            return _t(
+                'nswds.FILTER_RESULTS_EMPTY',
+                '{filterResultsString}',
+                [
+                    'filterResultsString' => $this->FilterResultsString()
+                ]
+            );
+        }
+    }
+
+    /**
      * Add filters to form extra classes
      *
      * @return string
      */
     public function extraClass()
     {
+        $panelDisplay = $this->PanelDisplay();
         if($this instanceof Form) {
             // gather any parent classes
             $extraClass = parent::extraClass();
             $extraClasses = explode(' ', $extraClass);
+            $extraClasses = array_filter($extraClasses);
         } else {
             $extraClasses = [];
         }
         $extraClasses[] = 'nsw-filters';
-        $extraClasses[] = 'nsw-filters--fixed';
-        $extraClasses[] = 'js-filters';
+        if($panelDisplay) {
+            $extraClasses[] = 'js-filters';
+            if($panelDisplay == 'down') {
+                $extraClasses[] = 'nsw-filters--down';
+            } else if($panelDisplay == 'right') {
+                $extraClasses[] = 'nsw-filters--right';
+            }
+        }
+        if($this->FiltersCollapsed()) {
+            // collapsed filters requires js-filters
+            $extraClasses[] = 'js-filters';
+        }
+        if($this->IsInstant()) {
+            $extraClasses[] = 'nsw-filters--instant';
+        } else {
+            // $extraClasses[] = 'nsw-filters--fixed';
+        }
         return implode(' ', array_unique($extraClasses));
     }
 

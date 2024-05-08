@@ -36,6 +36,14 @@
       @extend .nsw-form__input;
     }
 
+    .btn-primary {
+
+      &:focus {
+        box-shadow: none;
+      }
+
+    }
+
     .mfa-totp__validate-code p {
       margin: 0 0 rem(16px) 0;
     }
@@ -70,7 +78,7 @@
 
       // use nsw-list
       @extend .nsw-list;
-      @extend .nsw-list--16;
+      @extend .nsw-list--32;
 
       &__item {
 
@@ -105,7 +113,7 @@
 
         // use nsw-list
         @extend .nsw-list;
-        @extend .nsw-list--16;
+        @extend .nsw-list--32;
 
         // ensure margin below
         margin-bottom: rem(32px) !important;

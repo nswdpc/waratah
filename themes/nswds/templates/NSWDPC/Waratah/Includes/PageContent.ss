@@ -31,3 +31,4 @@
 <% end_if %>
 
 <% include NSWDPC/Waratah/PageForm %>
+<% include NSWDPC/Waratah/LastUpdated %>

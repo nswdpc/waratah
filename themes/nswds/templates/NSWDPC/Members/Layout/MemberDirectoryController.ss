@@ -33,7 +33,7 @@
 
         <% end_if %>
 
-        <main id="content" class="nsw-layout__main">
+        <main id="main-content" class="nsw-layout__main">
 
             <article>
 

@@ -9,7 +9,7 @@
             <% end_if %>
         </aside>
 
-        <main id="content" class="nsw-layout__main">
+        <main id="main-content" class="nsw-layout__main">
 
             <article>
 

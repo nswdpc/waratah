@@ -1,3 +1,5 @@
-<div class="profile-photo">
-    <img src="{$Image.FocusFillMax(400,400).URL}" class="img-fluid img-profile" alt="{$Image.AltText.XML}" loading="lazy">
+<% if $Image %>
+<div class="wrth-feature__graphic">
+    {$Image.FocusFillMax(400,400)}
 </div>
+<% end_if %>

@@ -10,14 +10,14 @@ function initAppMain() {
         (function(e){e.className=e.className.replace(/\bno-js\b/,'js')})(document.documentElement);
         // init the site
         window.NSW.initSite();
-        // init components
-        initSlimSelect();
-        initSideNav();
-        initMicroModal();
-        initVideoPlayer();
     } catch (e) {
-        console.warn(e);
+        console.warn('initSite', e);
     }
+    // init components
+    initSlimSelect();
+    initSideNav();
+    initMicroModal();
+    initVideoPlayer();
 }
 initAppMain();
 

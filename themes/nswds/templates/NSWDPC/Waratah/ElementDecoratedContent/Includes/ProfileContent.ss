@@ -1,14 +1,13 @@
-<% include NSWDPC/Waratah/ElementTitle ShowTitle=$ShowTitle, Title=$Title, HeadingLevel=$HeadingLevel %>
-<% if $Subtitle %>
-    <h4>{$Subtitle.XML}</h4>
-<% end_if %>
-<div class="profile-content nsw-block">
-    {$HTML}
+<div class="wrth-feature__content">
+
+    <div class="nsw-block">
+        {$HTML}
+    </div>
+
     <% if $LinkTarget %>
-        <p><% include nswds/Button Button_LinkURL=$LinkTarget.LinkURL, Button_Title=$CallToAction %></p>
+        <div class="nsw-block">
+            <p><a href="{$LinkTarget.LinkURL}"><% if $CallToAction %>{$CallToAction}<% else %>{$LinkTarget.Title}<% end_if %></a></p>
+        </div>
     <% end_if %>
+
 </div>
-
-
-
-

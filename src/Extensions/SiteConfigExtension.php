@@ -18,6 +18,7 @@ use Silverstripe\Forms\TabSet;
 use Silverstripe\Forms\TextField;
 use Silverstripe\Forms\TextareaField;
 use Silverstripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 
@@ -31,10 +32,6 @@ class SiteConfigExtension extends DataExtension
 
         // Copyright and ownership
         'CopyrightOwner' => 'Varchar(255)',
-
-        // GTM
-        'GoogleTagManagerCode' => 'Varchar(255)',
-        'GoogleImplementation' => "Enum('GTM,Custom,GA3,GA4', 'GTM')",
 
         // global settings
         'FooterLinksCol1Title' => 'Varchar(255)',
@@ -130,31 +127,6 @@ class SiteConfigExtension extends DataExtension
                 ]
             );
         }
-
-        // application codes and the like
-        $fields->addFieldsToTab('Root.Applications', [
-            HeaderField::create('ApplicationsHeader', 'Applications'),
-            CompositeField::create(
-                DropdownField::create(
-                    'GoogleImplementation',
-                    'Implementation',
-                    [
-                        'GTM' => 'Google Tag Manager (gtm.js)',
-                        'GA3' => 'Google Analytics v3 (analytics.js)',
-                        'GA4' => 'Google Analytics v4 (gtag.js)',
-                        'Custom' => 'Custom implementation (advanced)'
-                    ]
-                )->setRightTitle(
-                    'Choosing \'Custom\' requires the application to have a pre-existing custom solution.'
-                ),
-                TextField::create(
-                    'GoogleTagManagerCode',
-                    'Code'
-                )->setDescription(
-                    "Eg. GTM-XXXX (GTM), UA-XXXX (GA3), G-XXXX (GA4)"
-                )
-            )->setTitle('Google Tag Manager / Google Analytics')
-        ]);
 
         $fields->addFieldToTab(
             'Root',

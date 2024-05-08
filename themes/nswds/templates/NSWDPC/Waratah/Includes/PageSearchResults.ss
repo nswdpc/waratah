@@ -23,7 +23,7 @@
             <% end_if %>
         </aside>
 
-        <main id="content" class="nsw-layout__main">
+        <main id="main-content" class="nsw-layout__main">
             <% include NSWDPC/Waratah/Results Results=$Results, Query=$Query %>
         </main>
 
@@ -33,7 +33,7 @@
 
     <div class="nsw-layout">
 
-        <main id="content" class="nsw-layout__main">
+        <main id="main-content" class="nsw-layout__main">
             <%-- Render search title into main --%>
             <% include NSWDPC/Waratah/PageIntro %>
 
