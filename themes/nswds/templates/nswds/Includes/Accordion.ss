@@ -8,6 +8,8 @@
             <p>{$Content.XML}</p>
         <% else_if $HTML %>
             {$HTML}
+        <% else_if $Description %>
+            <p>{$Description.XML}</p>
         <% end_if %>
     </div>
     <% end_loop %>
