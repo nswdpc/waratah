@@ -3,7 +3,7 @@
 
     <%-- a landing page --%>
     <div class="nsw-p-top-sm" data-page-type="1">
-        <main id="content">
+        <main id="main-content">
             <% include NSWDPC/Waratah/PageContent PerLayoutContentTemplate=$PerLayoutContentTemplate, PerLayoutContentAboveElemental=$PerLayoutContentAboveElemental %>
         </main>
     </div>
@@ -13,7 +13,7 @@
     <%-- a content page, sidebar on the right --%>
     <div class="nsw-container nsw-p-top-sm" data-page-type="3">
         <div class="nsw-layout">
-            <main id="content" class="nsw-layout__main">
+            <main id="main-content" class="nsw-layout__main">
             <% include NSWDPC/Waratah/PageContent PerLayoutContentTemplate=$PerLayoutContentTemplate, PerLayoutContentAboveElemental=$PerLayoutContentAboveElemental %>
             </main>
             <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
@@ -34,11 +34,11 @@
                     <% include NSWDPC/Waratah/SidebarNav Children=$Children, URLSegment=$URLSegment, Link=$Link, MenuTitle=$MenuTitle %>
                 </aside>
             <% end_with %>
-            <main id="content" class="nsw-layout__main">
+            <main id="main-content" class="nsw-layout__main">
                 <% include NSWDPC/Waratah/PageContent PerLayoutContentTemplate=$PerLayoutContentTemplate, PerLayoutContentAboveElemental=$PerLayoutContentAboveElemental %>
             </main>
         <% else %>
-            <main id="content" class="nsw-layout__main">
+            <main id="main-content" class="nsw-layout__main">
                 <% include NSWDPC/Waratah/PageContent PerLayoutContentTemplate=$PerLayoutContentTemplate, PerLayoutContentAboveElemental=$PerLayoutContentAboveElemental %>
             </main>
             <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop"></aside>

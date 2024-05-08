@@ -24,7 +24,7 @@ This module does not ship built assets in version control. Your deployment build
 
 #### Requirements
 
-node >= 16 / npm >= 7
+node >= 18 / npm >= 8
 
 #### Build directly via npm
 

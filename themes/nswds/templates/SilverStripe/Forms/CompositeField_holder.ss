@@ -1,5 +1,5 @@
 
-<div id="{$HolderID}" class="nsw-form__group wrth-form__composite<% if $Zebra %> {$Zebra}<% end_if %><% if $ParentExtraClass %> {$ParentExtraClass}<% end_if %>" data-is-composite="1">
+<div id="{$HolderID}"<% if $GridOption %> data-grid-option="{$GridOption}"<% end_if %> class="nsw-form__group wrth-form__composite<% if $Zebra %> {$Zebra}<% end_if %><% if $ParentExtraClass %> {$ParentExtraClass}<% end_if %>" data-is-composite="1">
 
     <% if $FormFieldHint == 'callout' %>
 
@@ -8,7 +8,7 @@
             <div class="nsw-callout__content">
             <% loop $FieldList %>
                 <% if $Pos == 1 && $Up.Title %>
-                    <h4>{$Up.Title.XML}</h4>
+                    <p class="nsw-h4">{$Up.Title.XML}</p>
                 <% end_if %>
                 {$FieldHolder}
             <% end_loop %>
@@ -27,7 +27,7 @@
             <div class="nsw-in-page-alert__content">
                 <% loop $FieldList %>
                     <% if $Pos == 1 && $Up.Title %>
-                        <h5>{$Up.Title.XML}</h5>
+                        <p class="nsw-h5">{$Up.Title.XML}</p>
                     <% end_if %>
                     {$FieldHolder}
                 <% end_loop %>
@@ -40,21 +40,17 @@
 
             <% include NSWDPC/Waratah/Forms/Legend %>
 
-            <section class="nsw-section nsw-section--half-padding nsw-section--off-white">
+            <div class="nsw-p-left-xs">
 
-                <div class="nsw-container">
+                <% include NSWDPC/Waratah/Forms/Description %>
 
-                    <% include NSWDPC/Waratah/Forms/Description %>
-
-                    <div class="field">
-                    {$Field}
-                    </div>
-
-                    <% include NSWDPC/Waratah/Forms/RightTitle %>
-
+                <div class="field cp">
+                {$Field}
                 </div>
 
-            </section>
+                <% include NSWDPC/Waratah/Forms/RightTitle %>
+
+            </div>
 
         </fieldset>
 

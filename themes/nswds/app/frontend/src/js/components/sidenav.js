@@ -21,6 +21,7 @@ export default function initSideNav() {
       parentListItemFinder(currentSideNavItem);
     }
   } catch (e) {
+    console.warn('initSideNav', e);
   }
 
 }

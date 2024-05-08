@@ -1,9 +1,10 @@
+<div id="{$HolderID}" class="nsw-form__group wrth-flex__break<% if $ParentExtraClass %> {$ParentExtraClass}<%end_if %>">
 <% if $FormFieldHint == 'callout' %>
     <%-- render as callout --%>
     <div class="nsw-callout">
         <div class="nsw-callout__content">
             <% if $Title %>
-            <h4>{$Title.XML}</h4>
+            <p class="nsw-h4">{$Title.XML}</p>
             <% end_if %>
             {$Value}
         </div>
@@ -18,7 +19,7 @@
         <% end_if %>
         <div class="nsw-in-page-alert__content">
             <% if $Title %>
-            <h5>{$Title.XML}</h5>
+            <p class="nsw-h5">{$Title.XML}</p>
             <% end_if %>
             {$Value}
         </div>
@@ -26,3 +27,4 @@
 <% else %>
     {$Field}
 <% end_if %>
+</div>

@@ -48,13 +48,14 @@
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
     "require": {
-        "nswdpc/silverstripe-content-boilerplate": "^0.3.0",
-        "nswdpc/silverstripe-notification-boilerplate": "^0.1",
-        "nswdpc/silverstripe-feedback-assist": "^0.2",
+        "nswdpc/silverstripe-content-boilerplate": "<1",
+        "nswdpc/silverstripe-notification-boilerplate": "<1",
+        "nswdpc/silverstripe-feedback-assist": "^0.2.3",
         "nswdpc/silverstripe-field-hint": "^0.1",
         "nswdpc/silverstripe-grid-helpers": "^0.2",
-        "nswdpc/silverstripe-datetime-inputs": "^0.1.1",
-        "nswdpc/silverstripe-notices": "^0.1"
+        "nswdpc/silverstripe-datetime-inputs": "<1",
+        "nswdpc/silverstripe-notices": "^0.1",
+        "nswdpc/silverstripe-analytics-chooser": "<1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

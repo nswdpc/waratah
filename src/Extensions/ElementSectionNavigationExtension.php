@@ -5,7 +5,12 @@ namespace NSWDPC\Waratah\Extensions;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\ORM\SS_List;
 
+/**
+ * Provide decoration options for
+ * {@link Dynamic\Elements\Section\Elements\ElementSectionNavigation}
+ */
 class ElementSectionNavigationExtension extends DataExtension
 {
 
@@ -33,9 +38,12 @@ class ElementSectionNavigationExtension extends DataExtension
         'title' => 'Title only',
         'title-abstract' => 'Title and abstract',
         'title-image-abstract' => 'Title, image, abstract',
-        'promo' => 'Promo'
+        'promo' => 'Title, image, abstract (horizontal)'
     ];
 
+    /**
+     * Implement CMS fields for card display
+     */
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -55,7 +63,10 @@ class ElementSectionNavigationExtension extends DataExtension
 
     }
 
-    public function getColumns()
+    /**
+     * @todo this should implement the grid-helpers handling
+     */
+    public function getColumns() : ?string
     {
         $columns = $this->owner->CardColumns;
 
@@ -69,8 +80,41 @@ class ElementSectionNavigationExtension extends DataExtension
             return "nsw-col-sm-6 nsw-col-md-4 nsw-col-lg-3";
         }
 
-        return false;
+        return null;
 
+    }
+
+    /**
+     * Return the section navigation sorted by the Sort order in SiteTree
+     */
+    public function getSortedSectionNavigation() : ?SS_List {
+        $list = $this->owner->getSectionNavigation();
+        if($list) {
+            $list = $list->sort('Sort');
+            return $list;
+        }
+        return null;
+    }
+
+    /**
+     * Determine if card is horizontal (promo)
+     */
+    public function getIsHorizontal() : bool {
+        return $this->owner->CardStyle == 'promo';
+    }
+
+    /**
+     * Determine if abstract should be displayed
+     */
+    public function getShowAbstract() : bool {
+        return $this->owner->CardStyle != 'title';
+    }
+
+    /**
+     * Determine if image should be displayed
+     */
+    public function getShowImage() : bool {
+        return $this->owner->CardStyle == 'promo' || $this->owner->CardStyle == 'title-image-abstract';
     }
 
 }

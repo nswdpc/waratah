@@ -23,9 +23,9 @@
 <% include nswds/Breadcrumbs Breadcrumbs_List=$Top.Breadcrumbs, Breadcrumbs_IncludeContainer=1 %>
 <% end_if %>
 
-<% include NSWDPC/Waratah/Security/MainBody Layout=$Layout %>
+<% include NSWDPC/Waratah/Security/MainBody Layout=$Layout, Form=$Form, Content=$Content, Title=$Title, Message=$Message %>
 
-<% include nswds/Footer %>
+<% include NSWDPC/Waratah/Security/Footer %>
 
 </body>
 </html>

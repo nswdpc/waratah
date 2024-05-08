@@ -9,7 +9,7 @@
             <% if $UseVideoThumbnail == 1 && $VideoThumbnail %>
                 <img src="{$VideoThumbnail}" class="video" referrerpolicy="no-referrer" loading="lazy">
             <% else_if $Image %>
-                {$Image.ScaleWidth(720)}
+                {$Image.FocusFill(720,405)}
             <% else %>
                 <div class="noimage"></div>
             <% end_if %>
@@ -20,25 +20,31 @@
 
         <figcaption>
 
-            <div class="nsw-row">
-                <div class="nsw-col nsw-col-xs-12 nsw-col-md-8">
+            <div class="nsw-grid nsw-grid--flush">
+                <div class="nsw-col nsw-col-xs-12 nsw-col-md-7">
 
                     <% if $Title %><h4>{$Title.XML}</h4><% end_if %>
 
-                    <% if $HTML %>
-                        <%-- HTML content --%>
-                        {$HTML}
-                    <% else_if $Description %>
-                        <p>{$Description.XML}</p>
-                    <% end_if %>
-
                 </div>
-                <div class="nsw-col nsw-col-xs-12 nsw-col-md-4">
-                    <div class="more-link">
+                <div class="nsw-col nsw-col-xs-12 nsw-col-md-5">
+                    <div class="more-link nsw-m-bottom-sm">
                         <button class="nsw-button nsw-button--light nsw-button--full-width js-open-dialog-gv-{$ID}-{$Parent.Anchor}" aria-haspopup="dialog"><% include nswds/Icon Icon_Icon='play_circle' %><%t nswds.WATCH_VIDEO 'Watch' %></button>
                     </div>
                 </div>
             </div>
+
+            <% if $HTML || $Description %>
+            <div class="nsw-grid nsw-grid--flush">
+                <div class="nsw-col nsw-col-xs-12">
+                <% if $HTML %>
+                    <%-- HTML content --%>
+                    {$HTML}
+                <% else_if $Description %>
+                    <p>{$Description.XML}</p>
+                <% end_if %>
+                </div>
+            </div>
+            <% end_if %>
 
         </figcaption>
 
