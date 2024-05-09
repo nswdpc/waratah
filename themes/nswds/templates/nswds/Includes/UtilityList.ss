@@ -30,7 +30,7 @@
       <div id="{$Anchor}-social-share" class="nsw-toggletip__element nsw-toggletip__element--light">
 
         <% if $UtilityList_Networks.facebook %>
-            <a class="nsw-icon-button" data-social="facebook" href="http://www.facebook.com/sharer.php">
+            <a class="nsw-icon-button" data-social="facebook" data-url="<% if $UtilityList_CurrentPageURL %>{$UtilityList_CurrentPageURL.HTMLATT}<% end_if %>" href="http://www.facebook.com/sharer.php">
               <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M33 16.0978C33 7.20722 25.7771 0 16.8672 0C7.95732 0 0.734436 7.20722 0.734436 16.0978C0.734436 24.1326 6.63395 30.7924 14.3465 32V20.751H10.2503V16.0978H14.3465V12.5512C14.3465 8.51673 16.755 6.2882 20.4401 6.2882C22.2051 6.2882 24.0514 6.60261 24.0514 6.60261V10.5642H22.017C20.013 10.5642 19.388 11.8051 19.388 13.0781V16.0978H23.8623L23.147 20.751H19.388V32C27.1005 30.7924 33 24.1326 33 16.0978" fill="#1877F2"/></svg>
             </a>
         <% end_if %>
