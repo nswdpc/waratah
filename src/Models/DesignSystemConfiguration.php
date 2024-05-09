@@ -194,9 +194,11 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     private static $colour_buttonstate_options = [
         'dark' => 'Brand Dark',
         'dark-outline' => 'Brand Dark Outline',
+        'dark-outline-solid' => 'Brand Dark Outline Solid',
         'light' => 'Brand Light',
         'light-outline' => 'Brand Light Outline',
         'white' => 'White',
+        'white-outline' => 'White Outline',
         'danger' => 'Danger'
     ];
 
