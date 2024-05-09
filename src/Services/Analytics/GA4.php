@@ -2,60 +2,17 @@
 
 namespace NSWDPC\Waratah\Services\Analytics;
 
-use SilverStripe\Core\Config\Configurable;
-use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\View\HTML;
-use SilverStripe\View\Requirements;
+use NSWDPC\AnalyticsChooser\Services\GA3 as ModuleGA4;
 
 /**
  * GA4 implementation
  * @author James
+ * @deprecated will be removed at next minor release, use the nswdpc/silverstripe-analytics-chooser GA4 class instead
  */
-class GA4 extends AbstractAnalyticsService {
+class GA4 extends ModuleGA4 {
 
     /**
-     * Return a string value for the implementation
+     * @var bool
      */
-    public static function getCode() : string {
-        return "GA4";
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function getDescription() : string {
-        return _t('nswds.GOOGLE_ANALYTICS_4', 'Google Analytics v4 (gtag.js)');
-    }
-
-    /**
-     * Add requirements or similar to the current request
-     */
-    public function provide(string $code = '') : ?DBHTMLText {
-        // Set up inline script
-        $gtagCode = $code;
-        $code = json_encode(htmlspecialchars($code));
-        $script =
-<<<JAVASCRIPT
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', {$code});
-JAVASCRIPT;
-
-        // @var DBHTMLText
-        if($script = parent::applyNonce($script)) {
-            // GA4 requires gtag.js
-            $preScript = HTML::createTag(
-                'script',
-                [
-                    'src' => "https://www.googletagmanager.com/gtag/js?id=" . $gtagCode,
-                    'async' => true
-                ]
-            );
-            $script->setValue( $preScript . "\n" . $script->getValue() );
-            return $script;
-        } else {
-            return null;
-        }
-    }
+    private static $enabled = false;
 }
