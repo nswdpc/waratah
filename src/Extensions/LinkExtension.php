@@ -3,13 +3,16 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use gorriecoe\Link\Models\Link;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\Forms\TextareaField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\ORM\DataExtension;
 
-
+/**
+ * Decorate \gorriecoe\Link\Models\Link with extra fields and other
+ * requirements
+ */
 class LinkExtension extends DataExtension
 {
     /**
@@ -26,11 +29,28 @@ class LinkExtension extends DataExtension
         "Image" => Image::class,
     ];
 
-    private static $allowed_file_types = ["jpg", "jpeg", "gif", "png", "webp"];
+    /**
+     * @var array
+     */
+    private static $allowed_file_types = [
+        "jpg",
+        "jpeg",
+        "gif",
+        "png",
+        "webp"
+    ];
 
-    private static $owns = ["Image"];
+    /**
+     * @var array
+     */
+    private static $owns = [
+        "Image"
+    ];
 
-    public function getAllowedFileTypes()
+    /**
+     * Get allowed file types
+     */
+    public function getAllowedFileTypes() : array
     {
         $types = $this->owner->config()->get("allowed_file_types");
         if (empty($types)) {
@@ -40,6 +60,9 @@ class LinkExtension extends DataExtension
         return $types;
     }
 
+    /**
+     * Update CMS fields for administration of link
+     */
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -52,14 +75,16 @@ class LinkExtension extends DataExtension
                         'nswds.DESCRIPTION',
                         'Description'
                     )
-                )
-                ->setDescription("Links to pages on this site will use its Abstract if set, otherwise you can override it here.")
-                ->setTargetLength(100, 50, 150),
+                )->setRightTitle(
+                    _t(
+                        'nswds.DESCRIPTION_DESCRIPTION',
+                        "Links to 'Pages on this website' will use their Abstract, if set. You can provide a specific description here, just for this link, to override the Page value."
+                    )
+                )->setTargetLength(100, 50, 150),
                 UploadField::create(
                     "Image",
                     _t("nswds.IMAGE", "Image")
-                )
-                ->setAllowedExtensions($this->owner->getAllowedFileTypes())
+                )->setAllowedExtensions($this->owner->getAllowedFileTypes())
                 ->setIsMultiUpload(false)
                 ->setDescription(
                     _t(
@@ -69,10 +94,49 @@ class LinkExtension extends DataExtension
                             'types' => implode(",", $this->owner->getAllowedFileTypes())
                         ]
                     )
+                )->setRightTitle(
+                    _t(
+                        'nswds.LINK_IMAGE_HELP_TEXT',
+                        "Links to 'Pages on this website' will use their Image, if set. You can provide a specific image here, just for this link, to override the Page value."
+                    )
                 )
             ]
         );
 
+    }
+
+    /**
+     * Provides a compatibility method for returning the description
+     * for a link from the linked SiteTree record, if the link is of type SiteTree
+     * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
+     */
+    public function LinkDescription() {
+        $type = $this->owner->Type;
+        $description = $this->owner->Description;
+        if(!$description && $type == 'SiteTree') {
+            $record = $this->owner->SiteTree();
+            if($record && $record->isInDB() && $record->hasField('Abstract')) {
+                $description = trim($record->Abstract ?? '');
+            }
+        }
+        return $description;
+    }
+
+    /**
+     * Provides a compatibility method for returning the image
+     * for a link from the linked SiteTree record, if the link is of type SiteTree
+     * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
+     */
+    public function LinkImage() : ?Image {
+        $type = $this->owner->Type;
+        $image = $this->owner->Image();
+        if((!$image || !$image->exists()) && $type == 'SiteTree') {
+            $record = $this->owner->SiteTree();
+            if($record && $record->isInDB() && $record->hasField('Image')) {
+                $image = $record->Image();
+            }
+        }
+        return $image;
     }
 
 }

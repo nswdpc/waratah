@@ -1,42 +1,15 @@
 <% include NSWDPC/Waratah/ElementTitle ShowTitle=$ShowTitle, Title=$Title, HeadingLevel=$HeadingLevel %>
 <% if $HTML %>
+<div class="nsw-block">
     {$HTML}
+</div>
 <% end_if %>
-<% if $ElementLinks %>
+<% if $ElementLinks.Sort('Sort') %>
+<div class="nsw-block">
     <div class="nsw-grid">
         <% loop $ElementLinks.Sort('Sort') %>
-            <div class="nsw-col<% if $Up.Up.Columns > 1 %> {$Up.Up.Columns}<% end_if %>">
-                <div class="nsw-card nsw-card--highlight<% if $Up.Brand %> nsw-card--{$Up.Brand.XML}<% end_if %>">
-                    <% if $Up.Up.CardStyle == "title-image-abstract" %>
-                        <% if $Image %>
-                            <div class="nsw-card__image">
-                                <img src="$Image.FocusFillMax(600,400).URL" alt="{$Image.AltText.XML}" loading="lazy">
-                            </div>
-                        <% else_if $SiteTree.Image %>
-                            <div class="nsw-card__image">
-                                <img src="$SiteTree.Image.FocusFillMax(600,400).URL" alt="{$SiteTree.Image.AltText.XML}" loading="lazy">
-                            </div>
-                        <% end_if %>
-                    <% end_if %>
-                    <div class="nsw-card__content">
-                        <div class="nsw-card__title">
-                            <a href="{$LinkURL}">{$Title.XML}</a>
-                        </div>
-                        <% if $Up.Up.CardStyle == "title-abstract" || $Up.Up.CardStyle == "title-image-abstract" %>
-                            <% if $Description %>
-                                <div class="nsw-card__copy">
-                                    <p>{$Description.XML}</p>
-                                </div>
-                            <% else_if $SiteTree.Abstract %>
-                                <div class="nsw-card__copy">
-                                    <p>{$SiteTree.Abstract.XML}</p>
-                                </div>
-                            <% end_if %>
-                        <% end_if %>
-                        <% include nswds/Icon Icon_Icon='east' %>
-                    </div>
-                </div>
-            </div>
+        <% include nswds/Card Card_ColumnOptions=$Up.Up.Columns, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$LinkImage, Card_Description=$LinkDescription %>
         <% end_loop %>
     </div>
+</div.
 <% end_if %>
