@@ -24,10 +24,10 @@
     <% end_if %>
 
     <% if $UtilityList_Features.share %>
-    <li class="nsw-utility-list__item js-share" aria-controls="{$Anchor}-social-share" data-title="<%t nswds.SOCIAL_SHARING 'Social Sharing' %>">
+    <li class="nsw-utility-list__item js-share" aria-controls="<% if $UtilityList_ShareID %>{$UtilityList_ShareID}<% else %>utility-list<% end_if %>-social-share" data-title="<%t nswds.SOCIAL_SHARING 'Social Sharing' %>">
       <% include nswds/Icon Icon_Icon='share' %>
       <span data-anchor><%t nswds.FEATURE_SHARE_NETWORK 'Share this page' %></span>
-      <div id="{$Anchor}-social-share" class="nsw-toggletip__element nsw-toggletip__element--light">
+      <div id="<% if $UtilityList_ShareID %>{$UtilityList_ShareID}<% else %>utility-list<% end_if %>-social-share" class="nsw-toggletip__element nsw-toggletip__element--light">
 
         <% if $UtilityList_Networks.facebook %>
             <a class="nsw-icon-button" data-social="facebook" data-url="<% if $UtilityList_CurrentPageURL %>{$UtilityList_CurrentPageURL.HTMLATT}<% end_if %>" href="http://www.facebook.com/sharer.php">
