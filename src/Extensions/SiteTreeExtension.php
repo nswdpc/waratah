@@ -40,5 +40,12 @@ class SiteTreeExtension extends DataExtension
             ];
         }
 
+        $tags['browserViewport'] = [
+            'attributes' => [
+                'name' => 'viewport',
+                'content' => 'width=device-width, initial-scale=1'
+            ]
+        ];
+
     }
 }
