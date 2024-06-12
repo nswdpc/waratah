@@ -1,5 +1,4 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{$Title.XML} - {$SiteConfig.Title.XML}</title>
     <% if $Priority == "-1" %><meta name="robots" content="noindex, nofollow"><% end_if %>
     <% if $MetaDescription || $Abstract %><meta name="description" content="<% if $MetaDescription %>{$MetaDescription.XML}<% else %>{$Abstract.XML}<% end_if %>"><% end_if %>
