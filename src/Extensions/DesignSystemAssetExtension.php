@@ -144,14 +144,14 @@ class DesignSystemAssetExtension extends Extension {
             Requirements::javascript(
                 $this->getAsset("app/frontend/dist/js/app.min.js"),
                 [
-                    'async' => 'async'
+                    'defer' => true
                 ]
             );
         } else {
             Requirements::javascript(
                 $this->getAsset("app/frontend/dist/js/app.js"),
                 [
-                    'async' => 'async'
+                    'defer' => true
                 ]
             );
         }
