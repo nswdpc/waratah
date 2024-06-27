@@ -8,7 +8,7 @@
     <% end_if %>
 
     <% loop $Results %>
-        <% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Content=$MetaDescription, ListItem_Date=$LastEdited, ListItem_Tags=$Terms, ListItem_Image=$Image %>
+        <% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Content=$MetaDescription, ListItem_Date=$LastEdited, ListItem_Tags=$Terms, ListItem_Image=$Image, ListItem_PrimaryLabel=$SearchResultLabel %>
     <% end_loop %>
 
     <% include nswds/Pagination Pagination_PaginatedItems=$Results %>
