@@ -34,6 +34,7 @@ export function applySlimSelect(listbox) {
         return option.text.toLowerCase().substr(0, search.length) === search.toLowerCase();
       };
     }
+    listbox.classList.add('ss-listbox');
     let slim = new SlimSelect({
         select: listbox,
         settings: settings,

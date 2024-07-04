@@ -1,6 +1,20 @@
 /**
  * SlimSelect styling for listbox fields
  */
+select.ss-listbox {
+  /**
+   * Update UI so that element is focusable during validation
+   */
+   pointer-events: none;
+   display: block !important;
+   border: none;
+   height: 1px !important;
+   min-height: 0 !important;
+   padding: 0 !important;
+   background: transparent;
+   opacity: 0 !important;
+}
+
 .ss-main {
 
   @extend .nsw-form__select;
