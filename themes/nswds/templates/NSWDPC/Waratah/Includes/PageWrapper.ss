@@ -48,3 +48,5 @@
     </div>
 
 <% end_if %>
+
+<% include NSWDPC/Waratah/LastUpdated %>
