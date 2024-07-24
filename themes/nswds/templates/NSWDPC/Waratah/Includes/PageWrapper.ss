@@ -16,7 +16,7 @@
             <main id="main-content" class="nsw-layout__main">
             <% include NSWDPC/Waratah/PageContent PerLayoutContentTemplate=$PerLayoutContentTemplate, PerLayoutContentAboveElemental=$PerLayoutContentAboveElemental %>
             </main>
-            <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+            <aside class="nsw-layout__sidebar">
             <% include NSWDPC/Waratah/Sidebar %>
             </aside>
         </div>
