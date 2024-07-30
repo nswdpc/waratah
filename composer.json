@@ -1,6 +1,6 @@
 {
     "name": "nswdpc/waratah",
-    "description": "NSWDPC Silverstripe integration for the NSW Design System",
+    "description": "Silverstripe integration for the NSW Design System",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
