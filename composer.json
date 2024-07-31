@@ -52,7 +52,7 @@
         "nswdpc/silverstripe-grid-helpers": "^1",
         "nswdpc/silverstripe-datetime-inputs": "^1",
         "nswdpc/silverstripe-notices": "^1",
-        "nswdpc/silverstripe-analytics-chooser": "^1"
+        "nswdpc/silverstripe-analytics-chooser": ">=0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
