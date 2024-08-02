@@ -19,7 +19,7 @@ class GalleryFrontend extends Frontend {
      * element with a data-gallery attribute, it must contain figure elements
      * from nswds/Media
      */
-    public function addLoader() {
+    public function addLoader(): void {
 
         $anchor = $this->element->getAnchor();
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
     });
 });
 JS;
-        Requirements::customScript($script, "gallery-{$anchor}");
+        Requirements::customScript($script, 'gallery-' . $anchor);
 
     }
 }

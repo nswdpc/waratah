@@ -15,7 +15,7 @@ trait FilterFormTrait {
     /**
      * @var int|null
      */
-    public $filterFormResultCount = null;
+    public $filterFormResultCount;
 
     /**
      * @var bool
@@ -46,14 +46,13 @@ trait FilterFormTrait {
     /**
      * @var string
      */
-    public function getTemplate()
+    public function getTemplate(): string
     {
         return 'nswds/FilterForm';
     }
 
     /**
      * Return the form this trait is applied to
-     * @return Form
      */
     protected function getExtendedForm() : Form {
         return $this;
@@ -68,9 +67,6 @@ trait FilterFormTrait {
         return $this->getExtendedForm();
     }
 
-    /**
-     * @return bool
-     */
     public function IsFilterForm() : bool {
         return $this->getExtendedForm()->isFilterForm;
     }
@@ -81,16 +77,14 @@ trait FilterFormTrait {
      */
     public function HasFilterResults($arg = '') : bool {
         $resultCount = $this->getExtendedForm()->filterFormResultCount;
-        $has = is_int($resultCount) && $resultCount >= 0;
-        return $has;
+        return is_int($resultCount) && $resultCount >= 0;
     }
 
     /**
      * Set the result count,
      */
     public function FilterFormResultCount() : ?int {
-        $result = $this->getExtendedForm()->filterFormResultCount;
-        return $result;
+        return $this->getExtendedForm()->filterFormResultCount;
     }
 
     /**
@@ -100,6 +94,7 @@ trait FilterFormTrait {
         if($resultCount < 0) {
             $resultCount = 0;
         }
+
         $this->getExtendedForm()->filterFormResultCount = $resultCount;
         return $this->getExtendedForm();
     }
@@ -201,10 +196,8 @@ trait FilterFormTrait {
 
     /**
      * Add filters to form extra classes
-     *
-     * @return string
      */
-    public function extraClass()
+    public function extraClass(): string
     {
         $panelDisplay = $this->PanelDisplay();
         if($this instanceof Form) {
@@ -215,24 +208,28 @@ trait FilterFormTrait {
         } else {
             $extraClasses = [];
         }
+
         $extraClasses[] = 'nsw-filters';
         if($panelDisplay) {
             $extraClasses[] = 'js-filters';
-            if($panelDisplay == 'down') {
+            if ($panelDisplay == 'down') {
                 $extraClasses[] = 'nsw-filters--down';
-            } else if($panelDisplay == 'right') {
+            } elseif ($panelDisplay == 'right') {
                 $extraClasses[] = 'nsw-filters--right';
             }
         }
+
         if($this->FiltersCollapsed()) {
             // collapsed filters requires js-filters
             $extraClasses[] = 'js-filters';
         }
+
         if($this->IsInstant()) {
             $extraClasses[] = 'nsw-filters--instant';
         } else {
             // $extraClasses[] = 'nsw-filters--fixed';
         }
+
         return implode(' ', array_unique($extraClasses));
     }
 

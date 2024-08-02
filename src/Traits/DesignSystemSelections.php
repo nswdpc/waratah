@@ -13,11 +13,12 @@ trait DesignSystemSelections {
      * Return an array of options for use in a branding/palette selection field
      */
     public function getColourSelectionOptions(string $key) : array {
-        $configKey = "colour_{$key}_options";
+        $configKey = sprintf('colour_%s_options', $key);
         $options = DesignSystemConfiguration::config()->get($configKey);
         if(!is_array($options)) {
             $options = [];
         }
+
         return $options;
     }
 

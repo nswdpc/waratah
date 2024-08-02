@@ -24,39 +24,34 @@ use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
  *
  * @author Mark Taylor
  * @author James Ellis
+ * @property int $ContentImageID
+ * @property int $ContentLinkID
+ * @method \SilverStripe\Assets\Image ContentImage()
+ * @method \gorriecoe\Link\Models\Link ContentLink()
+ * @method (\DNADesign\Elemental\Models\ElementContent & static) getOwner()
  */
 class ElementContentExtension extends DataExtension
 {
 
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         'ContentImage' => Image::class,//avoid collision with ElementDecoratedContent
         'ContentLink' => Link::class,
     ];
 
-    /**
-     * @var array
-     */
-    private static $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
+    private static array $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
+
+    private static array $owns = ['ContentImage', 'ContentLink'];
 
     /**
      * @var array
      */
-    private static $owns = ['ContentImage', 'ContentLink'];
-
-    /**
-     * @var array
-     */
-    public function getAllowedFileTypes()
+    public function getAllowedFileTypes(): array
     {
-        $types = $this->owner->config()->get('allowed_file_types');
+        $types = $this->getOwner()->config()->get('allowed_file_types');
         if (empty($types) || !is_array($types)) {
             $types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
         }
-        $types = array_unique($types);
-        return $types;
+        return array_unique($types);
     }
 
     /**
@@ -68,24 +63,26 @@ class ElementContentExtension extends DataExtension
             ElementDecoratedContent::class,
             ElementFeaturedVideo::class
         ];
-        $ignored_subclasses = $this->owner->config()->get('ignored_subclasses');
+        $ignored_subclasses = $this->getOwner()->config()->get('ignored_subclasses');
         if(is_array($ignored_subclasses)) {
             $classes = array_merge($classes, $ignored_subclasses);
         }
-        if( in_array(get_class($this->owner), $classes) ) {
+
+        if( in_array($this->getOwner()::class, $classes) ) {
             $fields->removeByName(['ContentLinkID','ContentLink','ContentImageID','ContentImage']);
             return true;
         }
+
         return false;
     }
 
     /**
      * Apply image and link fields to the Settings tab
      */
-    public function updateCMSFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields): void
     {
 
-        if($this->owner->handleIgnoredOwner($fields)) {
+        if($this->getOwner()->handleIgnoredOwner($fields)) {
             return;
         }
 
@@ -96,14 +93,14 @@ class ElementContentExtension extends DataExtension
                     'ContentImage',
                     _t('nswds.IMAGE', 'Image')
                 )
-                ->setAllowedExtensions($this->owner->getAllowedFileTypes())
+                ->setAllowedExtensions($this->getOwner()->getAllowedFileTypes())
                 ->setIsMultiUpload(false)
                 ->setDescription(
                     _t(
                         'nswds.ALLOWED_FILE_TYPES',
                         'Allowed file types: {types}',
                         [
-                            'types' => implode(",", $this->owner->getAllowedFileTypes())
+                            'types' => implode(",", $this->getOwner()->getAllowedFileTypes())
                         ]
                     )
                 )
@@ -116,18 +113,16 @@ class ElementContentExtension extends DataExtension
 
     /**
      * Return the inline link field to handle link selection
-     * @return InlineLinkCompositeField
      */
     protected function getLinkField() : InlineLinkCompositeField {
-        $field = InlineLinkCompositeField::create(
+        return InlineLinkCompositeField::create(
             'ContentLink',
             _t(
                 'nswds.LINK',
                 'Link'
             ),
-            $this->owner
+            $this->getOwner()
         );
-        return $field;
     }
 
 }

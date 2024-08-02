@@ -6,14 +6,18 @@ use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 
+/**
+ * @property string $AlertState
+ * @method (\NSWDPC\Schema\SpecialAnnouncement\SpecialAnnouncement & static) getOwner()
+ */
 class SpecialAnnouncementExtension extends DataExtension
 {
 
-    private static $db = [
+    private static array $db = [
         'AlertState' => 'Varchar(16)'
     ];
 
-    public function updateCMSFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields): void
     {
 
         $fields->insertBefore(

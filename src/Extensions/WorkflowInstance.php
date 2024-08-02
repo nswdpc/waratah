@@ -9,12 +9,10 @@ use SilverStripe\ORM\DataExtension;
  * TODO: PR
  * See WorkflowService::getWorkflowFor()
  * @author James
+ * @method (static & \Symbiote\AdvancedWorkflow\DataObjects\WorkflowInstance) getOwner()
  */
 class WorkflowInstance extends DataExtension {
-    /**
-     * @var array
-     */
-    private static $indexes = [
+    private static array $indexes = [
         'TargetID' => [
             'type' => 'index',
             'columns' => ['TargetID','TargetClass']

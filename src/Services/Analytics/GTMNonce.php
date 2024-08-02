@@ -11,8 +11,5 @@ use NSWDPC\AnalyticsChooser\Services\GTMNonce as ModuleGTMNonce;
  */
 class GTMNonce extends ModuleGTMNonce {
 
-    /**
-     * @var bool
-     */
-    private static $enabled = false;
+    private static bool $enabled = false;
 }

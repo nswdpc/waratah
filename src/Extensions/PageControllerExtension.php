@@ -4,12 +4,15 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 
+/**
+ * @method (\PageController & static) getOwner()
+ */
 class PageControllerExtension extends Extension
 {
 
     public function ElementNav($position = null)
     {
-        $elementArea = $this->owner->ElementalArea();
+        $elementArea = $this->getOwner()->ElementalArea();
 
         if (!$elementArea || !$elementArea->exists()) {
             return false;

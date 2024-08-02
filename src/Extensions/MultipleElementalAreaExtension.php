@@ -16,13 +16,15 @@ use SilverStripe\Forms\Tab;
 /**
  * Extension applied to Page and other Elemental supporting DataObject
  * You should also apply the ElementalAreaExtension to the same DataObject
+ * @property int $SideElementalAreaID
+ * @property int $TopElementalAreaID
+ * @method \DNADesign\Elemental\Models\ElementalArea SideElementalArea()
+ * @method \DNADesign\Elemental\Models\ElementalArea TopElementalArea()
+ * @method (\Page & static) getOwner()
  */
 class MultipleElementalAreaExtension extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         'SideElementalArea' => ElementalArea::class,
         'TopElementalArea' => ElementalArea::class,
     ];
@@ -30,7 +32,7 @@ class MultipleElementalAreaExtension extends DataExtension
     /**
      * Publish elements when page published
      */
-    private static $owns = [
+    private static array $owns = [
         'SideElementalArea',
         'TopElementalArea'
     ];
@@ -39,39 +41,27 @@ class MultipleElementalAreaExtension extends DataExtension
      *
      * When we duplicate the page, we also want to duplicate the Elemental Area and Blocks
      */
-    private static $cascade_duplicates = [
+    private static array $cascade_duplicates = [
         'SideElementalArea',
         'TopElementalArea'
     ];
 
-    /**
-     * @var array
-     */
-    private static $allowed_side_elements = [];
+    private static array $allowed_side_elements = [];
 
-    /**
-     * @var array
-     */
-    private static $allowed_top_elements = [
+    private static array $allowed_top_elements = [
         ElementBanner::class => '',
         ElementalExtensibleSearch::class => ''
     ];
 
-    /**
-     * @var mixed
-     */
-    private $_cache_has_side_elements = null;
+    private ?bool $_cache_has_side_elements = null;
 
-    /**
-     * @var mixed
-     */
-    private $_cache_has_top_elements = null;
+    private ?bool $_cache_has_top_elements = null;
 
     /**
      * Ensure the records are correctly applied, when the owner is saved
      * As ensureElementalAreasExist creates ElementalArea classes only and not a subclass
      */
-    public function onAfterWrite() {
+    public function onAfterWrite(): void {
         parent::onAfterWrite();
         $this->ensureCorrectSettings();
     }
@@ -81,10 +71,10 @@ class MultipleElementalAreaExtension extends DataExtension
       * TODO: possibly better to do this outside the ORM to avoid writing a new version of each ElementalArea on every owner write event
      * @access private
      */
-    private function ensureCorrectSettings() {
+    private function ensureCorrectSettings(): void {
 
         // Settings for side area
-        $side = $this->owner->SideElementalArea();
+        $side = $this->getOwner()->SideElementalArea();
         if(!empty($side->ID)) {
             $side->IsSideArea = 1;
             $side->IsTopArea = 0;
@@ -96,7 +86,7 @@ class MultipleElementalAreaExtension extends DataExtension
         }
 
         // Settings for top area
-        $top = $this->owner->TopElementalArea();
+        $top = $this->getOwner()->TopElementalArea();
         if(!empty($top->ID)) {
             $top->IsSideArea = 0;
             $top->IsTopArea = 1;
@@ -108,7 +98,7 @@ class MultipleElementalAreaExtension extends DataExtension
         }
 
         // Settings for the main area
-        $main = $this->owner->ElementalArea();
+        $main = $this->getOwner()->ElementalArea();
         if(!empty($main->ID)) {
             $main->IsSideArea = 0;
             $main->IsTopArea = 0;
@@ -127,8 +117,9 @@ class MultipleElementalAreaExtension extends DataExtension
      */
     public function HasSideElements() : bool {
         if(is_null($this->_cache_has_side_elements)) {
-            $this->_cache_has_side_elements = $this->owner->SideElementalArea()->Elements()->count() > 0;
+            $this->_cache_has_side_elements = $this->getOwner()->SideElementalArea()->Elements()->count() > 0;
         }
+
         return $this->_cache_has_side_elements;
     }
 
@@ -138,23 +129,25 @@ class MultipleElementalAreaExtension extends DataExtension
      */
     public function HasTopElements() : bool {
         if(is_null($this->_cache_has_top_elements)) {
-            $this->_cache_has_top_elements = $this->owner->TopElementalArea()->Elements()->count() > 0;
+            $this->_cache_has_top_elements = $this->getOwner()->TopElementalArea()->Elements()->count() > 0;
         }
+
         return $this->_cache_has_top_elements;
     }
 
     /**
      * Add additional elements to the CMS fields
      */
-    public function updateCMSFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields): void
     {
 
         $top = $fields->dataFieldByName('TopElementalArea');
         if ($top) {
-            $topTypes = $this->owner->config()->get('allowed_top_elements');
-            if(is_array($topTypes) && !empty($topTypes)) {
+            $topTypes = $this->getOwner()->config()->get('allowed_top_elements');
+            if(is_array($topTypes) && $topTypes !== []) {
                 $top->setTypes($topTypes);
             }
+
             $fields->removeByName('TopContent');
             $fields->insertAfter(
                 'Main',
@@ -168,10 +161,11 @@ class MultipleElementalAreaExtension extends DataExtension
 
         $sidebar = $fields->dataFieldByName('SideElementalArea');
         if ($sidebar) {
-            $sideTypes = $this->owner->config()->get('allowed_side_elements');
-            if(is_array($sideTypes) && !empty($sideTypes)) {
+            $sideTypes = $this->getOwner()->config()->get('allowed_side_elements');
+            if(is_array($sideTypes) && $sideTypes !== []) {
                 $sidebar->setTypes($sideTypes);
             }
+
             $fields->removeByName('SideContent');
             $fields->insertAfter(
                 'Main',

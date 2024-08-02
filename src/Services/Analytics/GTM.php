@@ -11,8 +11,5 @@ use NSWDPC\AnalyticsChooser\Services\GTM as ModuleGTM;
  */
 class GTM extends ModuleGTM {
 
-    /**
-     * @var bool
-     */
-    private static $enabled = false;
+    private static bool $enabled = false;
 }

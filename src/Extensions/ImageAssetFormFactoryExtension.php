@@ -6,10 +6,13 @@ use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use Silverstripe\Forms\TextField;
 
+/**
+ * @method (\SilverStripe\AssetAdmin\Forms\ImageFormFactory & static) getOwner()
+ */
 class ImageAssetFormFactoryExtension extends Extension
 {
 
-    public function updateFormFields(FieldList $fields)
+    public function updateFormFields(FieldList $fields): void
     {
 
         $creditField = TextField::create(
@@ -20,6 +23,7 @@ class ImageAssetFormFactoryExtension extends Extension
         if($titleField && $titleField->isReadonly()) {
             $creditField = $creditField->performReadonlyTransformation();
         }
+
         $fields->insertAfter(
             'Title',
             $creditField

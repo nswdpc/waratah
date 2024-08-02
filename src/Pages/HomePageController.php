@@ -4,7 +4,7 @@ namespace NSWDPC\Waratah\Pages;
 
 class HomePageController extends \PageController
 {
-    public function IsHomePage()
+    public function IsHomePage(): bool
     {
         return true;
     }

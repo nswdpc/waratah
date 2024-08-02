@@ -35,6 +35,7 @@ class SectionSelectionField extends DropdownField
         foreach($options as $k => $v) {
             $source[ $k ] = _t('nswds.BACKGROUND_' . strtoupper($k), $v);
         }
+
         $this->source = $source;
         return parent::getSource();
     }

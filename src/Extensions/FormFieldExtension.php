@@ -7,36 +7,39 @@ use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\ListboxField;
 
+/**
+ * @method (\SilverStripe\Forms\FormField & static) getOwner()
+ */
 class FormFieldExtension extends Extension
 {
 
     /**
      * Remove `default_classes` from the ExtraClass and return that
      * to avoid default nsw-* classes being added to the field holder
-     * @return string
      */
     public function ParentExtraClass() : string {
-        $extraClasses = $this->owner->extraClasses;
+        $extraClasses = $this->getOwner()->extraClasses;
         if(empty($extraClasses) || !is_array($extraClasses)) {
             return "";
         }
-        $defaultClasses = $this->owner->config()->get('default_classes');
+
+        $defaultClasses = $this->getOwner()->config()->get('default_classes');
         if(empty($defaultClasses) || !is_array($defaultClasses)) {
             return "";
         }
+
         // values in extraClasses not present in defaultClasses
         $diff = array_diff($extraClasses, $defaultClasses);
-        $classes = trim(implode(' ', $diff));
-        return $classes;
+        return trim(implode(' ', $diff));
     }
 
     /**
      * Helper method to return whether the field is in a filter form
      */
     public function InFilterForm() : bool {
-        $form = $this->owner->getForm();
+        $form = $this->getOwner()->getForm();
         if($form && $form->hasMethod('IsFilterForm')) {
-            return $form->IsFilterForm() ? true: false;
+            return (bool) $form->IsFilterForm();
         } else {
             return false;
         }
@@ -50,8 +53,8 @@ class FormFieldExtension extends Extension
      * The default is to not use the component.
      */
     public function UseMultiSelectComponent() : bool {
-        return ($this->owner instanceof ListboxField)
-            && $this->owner->getAttribute('data-nsw-multiselect');
+        return ($this->getOwner() instanceof ListboxField)
+            && $this->getOwner()->getAttribute('data-nsw-multiselect');
     }
 
     /**
@@ -62,24 +65,25 @@ class FormFieldExtension extends Extension
         $properties = [
             'Title' => ''
         ];
-        return $this->owner->FieldHolder( $properties );
+        return $this->getOwner()->FieldHolder( $properties );
     }
 
     /**
      * Set a grid option via a data attribute, with one of the supported grid options
      */
     public function setGridOption(string $gridOption) {
-        if(!($this->owner instanceof CompositeField)) {
+        if(!($this->getOwner() instanceof CompositeField)) {
             throw new \RuntimeException("Only composite fields can have a grid option set");
         }
-        return $this->owner->setAttribute('data-grid-option', $gridOption);
+
+        return $this->getOwner()->setAttribute('data-grid-option', $gridOption);
     }
 
     /**
      * Template variable for returning a grid option. See CompositeField_holder
      */
     public function GridOption() : ?string {
-        return $this->owner->getAttribute('data-grid-option');
+        return $this->getOwner()->getAttribute('data-grid-option');
     }
 
 }

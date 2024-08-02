@@ -22,13 +22,34 @@ use SilverStripe\ORM\FieldType\DBHTMLText;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 
+/**
+ * @property string $CopyrightOwner
+ * @property string $FooterLinksCol1Title
+ * @property string $FooterLinksCol2Title
+ * @property string $FooterLinksCol3Title
+ * @property string $FooterLinksCol4Title
+ * @property string $FooterContent
+ * @property string $FooterBrand
+ * @property bool $DisplayWelcomeToCountry
+ * @property string $WelcomeToCountry
+ * @property bool $EnableTextToSpeech
+ * @property string $LongTitle
+ * @property int $LogoSVGID
+ * @property int $LogoImageID
+ * @method \Silverstripe\Assets\File LogoSVG()
+ * @method \Silverstripe\Assets\File LogoImage()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] FooterLinksCol1()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] FooterLinksCol2()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] FooterLinksCol3()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] FooterLinksCol4()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] FooterLinksSub()
+ * @method \SilverStripe\ORM\ManyManyList|\gorriecoe\Link\Models\Link[] SocialLinks()
+ * @method (\SilverStripe\SiteConfig\SiteConfig & static) getOwner()
+ */
 class SiteConfigExtension extends DataExtension
 {
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
 
         // Copyright and ownership
         'CopyrightOwner' => 'Varchar(255)',
@@ -51,26 +72,17 @@ class SiteConfigExtension extends DataExtension
 
     ];
 
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         'LogoSVG' => File::class,
         'LogoImage' => File::class
     ];
 
-    /**
-     * @var array
-     */
-    private static $owns = [
+    private static array $owns = [
         'LogoSVG',
         'LogoImage'
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many = [
+    private static array $many_many = [
         'FooterLinksCol1' => Link::class,
         'FooterLinksCol2' => Link::class,
         'FooterLinksCol3' => Link::class,
@@ -79,10 +91,7 @@ class SiteConfigExtension extends DataExtension
         'SocialLinks' => Link::class
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many_extraFields = [
+    private static array $many_many_extraFields = [
         'FooterLinksCol1' => ['Sort' => 'Int'],
         'FooterLinksCol2' => ['Sort' => 'Int'],
         'FooterLinksCol3' => ['Sort' => 'Int'],
@@ -91,14 +100,11 @@ class SiteConfigExtension extends DataExtension
         'SocialLinks' => ['Sort' => 'Int']
     ];
 
-    /**
-     * @var array
-     */
-    private static $defaults = [
+    private static array $defaults = [
         'DisplayWelcomeToCountry' => 1
     ];
 
-    public function updateCMSFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields): void
     {
 
         // rm tabs
@@ -170,7 +176,7 @@ class SiteConfigExtension extends DataExtension
                     LinkField::create(
                         'FooterLinksCol1',
                         _t('nswds.LINKS', 'Links'),
-                        $this->owner
+                        $this->getOwner()
                     )->setSortColumn('Sort')
                 )->setTitle( _t('nswds.COLUMN_ONE', 'Column one') ),
 
@@ -179,7 +185,7 @@ class SiteConfigExtension extends DataExtension
                     LinkField::create(
                         'FooterLinksCol2',
                         _t('nswds.LINKS', 'Links'),
-                        $this->owner
+                        $this->getOwner()
                     )->setSortColumn('Sort')
                 )->setTitle( _t('nswds.COLUMN_TWO', 'Column two') ),
 
@@ -188,7 +194,7 @@ class SiteConfigExtension extends DataExtension
                     LinkField::create(
                         'FooterLinksCol3',
                         _t('nswds.LINKS', 'Links'),
-                        $this->owner
+                        $this->getOwner()
                     )->setSortColumn('Sort'),
                 )->setTitle( _t('nswds.COLUMN_THREE', 'Column three') ),
 
@@ -197,7 +203,7 @@ class SiteConfigExtension extends DataExtension
                     LinkField::create(
                         'FooterLinksCol4',
                         _t('nswds.LINKS', 'Links'),
-                        $this->owner
+                        $this->getOwner()
                     )->setSortColumn('Sort'),
                 )->setTitle( _t('nswds.COLUMN_FOUR', 'Column four') ),
 
@@ -205,7 +211,7 @@ class SiteConfigExtension extends DataExtension
                     LinkField::create(
                         'FooterLinksSub',
                         _t('nswds.LINKS', 'Links'),
-                        $this->owner
+                        $this->getOwner()
                     )->setSortColumn('Sort')
                 )->setTitle( _t('nswds.LOWER_FOOTER_LEVEL', 'Lower level') ),
             ]
@@ -217,7 +223,7 @@ class SiteConfigExtension extends DataExtension
                 LinkField::create(
                     'SocialLinks',
                     'Social Media links',
-                    $this->owner
+                    $this->getOwner()
                 )->setSortColumn('Sort')
             ]
         );
@@ -227,7 +233,7 @@ class SiteConfigExtension extends DataExtension
             [
                 CheckboxField::create(
                     'DisplayWelcomeToCountry',
-                    _t('nswds.DISPLAY_WELCOME_TO_COUNTRY', 'Display \'Welcome to Country\' text')
+                    _t('nswds.DISPLAY_WELCOME_TO_COUNTRY', "Display 'Welcome to Country' text")
                 ),
                 TextareaField::create(
                     'WelcomeToCountry',
@@ -271,13 +277,14 @@ class SiteConfigExtension extends DataExtension
      * Get the default
      */
     public function getWelcomeToCountry() {
-        $value = $this->owner->getField('WelcomeToCountry');
+        $value = $this->getOwner()->getField('WelcomeToCountry');
         if(!$value) {
             $value = _t(
                 'nswds.WELCOME_TO_COUNTRY',
                 'We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.'
             );
         }
+
         return $value;
     }
 

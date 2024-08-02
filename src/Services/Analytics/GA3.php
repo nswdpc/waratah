@@ -11,9 +11,6 @@ use NSWDPC\AnalyticsChooser\Services\GA3 as ModuleGA3;
  */
 class GA3 extends ModuleGA3 {
 
-    /**
-     * @var bool
-     */
-    private static $enabled = false;
+    private static bool $enabled = false;
 
 }

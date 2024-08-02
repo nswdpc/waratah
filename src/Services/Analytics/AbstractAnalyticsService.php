@@ -11,9 +11,6 @@ use NSWDPC\AnalyticsChooser\Services\AbstractAnalyticsService as ModuleAbstractA
  */
 abstract class AbstractAnalyticsService extends ModuleAbstractAnalyticsService {
 
-    /**
-     * @var bool
-     */
-    private static $enabled = false;
+    private static bool $enabled = false;
 
 }

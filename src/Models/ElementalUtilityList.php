@@ -14,6 +14,12 @@ use SilverStripe\View\ArrayData;
 
 /**
  * Implement NSWDS Utility List component as a content block that can be placed in pages
+ * @property bool $Vertical
+ * @property string $Features
+ * @property string $Networks
+ * @property string $Prompt
+ * @property string $Body
+ * @property string $HashTags
  */
 class ElementalUtilityList extends BaseElement
 {
@@ -21,77 +27,56 @@ class ElementalUtilityList extends BaseElement
     /**
      * @var string
      */
-    const NETWORK_LINKEDIN = 'linkedin';
+    public const NETWORK_LINKEDIN = 'linkedin';
 
     /**
      * @var string
      */
-    const NETWORK_TWITTER = 'twitter';
+    public const NETWORK_TWITTER = 'twitter';
 
     /**
      * @var string
      */
-    const NETWORK_FACEBOOK = 'facebook';
+    public const NETWORK_FACEBOOK = 'facebook';
 
     /**
      * @var string
      */
-    const NETWORK_EMAIL = 'email';
+    public const NETWORK_EMAIL = 'email';
 
     /**
      * @var string
      */
-    const FEATURE_COPYLINK = 'copylink';
+    public const FEATURE_COPYLINK = 'copylink';
 
     /**
      * @var string
      */
-    const FEATURE_PRINT = 'print';
+    public const FEATURE_PRINT = 'print';
 
     /**
      * @var string
      */
-    const FEATURE_DOWNLOAD = 'download';
+    public const FEATURE_DOWNLOAD = 'download';
 
     /**
      * @var string
      */
-    const FEATURE_SHARE= 'share';
+    public const FEATURE_SHARE= 'share';
 
-    /**
-     * @var bool
-     */
-    private static $inline_editable = true;
+    private static bool $inline_editable = true;
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementalUtilityList';
+    private static string $table_name = 'ElementalUtilityList';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Utility list (NSW Design System)';
+    private static string $singular_name = 'Utility list (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Utility lists (NSW Design System)';
+    private static string $plural_name = 'Utility lists (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $description = 'Create a utility list';
+    private static string $description = 'Create a utility list';
 
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-list';
+    private static string $icon = 'font-icon-list';
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'Vertical' => 'Boolean',
         'Features' => 'Text',
         'Networks' => 'Text',
@@ -204,7 +189,7 @@ class ElementalUtilityList extends BaseElement
             } else {
                 return [];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return [];
         }
     }
@@ -214,14 +199,15 @@ class ElementalUtilityList extends BaseElement
      */
     public function SelectedHashTagsString(string $delimiter = ",", string $prefix = "#") : DBVarchar {
         $hashTags = $this->SelectedHashTags();
-        if($prefix) {
+        if($prefix !== '' && $prefix !== '0') {
             array_walk(
                 $hashTags,
-                function(&$value, $key) use ($prefix) {
+                function(&$value, $key) use ($prefix): void {
                     $value = $prefix . $value;
                 }
             );
         }
+
         return DBField::create_field(DBVarchar::class, implode($delimiter, $hashTags));
     }
 
@@ -243,11 +229,12 @@ class ElementalUtilityList extends BaseElement
                 foreach($features as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -264,11 +251,12 @@ class ElementalUtilityList extends BaseElement
                 foreach($networks as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -282,6 +270,7 @@ class ElementalUtilityList extends BaseElement
         if($current && $current->hasMethod('AbsoluteLink')) {
             $url = $current->AbsoluteLink($action);
         }
+
         return $url;
     }
 

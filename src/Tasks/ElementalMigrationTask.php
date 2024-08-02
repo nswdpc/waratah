@@ -17,13 +17,15 @@ class ElementalMigrationTask extends BuildTask
 
     protected $title = 'Perform Elemental Migration task(s)';
 
-    private static $segment = "ElementalMigrationTask";
+    private static string $segment = "ElementalMigrationTask";
 
     private $task = '';
-    private $publish = false;
-    private $commit = false;
 
-    public function run($request)
+    private bool $publish = false;
+
+    private bool $commit = false;
+
+    public function run($request): ?bool
     {
         $this->task = $request->getVar('task');
         $this->publish = $request->getVar('publish') == 1;
@@ -47,24 +49,25 @@ class ElementalMigrationTask extends BuildTask
             return false;
         }
 
-        $upgradeMethod = "upgrade_{$this->task}";
+        $upgradeMethod = 'upgrade_' . $this->task;
 
 
         if(method_exists($this, $upgradeMethod)) {
             $this->{$upgradeMethod}();
         } else {
-            DB::alteration_message("Task method {$this->task} does not exist", "error");
+            DB::alteration_message(sprintf('Task method %s does not exist', $this->task), "error");
             $this->dumpMethods();
             return false;
         }
+        return null;
     }
 
-    private function dumpMethods() {
+    private function dumpMethods(): void {
         $methods = get_class_methods($this);
         foreach($methods as $method) {
-            if(strpos($method, "upgrade_") === 0) {
+            if(str_starts_with($method, "upgrade_")) {
                 $taskMethod = preg_replace("/^upgrade_/", "", $method);
-                DB::alteration_message("Upgrade method '{$taskMethod}' is available, review the code comments");
+                DB::alteration_message(sprintf('Upgrade method \'%s\' is available, review the code comments', $taskMethod));
             }
         }
     }
@@ -101,13 +104,13 @@ class ElementalMigrationTask extends BuildTask
 
         foreach($migrations as $fromBackground => $toBackground) {
             $sqlUpdate = "UPDATE `Element` SET AddBackground = '" . Convert::raw2sql($toBackground) . "' WHERE AddBackground = '" . Convert::raw2sql($fromBackground) . "'";
-            DB::alteration_message("AddBackground change from {$fromBackground} to {$toBackground} on Draft stage", "changed");
+            DB::alteration_message(sprintf('AddBackground change from %s to %s on Draft stage', $fromBackground, $toBackground), "changed");
             DB::query($sqlUpdate);
             DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
 
             if($this->publish) {
                 $sqlUpdate = "UPDATE `Element_Live` SET AddBackground = '" . Convert::raw2sql($toBackground) . "' WHERE AddBackground = '" . Convert::raw2sql($fromBackground) . "'";
-                DB::alteration_message("AddBackground change from {$fromBackground} to {$toBackground} on Live stage", "changed");
+                DB::alteration_message(sprintf('AddBackground change from %s to %s on Live stage', $fromBackground, $toBackground), "changed");
                 DB::query($sqlUpdate);
                 DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
             }
@@ -127,9 +130,7 @@ class ElementalMigrationTask extends BuildTask
         }
 
         // Update any edge cases not supported to be no background (NULL)
-        $sqlUpdate = "UPDATE `Element` "
-            . " SET AddBackground = NULL "
-            . " WHERE AddBackground NOT IN ('"
+        $sqlUpdate = 'UPDATE `Element`  SET AddBackground = NULL  WHERE AddBackground NOT IN (\''
             . implode("','", Convert::raw2sql($currentOptions))
             . "')";
         DB::alteration_message("AddBackground change from unsupported option to NULL on Draft stage", "changed");
@@ -137,9 +138,7 @@ class ElementalMigrationTask extends BuildTask
         DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
 
         if($this->publish) {
-            $sqlUpdate = "UPDATE `Element_Live` "
-                . " SET AddBackground = NULL "
-                . " WHERE AddBackground NOT IN ('"
+            $sqlUpdate = 'UPDATE `Element_Live`  SET AddBackground = NULL  WHERE AddBackground NOT IN (\''
                 . implode("','", Convert::raw2sql($currentOptions))
                 . "')";
             DB::alteration_message("AddBackground change from unsupported option to NULL on Live stage", "changed");

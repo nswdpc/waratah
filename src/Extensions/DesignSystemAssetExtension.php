@@ -17,18 +17,16 @@ use SilverStripe\View\SSViewer;
 /**
  * Provide NSW Design System asset requirement functionality
  * @author James
+ * @method (\PageController & static)|(\SilverStripe\Security\Security & static) getOwner()
  */
 class DesignSystemAssetExtension extends Extension {
 
-    /**
-     * @var DesignSystemConfiguration|null
-     */
-    private $configurator = null;
+    private ?\NSWDPC\Waratah\Models\DesignSystemConfiguration $configurator = null;
 
     /**
      * Include the Design System after controller init (once)
      */
-    public function onAfterInit()
+    public function onAfterInit(): void
     {
         if(!$this->getConfigurationValue('frontend_provided')) {
             $this->requireDesignSystem();
@@ -42,6 +40,7 @@ class DesignSystemAssetExtension extends Extension {
         if(!$this->configurator) {
             $this->configurator = new DesignSystemConfiguration();
         }
+
         return $this->configurator;
     }
 
@@ -61,7 +60,7 @@ class DesignSystemAssetExtension extends Extension {
         $vendor = $this->getConfigurationValue('vendor');
         $module = $this->getConfigurationValue('module');
         $theme = $this->getConfigurationValue('theme');
-        if($vendor && $module && $theme) {
+        if ($vendor && $module && $theme) {
             // Silverstripe vendormodule theme
             return $vendor
              . "/"
@@ -69,13 +68,13 @@ class DesignSystemAssetExtension extends Extension {
              . ":"
              . "themes/" . $theme
              . "/" . ltrim($asset, "/");
-         } else if($theme) {
-             // Silverstripe theme
-             return "themes/" . $theme
-              . "/" . ltrim($asset, "/");
-         } else {
-             throw new \Exception("Invalid Design System configuration");
-         }
+        } elseif ($theme) {
+            // Silverstripe theme
+            return "themes/" . $theme
+             . "/" . ltrim($asset, "/");
+        } else {
+            throw new \Exception("Invalid Design System configuration");
+        }
     }
 
     /**
@@ -162,11 +161,10 @@ class DesignSystemAssetExtension extends Extension {
      *             ->setNonceStyle(null)// do not add a ?m=
      *             ->urlForResource( $sprite )
      * </code>
-     * @return string
      * @param bool $inline whether to include the SVG sprite inline as an <svg> tag
      * @deprecated
      */
-    public function SVGSprite($inline = false) {
+    public function SVGSprite($inline = false): string {
         return "";
     }
 }
