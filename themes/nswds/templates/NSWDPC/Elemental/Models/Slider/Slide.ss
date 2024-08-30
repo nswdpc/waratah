@@ -1,1 +1,4 @@
-<% include nswds/ContentBlock ContentBlock_Title=$Title, ContentBlock_Content=$Content, ContentBlock_Image=$Image, ContentBlock_Link=$Link, ContentBlock_ColumnOptions='nsw-col-md-6 nsw-col-lg-4', ContentBlock_ImageHeight=200 %>
+<li class="nsw-carousel__item">
+<%-- some values come from the parent context --%>
+<% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_Content=$Content, Card_Image=$Image, Card_ImageWidth=$Width, Card_ImageHeight=$Height, Card_LinkURL=$Link.LinkURL, Card_LinkOpenInNewWindow=$Link.OpenInNewWindow %>
+</li>
