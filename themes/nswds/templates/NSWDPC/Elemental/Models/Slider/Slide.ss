@@ -1,0 +1,1 @@
+<% include nswds/ContentBlock ContentBlock_Title=$Title, ContentBlock_Content=$Content, ContentBlock_Image=$Image, ContentBlock_Link=$Link, ContentBlock_ColumnOptions='nsw-col-md-6 nsw-col-lg-4', ContentBlock_ImageHeight=200 %>
