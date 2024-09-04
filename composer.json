@@ -46,7 +46,7 @@
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
     "require": {
-        "nswdpc/silverstripe-content-boilerplate": "^1",
+        "nswdpc/silverstripe-content-boilerplate": "*",
         "nswdpc/silverstripe-feedback-assist": "^1",
         "nswdpc/silverstripe-field-hint": "^1",
         "nswdpc/silverstripe-grid-helpers": "^1",
