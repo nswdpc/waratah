@@ -24,7 +24,6 @@ Page:
     - 'DNADesign\ElementalList\Model\ElementList'
     - 'Symbiote\Elemental\Model\ElementListingPageListing'
     - 'Dynamic\Elements\Section\Elements\ElementSectionNavigation'
-    - 'NSWDPC\Elemental\Models\ExtensibleSearch\ElementalExtensibleSearch'
     - 'NSWDPC\Elemental\Models\Banner\ElementBanner'
     - 'DNADesign\ElementalVirtual\Model\ElementVirtual'
     - 'NSWDPC\Elemental\Models\Publications\ElementPublicationList'
