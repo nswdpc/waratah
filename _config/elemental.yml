@@ -29,7 +29,6 @@ Page:
     - 'NSWDPC\Elemental\Models\Publications\ElementPublicationList'
     - 'NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent'
     - 'NSWDPC\Elemental\Models\QuickGallery\ElementQuickGallery'
-    - 'NSWDPC\Chimple\Models\Elements\ElementChimpleSubscribe'
     - 'NSWDPC\Waratah\Models\ElementalUtilityList'
 
   extensions:
