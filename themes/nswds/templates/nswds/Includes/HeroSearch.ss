@@ -20,11 +20,16 @@
                                 <div class="nsw-form__input-group nsw-form__input-group--icon nsw-form__input-group--large">
                                     <label for="{$FormName}_Search" class="sr-only"><%t nswds.SEARCH_SITE_FOR 'Search site for' %>:</label>
                                     <input autocomplete="off" id="{$FormName}_Search" name="<% if $SearchFieldName %>{$SearchFieldName.XML}<% else %><%t nswds.SEARCH 'Search' %><% end_if %>" type="text" class="nsw-form__input" value="{$SearchQuery.XML}" aria-label="<%t nswds.SEARCH 'Search' %>" aria-describedby="{$FormName}_action_results">
-                                    <button class="nsw-button nsw-button--white nsw-button--flex" type="submit" aria-label="search">
+                                    <button class="nsw-button nsw-button--dark nsw-button--flex" type="submit" aria-label="search">
                                         <% include nswds/Icon Icon_Icon='search' %>
                                         <span class="sr-only"><%t nswds.SEARCH 'Search' %></span>
                                     </button>
                                 </div>
+                                <% if $HiddenFields %>
+                                <% loop $HiddenFields %>
+                                {$Field}
+                                <% end_loop %>
+                                <% end_if %>
                             </form>
                         <% end_with %>
                     <% end_if %>
@@ -32,22 +37,19 @@
                     <% if $HeroSearch_Links %>
                         <div class="hero-search__suggested">
                             <ul>
-                                <% loop $HeroSearch_Links.Sort('SortOrder') %>
+                                <% loop $HeroSearch_Links %>
                                     <li><a href="{$LinkURL}">{$Title.XML}</a></li>
                                 <% end_loop %>
                             </ul>
                         </div>
-                    <% else_if $HeroSearch_ShowTerms && $HeroSearch_SearchPage %>
-                        <% if $HeroSearch_SearchPage.Suggestions.filter('Approved', 1) %>
-                            <div class="hero-search__suggested">
-                                <ul>
-                                    <% loop $HeroSearch_SearchPage.Suggestions.filter('Approved', 1) %>
-                                        <%-- scope=ExtensibleSearchSuggestion --%>
-                                        <li><a href="{$ExtensibleSearchPage.Link('getSearchForm/?Search={$Term.RAWURLATT}')}">{$Term.XML}</a></li>
-                                    <% end_loop %>
-                                </ul>
-                            </div>
-                        <% end_if %>
+                    <% else_if $HeroSearch_Terms %>
+                        <div class="hero-search__suggested">
+                            <ul>
+                                <% loop $HeroSearch_Terms %>
+                                    <li><a href="{$Link}">{$Title.XML}</a></li>
+                                <% end_loop %>
+                            </ul>
+                        </div>
                     <% end_if %>
 
                 </div>
