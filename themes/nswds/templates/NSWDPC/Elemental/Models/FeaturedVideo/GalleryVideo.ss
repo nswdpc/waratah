@@ -28,11 +28,12 @@
                 </div>
                 <div class="nsw-col nsw-col-xs-12 nsw-col-md-5">
                     <div class="more-link nsw-m-bottom-sm">
-                        <button class="nsw-button nsw-button--light nsw-button--full-width js-open-dialog-gv-{$ID}-{$Parent.Anchor}" aria-haspopup="dialog"><% include nswds/Icon Icon_Icon='play_circle' %><%t nswds.WATCH_VIDEO 'Watch' %></button>
+                        <button class="nsw-button nsw-button--dark nsw-button--full-width js-open-dialog-gv-{$ID}-{$Parent.Anchor}" aria-haspopup="dialog"><% include nswds/Icon Icon_Icon='play_circle' %><%t nswds.WATCH_VIDEO 'Watch' %></button>
                     </div>
                 </div>
             </div>
 
+            <%--
             <% if $HTML || $Description %>
             <div class="nsw-grid nsw-grid--flush">
                 <div class="nsw-col nsw-col-xs-12">
@@ -45,6 +46,7 @@
                 </div>
             </div>
             <% end_if %>
+            --%>
 
         </figcaption>
 
