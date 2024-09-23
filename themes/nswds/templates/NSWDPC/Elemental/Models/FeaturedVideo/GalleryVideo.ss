@@ -43,12 +43,6 @@
 
             <div class="nsw-dialog__container">
 
-                <div class="nsw-dialog__top">
-                    <div class="nsw-dialog__title" id="gvt-{$ID}-{$Parent.Anchor}">
-                        {$Title.XML}
-                    </div>
-                </div>
-
                 <div class="nsw-dialog__content">
 
                     <figure class="nsw-media wrth-video">
