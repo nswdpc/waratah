@@ -33,21 +33,6 @@
                 </div>
             </div>
 
-            <%--
-            <% if $HTML || $Description %>
-            <div class="nsw-grid nsw-grid--flush">
-                <div class="nsw-col nsw-col-xs-12">
-                <% if $HTML %>
-                    <%-- HTML content --%>
-                    {$HTML}
-                <% else_if $Description %>
-                    <p>{$Description.XML}</p>
-                <% end_if %>
-                </div>
-            </div>
-            <% end_if %>
-            --%>
-
         </figcaption>
 
     </figure>
