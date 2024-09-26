@@ -25,7 +25,7 @@
         </aside>
 
         <main id="main-content" class="nsw-layout__main">
-            <% include NSWDPC/Waratah/Results Results=$Results, Query=$SearchQuery %>
+            <% include NSWDPC/Waratah/Results Results=$Results, SearchQuery=$SearchQuery %>
         </main>
 
     </div>
@@ -47,7 +47,7 @@
                     </div>
                 <% end_with %>
             <% end_if %>
-            <% include NSWDPC/Waratah/Results Results=$Results, Query=$SearchQuery %>
+            <% include NSWDPC/Waratah/Results Results=$Results, SearchQuery=$SearchQuery %>
 
         </main>
 

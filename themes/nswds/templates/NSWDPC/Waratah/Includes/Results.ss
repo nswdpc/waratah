@@ -3,7 +3,7 @@
 
 <% if $Results %>
 
-    <% if $Query %>
+    <% if $SearchQuery %>
         <% include nswds/ResultsBar ResultsBar_Total=$Results.TotalItems, ResultsBar_Start=$Results.FirstItem, ResultsBar_End=$Results.LastItem, ResultsBar_ResultType='items', ResultsBar_ResultTypeSingular='item' %>
     <% end_if %>
 
@@ -13,7 +13,7 @@
 
     <% include nswds/Pagination Pagination_PaginatedItems=$Results %>
 
-<% else_if $Query %>
+<% else_if $SearchQuery %>
 
     <div class="nsw-m-top-md">
         <% include nswds/InPageAlert InPageAlert_Icon='search', InPageAlert_Title='No results', InPageAlert_Content='Sorry, your search did not return any results.' %>
