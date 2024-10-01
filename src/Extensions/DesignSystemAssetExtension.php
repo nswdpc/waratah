@@ -154,19 +154,4 @@ class DesignSystemAssetExtension extends Extension {
 
     }
 
-    /**
-     * Provide the current SVG sprite from the theme, called within the template
-     * Note to load this as a relative path for a frontend asset:
-     * <code>
-     * Injector::inst()->get(ResourceURLGenerator::class)
-     *             ->setNonceStyle(null)// do not add a ?m=
-     *             ->urlForResource( $sprite )
-     * </code>
-     * @return string
-     * @param bool $inline whether to include the SVG sprite inline as an <svg> tag
-     * @deprecated
-     */
-    public function SVGSprite($inline = false) {
-        return "";
-    }
 }
