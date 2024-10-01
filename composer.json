@@ -22,23 +22,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "NSWDPC\\Waratah\\Extensions\\": [
-                "src/Extensions/"
-            ],
-            "NSWDPC\\Waratah\\Pages\\": [
-                "src/Pages/"
-            ],
-            "NSWDPC\\Waratah\\Controllers\\": [
-                "src/Controllers/"
-            ],
-            "NSWDPC\\Waratah\\Services\\": [
-                "src/Services/"
-            ],
-            "NSWDPC\\Waratah\\Models\\": [
-                "src/Models/"
-            ],
-            "NSWDPC\\Waratah\\Forms\\": [
-                "src/Forms/"
+            "NSWDPC\\Waratah\\": [
+                "src/"
             ]
         }
     },
