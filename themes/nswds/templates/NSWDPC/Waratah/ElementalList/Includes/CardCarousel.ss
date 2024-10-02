@@ -16,7 +16,7 @@
 
                 <% loop $Elements.Elements %>
                     <li class="nsw-carousel__item">
-                        <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$ContentLink.LinkURL, Card_LinkOpenInNewWindow=$ContentLink.OpenInNewWindow, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$ContentImage, Card_Description=$HTML.Plain %>
+                        <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$ContentLink.LinkURL, Card_LinkOpenInNewWindow=$ContentLink.OpenInNewWindow, Card_CardStyle=$Top.CardStyle, Card_Image=$ContentImage, Card_Description=$HTML.Plain %>
                     </li>
                 <% end_loop %>
 

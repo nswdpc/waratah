@@ -16,7 +16,7 @@
 
             <% loop $ElementLinks.Sort('Sort') %>
                 <li class="nsw-carousel__item">
-                    <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Up.Up.CardStyle, Card_Image=$LinkImage, Card_Description=$LinkDescription %>
+                    <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Top.CardStyle, Card_Image=$LinkImage, Card_Description=$LinkDescription %>
                 </li>
             <% end_loop %>
 
