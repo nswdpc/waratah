@@ -20,7 +20,7 @@
         <div class="nsw-layout">
             <main id="content" class="nsw-layout__main">
                 <div class="nsw-block">
-                    <h1 class="sr-only">Draft preview</h1>
+                    <h1>Draft preview</h1>
                 </div>
                 <div class="nsw-callout">
                     <div class="nsw-callout__content">
