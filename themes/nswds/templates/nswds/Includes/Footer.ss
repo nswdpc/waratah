@@ -1,3 +1,6 @@
+
+{$PrimarySupportList}
+
 <% if $Top.SiteConfig %>
 
 <% with $Top.SiteConfig %>
