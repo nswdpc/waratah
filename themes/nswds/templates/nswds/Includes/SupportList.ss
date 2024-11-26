@@ -29,7 +29,7 @@
 
         <div class="nsw-support-list__container">
 
-            <% if $SupportList_MasterBrandDescriptorLinks %>
+            <% if $SupportList_Labels %>
 
                 <div class="nsw-support-list__gov-departments">
                     <% include nswds/Waratah_SVG Waratah_Height=76 %>
@@ -39,7 +39,7 @@
 
             <% else %>
 
-                <%-- logos only --%>
+                <%-- logos only, include waratah --%>
                 <% include nswds/SupportList_Logos SupportList_Logos=$SupportList_Logos, SupportList_IncludeWaratah=1 %>
 
             <% end_if %>
