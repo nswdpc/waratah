@@ -8,7 +8,7 @@ use SilverStripe\Admin\ModelAdmin;
 /**
  * Model admin for NSWDS/Waratah models
  */
-class ArAdmin extends ModelAdmin
+class WaratahModelAdmin extends ModelAdmin
 {
     /**
      * @inheritdoc
