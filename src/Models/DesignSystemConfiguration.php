@@ -98,7 +98,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
 
     /**
      * Set whether masterband is on or off, if off you need to configure
-     * a non masterband: cobrand, endorsed, independent
+     * a non masterband: cobrand, endorsed, independent, standalone
      * @var bool
      */
     private static $masterbrand = true;
