@@ -6,7 +6,7 @@
     <% end_if %>
 
     <% loop $SupportList_Logos %>
-        <img src="{$Pad(160,76).URL}" loading="lazy" width="160" height="76" class="nsw-support-list__logo-grid__item">
+        <img src="{$Pad(160,76).URL}" loading="lazy" class="nsw-support-list__logo-grid__item"<% if $AltText %> alt="{$AltText}"<% end_if %>>
     <% end_loop %>
 
     </div>
