@@ -63,3 +63,7 @@ NSWDPC\Elemental\Models\FeaturedVideo\GalleryVideo:
 NSWDPC\Notices\Notice:
   extensions:
     - 'NSWDPC\Waratah\Extensions\NoticeExtension'
+
+SilverStripe\ShareDraftContent\Controllers\ShareDraftController:
+    extensions:
+      - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'
