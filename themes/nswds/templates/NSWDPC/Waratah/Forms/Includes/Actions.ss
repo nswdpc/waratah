@@ -11,6 +11,7 @@
         <% loop $Actions %>
             {$Field}
         <% end_loop %>
+        </div>
     </fieldset>
 
 </div>
