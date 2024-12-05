@@ -10,7 +10,7 @@
     <title>Draft preview</title>
 </head>
 
-<body class="nsw-body-content" style="margin-top: 0!important;">
+<body class="nsw-body-content wrth-share-draft">
 
 <% include nswds/SkipToNav %>
 
