@@ -151,13 +151,14 @@ class DesignSystemAssetExtension extends Extension {
         Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js");
         Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
         Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js");
+        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js");
         Requirements::block('silverstripe/userforms:client/dist/js/jquery.min.js');
 
         // Require jQuery
         Requirements::javascript(
-            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js",
             [
-                "integrity" => "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==",
+                "integrity" => "sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g",
                 "crossorigin" => "anonymous"
             ]
         );
