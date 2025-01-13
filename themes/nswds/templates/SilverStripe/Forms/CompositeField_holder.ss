@@ -1,5 +1,5 @@
 
-<div id="{$HolderID}" class="nsw-form__group wrth-form__composite<% if $Zebra %> {$Zebra}<% end_if %><% if $ParentExtraClass %> {$ParentExtraClass}<% end_if %>" data-is-composite="1">
+<div id="{$HolderID}"<% if $GridOption %> data-grid-option="{$GridOption}"<% end_if %> class="nsw-form__group wrth-form__composite<% if $Zebra %> {$Zebra}<% end_if %><% if $ParentExtraClass %> {$ParentExtraClass}<% end_if %>" data-is-composite="1">
 
     <% if $FormFieldHint == 'callout' %>
 
@@ -40,11 +40,11 @@
 
             <% include NSWDPC/Waratah/Forms/Legend %>
 
-            <div class="nsw-p-left-xs nsw-p-bottom-lg">
+            <div class="nsw-p-left-xs">
 
                 <% include NSWDPC/Waratah/Forms/Description %>
 
-                <div class="field">
+                <div class="field cp">
                 {$Field}
                 </div>
 

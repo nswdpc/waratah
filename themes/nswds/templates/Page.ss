@@ -14,7 +14,9 @@
 
 <% include nswds/SkipToNav %>
 
-<% include nswds/GlobalAlert %>
+<% include NSWDPC/Waratah/GlobalAlert %>
+
+<% include NSWDPC/Waratah/PageAlert %>
 
 <% include nswds/Masthead %>
 
@@ -33,9 +35,9 @@
 
 <% include nswds/Footer %>
 
-<% include FeedbackAssist %>
-
 <% include NSWDPC/Waratah/GlobalNotice %>
+
+<% include NSWDPC/Waratah/BackToTop %>
 
 </body>
 </html>

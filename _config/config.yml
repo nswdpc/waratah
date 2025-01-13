@@ -1,17 +1,10 @@
 ---
 Name: nswdpc-waratah-base
 ---
-SilverStripe\MimeValidator\MimeUploadValidator:
-  MimeTypes:
-    svg:
-      - 'image/svg+xml'
-      - 'image/svg'
-
-SilverStripe\Assets\File:
-    allowed_extensions:
-    - svg
-
 Page:
   show_last_updated: false
   # date format eg 14 Feb 2001
   last_updated_format: 'dd LLL y'
+SilverStripe\CMS\Model\SiteTree:
+  meta_generator: ''
+  show_meta_generator_version: false

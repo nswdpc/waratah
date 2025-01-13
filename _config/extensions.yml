@@ -6,6 +6,9 @@ Page:
   extensions:
     - 'NSWDPC\Waratah\Extensions\PageExtension'
     - 'NSWDPC\Waratah\Extensions\BreadcrumbExtension'
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\SiteTreeExtension'
 SilverStripe\ErrorPage\ErrorPage:
   extensions:
     - NSWDPC\Waratah\Extensions\ErrorPageExtension
@@ -60,3 +63,7 @@ NSWDPC\Elemental\Models\FeaturedVideo\GalleryVideo:
 NSWDPC\Notices\Notice:
   extensions:
     - 'NSWDPC\Waratah\Extensions\NoticeExtension'
+
+SilverStripe\ShareDraftContent\Controllers\ShareDraftController:
+    extensions:
+      - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'

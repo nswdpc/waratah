@@ -50,6 +50,7 @@ export function applySlimSelect(listbox) {
       listBoxFilterHandler(listbox, n);
       return true;
     };
+    listbox.classList.add('ss-listbox');
     let slim = new SlimSelect({
       select: listbox,
       settings: settings,

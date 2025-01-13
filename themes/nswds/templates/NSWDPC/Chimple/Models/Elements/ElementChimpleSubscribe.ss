@@ -25,7 +25,7 @@
                 {$SubscribeForm}
             </div>
 
-            <% if $BeforeFormContent %>
+            <% if $AfterFormContent %>
                 <div class="nsw-m-top-sm">
                     {$AfterFormContent}
                 </div>
@@ -56,7 +56,7 @@
                         {$SubscribeForm}
                     </div>
 
-                    <% if $BeforeFormContent %>
+                    <% if $AfterFormContent %>
                         <div class="nsw-m-top-sm">
                             {$AfterFormContent}
                         </div>
