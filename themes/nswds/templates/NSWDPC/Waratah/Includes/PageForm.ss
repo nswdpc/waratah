@@ -7,7 +7,7 @@
         <div class="nsw-form">
             {$Form}
         </div>
-    </div>
+    </section>
 
 <% if $Top.IsLandingPage %>
     </div>
