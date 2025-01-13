@@ -3,12 +3,14 @@
 <head>
     <meta charset="utf-8">
     <% base_tag %>
-    <% include NSWDPC/Waratah/Metadata %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
     <% include NSWDPC/Waratah/Favicon %>
     <title>Draft preview</title>
 </head>
 
-<body class="nsw-body-content">
+<body class="nsw-body-content wrth-share-draft">
 
 <% include nswds/SkipToNav %>
 
@@ -18,7 +20,7 @@
 
     <div class="nsw-container nsw-p-top-sm nsw-p-bottom-lg">
         <div class="nsw-layout">
-            <main id="content" class="nsw-layout__main">
+            <main id="main-content" class="nsw-layout__main">
                 <div class="nsw-block">
                     <h1>Draft preview</h1>
                 </div>
