@@ -102,25 +102,9 @@ class DesignSystemAssetExtension extends Extension {
         // JS loads prior to </body>
         Requirements::set_force_js_to_bottom(true);
 
-        // Block modules providing these common jQuery assets
-        // TODO check requirements and block external jquery found via pattern?
-        Requirements::block("//code.jquery.com/jquery-3.3.1.min.js");
-        Requirements::block("//code.jquery.com/jquery-3.4.1.min.js");
-        Requirements::block("//code.jquery.com/jquery-3.5.1.min.js");
-        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js");
-        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js");
-        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
-        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js");
-        Requirements::block('silverstripe/userforms:client/dist/js/jquery.min.js');
-
-        // Require jQuery
-        Requirements::javascript(
-            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js",
-            [
-                "integrity" => "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==",
-                "crossorigin" => "anonymous"
-            ]
-        );
+        if(Config::inst()->get(DesignSystemConfiguration::class, 'enable_jquery')) {
+            static::requireJquery();
+        }
 
         $this->requireFonts();
 
@@ -152,6 +136,31 @@ class DesignSystemAssetExtension extends Extension {
             );
         }
 
+    }
+
+    /**
+     * Handling for blocking know jquery versions and then requiring a specific version
+     * @todo check requirements and block external jquery found via pattern?
+     */
+    public static function requireJquery() {
+
+        Requirements::block("//code.jquery.com/jquery-3.3.1.min.js");
+        Requirements::block("//code.jquery.com/jquery-3.4.1.min.js");
+        Requirements::block("//code.jquery.com/jquery-3.5.1.min.js");
+        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js");
+        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js");
+        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
+        Requirements::block("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js");
+        Requirements::block('silverstripe/userforms:client/dist/js/jquery.min.js');
+
+        // Require jQuery
+        Requirements::javascript(
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js",
+            [
+                "integrity" => "sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==",
+                "crossorigin" => "anonymous"
+            ]
+        );
     }
 
 }
