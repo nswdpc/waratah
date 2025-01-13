@@ -20,7 +20,7 @@
                     <div class="nsw-hero-banner__list">
                         <% if $BannerLinksTitle %><div class="nsw-hero-banner__sub-title">{$BannerLinksTitle.XML}</div><% end_if %>
                         <ul>
-                            <% loop $BannerLinks %>
+                            <% loop $BannerLinks.Sort('Sort') %>
                                 <li><a href="{$LinkURL}">{$Title.XML}</a></li>
                             <% end_loop %>
                         </ul>

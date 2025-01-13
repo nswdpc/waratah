@@ -6,13 +6,10 @@
         <% else %>
             <meta itemprop="name" content="{$TaxonomyType.Name.XML}">
         <% end_if %>
-        <div class="nsw-block">
-            <div class="nsw-list">
-            <% loop $SelectedTerms %>
-                <% include TaxonomyListItem DefinedTermSet=$Up.DefinedTermSet %>
-            <% end_loop %>
-            </div>
+        <div class="nsw-list nsw-list--32 nsw-m-top-sm wrth-list--tags">
+        <% loop $SelectedTerms %>
+            <% include TaxonomyListItem DefinedTermSet=$Up.DefinedTermSet %>
+        <% end_loop %>
         </div>
     </div>
-</div>
 <% end_if %>

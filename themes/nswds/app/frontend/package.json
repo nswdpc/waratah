@@ -28,8 +28,8 @@
   ],
   "dependencies": {
     "micromodal": "^0.4.10",
-    "nsw-design-system": "^3.16.0",
-    "slim-select": "^2.4.5"
+    "nsw-design-system": "^3.18.5",
+    "slim-select": "^2.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -41,7 +41,7 @@
     "core-js": "^3.9",
     "cssnano": "^6.0.0",
     "del": "^5.1.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-babel": "^8",
     "gulp-better-rollup": "^4.0.1",
     "gulp-concat": "^2.6.1",
