@@ -6,7 +6,6 @@ use DNADesign\Elemental\Models\ElementalArea;
 use NSWDPC\Waratah\Models\SideElementalArea;
 use NSWDPC\Waratah\Models\TopElementalArea;
 use NSWDPC\Elemental\Models\Banner\ElementBanner;
-use NSWDPC\Elemental\Models\ExtensibleSearch\ElementalExtensibleSearch;
 use Silverstripe\Core\Convert;
 use Silverstripe\ORM\DataExtension;
 use Silverstripe\ORM\DB;
@@ -53,8 +52,7 @@ class MultipleElementalAreaExtension extends DataExtension
      * @var array
      */
     private static $allowed_top_elements = [
-        ElementBanner::class => '',
-        ElementalExtensibleSearch::class => ''
+        ElementBanner::class => ''
     ];
 
     /**

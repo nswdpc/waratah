@@ -1,6 +1,6 @@
 {
     "name": "nswdpc/waratah",
-    "description": "NSWDPC Silverstripe integration for the NSW Design System",
+    "description": "Silverstripe integration for the NSW Design System",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
@@ -17,28 +17,13 @@
         },
         {
             "name": "Mark Taylor",
-            "role": "Bon Vivant"
+            "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "NSWDPC\\Waratah\\Extensions\\": [
-                "src/Extensions/"
-            ],
-            "NSWDPC\\Waratah\\Pages\\": [
-                "src/Pages/"
-            ],
-            "NSWDPC\\Waratah\\Controllers\\": [
-                "src/Controllers/"
-            ],
-            "NSWDPC\\Waratah\\Services\\": [
-                "src/Services/"
-            ],
-            "NSWDPC\\Waratah\\Models\\": [
-                "src/Models/"
-            ],
-            "NSWDPC\\Waratah\\Forms\\": [
-                "src/Forms/"
+            "NSWDPC\\Waratah\\": [
+                "src/"
             ]
         }
     },
@@ -46,15 +31,13 @@
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
     "require": {
-        "nswdpc/silverstripe-content-boilerplate": "<1",
-        "nswdpc/silverstripe-notification-boilerplate": "<1",
-        "nswdpc/silverstripe-feedback-assist": "^0.2.3",
-        "nswdpc/silverstripe-field-hint": "^0.1",
-        "nswdpc/silverstripe-grid-helpers": "^0.2",
-        "nswdpc/silverstripe-datetime-inputs": "<1",
-        "nswdpc/silverstripe-notices": "^0.1",
-        "nswdpc/silverstripe-analytics-chooser": "^0.2",
-        "nswdpc/silverstripe-elemental-iframe": ">=0.3.2 <1"
+        "nswdpc/silverstripe-content-boilerplate": "^1",
+        "nswdpc/silverstripe-feedback-assist": "^1",
+        "nswdpc/silverstripe-field-hint": "^1",
+        "nswdpc/silverstripe-grid-helpers": "^1",
+        "nswdpc/silverstripe-datetime-inputs": "^1",
+        "nswdpc/silverstripe-notices": "^1",
+        "nswdpc/silverstripe-analytics-chooser": ">=0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
