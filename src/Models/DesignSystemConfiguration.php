@@ -246,6 +246,11 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     private static $alt_home_page = "";
 
     /**
+     * Configuration option for enabling jquery project-wide
+     */
+    private static $enable_jquery = false;
+
+    /**
      * Return the configured spacing class, used to implement consistent spacing in a project
      */
     public static function get_spacing_class() : string {
