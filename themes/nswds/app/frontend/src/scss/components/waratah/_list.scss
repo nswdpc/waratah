@@ -19,6 +19,18 @@
       }
     }
   }
+
+  &--tags {
+    .nsw-tag {
+      &> * {
+        vertical-align: middle;
+      }
+      .nsw-material-icons {
+        margin-left: rem(-12px);
+      }
+    }
+  }
+
 }
 
 /**

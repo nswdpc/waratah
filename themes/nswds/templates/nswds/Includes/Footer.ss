@@ -103,7 +103,7 @@
             <% end_if %>
 
             <% if $DisplayWelcomeToCountry %>
-                <p>
+                <p class="nsw-footer__acknowledgement">
                 {$WelcomeToCountry.XML}
                 </p>
                 <% if $FooterContent == '' %>

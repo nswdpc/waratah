@@ -14,7 +14,9 @@
 
 <% include nswds/SkipToNav %>
 
-<% include nswds/GlobalAlert %>
+<% include NSWDPC/Waratah/GlobalAlert %>
+
+<% include NSWDPC/Waratah/PageAlert %>
 
 <% include nswds/Masthead %>
 

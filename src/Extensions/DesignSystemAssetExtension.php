@@ -85,13 +85,11 @@ class DesignSystemAssetExtension extends Extension {
     protected function requireFonts() {
 
         Requirements::css(
-            "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap",
-            "screen"
+            "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap"
         );
 
         Requirements::css(
-            "https://fonts.googleapis.com/icon?family=Material+Icons&display=block",
-            "screen"
+            "https://fonts.googleapis.com/icon?family=Material+Icons&display=block"
         );
 
     }
@@ -129,13 +127,11 @@ class DesignSystemAssetExtension extends Extension {
         // The built NSW DS CSS, with supporting CSS
         if(Director::isLive()) {
             Requirements::css(
-                $this->getAsset("app/frontend/dist/css/app.min.css"),
-                "screen"
+                $this->getAsset("app/frontend/dist/css/app.min.css")
             );
         } else {
             Requirements::css(
-                $this->getAsset("app/frontend/dist/css/app.css"),
-                "screen"
+                $this->getAsset("app/frontend/dist/css/app.css")
             );
         }
 
@@ -144,14 +140,14 @@ class DesignSystemAssetExtension extends Extension {
             Requirements::javascript(
                 $this->getAsset("app/frontend/dist/js/app.min.js"),
                 [
-                    'async' => 'async'
+                    'defer' => true
                 ]
             );
         } else {
             Requirements::javascript(
                 $this->getAsset("app/frontend/dist/js/app.js"),
                 [
-                    'async' => 'async'
+                    'defer' => true
                 ]
             );
         }
