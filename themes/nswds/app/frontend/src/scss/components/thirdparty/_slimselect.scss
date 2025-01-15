@@ -61,9 +61,25 @@ select.ss-listbox {
   .ss-search {
 
     padding: rem(16px);
+    align-items: center;
 
     input {
       @extend .nsw-form__input;
+    }
+
+    .ss-addable {
+      background-color: var(--nsw-palette-green-02);
+      border: none;
+      border-radius: 50%;
+      width: rem(32px);
+      height: rem(32px);
+      margin-left: rem(16px);
+
+      svg {
+        path {
+          stroke: var(--nsw-white);
+        }
+      }
     }
 
   }
