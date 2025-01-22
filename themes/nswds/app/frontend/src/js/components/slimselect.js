@@ -8,6 +8,7 @@ export function applySlimSelect(listbox) {
     let minSelected = listbox.dataset.hasOwnProperty('minSelected') ? listbox.dataset.minSelected : null;
     let maxSelected = listbox.dataset.hasOwnProperty('maxSelected') ? listbox.dataset.maxSelected : null;
     let matching = listbox.dataset.hasOwnProperty('matching') ? listbox.dataset.matching : 'default';
+    let addable = listbox.dataset.hasOwnProperty('addable');
     let settings = {
       searchHighlight: true,
       allowDeselect: true,
@@ -32,6 +33,14 @@ export function applySlimSelect(listbox) {
     if(matching == 'start') {
       events.searchFilter = function(option, search) {
         return option.text.toLowerCase().substr(0, search.length) === search.toLowerCase();
+      };
+    }
+    if(addable) {
+      events.addable = function(value) {
+        return {
+          text: value,
+          value: 'new=' + value
+        }
       };
     }
     listbox.classList.add('ss-listbox');

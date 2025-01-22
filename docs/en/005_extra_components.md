@@ -28,13 +28,14 @@ Here is an example including a NSWDS List Item from their "List items" component
 
 Any `<select>` element that is not a child of a `.nsw-multi-select` element will automatically be decorated with SlimSelect.
 
-You can modify the Slim Select handling of a select element to an extent via its data-* attributes, and we have tried to maintain consistency with Slim Select settings:
+You can modify the Slim Select handling of a select element to an extent via its data-* attributes (use `$field->setAttribute()`). We have tried to maintain consistency with Slim Select settings:
 
 + data-search-text - sets SlimSelect settings.searchText
 + data-search-placeholder - sets SlimSelect settings.searchPlaceholder
 + data-min-selected - sets SlimSelect settings.minSelected
 + data-max-selected - sets SlimSelect settings.maxSelected
 + data-matching - sets the searchFilter event function to use. The only current option is 'start', which matches options from the start of the text. If this is not set, the default Slim Select matching filter is used.
++ data-addable - adds an 'addable' event to the SlimSelect settings, supporting creation of new options in the element. New option values are prefixed "new=". You must handle removal of this prefix and sanitise the remaining input when saving user-supplied values.
 
 You can access the SlimSelect object on each `<select>` element via `element.slim`. See SlimSelect documentation for assistance.
 
