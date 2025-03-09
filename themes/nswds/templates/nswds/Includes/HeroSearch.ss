@@ -1,4 +1,8 @@
+<% if $HeroSearch_ImageHTML %>
+<div class="nsw-section nsw-section--image-html">
+<% else %>
 <div class="nsw-section nsw-section--image"<% if $HeroSearch_Image %> style="background-image: url({$HeroSearch_Image.FocusFillMax(1920,640).URL});"<% else_if $HeroSearch_ImageURL %> style="background-image: url({$HeroSearch_ImageURL.XML});"<% end_if %>>
+<% end_if %>
 
     <div class="hero-search">
 
@@ -61,5 +65,7 @@
         </div>
 
     </div>
-
+    <% if $HeroSearch_ImageHTML && $HeroSearch_Image %>
+        {$HeroSearch_Image.FocusFillMax(1920,640)}
+    <% end_if %>
 </div>
