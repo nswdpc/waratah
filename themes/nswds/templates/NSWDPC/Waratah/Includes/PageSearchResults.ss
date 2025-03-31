@@ -19,7 +19,7 @@
         <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
             <% if $Form %>
                 <% with $Form %>
-                    <% include SilverStripe/CMS/Search/SearchForm SearchFormContext='wrth-advanced-search' %>
+                    <% include NSWDPC/Waratah/AdvancedSearch %>
                 <% end_with %>
             <% end_if %>
         </aside>
@@ -43,7 +43,7 @@
             <% if $Form %>
                 <% with $Form %>
                     <div class="nsw-m-y-lg">
-                        <% include SilverStripe/CMS/Search/SearchForm SearchFormContext='wrth-simple-search' %>
+                        <% include NSWDPC/Waratah/SimpleSearch %>
                     </div>
                 <% end_with %>
             <% end_if %>
