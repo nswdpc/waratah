@@ -3,7 +3,7 @@
 
     <form role="search" {$FormAttributes}>
         <label for="{$FormName}_Search" class="sr-only"><%t nswds.SEARCH_SITE_FOR 'Search site for:' %></label>
-        <input id="{$FormName}_Search" name="Search" autocomplete="off" type="search" class="nsw-header__input js-search-input" value="{$SearchQuery.XML}">
+        <input id="{$FormName}_Search" name="Search" autocomplete="off" type="text" class="nsw-header__input js-search-input" value="{$SearchQuery.XML}">
         <button class="nsw-icon-button nsw-icon-button--flex" type="submit">
             <% include nswds/Icon Icon_Icon='search' %>
             <span class="sr-only"><%t nswds.SEARCH 'Search' %></span>
