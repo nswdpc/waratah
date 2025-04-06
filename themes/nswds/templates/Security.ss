@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <% base_tag %>
+    <% with $SiteConfig %>
+    <title>{$Title}</title>
+    <% end_with %>
     <% include NSWDPC/Waratah/Metadata %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
     <% include NSWDPC/Waratah/Favicon %>
 </head>
 
