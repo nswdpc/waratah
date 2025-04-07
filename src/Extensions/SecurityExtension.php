@@ -14,7 +14,7 @@ use SilverStripe\Security\Authenticator as AuthenticatorInterface;
  * Provides Security helpers, such as returning providers to help with linking
  * from a custom Security template
  * @author James
- * @extends \SilverStripe\Core\Extension<static>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\Security\Security & static)>
  */
 class SecurityExtension extends Extension
 {

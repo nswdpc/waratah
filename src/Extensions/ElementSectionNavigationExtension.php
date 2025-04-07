@@ -2,10 +2,11 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
+use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\ORM\DataList;
 
 /**
  * Provide decoration options for
@@ -41,11 +42,23 @@ class ElementSectionNavigationExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
 
-        $cardColumns = DropdownField::create('CardColumns', _t(self::class . '.CARDCOLUMNS', 'Card columns'), $this->getOwner()->config()->card_columns);
-        $cardColumns->setEmptyString('none');
+        $cardColumns = DropdownField::create(
+            'CardColumns',
+            _t(
+                self::class . '.CARDCOLUMNS',
+                'Card columns'
+            ),
+            Config::inst()->get(get_class($this->getOwner()), 'card_columns')
+        )->setEmptyString(_t('nswds.NONE', 'none'));
 
-        $cardStyle = DropdownField::create('CardStyle', _t(self::class . '.CARDSTYLE', 'Card style'), $this->getOwner()->config()->card_styles);
-        $cardStyle->setEmptyString('none');
+        $cardStyle = DropdownField::create(
+            'CardStyle',
+            _t(
+                self::class . '.CARDSTYLE',
+                'Card style'
+            ),
+            Config::inst()->get(get_class($this->getOwner()), 'card_styles')
+        )->setEmptyString(_t('nswds.NONE', 'none'));
 
         $fields->addFieldsToTab(
             'Root.Main',
@@ -83,10 +96,10 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Return the section navigation sorted by the Sort order in SiteTree
      */
-    public function getSortedSectionNavigation(): ?SS_List
+    public function getSortedSectionNavigation(): ?\SilverStripe\ORM\DataList
     {
         $list = $this->getOwner()->getSectionNavigation();
-        if ($list) {
+        if ($list instanceof DataList) {
             return $list->sort('Sort');
         }
 

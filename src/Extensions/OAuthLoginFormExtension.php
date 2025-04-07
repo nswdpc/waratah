@@ -19,6 +19,7 @@ class OAuthLoginFormExtension extends Extension
      */
     public function updateFormActions(&$actions)
     {
+        /* @phpstan-ignore method.notFound */
         $providers = Config::inst()->get($this->getOwner()->getAuthenticatorClass(), 'providers');
         if (!is_array($providers)) {
             return;

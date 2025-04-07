@@ -11,7 +11,8 @@ class PageControllerExtension extends Extension
 {
     public function ElementNav($position = null)
     {
-        $elementArea = $this->getOwner()->ElementalArea();
+
+        $elementArea = $this->getOwner()->data()->ElementalArea();
 
         if (!$elementArea || !$elementArea->exists()) {
             return false;

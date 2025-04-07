@@ -128,6 +128,7 @@ class LinkExtension extends DataExtension
         if ((!$image || !$image->exists()) && $type == 'SiteTree') {
             $record = $this->getOwner()->SiteTree();
             if ($record && $record->isInDB() && $record->hasField('Image')) {
+                /* @phpstan-ignore method.notFound */
                 $image = $record->Image();
             }
         }

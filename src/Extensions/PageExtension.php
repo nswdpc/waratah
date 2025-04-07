@@ -255,6 +255,7 @@ class PageExtension extends DataExtension
         } else {
             $format = $this->getOwner()->config()->get('last_updated_format');
             $publicDateOnPage = $this->getOwner()->dbObject('PublicLastUpdated');
+            /** @var \SilverStripe\ORM\FieldType\DBDatetime $displayDate */
             $displayDate = $publicDateOnPage->getValue() ? $publicDateOnPage : $this->getOwner()->dbObject('LastEdited');
             return ArrayData::create([
                 'Machine' => $displayDate->Format('yyyy-MM-dd'),

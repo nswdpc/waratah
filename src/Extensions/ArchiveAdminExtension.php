@@ -15,7 +15,7 @@ class ArchiveAdminExtension extends Extension
 {
     public function updateEditForm($form)
     {
-        $modelSelectField = $this->getOwner()->getOtherModelSelectorField($this->getOwner()->modelClass);
+        $modelSelectField = $this->getOwner()->getOtherModelSelectorField($this->getOwner()->getModelClass());
         if ($form && $modelSelectField) {
             $form->Fields()->unshift($modelSelectField);
         }
