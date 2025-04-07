@@ -17,16 +17,16 @@ use SilverStripe\Security\Authenticator as AuthenticatorInterface;
  */
 class SecurityExtension extends Extension
 {
-
     /**
      * Returns a RegistrationProvider
      * @todo allow other RegistrationProvider implementers
      */
-    public function RegistrationProvider() : ?RegistrationProvider {
-        if(class_exists(MemberRegistrationController::class)) {
-            $provider = Injector::inst()->get( MemberRegistrationController::class );
+    public function RegistrationProvider(): ?RegistrationProvider
+    {
+        if (class_exists(MemberRegistrationController::class)) {
+            $provider = Injector::inst()->get(MemberRegistrationController::class);
             // If the provider has a rego form, return the provider
-            if($provider->MemberProfileRegistrationForm()) {
+            if ($provider->MemberProfileRegistrationForm()) {
                 return $provider;
             }
         }
@@ -37,9 +37,10 @@ class SecurityExtension extends Extension
      * Returns a ProfileProvider
      * @todo allow other ProfileProvider implementers
      */
-    public function ProfileProvider() : ?ProfileProvider {
-        if(class_exists(MemberProfileController::class)) {
-            return Injector::inst()->get( MemberProfileController::class );
+    public function ProfileProvider(): ?ProfileProvider
+    {
+        if (class_exists(MemberProfileController::class)) {
+            return Injector::inst()->get(MemberProfileController::class);
         }
         return null;
     }
@@ -48,9 +49,10 @@ class SecurityExtension extends Extension
      * Returns whether a lost password handler is available
      * @return bool
      */
-    public function LostPasswordProvider() : bool {
+    public function LostPasswordProvider(): bool
+    {
         try {
-            $authenticators = $this->owner->getApplicableAuthenticators( AuthenticatorInterface::RESET_PASSWORD );
+            $authenticators = $this->owner->getApplicableAuthenticators(AuthenticatorInterface::RESET_PASSWORD);
             return true;
         } catch (\Exception $e) {
             return false;
@@ -61,9 +63,10 @@ class SecurityExtension extends Extension
      * Returns whether a change password handler is available
      * @return bool
      */
-    public function ChangePasswordProvider() : bool {
+    public function ChangePasswordProvider(): bool
+    {
         try {
-            $authenticators = $this->owner->getApplicableAuthenticators( AuthenticatorInterface::CHANGE_PASSWORD );
+            $authenticators = $this->owner->getApplicableAuthenticators(AuthenticatorInterface::CHANGE_PASSWORD);
             return true;
         } catch (\Exception $e) {
             return false;
@@ -74,7 +77,8 @@ class SecurityExtension extends Extension
      * Optout of frontend analytics implementations in this controller
      * @return bool
      */
-    public function AnalyticsOptOut() : bool {
+    public function AnalyticsOptOut(): bool
+    {
         return true;
     }
 

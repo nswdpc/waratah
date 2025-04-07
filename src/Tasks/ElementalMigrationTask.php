@@ -15,7 +15,6 @@ use DNADesign\Elemental\Models\BaseElement;
  */
 class ElementalMigrationTask extends BuildTask
 {
-
     protected $title = 'Perform Elemental Migration task(s)';
 
     private static $segment = "ElementalMigrationTask";
@@ -30,24 +29,24 @@ class ElementalMigrationTask extends BuildTask
         $this->publish = $request->getVar('publish') == '1';
         $this->commit = $request->getVar('commit') == '1';
 
-        if($this->commit) {
+        if ($this->commit) {
             DB::alteration_message("Commit changes is on", "changed");
         } else {
             DB::alteration_message("Commit changes is off, pass commit=1 as an argument when ready", "changed");
         }
 
-        if($this->publish) {
+        if ($this->publish) {
             DB::alteration_message("Update live stage changes is on, where applicable", "changed");
         } else {
             DB::alteration_message("Update live stage changes is off, pass publish=1 as an argument when ready", "changed");
         }
 
-        if(empty($this->task)) {
+        if (empty($this->task)) {
             DB::alteration_message("No task provided - provide a task=taskname arg", "error");
             $this->dumpMethods();
         } else {
             $upgradeMethod = "upgrade_{$this->task}";
-            if(method_exists($this, $upgradeMethod)) {
+            if (method_exists($this, $upgradeMethod)) {
                 $this->{$upgradeMethod}();
             } else {
                 DB::alteration_message("Task method {$this->task} does not exist", "error");
@@ -56,10 +55,11 @@ class ElementalMigrationTask extends BuildTask
         }
     }
 
-    private function dumpMethods() {
+    private function dumpMethods()
+    {
         $methods = get_class_methods($this);
-        foreach($methods as $method) {
-            if(strpos($method, "upgrade_") === 0) {
+        foreach ($methods as $method) {
+            if (strpos($method, "upgrade_") === 0) {
                 $taskMethod = preg_replace("/^upgrade_/", "", $method);
                 DB::alteration_message("Upgrade method '{$taskMethod}' is available, review the code comments");
             }
@@ -69,7 +69,8 @@ class ElementalMigrationTask extends BuildTask
     /**
      * Migrates background from v2 to v3 settings including handling deprecated and unsupported values
       */
-    protected function upgrade_ElementalBackgroundMigration() {
+    protected function upgrade_ElementalBackgroundMigration()
+    {
 
         DB::alteration_message("Start transaction", "changed");
         DB::get_conn()->transactionStart();
@@ -96,13 +97,13 @@ class ElementalMigrationTask extends BuildTask
             'grey-04',
         ];
 
-        foreach($migrations as $fromBackground => $toBackground) {
+        foreach ($migrations as $fromBackground => $toBackground) {
             $sqlUpdate = "UPDATE `Element` SET AddBackground = '" . Convert::raw2sql($toBackground) . "' WHERE AddBackground = '" . Convert::raw2sql($fromBackground) . "'";
             DB::alteration_message("AddBackground change from {$fromBackground} to {$toBackground} on Draft stage", "changed");
             DB::query($sqlUpdate);
             DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
 
-            if($this->publish) {
+            if ($this->publish) {
                 $sqlUpdate = "UPDATE `Element_Live` SET AddBackground = '" . Convert::raw2sql($toBackground) . "' WHERE AddBackground = '" . Convert::raw2sql($fromBackground) . "'";
                 DB::alteration_message("AddBackground change from {$fromBackground} to {$toBackground} on Live stage", "changed");
                 DB::query($sqlUpdate);
@@ -116,7 +117,7 @@ class ElementalMigrationTask extends BuildTask
         DB::query($sqlUpdate);
         DB::alteration_message("Rows: " . DB::affected_rows(), "changed");
 
-        if($this->publish) {
+        if ($this->publish) {
             $sqlUpdate = "UPDATE `Element_Live` SET AddBackground = NULL WHERE AddBackground = '0'";
             DB::alteration_message("AddBackground change from 0 to NULL on Live stage", "changed");
             DB::query($sqlUpdate);
@@ -133,7 +134,7 @@ class ElementalMigrationTask extends BuildTask
         DB::query($sqlUpdate);
         DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
 
-        if($this->publish) {
+        if ($this->publish) {
             $sqlUpdate = "UPDATE `Element_Live` "
                 . " SET AddBackground = NULL "
                 . " WHERE AddBackground NOT IN ('"
@@ -146,7 +147,7 @@ class ElementalMigrationTask extends BuildTask
 
         // END
 
-        if($this->commit) {
+        if ($this->commit) {
             DB::alteration_message("Commit", "changed");
             DB::get_conn()->transactionEnd();
         } else {
@@ -159,7 +160,8 @@ class ElementalMigrationTask extends BuildTask
     /**
      * Fixes default half-padding issue, note that this will rewrite all valid half-padding elements to default padding (null)
       */
-    protected function upgrade_ElementalVerticalSpacing() {
+    protected function upgrade_ElementalVerticalSpacing()
+    {
 
         DB::alteration_message("Start transaction", "changed");
         DB::get_conn()->transactionStart();
@@ -170,7 +172,7 @@ class ElementalMigrationTask extends BuildTask
         DB::query($sqlUpdate);
         DB::alteration_message("Rows changed: " . DB::affected_rows(), "changed");
 
-        if($this->publish) {
+        if ($this->publish) {
             $sqlUpdate = "UPDATE `Element_Live` SET VerticalSpacing = NULL WHERE VerticalSpacing = 'half-padding'";
             DB::alteration_message("VerticalSpacing changed from half-padding to NULL on Live stage", "changed");
             DB::query($sqlUpdate);
@@ -179,7 +181,7 @@ class ElementalMigrationTask extends BuildTask
 
         // END
 
-        if($this->commit) {
+        if ($this->commit) {
             DB::alteration_message("Commit", "changed");
             DB::get_conn()->transactionEnd();
         } else {

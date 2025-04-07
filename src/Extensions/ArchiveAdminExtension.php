@@ -12,10 +12,10 @@ use SilverStripe\Core\Extension;
  */
 class ArchiveAdminExtension extends Extension
 {
-
-    public function updateEditForm($form) {
+    public function updateEditForm($form)
+    {
         $modelSelectField = $this->owner->getOtherModelSelectorField($this->owner->modelClass);
-        if($form && $modelSelectField) {
+        if ($form && $modelSelectField) {
             $form->Fields()->unshift($modelSelectField);
         }
     }

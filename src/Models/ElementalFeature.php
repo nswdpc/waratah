@@ -16,7 +16,6 @@ use gorriecoe\LinkField\LinkField;
  */
 class ElementalFeature extends ElementContent
 {
-
     /**
      * @var bool
      */
@@ -85,7 +84,7 @@ class ElementalFeature extends ElementContent
 
         $fields->removeByName(['Links','Subtype','IconSVG','IconImage']);
 
-        if($htmlField = $fields->dataFieldByName('HTML')) {
+        if ($htmlField = $fields->dataFieldByName('HTML')) {
             $htmlField ->setRows(12);
         }
 
@@ -100,7 +99,7 @@ class ElementalFeature extends ElementContent
         );
 
         $admin = Permission::check('ADMIN');
-        if($admin) {
+        if ($admin) {
             $fields->insertAfter(
                 'ContentImage',
                 $iconSvgField = UploadField::create(

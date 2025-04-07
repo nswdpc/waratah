@@ -10,7 +10,8 @@ use SilverStripe\ORM\DataExtension;
  * See WorkflowService::getWorkflowFor()
  * @author James
  */
-class WorkflowInstance extends DataExtension {
+class WorkflowInstance extends DataExtension
+{
     /**
      * @var array
      */

@@ -13,8 +13,8 @@ use SilverStripe\Forms\FieldList;
  * Extension for generic notice module/record
  * @author James
  */
-class NoticeExtension extends DataExtension {
-
+class NoticeExtension extends DataExtension
+{
     /**
      * @var array
      */
@@ -43,7 +43,8 @@ class NoticeExtension extends DataExtension {
     /**
      * Extension method for specific styling opportunities
      */
-    public function addExtraClass(array &$extraClasses) {
+    public function addExtraClass(array &$extraClasses)
+    {
         if ($this->owner->IsAcknowledgementOfCountry == 1) {
             $extraClasses[] = 'wrth-mm-aoc';
         }
@@ -52,7 +53,8 @@ class NoticeExtension extends DataExtension {
     /**
      * @return void
      */
-    public function updateCmsFields(FieldList $fields) {
+    public function updateCmsFields(FieldList $fields)
+    {
         $fields->insertAfter(
             'Description',
             CheckboxField::create(
@@ -66,7 +68,7 @@ class NoticeExtension extends DataExtension {
             )
         );
 
-        if($isGlobalField = $fields->dataFieldByName("IsGlobal")) {
+        if ($isGlobalField = $fields->dataFieldByName("IsGlobal")) {
             $isGlobalField = $isGlobalField->setRightTitle(
                 _t(
                     'nswds.IS_GLOBAL_NOTICE_DESCRIPTION',

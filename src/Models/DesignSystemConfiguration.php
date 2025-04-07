@@ -50,8 +50,8 @@ use SilverStripe\View\SSViewer;
  * @author James
  *
  */
-class DesignSystemConfiguration implements TemplateGlobalProvider {
-
+class DesignSystemConfiguration implements TemplateGlobalProvider
+{
     use Configurable;
 
     /**
@@ -253,28 +253,32 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     /**
      * Return the configured spacing class, used to implement consistent spacing in a project
      */
-    public static function get_spacing_class() : string {
+    public static function get_spacing_class(): string
+    {
         return self::config()->get('spacing_class');
     }
 
     /**
      * Return the configured element section class for
      */
-    public static function get_element_section_class() : string {
+    public static function get_element_section_class(): string
+    {
         return self::config()->get('element_section_class');
     }
 
     /**
      * Return the backgrounds that support invert
      */
-    public static function get_invert_backgrounds() : array {
+    public static function get_invert_backgrounds(): array
+    {
         return self::config()->get('invert_section_options');
     }
 
     /**
      * Return whether the background supports invert
      */
-    public static function is_invert_background(string $background) : bool {
+    public static function is_invert_background(string $background): bool
+    {
         $invertColours = self::get_invert_backgrounds();
         return in_array($background, $invertColours);
     }
@@ -306,8 +310,9 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @param string $alertLevel
      * @return string
      */
-    public static function get_alert_level($alertLevel) : string {
-        switch($alertLevel) {
+    public static function get_alert_level($alertLevel): string
+    {
+        switch ($alertLevel) {
             case 'success':
             case ValidationResult::TYPE_GOOD:
                 return 'success';
@@ -348,7 +353,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      */
     public static function waratah_masterbrand()
     {
-        if(self::waratah_cobrand() || self::waratah_endorsed()) {
+        if (self::waratah_cobrand() || self::waratah_endorsed()) {
             // cobrand or endorsed cancel masterbrand
             return false;
         } else {
@@ -378,7 +383,8 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     /*
      * Return the alternate home page URL or path, if configured
      */
-    public static function get_alt_home_page() : string {
+    public static function get_alt_home_page(): string
+    {
         return self::config()->get('alt_home_page');
     }
 
@@ -388,13 +394,14 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @return DBHTMLText|null
      * @param string $template an SS template path eg App/Directory/Person
      */
-    public static function get_per_layout_content($template) : ?DBHTMLText {
+    public static function get_per_layout_content($template): ?DBHTMLText
+    {
         $controller = Controller::has_curr() ? Controller::curr() : null;
-        if(!$controller) {
+        if (!$controller) {
             return null;
         }
         $chosenTemplate = SSViewer::chooseTemplate($template);
-        if(!$chosenTemplate) {
+        if (!$chosenTemplate) {
             return null;
         }
         $viewer = SSViewer::create($template);

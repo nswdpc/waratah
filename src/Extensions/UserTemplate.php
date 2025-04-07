@@ -11,7 +11,8 @@ use SilverStripe\ORM\DataExtension;
  * TODO: PR
  * @author James
  */
-class UserTemplate extends DataExtension {
+class UserTemplate extends DataExtension
+{
     /**
      * @var array
      */
