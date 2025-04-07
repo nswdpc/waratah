@@ -203,6 +203,7 @@ trait FilterFormTrait {
         $panelDisplay = $this->PanelDisplay();
         if($this instanceof Form) {
             // gather any parent classes
+            // @phpstan-ignore staticMethod.notFound
             $extraClass = parent::extraClass();
             $extraClasses = explode(' ', $extraClass);
             $extraClasses = array_filter($extraClasses);

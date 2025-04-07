@@ -21,12 +21,14 @@ class SecurityExtension extends Extension
     /**
      * Returns a RegistrationProvider
      * @todo allow other RegistrationProvider implementers
+     * @phpstan-ignore class.notFound
      */
     public function RegistrationProvider() : ?RegistrationProvider {
         if(class_exists(MemberRegistrationController::class)) {
             $provider = Injector::inst()->get( MemberRegistrationController::class );
             // If the provider has a rego form, return the provider
             if($provider->MemberProfileRegistrationForm()) {
+                // @phpstan-ignore return.type
                 return $provider;
             }
         }
@@ -36,9 +38,11 @@ class SecurityExtension extends Extension
     /**
      * Returns a ProfileProvider
      * @todo allow other ProfileProvider implementers
+     * @phpstan-ignore class.notFound
      */
     public function ProfileProvider() : ?ProfileProvider {
         if(class_exists(MemberProfileController::class)) {
+            // @phpstan-ignore return.type
             return Injector::inst()->get( MemberProfileController::class );
         }
         return null;

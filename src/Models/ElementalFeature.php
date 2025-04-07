@@ -86,6 +86,7 @@ class ElementalFeature extends ElementContent
         $fields->removeByName(['Links','Subtype','IconSVG','IconImage']);
 
         if($htmlField = $fields->dataFieldByName('HTML')) {
+            /** @var \SilverStripe\Forms\TextareaField $htmlField */
             $htmlField ->setRows(12);
         }
 
