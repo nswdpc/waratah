@@ -27,6 +27,12 @@
             ]
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/nswdpc/ci-files.git"
+        }
+    ],
     "replace": {
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
@@ -40,13 +46,31 @@
         "nswdpc/silverstripe-analytics-chooser": ">=0.2"
     },
     "require-dev": {
+        "cambis/silverstripe-rector": "^1",
         "phpunit/phpunit": "^9.5",
+        "cambis/silverstan": "^1",
+        "nswdpc/ci-files": "dev-v-3",
         "friendsofphp/php-cs-fixer": "^3"
     },
     "extra": {
         "expose": [
             "themes/nswds/app/static",
             "themes/nswds/app/frontend/dist"
+        ],
+        "project-files-installed": [
+            ".htaccess",
+            "app/.htaccess",
+            "app/_config/mimevalidator.yml",
+            "app/_config/mysite.yml"
         ]
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/recipe-plugin": true,
+            "silverstripe/vendor-plugin": true
+        }
     }
 }
