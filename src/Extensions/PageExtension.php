@@ -125,14 +125,16 @@ class PageExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
 
+        /** @var \SilverStripe\Forms\TextareaField $abstractField */
+        $abstractField = TextareaField::create(
+            'Abstract',
+            _t('nswds.ABSTRACT', 'Abstract')
+        )->setDescription('This will be displayed in listings and search results')
+        ->setTargetLength(160, 90, 200);
+
         $fields->insertAfter(
             'MenuTitle',
-            TextareaField::create(
-                'Abstract',
-                _t('nswds.ABSTRACT', 'Abstract')
-            )
-            ->setDescription('This will be displayed in listings and search results')
-            ->setTargetLength(160, 90, 200)
+            $abstractField
         );
 
         $fields->insertAfter(
