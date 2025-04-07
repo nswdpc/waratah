@@ -21,6 +21,7 @@ class FilterFormExtension extends Extension
      */
     public function getExtendedForm(): Form
     {
+        /* @phpstan-ignore return.type */
         return $this->getOwner();
     }
 

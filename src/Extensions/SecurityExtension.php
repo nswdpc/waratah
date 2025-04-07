@@ -58,7 +58,9 @@ class SecurityExtension extends Extension
     public function LostPasswordProvider(): bool
     {
         try {
-            $authenticators = $this->getOwner()->getApplicableAuthenticators(AuthenticatorInterface::RESET_PASSWORD);
+            /** @var \SilverStripe\Security\Security $controller */
+            $controller = $this->getOwner();
+            $authenticators = $controller->getApplicableAuthenticators(AuthenticatorInterface::RESET_PASSWORD);
             return true;
         } catch (\Exception) {
             return false;
@@ -71,7 +73,9 @@ class SecurityExtension extends Extension
     public function ChangePasswordProvider(): bool
     {
         try {
-            $authenticators = $this->getOwner()->getApplicableAuthenticators(AuthenticatorInterface::CHANGE_PASSWORD);
+            /** @var \SilverStripe\Security\Security $controller */
+            $controller = $this->getOwner();
+            $authenticators = $controller->getApplicableAuthenticators(AuthenticatorInterface::CHANGE_PASSWORD);
             return true;
         } catch (\Exception) {
             return false;
