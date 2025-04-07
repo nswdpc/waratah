@@ -3,7 +3,6 @@
 namespace NSWDPC\Waratah\Services;
 
 use NSWDPC\Elemental\Services\QuickGallery\Frontend;
-
 use SilverStripe\View\Requirements;
 
 /**
@@ -11,15 +10,17 @@ use SilverStripe\View\Requirements;
  * Apply your own frontend and/or frontend loader using Injector
  * @author James
  */
-class GalleryFrontend extends Frontend {
-
+class GalleryFrontend extends Frontend
+{
     /**
      * Apply loader to the relevant slideshow classes
      * In the context of nswds, the gallery frontend is applied to any
      * element with a data-gallery attribute, it must contain figure elements
      * from nswds/Media
      */
-    public function addLoader() {
+    #[\Override]
+    public function addLoader()
+    {
 
         $anchor = $this->element->getAnchor();
 

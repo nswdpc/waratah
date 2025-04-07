@@ -4,22 +4,17 @@ namespace NSWDPC\Waratah\Pages;
 
 class HomePage extends \Page
 {
-    /**
-     * @var string
-     */
-    private static $singular_name= "Home page";
+    private static string $singular_name = "Home page";
 
-    /**
-     * @var string
-     */
-    private static $plural_name = "Home pages";
+    private static string $plural_name = "Home pages";
 
-    private static $table_name = 'HomePage';
+    private static string $table_name = 'HomePage';
 
     /**
      * This page is a homepage
      */
-    public function getIsHomePage() {
+    public function getIsHomePage(): int
+    {
         return 1;
     }
 }

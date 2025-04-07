@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Models;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\CheckboxsetField;
+use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\FieldType\DBField;
@@ -14,84 +14,68 @@ use SilverStripe\View\ArrayData;
 
 /**
  * Implement NSWDS Utility List component as a content block that can be placed in pages
+ * @property bool $Vertical
+ * @property ?string $Features
+ * @property ?string $Networks
+ * @property ?string $Prompt
+ * @property ?string $Body
+ * @property ?string $HashTags
  */
 class ElementalUtilityList extends BaseElement
 {
+    /**
+     * @var string
+     */
+    public const NETWORK_LINKEDIN = 'linkedin';
 
     /**
      * @var string
      */
-    const NETWORK_LINKEDIN = 'linkedin';
+    public const NETWORK_TWITTER = 'twitter';
 
     /**
      * @var string
      */
-    const NETWORK_TWITTER = 'twitter';
+    public const NETWORK_FACEBOOK = 'facebook';
 
     /**
      * @var string
      */
-    const NETWORK_FACEBOOK = 'facebook';
+    public const NETWORK_EMAIL = 'email';
 
     /**
      * @var string
      */
-    const NETWORK_EMAIL = 'email';
+    public const FEATURE_COPYLINK = 'copylink';
 
     /**
      * @var string
      */
-    const FEATURE_COPYLINK = 'copylink';
+    public const FEATURE_PRINT = 'print';
 
     /**
      * @var string
      */
-    const FEATURE_PRINT = 'print';
+    public const FEATURE_DOWNLOAD = 'download';
 
     /**
      * @var string
      */
-    const FEATURE_DOWNLOAD = 'download';
+    public const FEATURE_SHARE = 'share';
 
-    /**
-     * @var string
-     */
-    const FEATURE_SHARE= 'share';
+    private static bool $inline_editable = true;
 
-    /**
-     * @var bool
-     */
-    private static $inline_editable = true;
+    private static string $table_name = 'ElementalUtilityList';
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementalUtilityList';
+    private static string $singular_name = 'Utility list (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Utility list (NSW Design System)';
+    private static string $plural_name = 'Utility lists (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Utility lists (NSW Design System)';
+    private static string $description = 'Create a utility list';
 
-    /**
-     * @var string
-     */
-    private static $description = 'Create a utility list';
+    private static string $icon = 'font-icon-list';
 
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-list';
-
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'Vertical' => 'Boolean',
         'Features' => 'Text',
         'Networks' => 'Text',
@@ -103,6 +87,7 @@ class ElementalUtilityList extends BaseElement
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getType()
     {
         return _t(static::class . '.BlockType', 'Utility list (NSW Design System)');
@@ -111,12 +96,13 @@ class ElementalUtilityList extends BaseElement
     /**
      * Get supported networks
      */
-    public function getSupportedNetworks() : array {
+    public function getSupportedNetworks(): array
+    {
         $networks = [
             static::NETWORK_EMAIL => _t('nswds.EMAIL', 'Email'),
             static::NETWORK_FACEBOOK => _t('nswds.FACEBOOK', 'Facebook'),
             static::NETWORK_TWITTER => _t('nswds.TWITTER', 'Twitter (X)'),
-            static::NETWORK_LINKEDIN=> _t('nswds.LINKEDIN', 'LinkedIn'),
+            static::NETWORK_LINKEDIN => _t('nswds.LINKEDIN', 'LinkedIn'),
         ];
         $this->extend('updateSupportedNetworks', $networks);
         return $networks;
@@ -125,7 +111,8 @@ class ElementalUtilityList extends BaseElement
     /**
      * Get supported features
      */
-    public function getSupportedFeatures() : array {
+    public function getSupportedFeatures(): array
+    {
         $features = [
             static::FEATURE_COPYLINK => _t('nswds.FEATURE_COPY_LINK', 'Copy link'),
             static::FEATURE_PRINT => _t('nswds.FEATURE_PRINT', 'Print this page'),
@@ -136,6 +123,7 @@ class ElementalUtilityList extends BaseElement
         return $features;
     }
 
+    #[\Override]
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -150,7 +138,7 @@ class ElementalUtilityList extends BaseElement
 
         $fields->addFieldToTab(
             'Root.Main',
-            CheckboxsetField::create(
+            CheckboxSetField::create(
                 'Features',
                 _t('nswds.UTILITY_LIST_FEATURES', 'Features'),
                 $this->getSupportedFeatures()
@@ -159,7 +147,7 @@ class ElementalUtilityList extends BaseElement
 
         $fields->addFieldToTab(
             'Root.Main',
-            CheckboxsetField::create(
+            CheckboxSetField::create(
                 'Networks',
                 _t('nswds.UTILITY_LIST_NETWORKS', 'Supported networks'),
                 $this->getSupportedNetworks()
@@ -196,15 +184,16 @@ class ElementalUtilityList extends BaseElement
     /**
      * Return array of selected hashTags
      */
-    public function SelectedHashTags() : array {
+    public function SelectedHashTags(): array
+    {
         try {
             $hashTags = explode(",", $this->HashTags);
-            if(is_array($hashTags)) {
+            if (is_array($hashTags)) {
                 return array_filter(array_unique($hashTags));
             } else {
                 return [];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return [];
         }
     }
@@ -212,42 +201,47 @@ class ElementalUtilityList extends BaseElement
     /**
      * Return string of selected hashtags, delimited and prefixed
      */
-    public function SelectedHashTagsString(string $delimiter = ",", string $prefix = "#") : DBVarchar {
+    public function SelectedHashTagsString(string $delimiter = ",", string $prefix = "#"): DBVarchar
+    {
         $hashTags = $this->SelectedHashTags();
-        if($prefix) {
+        if ($prefix !== '') {
             array_walk(
                 $hashTags,
-                function(&$value, $key) use ($prefix) {
+                function (&$value, $key) use ($prefix): void {
                     $value = $prefix . $value;
                 }
             );
         }
+
         return DBField::create_field(DBVarchar::class, implode($delimiter, $hashTags));
     }
 
     /**
      * Return hash tags for attribute in twitter share
      */
-    public function TwitterTags() : DBVarchar {
+    public function TwitterTags(): DBVarchar
+    {
         return $this->SelectedHashTagsString(",", "#");
     }
 
     /**
      * Return feature selected as ArrayData for templates
      */
-    public function SelectedFeatures() : ?ArrayData {
+    public function SelectedFeatures(): ?ArrayData
+    {
         try {
             $features = json_decode($this->Features ?? '');
-            if(is_array($features)) {
+            if (is_array($features)) {
                 $data = ArrayData::create();
-                foreach($features as $key) {
+                foreach ($features as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -256,19 +250,21 @@ class ElementalUtilityList extends BaseElement
      * Return networks selected as ArrayData for templates
      * Note that this is returned whether or not static::FEATURE_SHARE is selected as a feature
      */
-    public function SelectedNetworks() : ?ArrayData {
+    public function SelectedNetworks(): ?ArrayData
+    {
         try {
             $networks = json_decode($this->Networks ?? '');
-            if(is_array($networks)) {
+            if (is_array($networks)) {
                 $data = ArrayData::create();
-                foreach($networks as $key) {
+                foreach ($networks as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -276,26 +272,30 @@ class ElementalUtilityList extends BaseElement
     /**
      * Returns the current URL, via Director
      */
-    protected static function getCurrentPageUrl($action = null) : string {
+    protected static function getCurrentPageUrl($action = null): string
+    {
         $current = Director::get_current_page();
         $url = '';
-        if($current && $current->hasMethod('AbsoluteLink')) {
+        if ($current && $current->hasMethod('AbsoluteLink')) {
             $url = $current->AbsoluteLink($action);
         }
+
         return $url;
     }
 
     /**
      * Returns the current URL, as a template variable
      */
-    public function CurrentPageURL($action = null) : DBVarchar {
+    public function CurrentPageURL($action = null): DBVarchar
+    {
         return DBField::create_field(DBVarchar::class, static::getCurrentPageUrl($action));
     }
 
     /**
      * Returns the body with the URL
      */
-    public function BodyWithURL($action = null) : DBVarchar {
+    public function BodyWithURL($action = null): DBVarchar
+    {
         $url = static::getCurrentPageUrl($action);
         $value = _t(
             'nswds.UTILITY_LIST_BODY_WITH_URL',

@@ -50,36 +50,24 @@ use SilverStripe\View\SSViewer;
  * @author James
  *
  */
-class DesignSystemConfiguration implements TemplateGlobalProvider {
-
+class DesignSystemConfiguration implements TemplateGlobalProvider
+{
     use Configurable;
 
-    /**
-     * @var bool
-     */
-    private static $frontend_provided = false;
+    private static bool $frontend_provided = false;
 
-    /**
-     * @var string
-     */
-    private static $vendor = "nswdpc";
+    private static string $vendor = "nswdpc";
 
-    /**
-     * @var string
-     */
-    private static $module = "waratah";
+    private static string $module = "waratah";
 
-    /**
-     * @var string
-     */
-    private static $theme = "nswds";
+    private static string $theme = "nswds";
 
     /**
      * @var string
      * Add spacing classes eg. "nsw-p-top-... nsw-p-bottom-..."
      * if required to supporting components
      */
-    private static $spacing_class = "";
+    private static string $spacing_class = "";
 
     /**
      * @var string
@@ -88,47 +76,46 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * Since v0.3.x (nswds 2.14.x), wrth-section has been dropped
      * @deprecated v1.0 the default section class is nsw-section
      */
-    private static $element_section_class = "";
+    private static string $element_section_class = "";
 
     /*
      * @var float
      * This is a fun way to define some branding options in code
      */
-    private static $branding_version = 3.0;
+    private static float $branding_version = 3.0;
 
     /**
      * Set whether masterband is on or off, if off you need to configure
      * a non masterband: cobrand, endorsed, independent
-     * @var bool
      */
-    private static $masterbrand = true;
+    private static bool $masterbrand = true;
 
     /**
      * @var string
      * Co-Branding configuration, by default this is off
      * Applicable values are '','vertical' or 'horizontal'
      */
-    private static $co_branding = '';
+    private static string $co_branding = '';
 
     /**
      * @var string
      * Endorsed configuration, by default this is off
      * Applicable values are '','coupled' or 'decoupled'
      */
-    private static $endorsed = '';
+    private static string $endorsed = '';
 
     /**
      * @var string
      * Options are light or dark
      * Can be set to 'light' when co_branding outcomes demand it
      */
-    private static $masthead_brand = "dark";
+    private static string $masthead_brand = "dark";
 
     /**
      * @var array brand options
      * https://nswdesignsystem.surge.sh/styles/colour/index.html
      */
-    private static $colour_brand_options = [
+    private static array $colour_brand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
         'supplementary' => 'Brand supplementary',
@@ -139,7 +126,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array card branding options
      * https://nswdesignsystem.surge.sh/components/card/index.html
      */
-    private static $colour_cardbrand_options = [
+    private static array $colour_cardbrand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light'
     ];
@@ -148,7 +135,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array media branding options
      * https://nswdesignsystem.surge.sh/components/media/index.html
      */
-    private static $colour_mediabrand_options = [
+    private static array $colour_mediabrand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
         'transparent' => 'Transparent'
@@ -159,7 +146,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array hero banner branding options
      * https://digitalnsw.github.io/nsw-design-system/components/hero-banner/index.html
      */
-    private static $colour_herobannerbrand_options = [
+    private static array $colour_herobannerbrand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
         'white' => 'White',
@@ -170,7 +157,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array alert state options
      * https://nswdesignsystem.surge.sh/components/site-wide-message/index.html
      */
-    private static $colour_alertstate_options = [
+    private static array $colour_alertstate_options = [
         '' => 'Information',
         'light' => 'Light',
         'critical' => 'Critical',
@@ -180,7 +167,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array alert state options
      * https://nswdesignsystem.surge.sh/components/notification/index.html
      */
-    private static $colour_notificationstate_options = [
+    private static array $colour_notificationstate_options = [
         'info' => 'Information',
         'warning' => 'Warning',
         'error' => 'Critical',
@@ -191,7 +178,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array card branding options
      * https://nswdesignsystem.surge.sh/components/button/index.html
      */
-    private static $colour_buttonstate_options = [
+    private static array $colour_buttonstate_options = [
         'dark' => 'Brand Dark',
         'dark-outline' => 'Brand Dark Outline',
         'dark-outline-solid' => 'Brand Dark Outline Solid',
@@ -206,7 +193,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array section options
      * https://nswdesignsystem.surge.sh/styles/section/index.html
      */
-    private static $colour_section_options = [
+    private static array $colour_section_options = [
         'brand-dark' => 'Brand dark',
         'brand-light' => 'Brand light',
         'brand-supplementary' => 'Brand supplementary',
@@ -222,7 +209,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     /**
      * @var array section options that can have invert applied
      */
-    private static $invert_section_options = [
+    private static array $invert_section_options = [
         'brand-dark',
         'brand-supplementary',
         'black',
@@ -234,7 +221,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var array hero banner branding options
      * https://digitalnsw.github.io/nsw-design-system/components/footer/index.html
      */
-    private static $colour_footerbrand_options = [
+    private static array $colour_footerbrand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
     ];
@@ -243,38 +230,42 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      * @var string
      * Allow alternate homepage, provided as URL or path
      */
-    private static $alt_home_page = "";
+    private static string $alt_home_page = "";
 
     /**
      * Configuration option for enabling jquery project-wide
      */
-    private static $enable_jquery = false;
+    private static bool $enable_jquery = false;
 
     /**
      * Return the configured spacing class, used to implement consistent spacing in a project
      */
-    public static function get_spacing_class() : string {
+    public static function get_spacing_class(): string
+    {
         return self::config()->get('spacing_class');
     }
 
     /**
      * Return the configured element section class for
      */
-    public static function get_element_section_class() : string {
+    public static function get_element_section_class(): string
+    {
         return self::config()->get('element_section_class');
     }
 
     /**
      * Return the backgrounds that support invert
      */
-    public static function get_invert_backgrounds() : array {
+    public static function get_invert_backgrounds(): array
+    {
         return self::config()->get('invert_section_options');
     }
 
     /**
      * Return whether the background supports invert
      */
-    public static function is_invert_background(string $background) : bool {
+    public static function is_invert_background(string $background): bool
+    {
         $invertColours = self::get_invert_backgrounds();
         return in_array($background, $invertColours);
     }
@@ -285,6 +276,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      *
      * @return array
      */
+    #[\Override]
     public static function get_template_global_variables()
     {
         return [
@@ -304,27 +296,15 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     /**
      * Return the NSWDS alert level based on input, default return is info
      * @param string $alertLevel
-     * @return string
      */
-    public static function get_alert_level($alertLevel) : string {
-        switch($alertLevel) {
-            case 'success':
-            case ValidationResult::TYPE_GOOD:
-                return 'success';
-                break;
-            case ValidationResult::TYPE_WARNING:
-                return 'warning';
-                break;
-            case 'bad':
-            case 'required':
-            case ValidationResult::TYPE_ERROR:
-                return 'error';
-                break;
-            case ValidationResult::TYPE_INFO:
-            default:
-                return 'info';
-                break;
-        }
+    public static function get_alert_level($alertLevel): string
+    {
+        return match ($alertLevel) {
+            'success', ValidationResult::TYPE_GOOD => 'success',
+            ValidationResult::TYPE_WARNING => 'warning',
+            'bad', 'required', ValidationResult::TYPE_ERROR => 'error',
+            default => 'info',
+        };
     }
 
 
@@ -352,7 +332,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
      */
     public static function waratah_masterbrand()
     {
-        if(self::waratah_cobrand() || self::waratah_endorsed()) {
+        if (self::waratah_cobrand() || self::waratah_endorsed()) {
             // cobrand or endorsed cancel masterbrand
             return false;
         } else {
@@ -372,7 +352,6 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
 
     /**
      * Waratah branding version
-     * @return int
      */
     public static function waratah_brandversion()
     {
@@ -382,25 +361,28 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
     /*
      * Return the alternate home page URL or path, if configured
      */
-    public static function get_alt_home_page() : string {
+    public static function get_alt_home_page(): string
+    {
         return self::config()->get('alt_home_page');
     }
 
     /**
      * Return per layout content
      * Example: <% include NSWDPC/Waratah/PageWrapper PerLayoutContentTemplate='Template/Location/TheTemplate' %>
-     * @return DBHTMLText|null
      * @param string $template an SS template path eg App/Directory/Person
      */
-    public static function get_per_layout_content($template) : ?DBHTMLText {
+    public static function get_per_layout_content($template): ?DBHTMLText
+    {
         $controller = Controller::has_curr() ? Controller::curr() : null;
-        if(!$controller) {
+        if (!$controller) {
             return null;
         }
+
         $chosenTemplate = SSViewer::chooseTemplate($template);
-        if(!$chosenTemplate) {
+        if (!$chosenTemplate) {
             return null;
         }
+
         $viewer = SSViewer::create($template);
         // do not include requirements when parsing the template
         $viewer->includeRequirements(false);

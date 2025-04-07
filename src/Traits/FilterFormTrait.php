@@ -10,12 +10,12 @@ use SilverStripe\Forms\Form;
  * See also {@link NSWDPC\Waratah\FilterFormExtension}
  * @author James
  */
-trait FilterFormTrait {
-
+trait FilterFormTrait
+{
     /**
      * @var int|null
      */
-    public $filterFormResultCount = null;
+    public $filterFormResultCount;
 
     /**
      * @var bool
@@ -43,35 +43,30 @@ trait FilterFormTrait {
      */
     public $showFilterCount = true;
 
-    /**
-     * @var string
-     */
-    public function getTemplate()
+    public function getTemplate(): string
     {
         return 'nswds/FilterForm';
     }
 
     /**
      * Return the form this trait is applied to
-     * @return Form
      */
-    protected function getExtendedForm() : Form {
+    protected function getExtendedForm(): Form
+    {
         return $this;
     }
 
     /**
      * Allow runtime overriding of isFilterForm
-     * @param bool
      */
-    public function setIsFilterForm(bool $is) : Form {
+    public function setIsFilterForm(bool $is): Form
+    {
         $this->getExtendedForm()->isFilterForm = $is;
         return $this->getExtendedForm();
     }
 
-    /**
-     * @return bool
-     */
-    public function IsFilterForm() : bool {
+    public function IsFilterForm(): bool
+    {
         return $this->getExtendedForm()->isFilterForm;
     }
 
@@ -79,27 +74,29 @@ trait FilterFormTrait {
      * A filter form can have results if it has a result count of zero or more
      * Zero results can signify a filtering result
      */
-    public function HasFilterResults($arg = '') : bool {
+    public function HasFilterResults($arg = ''): bool
+    {
         $resultCount = $this->getExtendedForm()->filterFormResultCount;
-        $has = is_int($resultCount) && $resultCount >= 0;
-        return $has;
+        return is_int($resultCount) && $resultCount >= 0;
     }
 
     /**
      * Set the result count,
      */
-    public function FilterFormResultCount() : ?int {
-        $result = $this->getExtendedForm()->filterFormResultCount;
-        return $result;
+    public function FilterFormResultCount(): ?int
+    {
+        return $this->getExtendedForm()->filterFormResultCount;
     }
 
     /**
      * Set the result count,
      */
-    public function setFilterFormResultCount(int $resultCount) : Form {
-        if($resultCount < 0) {
+    public function setFilterFormResultCount(int $resultCount): Form
+    {
+        if ($resultCount < 0) {
             $resultCount = 0;
         }
+
         $this->getExtendedForm()->filterFormResultCount = $resultCount;
         return $this->getExtendedForm();
     }
@@ -107,7 +104,8 @@ trait FilterFormTrait {
     /**
      * Set whether this form is an 'instant' filter form
      */
-    public function setIsInstant(bool $is = false) : Form {
+    public function setIsInstant(bool $is = false): Form
+    {
         $this->getExtendedForm()->isInstant = $is;
         return $this->getExtendedForm();
     }
@@ -115,7 +113,8 @@ trait FilterFormTrait {
     /**
      * Get whether this form is an 'instant' filter form
      */
-    public function IsInstant() : bool {
+    public function IsInstant(): bool
+    {
         return $this->getExtendedForm()->isInstant;
     }
 
@@ -123,7 +122,8 @@ trait FilterFormTrait {
      * Set panel display option
      * @param string $display on of empty string, 'down', or 'right'
      */
-    public function setPanelDisplay(string $display) : Form {
+    public function setPanelDisplay(string $display): Form
+    {
         $this->getExtendedForm()->panelDisplay = $display;
         return $this->getExtendedForm();
     }
@@ -131,15 +131,16 @@ trait FilterFormTrait {
     /**
      * Return panel display value
      */
-    public function PanelDisplay() : string {
+    public function PanelDisplay(): string
+    {
         return $this->getExtendedForm()->panelDisplay;
     }
 
     /**
      * Set filters collapsed option
-     * @param bool
      */
-    public function setFiltersCollapsed(bool $collapsed) : Form {
+    public function setFiltersCollapsed(bool $collapsed): Form
+    {
         $this->getExtendedForm()->filtersCollapsed = $collapsed;
         return $this->getExtendedForm();
     }
@@ -147,15 +148,16 @@ trait FilterFormTrait {
     /**
      * Return filters collapsed value
      */
-    public function FiltersCollapsed() : bool {
+    public function FiltersCollapsed(): bool
+    {
         return $this->getExtendedForm()->filtersCollapsed;
     }
 
     /**
      * Set show filter count option
-     * @param bool
      */
-    public function setShowFilterCount(bool $show) : Form {
+    public function setShowFilterCount(bool $show): Form
+    {
         $this->getExtendedForm()->showFilterCount = $show;
         return $this->getExtendedForm();
     }
@@ -163,7 +165,8 @@ trait FilterFormTrait {
     /**
      * Return showFilterCount value
      */
-    public function ShowFilterCount() : bool {
+    public function ShowFilterCount(): bool
+    {
         return $this->getExtendedForm()->showFilterCount;
     }
 
@@ -171,15 +174,17 @@ trait FilterFormTrait {
     /**
      * Return the default filter results string, override in implementing forms
      */
-    public function FilterResultsString() : string {
+    public function FilterResultsString(): string
+    {
         return _t('nswds.FILTER_RESULTS', 'Filter results');
     }
 
     /**
      * Return the default filter results title, override in implementing forms
      */
-    final public function FilterResultsTitle() : string {
-        if($this->HasFilterResults()) {
+    final public function FilterResultsTitle(): string
+    {
+        if ($this->HasFilterResults()) {
             return _t(
                 'nswds.FILTER_RESULTS_WITH_COUNT',
                 '{filterResultsString} ({filterResultsCount}',
@@ -201,38 +206,41 @@ trait FilterFormTrait {
 
     /**
      * Add filters to form extra classes
-     *
-     * @return string
      */
-    public function extraClass()
+    public function extraClass(): string
     {
         $panelDisplay = $this->PanelDisplay();
-        if($this instanceof Form) {
+        if ($this instanceof Form) {
             // gather any parent classes
+            // @phpstan-ignore staticMethod.notFound
             $extraClass = parent::extraClass();
             $extraClasses = explode(' ', $extraClass);
             $extraClasses = array_filter($extraClasses);
         } else {
             $extraClasses = [];
         }
+
         $extraClasses[] = 'nsw-filters';
-        if($panelDisplay) {
+        if ($panelDisplay) {
             $extraClasses[] = 'js-filters';
-            if($panelDisplay == 'down') {
+            if ($panelDisplay == 'down') {
                 $extraClasses[] = 'nsw-filters--down';
-            } else if($panelDisplay == 'right') {
+            } elseif ($panelDisplay == 'right') {
                 $extraClasses[] = 'nsw-filters--right';
             }
         }
-        if($this->FiltersCollapsed()) {
+
+        if ($this->FiltersCollapsed()) {
             // collapsed filters requires js-filters
             $extraClasses[] = 'js-filters';
         }
-        if($this->IsInstant()) {
+
+        if ($this->IsInstant()) {
             $extraClasses[] = 'nsw-filters--instant';
         } else {
             // $extraClasses[] = 'nsw-filters--fixed';
         }
+
         return implode(' ', array_unique($extraClasses));
     }
 
