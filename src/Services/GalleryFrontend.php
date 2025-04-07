@@ -18,6 +18,7 @@ class GalleryFrontend extends Frontend
      * element with a data-gallery attribute, it must contain figure elements
      * from nswds/Media
      */
+    #[\Override]
     public function addLoader()
     {
 

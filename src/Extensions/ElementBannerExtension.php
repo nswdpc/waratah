@@ -19,6 +19,13 @@ use UncleCheese\DisplayLogic\Forms\Wrapper;
 
 /**
  * Design system integration for Banner element
+ * @property ?string $BannerStyle
+ * @property bool $AltStyle
+ * @property ?string $BannerBrand
+ * @property ?string $HTML
+ * @property ?string $BannerLinksTitle
+ * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> BannerLinks()
+ * @extends \SilverStripe\ORM\DataExtension<(\NSWDPC\Elemental\Models\Banner\ElementBanner & static)>
  */
 class ElementBannerExtension extends DataExtension
 {
@@ -26,18 +33,14 @@ class ElementBannerExtension extends DataExtension
      * Branding constants
      */
     public const BRAND_NONE = '';
+
     public const BRAND_DARK = 'dark';
+
     public const BRAND_LIGHT = 'light';
 
-    /**
-     * @var bool
-     */
-    private static $inline_editable = false;
+    private static bool $inline_editable = false;
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'BannerStyle' => 'Varchar(64)',
         'AltStyle' => 'Boolean',// deprecated - see BannerBrand
         'BannerBrand' => 'Varchar(16)',// @since nswds v2.14
@@ -45,26 +48,17 @@ class ElementBannerExtension extends DataExtension
         'BannerLinksTitle' => 'Varchar(128)',
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many = [
+    private static array $many_many = [
         'BannerLinks' => Link::class
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many_extraFields = [
+    private static array $many_many_extraFields = [
         'BannerLinks' => [
             'Sort' => 'Int'
         ]
     ];
 
-    /**
-     * @var array
-     */
-    private static $banner_styles = [
+    private static array $banner_styles = [
         'title-content' => 'Title and content',
         'title-content-image' => 'Title and content - with image',
         'call-to-action' => 'Call to action',
@@ -72,6 +66,7 @@ class ElementBannerExtension extends DataExtension
         'links-list' => 'Links list'
     ];
 
+    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -80,7 +75,7 @@ class ElementBannerExtension extends DataExtension
         $bannerStyleField = DropdownField::create(
             'BannerStyle',
             _t('nswds.BANNERSTYLE', 'Layout'),
-            $this->owner->config()->get("banner_styles")
+            $this->getOwner()->config()->get("banner_styles")
         );
 
         $bannerBrandingField = HeroBannerBrandSelectionField::create(
@@ -92,14 +87,14 @@ class ElementBannerExtension extends DataExtension
             "Image",
             _t("nswds.SLIDE_IMAGE", "Image")
         );
-        $imageField->setAllowedExtensions($this->owner->getAllowedFileTypes());
+        $imageField->setAllowedExtensions($this->getOwner()->getAllowedFileTypes());
         $imageField->setIsMultiUpload(false);
         $imageField->setDescription(
             _t(
                 "nswds.ALLOWED_FILE_TYPES",
                 "Allowed file types: {types}",
                 [
-                    'types' => implode(",", $this->owner->getAllowedFileTypes())
+                    'types' => implode(",", $this->getOwner()->getAllowedFileTypes())
                 ]
             )
         );
@@ -114,7 +109,7 @@ class ElementBannerExtension extends DataExtension
                 'nswds.LINK',
                 'Link'
             ),
-            $this->owner
+            $this->getOwner()
         ));
         $linkField
             ->displayIf('BannerStyle')
@@ -132,7 +127,7 @@ class ElementBannerExtension extends DataExtension
         $linksField = LinkField::create(
             'BannerLinks',
             _t('nswds.LINKS', 'Links'),
-            $this->owner
+            $this->getOwner()
         );
         $linksField->setSortColumn('Sort');
         $linksField
@@ -161,6 +156,7 @@ class ElementBannerExtension extends DataExtension
 
     }
 
+    #[\Override]
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
@@ -171,9 +167,9 @@ class ElementBannerExtension extends DataExtension
          * "--light" in v2.14 is light blue, so reset to no brand if AltStyle is enabled in a one-off move
          * Future update will remove the AltStyle field
          */
-        if ($this->owner->AltStyle == 1) {
-            $this->owner->BannerBrand = self::BRAND_NONE;
-            $this->owner->AltStyle = 0;// turn off
+        if ($this->getOwner()->AltStyle == 1) {
+            $this->getOwner()->BannerBrand = self::BRAND_NONE;
+            $this->getOwner()->AltStyle = 0;// turn off
         }
     }
 

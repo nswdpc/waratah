@@ -17,12 +17,15 @@ class ElementalMigrationTask extends BuildTask
 {
     protected $title = 'Perform Elemental Migration task(s)';
 
-    private static $segment = "ElementalMigrationTask";
+    private static string $segment = "ElementalMigrationTask";
 
     private $task = '';
-    private $publish = false;
-    private $commit = false;
 
+    private bool $publish = false;
+
+    private bool $commit = false;
+
+    #[\Override]
     public function run($request)
     {
         $this->task = $request->getVar('task');
@@ -59,7 +62,7 @@ class ElementalMigrationTask extends BuildTask
     {
         $methods = get_class_methods($this);
         foreach ($methods as $method) {
-            if (strpos($method, "upgrade_") === 0) {
+            if (str_starts_with($method, "upgrade_")) {
                 $taskMethod = preg_replace("/^upgrade_/", "", $method);
                 DB::alteration_message("Upgrade method '{$taskMethod}' is available, review the code comments");
             }

@@ -15,43 +15,28 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
  * Provide a InPageNotification field for use in user defined forms
  * This field is rendered via nswds/InPageNotification template
  * @author James
+ * @property ?string $NotificationLevel
  */
 class EditableInPageNotificationField extends EditableLiteralField
 {
-    /**
-     * @var string
-     */
-    private static $singular_name = 'In-page alert (NSW Design System)';
+    private static string $singular_name = 'In-page alert (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'In-page alerts (NSW Design System)';
+    private static string $plural_name = 'In-page alerts (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'EditableInPageNotificationField';
+    private static string $table_name = 'EditableInPageNotificationField';
 
     /**
      * Mark as literal only
      *
      * @config
-     * @var bool
      */
-    private static $literal = true;
+    private static bool $literal = true;
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'NotificationLevel' => 'Varchar(16)'
     ];
 
-    /**
-     * @var array
-     */
-    private static $defaults = [
+    private static array $defaults = [
         'HideLabel' => 0,
         'HideFromReports' => 1,
         'NotificationLevel' => 'info'
@@ -60,6 +45,7 @@ class EditableInPageNotificationField extends EditableLiteralField
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function showInReports()
     {
         return false;
@@ -76,6 +62,7 @@ class EditableInPageNotificationField extends EditableLiteralField
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -114,6 +101,7 @@ class EditableInPageNotificationField extends EditableLiteralField
      * Hide the label
      * @inheritdoc
      */
+    #[\Override]
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
@@ -125,6 +113,7 @@ class EditableInPageNotificationField extends EditableLiteralField
      * Render this element into the nswds Callout include,
      * returned as a LiteralField
      */
+    #[\Override]
     public function getFormField()
     {
 
@@ -132,7 +121,7 @@ class EditableInPageNotificationField extends EditableLiteralField
             // avoid theme issues with templates not being found
             $content = "";
         } else {
-            $content = $this->renderWith(__CLASS__);
+            $content = $this->renderWith(self::class);
         }
 
         $field = LiteralField::create(

@@ -6,6 +6,9 @@ use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 
+/**
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\AssetAdmin\Forms\ImageFormFactory & static)>
+ */
 class ImageAssetFormFactoryExtension extends Extension
 {
     public function updateFormFields(FieldList $fields)
@@ -19,6 +22,7 @@ class ImageAssetFormFactoryExtension extends Extension
         if ($titleField && $titleField->isReadonly()) {
             $creditField = $creditField->performReadonlyTransformation();
         }
+
         $fields->insertAfter(
             'Title',
             $creditField

@@ -7,6 +7,7 @@ use SilverStripe\Core\Extension;
 /**
  * Extension handling for UserDefinedFormController
  * @author James
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\UserForms\Control\UserDefinedFormController & static)>
  */
 class UserDefinedFormControllerExtension extends Extension
 {

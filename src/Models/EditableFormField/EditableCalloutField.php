@@ -14,57 +14,42 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
  * Provide a callout field for use in user defined forms
  * This field is rendered via nswds/Callout template
  * @author James
+ * @property ?string $IconCode
+ * @property int $LinkID
+ * @method \gorriecoe\Link\Models\Link Link()
  */
 class EditableCalloutField extends EditableLiteralField
 {
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Callout (NSW Design System)';
+    private static string $singular_name = 'Callout (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Callouts (NSW Design System)';
+    private static string $plural_name = 'Callouts (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'EditableCalloutField';
+    private static string $table_name = 'EditableCalloutField';
 
     /**
      * Mark as literal only
      *
      * @config
-     * @var bool
      */
-    private static $literal = true;
+    private static bool $literal = true;
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'IconCode' => 'Varchar(64)'
     ];
 
-    /**
-     * @var array
-     */
-    private static $defaults = [
+    private static array $defaults = [
         'HideLabel' => 1,
         'HideFromReports' => 1
     ];
 
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         'Link' => Link::class
     ];
 
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function showInReports()
     {
         return false;
@@ -73,6 +58,7 @@ class EditableCalloutField extends EditableLiteralField
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -118,6 +104,7 @@ class EditableCalloutField extends EditableLiteralField
      * Hide the label
      * @inheritdoc
      */
+    #[\Override]
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
@@ -130,6 +117,7 @@ class EditableCalloutField extends EditableLiteralField
      * Render this element into the nswds Callout include,
      * returned as a LiteralField
      */
+    #[\Override]
     public function getFormField()
     {
 
@@ -137,7 +125,7 @@ class EditableCalloutField extends EditableLiteralField
             // avoid theme issues with templates not being found
             $content = "";
         } else {
-            $content = $this->renderWith(__CLASS__);
+            $content = $this->renderWith(self::class);
         }
 
         $field = LiteralField::create(

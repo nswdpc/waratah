@@ -10,6 +10,7 @@ use SilverStripe\Forms\Form;
  * Apply this extension to specific forms via configuration, to apply
  * filter form smarts to a form
  * @author James
+ * @extends \SilverStripe\Core\Extension<static>
  */
 class FilterFormExtension extends Extension
 {
@@ -20,10 +21,10 @@ class FilterFormExtension extends Extension
      */
     public function getExtendedForm(): Form
     {
-        return $this->owner;
+        return $this->getOwner();
     }
 
-    private static $default_classes = [
+    private static array $default_classes = [
         'nsw-filters',
         'nsw-filters--fixed',
         'js-filters'

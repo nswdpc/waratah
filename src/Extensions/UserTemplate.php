@@ -10,13 +10,11 @@ use SilverStripe\ORM\DataExtension;
  * and UserTemplate::get()->filter('User'....)
  * TODO: PR
  * @author James
+ * @extends \SilverStripe\ORM\DataExtension<(static & \Symbiote\UserTemplates\UserTemplate)>
  */
 class UserTemplate extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $indexes = [
+    private static array $indexes = [
         'Use' => true
     ];
 }
