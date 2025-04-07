@@ -37,7 +37,7 @@ class DesignSystemAssetExtension extends Extension
      */
     final protected function getConfigurator(): DesignSystemConfiguration
     {
-        if (!$this->configurator) {
+        if (!$this->configurator instanceof \NSWDPC\Waratah\Models\DesignSystemConfiguration) {
             $this->configurator = new DesignSystemConfiguration();
         }
 

@@ -47,6 +47,7 @@ class LinkExtension extends DataExtension
         if (empty($types)) {
             $types = ["jpg", "jpeg", "gif", "png", "webp"];
         }
+
         return array_unique($types);
     }
 

@@ -46,6 +46,7 @@ class ElementContentExtension extends DataExtension
         if (empty($types) || !is_array($types)) {
             $types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
         }
+
         return array_unique($types);
     }
 
