@@ -69,7 +69,8 @@ class MultipleElementalAreaExtension extends DataExtension
      * Ensure the records are correctly applied, when the owner is saved
      * As ensureElementalAreasExist creates ElementalArea classes only and not a subclass
      */
-    public function onAfterWrite() {
+    public function onAfterWrite()
+    {
         parent::onAfterWrite();
         $this->ensureCorrectSettings();
     }
@@ -79,12 +80,13 @@ class MultipleElementalAreaExtension extends DataExtension
       * TODO: possibly better to do this outside the ORM to avoid writing a new version of each ElementalArea on every owner write event
      * @access private
      */
-    private function ensureCorrectSettings() {
+    private function ensureCorrectSettings()
+    {
 
         // Settings for side area
         /** @var \DNADesign\Elemental\Models\ElementalArea $side */
         $side = $this->getOwner()->SideElementalArea();
-        if(!empty($side->ID)) {
+        if (!empty($side->ID)) {
             $side->IsSideArea = 1;
             $side->IsTopArea = 0;
             // side elements do not have containers
@@ -97,7 +99,7 @@ class MultipleElementalAreaExtension extends DataExtension
         // Settings for top area
         /** @var \DNADesign\Elemental\Models\ElementalArea $top */
         $top = $this->getOwner()->TopElementalArea();
-        if(!empty($top->ID)) {
+        if (!empty($top->ID)) {
             $top->IsSideArea = 0;
             $top->IsTopArea = 1;
             //elements in this area are expected to render their own containers, if required
@@ -110,7 +112,7 @@ class MultipleElementalAreaExtension extends DataExtension
         // Settings for the main area
         /** @var \DNADesign\Elemental\Models\ElementalArea $main */
         $main = $this->getOwner()->ElementalArea();
-        if(!empty($main->ID)) {
+        if (!empty($main->ID)) {
             $main->IsSideArea = 0;
             $main->IsTopArea = 0;
             // on landing pages, main content elements *may* have a container
@@ -126,8 +128,9 @@ class MultipleElementalAreaExtension extends DataExtension
      * Return whether the owner has side elements
      * Rely on cache value if not null, to avoid DB hits
      */
-    public function HasSideElements() : bool {
-        if(is_null($this->_cache_has_side_elements)) {
+    public function HasSideElements(): bool
+    {
+        if (is_null($this->_cache_has_side_elements)) {
             $this->_cache_has_side_elements = $this->owner->SideElementalArea()->Elements()->count() > 0;
         }
         return $this->_cache_has_side_elements;
@@ -137,8 +140,9 @@ class MultipleElementalAreaExtension extends DataExtension
      * Return whether the owner has top elements
      * Rely on cache value if not null to avoid DB hits
      */
-    public function HasTopElements() : bool {
-        if(is_null($this->_cache_has_top_elements)) {
+    public function HasTopElements(): bool
+    {
+        if (is_null($this->_cache_has_top_elements)) {
             $this->_cache_has_top_elements = $this->owner->TopElementalArea()->Elements()->count() > 0;
         }
         return $this->_cache_has_top_elements;
@@ -154,7 +158,7 @@ class MultipleElementalAreaExtension extends DataExtension
         $top = $fields->dataFieldByName('TopElementalArea');
         if ($top) {
             $topTypes = $this->owner->config()->get('allowed_top_elements');
-            if(is_array($topTypes) && !empty($topTypes)) {
+            if (is_array($topTypes) && !empty($topTypes)) {
                 $top->setTypes($topTypes);
             }
             $fields->removeByName('TopContent');
@@ -162,7 +166,7 @@ class MultipleElementalAreaExtension extends DataExtension
                 'Main',
                 Tab::create(
                     'TopContent',
-                    _t('nswds.TOP_CONTENT','Top content')
+                    _t('nswds.TOP_CONTENT', 'Top content')
                 )
             );
             $fields->addFieldToTab('Root.TopContent', $top);
@@ -172,7 +176,7 @@ class MultipleElementalAreaExtension extends DataExtension
         $sidebar = $fields->dataFieldByName('SideElementalArea');
         if ($sidebar) {
             $sideTypes = $this->owner->config()->get('allowed_side_elements');
-            if(is_array($sideTypes) && !empty($sideTypes)) {
+            if (is_array($sideTypes) && !empty($sideTypes)) {
                 $sidebar->setTypes($sideTypes);
             }
             $fields->removeByName('SideContent');
@@ -180,7 +184,7 @@ class MultipleElementalAreaExtension extends DataExtension
                 'Main',
                 Tab::create(
                     'SideContent',
-                    _t('nswds.SIDE_CONTENT','Side content')
+                    _t('nswds.SIDE_CONTENT', 'Side content')
                 )
             );
             $fields->addFieldToTab('Root.SideContent', $sidebar);

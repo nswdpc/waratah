@@ -15,7 +15,8 @@ class ErrorPageExtension extends SiteTreeExtension
         return true;
     }
 
-    public function includeElemental() {
+    public function includeElemental()
+    {
         return false;
     }
 }

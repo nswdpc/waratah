@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class ButtonStateSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**

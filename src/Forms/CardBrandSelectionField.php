@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class CardBrandSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**

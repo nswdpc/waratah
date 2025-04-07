@@ -13,7 +13,6 @@ use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\View\Requirements;
 
-
 /**
  * Provide additional elemental integration with DS
  * @author Mark Taylor
@@ -21,7 +20,6 @@ use SilverStripe\View\Requirements;
  */
 class BaseElementExtension extends DataExtension
 {
-
     use DesignSystemSelections;
 
     /**
@@ -76,7 +74,8 @@ class BaseElementExtension extends DataExtension
     /**
      * Use Reflection to get the element shortname for a CSS class
      */
-    public function ElementShortName() : string {
+    public function ElementShortName(): string
+    {
         $rc = new \ReflectionClass($this->owner);
         $short = $rc->getShortName();
         return strtolower(preg_replace("[^A-Za-z_0-9]", "", $short));
@@ -102,7 +101,7 @@ class BaseElementExtension extends DataExtension
         );
 
         $headings = $this->owner->config()->get('headings');
-        if(!is_array($headings)) {
+        if (!is_array($headings)) {
             $headings = [];
         }
 
@@ -198,9 +197,10 @@ class BaseElementExtension extends DataExtension
      * Return an array of available backgrounds
      * See: https://nswdesignsystem.surge.sh/styles/section/index.html
      */
-    protected function getBackgrounds() : array {
+    protected function getBackgrounds(): array
+    {
         $backgrounds = $this->getColourSelectionOptions('section');
-        if(!is_array($backgrounds)) {
+        if (!is_array($backgrounds)) {
             $backgrounds = [];
         }
         return $backgrounds;
@@ -210,7 +210,8 @@ class BaseElementExtension extends DataExtension
      * Return the supported background value, if it exists
      * Return an empty string if the value is not supported
      */
-    protected function getSupportedBackground(string $bg) : string {
+    protected function getSupportedBackground(string $bg): string
+    {
         $backgrounds = $this->getBackgrounds();
         return array_key_exists($bg, $backgrounds) ? $bg : '';
     }
@@ -221,7 +222,8 @@ class BaseElementExtension extends DataExtension
      * Use by a template as $Background
      * Invert is automatically added when a dark BG is selected
      */
-    public function getBackground() : string {
+    public function getBackground(): string
+    {
         $bg = $this->owner->AddBackground;
         $bg = $this->getSupportedBackground(strval($bg));
         $spacing = DesignSystemConfiguration::get_spacing_class();
@@ -229,15 +231,15 @@ class BaseElementExtension extends DataExtension
         $classes = [];
         // nsw-section
         $classes[] = 'nsw-section';
-        if($bg) {
+        if ($bg) {
             $classes[] = 'nsw-section--' . $bg;
-            if($spacing) {
+            if ($spacing) {
                 $classes[] = $spacing;
             }
-        } else if($spacing) {
+        } elseif ($spacing) {
             $classes[] = $spacing;
         }
-        if($invert) {
+        if ($invert) {
             $classes[] = "nsw-section--invert";
         }
         return implode(" ", $classes);

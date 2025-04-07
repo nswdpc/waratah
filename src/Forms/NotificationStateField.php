@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class NotificationStateSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**
@@ -38,8 +37,9 @@ class NotificationStateSelectionField extends DropdownField
      * Returns the icon related to the notification state
      * The return value is a Material Icon code
      */
-    public static function getIconCode($state) : string {
-        switch($state) {
+    public static function getIconCode($state): string
+    {
+        switch ($state) {
             case 'warning':
                 return 'error';
             case 'error':

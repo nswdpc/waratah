@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class AlertStateSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**

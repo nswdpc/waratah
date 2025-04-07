@@ -24,7 +24,6 @@ use gorriecoe\LinkField\LinkField;
 
 class SiteConfigExtension extends DataExtension
 {
-
     /**
      * @var array
      */
@@ -113,17 +112,19 @@ class SiteConfigExtension extends DataExtension
 
         // add copyright notice
         $fields->addFieldsToTab(
-            'Root.Main', [
+            'Root.Main',
+            [
                 TextField::create('CopyrightOwner', 'Copyright notice')
             ]
         );
 
         $admin = Permission::check('ADMIN');
-        if($admin) {
+        if ($admin) {
             $fields->addFieldsToTab(
-                'Root.Main', [
-                    UploadField::create('LogoSVG','SVG version of site logo'),
-                    UploadField::create('LogoImage','Image version of site logo')
+                'Root.Main',
+                [
+                    UploadField::create('LogoSVG', 'SVG version of site logo'),
+                    UploadField::create('LogoImage', 'Image version of site logo')
                 ]
             );
         }
@@ -166,40 +167,40 @@ class SiteConfigExtension extends DataExtension
             'Root.Footer.Navigation',
             [
                 CompositeField::create(
-                    TextField::create( 'FooterLinksCol1Title', _t('nswds.TITLE', 'Title') ),
+                    TextField::create('FooterLinksCol1Title', _t('nswds.TITLE', 'Title')),
                     LinkField::create(
                         'FooterLinksCol1',
                         _t('nswds.LINKS', 'Links'),
                         $this->owner
                     )->setSortColumn('Sort')
-                )->setTitle( _t('nswds.COLUMN_ONE', 'Column one') ),
+                )->setTitle(_t('nswds.COLUMN_ONE', 'Column one')),
 
                 CompositeField::create(
-                    TextField::create('FooterLinksCol2Title', _t('nswds.TITLE', 'Title') ),
+                    TextField::create('FooterLinksCol2Title', _t('nswds.TITLE', 'Title')),
                     LinkField::create(
                         'FooterLinksCol2',
                         _t('nswds.LINKS', 'Links'),
                         $this->owner
                     )->setSortColumn('Sort')
-                )->setTitle( _t('nswds.COLUMN_TWO', 'Column two') ),
+                )->setTitle(_t('nswds.COLUMN_TWO', 'Column two')),
 
                 CompositeField::create(
-                    TextField::create('FooterLinksCol3Title', _t('nswds.TITLE', 'Title') ),
+                    TextField::create('FooterLinksCol3Title', _t('nswds.TITLE', 'Title')),
                     LinkField::create(
                         'FooterLinksCol3',
                         _t('nswds.LINKS', 'Links'),
                         $this->owner
                     )->setSortColumn('Sort'),
-                )->setTitle( _t('nswds.COLUMN_THREE', 'Column three') ),
+                )->setTitle(_t('nswds.COLUMN_THREE', 'Column three')),
 
                 CompositeField::create(
-                    TextField::create('FooterLinksCol4Title', _t('nswds.TITLE', 'Title') ),
+                    TextField::create('FooterLinksCol4Title', _t('nswds.TITLE', 'Title')),
                     LinkField::create(
                         'FooterLinksCol4',
                         _t('nswds.LINKS', 'Links'),
                         $this->owner
                     )->setSortColumn('Sort'),
-                )->setTitle( _t('nswds.COLUMN_FOUR', 'Column four') ),
+                )->setTitle(_t('nswds.COLUMN_FOUR', 'Column four')),
 
                 CompositeField::create(
                     LinkField::create(
@@ -207,7 +208,7 @@ class SiteConfigExtension extends DataExtension
                         _t('nswds.LINKS', 'Links'),
                         $this->owner
                     )->setSortColumn('Sort')
-                )->setTitle( _t('nswds.LOWER_FOOTER_LEVEL', 'Lower level') ),
+                )->setTitle(_t('nswds.LOWER_FOOTER_LEVEL', 'Lower level')),
             ]
         );
 
@@ -262,7 +263,7 @@ class SiteConfigExtension extends DataExtension
                 _t('nswds.TITLE_WITH_BREAKS', 'Longer form of site title')
             )->setRows(2)
             ->setDescription(
-                 _t('nswds.TITLE_WITH_BREAKS_DESCRIPTION', 'Used in header, if provided')
+                _t('nswds.TITLE_WITH_BREAKS_DESCRIPTION', 'Used in header, if provided')
             )
         );
     }
@@ -270,9 +271,10 @@ class SiteConfigExtension extends DataExtension
     /**
      * Get the default
      */
-    public function getWelcomeToCountry() {
+    public function getWelcomeToCountry()
+    {
         $value = $this->owner->getField('WelcomeToCountry');
-        if(!$value) {
+        if (!$value) {
             $value = _t(
                 'nswds.WELCOME_TO_COUNTRY',
                 'We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.'
