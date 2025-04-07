@@ -46,9 +46,6 @@ class ElementContentExtension extends DataExtension
      */
     private static $owns = ['ContentImage', 'ContentLink'];
 
-    /**
-     * @var array
-     */
     public function getAllowedFileTypes()
     {
         $types = $this->owner->config()->get('allowed_file_types');

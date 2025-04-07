@@ -106,7 +106,7 @@ class BaseElementExtension extends DataExtension
             $headings = [];
         }
 
-        $fields->addFieldsToTab(
+        $fields->addFieldToTab(
             'Root.Settings',
             DropdownField::create(
                 'HeadingLevel',

@@ -11,6 +11,7 @@ use DNADesign\Elemental\Models\BaseElement;
  * @author James
  * @author Mark
  * Perform migration/update on Elemental model based
+ * @deprecated
  */
 class ElementalMigrationTask extends BuildTask
 {
@@ -26,8 +27,8 @@ class ElementalMigrationTask extends BuildTask
     public function run($request)
     {
         $this->task = $request->getVar('task');
-        $this->publish = $request->getVar('publish') == 1;
-        $this->commit = $request->getVar('commit') == 1;
+        $this->publish = $request->getVar('publish') == '1';
+        $this->commit = $request->getVar('commit') == '1';
 
         if($this->commit) {
             DB::alteration_message("Commit changes is on", "changed");
@@ -44,18 +45,14 @@ class ElementalMigrationTask extends BuildTask
         if(empty($this->task)) {
             DB::alteration_message("No task provided - provide a task=taskname arg", "error");
             $this->dumpMethods();
-            return false;
-        }
-
-        $upgradeMethod = "upgrade_{$this->task}";
-
-
-        if(method_exists($this, $upgradeMethod)) {
-            $this->{$upgradeMethod}();
         } else {
-            DB::alteration_message("Task method {$this->task} does not exist", "error");
-            $this->dumpMethods();
-            return false;
+            $upgradeMethod = "upgrade_{$this->task}";
+            if(method_exists($this, $upgradeMethod)) {
+                $this->{$upgradeMethod}();
+            } else {
+                DB::alteration_message("Task method {$this->task} does not exist", "error");
+                $this->dumpMethods();
+            }
         }
     }
 

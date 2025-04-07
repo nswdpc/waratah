@@ -3,21 +3,21 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
-use Silverstripe\Assets\File;
-use Silverstripe\Assets\Image;
+use SilverStripe\Assets\File;
+use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use Silverstripe\ORM\DataExtension;
+use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Permission;
-use Silverstripe\Forms\FieldList;
-use Silverstripe\Forms\HeaderField;
-use Silverstripe\Forms\CheckboxField;
-use Silverstripe\Forms\CompositeField;
-use Silverstripe\Forms\DropdownField;
-use Silverstripe\Forms\Tab;
-use Silverstripe\Forms\TabSet;
-use Silverstripe\Forms\TextField;
-use Silverstripe\Forms\TextareaField;
-use Silverstripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\CompositeField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TabSet;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
@@ -154,7 +154,7 @@ class SiteConfigExtension extends DataExtension
             )
         );
 
-        $fields->addFieldsToTab(
+        $fields->addFieldToTab(
             'Root.Footer.Main',
             FooterBrandSelectionField::create(
                 'FooterBrand',

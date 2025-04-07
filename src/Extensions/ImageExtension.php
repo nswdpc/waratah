@@ -1,10 +1,10 @@
 <?php
 namespace NSWDPC\Waratah\Extensions;
 
-use Silverstripe\ORM\DataExtension;
-use Silverstripe\Forms\FieldList;
-use Silverstripe\Forms\TextField;
-use Silverstripe\Assets\Image;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Assets\Image;
 
 class ImageExtension extends DataExtension {
 

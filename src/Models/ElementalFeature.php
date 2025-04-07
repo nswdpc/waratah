@@ -6,7 +6,7 @@ use DNADesign\Elemental\Models\ElementContent;
 use SilverStripe\Security\Permission;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\File;
-use Silverstripe\Assets\Image;
+use SilverStripe\Assets\Image;
 use SilverStripe\Forms\LiteralField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;

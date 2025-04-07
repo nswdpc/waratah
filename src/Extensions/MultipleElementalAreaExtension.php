@@ -6,9 +6,9 @@ use DNADesign\Elemental\Models\ElementalArea;
 use NSWDPC\Waratah\Models\SideElementalArea;
 use NSWDPC\Waratah\Models\TopElementalArea;
 use NSWDPC\Elemental\Models\Banner\ElementBanner;
-use Silverstripe\Core\Convert;
-use Silverstripe\ORM\DataExtension;
-use Silverstripe\ORM\DB;
+use SilverStripe\Core\Convert;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\DB;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Tab;
 
@@ -82,7 +82,8 @@ class MultipleElementalAreaExtension extends DataExtension
     private function ensureCorrectSettings() {
 
         // Settings for side area
-        $side = $this->owner->SideElementalArea();
+        /** @var \DNADesign\Elemental\Models\ElementalArea $side */
+        $side = $this->getOwner()->SideElementalArea();
         if(!empty($side->ID)) {
             $side->IsSideArea = 1;
             $side->IsTopArea = 0;
@@ -94,7 +95,8 @@ class MultipleElementalAreaExtension extends DataExtension
         }
 
         // Settings for top area
-        $top = $this->owner->TopElementalArea();
+        /** @var \DNADesign\Elemental\Models\ElementalArea $top */
+        $top = $this->getOwner()->TopElementalArea();
         if(!empty($top->ID)) {
             $top->IsSideArea = 0;
             $top->IsTopArea = 1;
@@ -106,7 +108,8 @@ class MultipleElementalAreaExtension extends DataExtension
         }
 
         // Settings for the main area
-        $main = $this->owner->ElementalArea();
+        /** @var \DNADesign\Elemental\Models\ElementalArea $main */
+        $main = $this->getOwner()->ElementalArea();
         if(!empty($main->ID)) {
             $main->IsSideArea = 0;
             $main->IsTopArea = 0;
@@ -147,6 +150,7 @@ class MultipleElementalAreaExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
 
+        /** @var \DNADesign\Elemental\Forms\ElementalAreaField $top */
         $top = $fields->dataFieldByName('TopElementalArea');
         if ($top) {
             $topTypes = $this->owner->config()->get('allowed_top_elements');
@@ -164,6 +168,7 @@ class MultipleElementalAreaExtension extends DataExtension
             $fields->addFieldToTab('Root.TopContent', $top);
         }
 
+        /** @var \DNADesign\Elemental\Forms\ElementalAreaField $sidebar */
         $sidebar = $fields->dataFieldByName('SideElementalArea');
         if ($sidebar) {
             $sideTypes = $this->owner->config()->get('allowed_side_elements');

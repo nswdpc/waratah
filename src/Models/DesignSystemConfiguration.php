@@ -311,19 +311,15 @@ class DesignSystemConfiguration implements TemplateGlobalProvider {
             case 'success':
             case ValidationResult::TYPE_GOOD:
                 return 'success';
-                break;
             case ValidationResult::TYPE_WARNING:
                 return 'warning';
-                break;
             case 'bad':
             case 'required':
             case ValidationResult::TYPE_ERROR:
                 return 'error';
-                break;
             case ValidationResult::TYPE_INFO:
             default:
                 return 'info';
-                break;
         }
     }
 

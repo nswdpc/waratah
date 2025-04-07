@@ -2,7 +2,7 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
-use Silverstripe\ORM\DataExtension;
+use SilverStripe\ORM\DataExtension;
 
 /**
  * Provide additional configuration options for Elemental Areas
