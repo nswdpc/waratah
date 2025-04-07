@@ -19,6 +19,7 @@ trait DesignSystemSelections
         if (!is_array($options)) {
             $options = [];
         }
+
         return $options;
     }
 

@@ -13,10 +13,7 @@ use SilverStripe\ORM\DataExtension;
  */
 class UserTemplate extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $indexes = [
+    private static array $indexes = [
         'Use' => true
     ];
 }

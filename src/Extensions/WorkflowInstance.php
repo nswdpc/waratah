@@ -12,10 +12,7 @@ use SilverStripe\ORM\DataExtension;
  */
 class WorkflowInstance extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $indexes = [
+    private static array $indexes = [
         'TargetID' => [
             'type' => 'index',
             'columns' => ['TargetID','TargetClass']

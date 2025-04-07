@@ -7,9 +7,12 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Assets\Image;
 
+/**
+ * @property ?string $PhotoCredit
+ */
 class ImageExtension extends DataExtension
 {
-    private static $db = [
+    private static array $db = [
         'PhotoCredit' => 'Varchar(255)'
     ];
 }

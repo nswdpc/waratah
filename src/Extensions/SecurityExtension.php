@@ -32,6 +32,7 @@ class SecurityExtension extends Extension
                 return $provider;
             }
         }
+
         return null;
     }
 
@@ -46,40 +47,38 @@ class SecurityExtension extends Extension
             // @phpstan-ignore return.type
             return Injector::inst()->get(MemberProfileController::class);
         }
+
         return null;
     }
 
     /**
      * Returns whether a lost password handler is available
-     * @return bool
      */
     public function LostPasswordProvider(): bool
     {
         try {
-            $authenticators = $this->owner->getApplicableAuthenticators(AuthenticatorInterface::RESET_PASSWORD);
+            $authenticators = $this->getOwner()->getApplicableAuthenticators(AuthenticatorInterface::RESET_PASSWORD);
             return true;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return false;
         }
     }
 
     /**
      * Returns whether a change password handler is available
-     * @return bool
      */
     public function ChangePasswordProvider(): bool
     {
         try {
-            $authenticators = $this->owner->getApplicableAuthenticators(AuthenticatorInterface::CHANGE_PASSWORD);
+            $authenticators = $this->getOwner()->getApplicableAuthenticators(AuthenticatorInterface::CHANGE_PASSWORD);
             return true;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return false;
         }
     }
 
     /**
      * Optout of frontend analytics implementations in this controller
-     * @return bool
      */
     public function AnalyticsOptOut(): bool
     {

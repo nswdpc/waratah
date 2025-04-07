@@ -20,10 +20,7 @@ use SilverStripe\View\SSViewer;
  */
 class DesignSystemAssetExtension extends Extension
 {
-    /**
-     * @var DesignSystemConfiguration|null
-     */
-    private $configurator = null;
+    private ?\NSWDPC\Waratah\Models\DesignSystemConfiguration $configurator = null;
 
     /**
      * Include the Design System after controller init (once)
@@ -43,6 +40,7 @@ class DesignSystemAssetExtension extends Extension
         if (!$this->configurator) {
             $this->configurator = new DesignSystemConfiguration();
         }
+
         return $this->configurator;
     }
 

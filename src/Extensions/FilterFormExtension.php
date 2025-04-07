@@ -20,10 +20,10 @@ class FilterFormExtension extends Extension
      */
     public function getExtendedForm(): Form
     {
-        return $this->owner;
+        return $this->getOwner();
     }
 
-    private static $default_classes = [
+    private static array $default_classes = [
         'nsw-filters',
         'nsw-filters--fixed',
         'js-filters'

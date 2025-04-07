@@ -14,6 +14,12 @@ use SilverStripe\View\ArrayData;
 
 /**
  * Implement NSWDS Utility List component as a content block that can be placed in pages
+ * @property bool $Vertical
+ * @property ?string $Features
+ * @property ?string $Networks
+ * @property ?string $Prompt
+ * @property ?string $Body
+ * @property ?string $HashTags
  */
 class ElementalUtilityList extends BaseElement
 {
@@ -57,40 +63,19 @@ class ElementalUtilityList extends BaseElement
      */
     public const FEATURE_SHARE = 'share';
 
-    /**
-     * @var bool
-     */
-    private static $inline_editable = true;
+    private static bool $inline_editable = true;
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementalUtilityList';
+    private static string $table_name = 'ElementalUtilityList';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Utility list (NSW Design System)';
+    private static string $singular_name = 'Utility list (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Utility lists (NSW Design System)';
+    private static string $plural_name = 'Utility lists (NSW Design System)';
 
-    /**
-     * @var string
-     */
-    private static $description = 'Create a utility list';
+    private static string $description = 'Create a utility list';
 
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-list';
+    private static string $icon = 'font-icon-list';
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'Vertical' => 'Boolean',
         'Features' => 'Text',
         'Networks' => 'Text',
@@ -102,6 +87,7 @@ class ElementalUtilityList extends BaseElement
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getType()
     {
         return _t(static::class . '.BlockType', 'Utility list (NSW Design System)');
@@ -137,6 +123,7 @@ class ElementalUtilityList extends BaseElement
         return $features;
     }
 
+    #[\Override]
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -206,7 +193,7 @@ class ElementalUtilityList extends BaseElement
             } else {
                 return [];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return [];
         }
     }
@@ -217,14 +204,15 @@ class ElementalUtilityList extends BaseElement
     public function SelectedHashTagsString(string $delimiter = ",", string $prefix = "#"): DBVarchar
     {
         $hashTags = $this->SelectedHashTags();
-        if ($prefix) {
+        if ($prefix !== '') {
             array_walk(
                 $hashTags,
-                function (&$value, $key) use ($prefix) {
+                function (&$value, $key) use ($prefix): void {
                     $value = $prefix . $value;
                 }
             );
         }
+
         return DBField::create_field(DBVarchar::class, implode($delimiter, $hashTags));
     }
 
@@ -248,11 +236,12 @@ class ElementalUtilityList extends BaseElement
                 foreach ($features as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -270,11 +259,12 @@ class ElementalUtilityList extends BaseElement
                 foreach ($networks as $key) {
                     $data->setField($key, true);
                 }
+
                 return $data;
             } else {
                 return null;
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
@@ -289,6 +279,7 @@ class ElementalUtilityList extends BaseElement
         if ($current && $current->hasMethod('AbsoluteLink')) {
             $url = $current->AbsoluteLink($action);
         }
+
         return $url;
     }
 

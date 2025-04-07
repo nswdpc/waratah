@@ -18,16 +18,17 @@ class OAuthLoginFormExtension extends Extension
      */
     public function updateFormActions(&$actions)
     {
-        $providers = Config::inst()->get($this->owner->getAuthenticatorClass(), 'providers');
+        $providers = Config::inst()->get($this->getOwner()->getAuthenticatorClass(), 'providers');
         if (!is_array($providers)) {
             return;
         }
+
         foreach ($providers as $provider => $config) {
-            $name = isset($config['name']) ? $config['name'] : $provider;
+            $name = $config['name'] ?? $provider;
             $action = $actions->fieldByName('action_authenticate_'. $provider);
             if ($action) {
                 $action->setDescription($name);
-                $label = isset($config['label']) ? $config['label'] : '';
+                $label = $config['label'] ?? '';
                 if ($label) {
                     $action->setRightTitle($label);
                 }

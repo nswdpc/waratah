@@ -6,12 +6,16 @@ use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 
+/**
+ * @property ?string $AlertState
+ */
 class SpecialAnnouncementExtension extends DataExtension
 {
-    private static $db = [
+    private static array $db = [
         'AlertState' => 'Varchar(16)'
     ];
 
+    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
