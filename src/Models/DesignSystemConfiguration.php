@@ -352,7 +352,6 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
 
     /**
      * Waratah branding version
-     * @return int
      */
     public static function waratah_brandversion()
     {
