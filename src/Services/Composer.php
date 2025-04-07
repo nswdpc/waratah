@@ -1,4 +1,5 @@
 <?php
+
 namespace NSWDPC\Waratah\Services;
 
 use Composer\DependencyResolver\Operation\OperationInterface;
@@ -24,13 +25,14 @@ use Composer\Installer\PackageEvent;
  ```
  * @author James
  */
-class Composer {
-
+class Composer
+{
     /**
      * Called via post-create-project-cmd
      * @phpstan-ignore class.notFound
      */
-    public static function postCreateProject(ScriptEvent $event): bool {
+    public static function postCreateProject(ScriptEvent $event): bool
+    {
         return self::buildDesignSystem($event);
     }
 
@@ -40,15 +42,16 @@ class Composer {
      * Gotcha: build.sh requires npm to be available on the host
      * @phpstan-ignore class.notFound
      */
-     public static function buildDesignSystem(ScriptEvent $event = null): bool {
-         $build = realpath(dirname(__FILE__) . "/../../build.sh");
-         if($build && file_exists($build) && is_executable($build)) {
-             $cmd = escapeshellcmd($build);
-             passthru( $cmd, $output);
-             return $output === 0;
-         } else {
-             print "build.sh not found, or is not executable\n";
-             return false;
-         }
-     }
+    public static function buildDesignSystem(ScriptEvent $event = null): bool
+    {
+        $build = realpath(dirname(__FILE__) . "/../../build.sh");
+        if ($build && file_exists($build) && is_executable($build)) {
+            $cmd = escapeshellcmd($build);
+            passthru($cmd, $output);
+            return $output === 0;
+        } else {
+            print "build.sh not found, or is not executable\n";
+            return false;
+        }
+    }
 }

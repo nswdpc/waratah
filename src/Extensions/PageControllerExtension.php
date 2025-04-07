@@ -6,7 +6,6 @@ use SilverStripe\Core\Extension;
 
 class PageControllerExtension extends Extension
 {
-
     public function ElementNav($position = null)
     {
         $elementArea = $this->owner->ElementalArea();

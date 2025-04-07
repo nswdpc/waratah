@@ -13,7 +13,6 @@ use SilverStripe\ORM\SS_List;
  */
 class ElementSectionNavigationExtension extends DataExtension
 {
-
     /**
      * @var array
      */
@@ -47,10 +46,10 @@ class ElementSectionNavigationExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
 
-        $cardColumns = DropdownField::create('CardColumns',_t(__CLASS__ . '.CARDCOLUMNS','Card columns'),$this->owner->config()->card_columns);
+        $cardColumns = DropdownField::create('CardColumns', _t(__CLASS__ . '.CARDCOLUMNS', 'Card columns'), $this->owner->config()->card_columns);
         $cardColumns->setEmptyString('none');
 
-        $cardStyle = DropdownField::create('CardStyle',_t(__CLASS__ . '.CARDSTYLE','Card style'),$this->owner->config()->card_styles);
+        $cardStyle = DropdownField::create('CardStyle', _t(__CLASS__ . '.CARDSTYLE', 'Card style'), $this->owner->config()->card_styles);
         $cardStyle->setEmptyString('none');
 
         $fields->addFieldsToTab(
@@ -66,7 +65,7 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * @todo this should implement the grid-helpers handling
      */
-    public function getColumns() : ?string
+    public function getColumns(): ?string
     {
         $columns = $this->owner->CardColumns;
 
@@ -87,9 +86,10 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Return the section navigation sorted by the Sort order in SiteTree
      */
-    public function getSortedSectionNavigation() : ?SS_List {
+    public function getSortedSectionNavigation(): ?SS_List
+    {
         $list = $this->owner->getSectionNavigation();
-        if($list) {
+        if ($list) {
             $list = $list->sort('Sort');
             return $list;
         }
@@ -99,21 +99,24 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Determine if card is horizontal (promo)
      */
-    public function getIsHorizontal() : bool {
+    public function getIsHorizontal(): bool
+    {
         return $this->owner->CardStyle == 'promo';
     }
 
     /**
      * Determine if abstract should be displayed
      */
-    public function getShowAbstract() : bool {
+    public function getShowAbstract(): bool
+    {
         return $this->owner->CardStyle != 'title';
     }
 
     /**
      * Determine if image should be displayed
      */
-    public function getShowImage() : bool {
+    public function getShowImage(): bool
+    {
         return $this->owner->CardStyle == 'promo' || $this->owner->CardStyle == 'title-image-abstract';
     }
 

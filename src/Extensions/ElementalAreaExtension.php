@@ -11,7 +11,6 @@ use SilverStripe\ORM\DataExtension;
  */
 class ElementalAreaExtension extends DataExtension
 {
-
     /**
      * @var array
      */
@@ -37,10 +36,11 @@ class ElementalAreaExtension extends DataExtension
     /**
      * Return a context title for assistance with sorting out which area is which
      */
-    public function ContextTitle() {
-        if($this->owner->IsSideArea == 1) {
+    public function ContextTitle()
+    {
+        if ($this->owner->IsSideArea == 1) {
             return _t('nswds.SIDE_CONTENT', 'Side content');
-        } else if($this->owner->IsTopArea == 1) {
+        } elseif ($this->owner->IsTopArea == 1) {
             return _t('nswds.TOP_CONTENT', 'Top content');
         } else {
             return _t('nswds.MAIN_CONTENT', 'Main content');

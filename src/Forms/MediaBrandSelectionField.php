@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class MediaBrandSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**

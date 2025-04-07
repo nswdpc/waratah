@@ -50,7 +50,7 @@ class LinkExtension extends DataExtension
     /**
      * Get allowed file types
      */
-    public function getAllowedFileTypes() : array
+    public function getAllowedFileTypes(): array
     {
         $types = $this->owner->config()->get("allowed_file_types");
         if (empty($types)) {
@@ -110,12 +110,13 @@ class LinkExtension extends DataExtension
      * for a link from the linked SiteTree record, if the link is of type SiteTree
      * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
      */
-    public function LinkDescription() {
+    public function LinkDescription()
+    {
         $type = $this->owner->Type;
         $description = $this->owner->Description;
-        if(!$description && $type == 'SiteTree') {
+        if (!$description && $type == 'SiteTree') {
             $record = $this->owner->SiteTree();
-            if($record && $record->isInDB() && $record->hasField('Abstract')) {
+            if ($record && $record->isInDB() && $record->hasField('Abstract')) {
                 $description = trim($record->Abstract ?? '');
             }
         }
@@ -127,12 +128,13 @@ class LinkExtension extends DataExtension
      * for a link from the linked SiteTree record, if the link is of type SiteTree
      * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
      */
-    public function LinkImage() : ?Image {
+    public function LinkImage(): ?Image
+    {
         $type = $this->owner->Type;
         $image = $this->owner->Image();
-        if((!$image || !$image->exists()) && $type == 'SiteTree') {
+        if ((!$image || !$image->exists()) && $type == 'SiteTree') {
             $record = $this->owner->SiteTree();
-            if($record && $record->isInDB() && $record->hasField('Image')) {
+            if ($record && $record->isInDB() && $record->hasField('Image')) {
                 $image = $record->Image();
             }
         }

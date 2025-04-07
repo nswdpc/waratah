@@ -17,19 +17,17 @@ use gorriecoe\LinkField\LinkField;
 use NSWDPC\InlineLinker\InlineLinkCompositeField;
 use UncleCheese\DisplayLogic\Forms\Wrapper;
 
-
 /**
  * Design system integration for Banner element
  */
 class ElementBannerExtension extends DataExtension
 {
-
     /**
      * Branding constants
      */
-    const BRAND_NONE = '';
-    const BRAND_DARK = 'dark';
-    const BRAND_LIGHT = 'light';
+    public const BRAND_NONE = '';
+    public const BRAND_DARK = 'dark';
+    public const BRAND_LIGHT = 'light';
 
     /**
      * @var bool
@@ -81,13 +79,13 @@ class ElementBannerExtension extends DataExtension
 
         $bannerStyleField = DropdownField::create(
             'BannerStyle',
-            _t('nswds.BANNERSTYLE','Layout'),
+            _t('nswds.BANNERSTYLE', 'Layout'),
             $this->owner->config()->get("banner_styles")
         );
 
         $bannerBrandingField = HeroBannerBrandSelectionField::create(
             'BannerBrand',
-            _t('nswds.BANNERBRAND','Brand')
+            _t('nswds.BANNERBRAND', 'Brand')
         );
 
         $imageField = UploadField::create(
@@ -113,7 +111,8 @@ class ElementBannerExtension extends DataExtension
         $linkField = Wrapper::create(InlineLinkCompositeField::create(
             'BannerLink',
             _t(
-                'nswds.LINK', 'Link'
+                'nswds.LINK',
+                'Link'
             ),
             $this->owner
         ));
@@ -124,7 +123,7 @@ class ElementBannerExtension extends DataExtension
 
         $linksFieldTitle = TextField::create(
             'BannerLinksTitle',
-            _t('nswds.LINKSTITLE','Links title'),
+            _t('nswds.LINKSTITLE', 'Links title'),
         );
         $linksFieldTitle
             ->displayIf('BannerStyle')
@@ -132,7 +131,7 @@ class ElementBannerExtension extends DataExtension
 
         $linksField = LinkField::create(
             'BannerLinks',
-            _t('nswds.LINKS','Links'),
+            _t('nswds.LINKS', 'Links'),
             $this->owner
         );
         $linksField->setSortColumn('Sort');
@@ -172,7 +171,7 @@ class ElementBannerExtension extends DataExtension
          * "--light" in v2.14 is light blue, so reset to no brand if AltStyle is enabled in a one-off move
          * Future update will remove the AltStyle field
          */
-        if($this->owner->AltStyle == 1) {
+        if ($this->owner->AltStyle == 1) {
             $this->owner->BannerBrand = self::BRAND_NONE;
             $this->owner->AltStyle = 0;// turn off
         }

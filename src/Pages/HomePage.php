@@ -7,7 +7,7 @@ class HomePage extends \Page
     /**
      * @var string
      */
-    private static $singular_name= "Home page";
+    private static $singular_name = "Home page";
 
     /**
      * @var string
@@ -19,7 +19,8 @@ class HomePage extends \Page
     /**
      * This page is a homepage
      */
-    public function getIsHomePage() {
+    public function getIsHomePage()
+    {
         return 1;
     }
 }

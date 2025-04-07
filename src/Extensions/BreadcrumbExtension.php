@@ -16,7 +16,8 @@ use SilverStripe\Forms\CheckboxField;
  */
 class BreadcrumbExtension extends DataExtension
 {
-    public function BreadcrumbLink() {
+    public function BreadcrumbLink()
+    {
         return $this->owner->Link();
     }
 }

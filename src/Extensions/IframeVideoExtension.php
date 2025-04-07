@@ -14,19 +14,20 @@ use SilverStripe\View\Requirements;
  */
 class IframeVideoExtension extends Extension
 {
-
     /**
      * Provide a method to handle lazy loading flag, this is on for everything, for now
      */
-    public function WillLazyLoad() {
+    public function WillLazyLoad()
+    {
         return true;
     }
 
     /**
      * Provide a polyfill method, accessible from a template
      */
-    public function Polyfill() {
-        if($this->owner->WillLazyLoad()) {
+    public function Polyfill()
+    {
+        if ($this->owner->WillLazyLoad()) {
             Requirements::javascript(
                 "https://cdnjs.cloudflare.com/ajax/libs/loading-attribute-polyfill/1.5.4/loading-attribute-polyfill.min.js",
                 [

@@ -8,7 +8,6 @@ use SilverStripe\Forms\TextField;
 
 class ImageAssetFormFactoryExtension extends Extension
 {
-
     public function updateFormFields(FieldList $fields)
     {
 
@@ -17,7 +16,7 @@ class ImageAssetFormFactoryExtension extends Extension
             _t('nswds.PHOTO_CREDIT_COPYRIGHT', 'Photo credit/copyright')
         );
         $titleField = $fields->fieldByName('Editor.Details.Title');
-        if($titleField && $titleField->isReadonly()) {
+        if ($titleField && $titleField->isReadonly()) {
             $creditField = $creditField->performReadonlyTransformation();
         }
         $fields->insertAfter(

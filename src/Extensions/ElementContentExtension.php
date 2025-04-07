@@ -27,7 +27,6 @@ use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
  */
 class ElementContentExtension extends DataExtension
 {
-
     /**
      * @var array
      */
@@ -60,16 +59,17 @@ class ElementContentExtension extends DataExtension
      * These fields can only be applied to ElementContent directly, not subclasses
      * If the current owner is ignored, remove the fields and return true
      */
-    public function handleIgnoredOwner(FieldList $fields) : bool {
+    public function handleIgnoredOwner(FieldList $fields): bool
+    {
         $classes = [
             ElementDecoratedContent::class,
             ElementFeaturedVideo::class
         ];
         $ignored_subclasses = $this->owner->config()->get('ignored_subclasses');
-        if(is_array($ignored_subclasses)) {
+        if (is_array($ignored_subclasses)) {
             $classes = array_merge($classes, $ignored_subclasses);
         }
-        if( in_array(get_class($this->owner), $classes) ) {
+        if (in_array(get_class($this->owner), $classes)) {
             $fields->removeByName(['ContentLinkID','ContentLink','ContentImageID','ContentImage']);
             return true;
         }
@@ -82,17 +82,17 @@ class ElementContentExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
 
-        if($this->owner->handleIgnoredOwner($fields)) {
+        if ($this->owner->handleIgnoredOwner($fields)) {
             return;
         }
 
         $fields->removeByName(['ContentLinkID']);
         $fields->addFieldToTab(
             'Root.Image',
-                UploadField::create(
-                    'ContentImage',
-                    _t('nswds.IMAGE', 'Image')
-                )
+            UploadField::create(
+                'ContentImage',
+                _t('nswds.IMAGE', 'Image')
+            )
                 ->setAllowedExtensions($this->owner->getAllowedFileTypes())
                 ->setIsMultiUpload(false)
                 ->setDescription(
@@ -107,7 +107,7 @@ class ElementContentExtension extends DataExtension
         );
         $fields->addFieldToTab(
             'Root.Link',
-                $this->getLinkField()
+            $this->getLinkField()
         );
     }
 
@@ -115,7 +115,8 @@ class ElementContentExtension extends DataExtension
      * Return the inline link field to handle link selection
      * @return InlineLinkCompositeField
      */
-    protected function getLinkField() : InlineLinkCompositeField {
+    protected function getLinkField(): InlineLinkCompositeField
+    {
         $field = InlineLinkCompositeField::create(
             'ContentLink',
             _t(

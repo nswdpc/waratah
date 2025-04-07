@@ -16,8 +16,8 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
  * This field is rendered via nswds/InPageNotification template
  * @author James
  */
-class EditableInPageNotificationField extends EditableLiteralField {
-
+class EditableInPageNotificationField extends EditableLiteralField
+{
     /**
      * @var string
      */
@@ -68,14 +68,16 @@ class EditableInPageNotificationField extends EditableLiteralField {
     /**
      * Return icon based on state
      */
-    public function getIconCode():string {
-        return NotificationStateSelectionField::getIconCode( $this->NotificationLevel );
+    public function getIconCode(): string
+    {
+        return NotificationStateSelectionField::getIconCode($this->NotificationLevel);
     }
 
     /**
      * @inheritdoc
      */
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = parent::getCMSFields();
         $fields->insertAfter(
             'Content',
@@ -92,7 +94,7 @@ class EditableInPageNotificationField extends EditableLiteralField {
 
         $fields->removeByName(['HideFromReports']);
 
-        if($hideLabelField = $fields->dataFieldByName('HideLabel')) {
+        if ($hideLabelField = $fields->dataFieldByName('HideLabel')) {
             $hideLabelField->setTitle(
                 _t(
                     'nswds.HIDE_TITLE_IN_NOTIFICATION',
@@ -112,7 +114,8 @@ class EditableInPageNotificationField extends EditableLiteralField {
      * Hide the label
      * @inheritdoc
      */
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
         $this->HideFromReports = 1;
     }
@@ -125,7 +128,7 @@ class EditableInPageNotificationField extends EditableLiteralField {
     public function getFormField()
     {
 
-        if(Controller::curr() instanceof LeftAndMain) {
+        if (Controller::curr() instanceof LeftAndMain) {
             // avoid theme issues with templates not being found
             $content = "";
         } else {

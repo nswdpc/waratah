@@ -15,8 +15,8 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
  * This field is rendered via nswds/Callout template
  * @author James
  */
-class EditableCalloutField extends EditableLiteralField {
-
+class EditableCalloutField extends EditableLiteralField
+{
     /**
      * @var string
      */
@@ -73,7 +73,8 @@ class EditableCalloutField extends EditableLiteralField {
     /**
      * @inheritdoc
      */
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = parent::getCMSFields();
         $fields->insertAfter(
             'Content',
@@ -104,7 +105,8 @@ class EditableCalloutField extends EditableLiteralField {
     /**
      * Get the link chooser field
      */
-    public function getLinkField() : InlineLinkField{
+    public function getLinkField(): InlineLinkField
+    {
         return InlineLinkField::create(
             'Link',
             _t('nswds.LINK', 'Link'),
@@ -116,7 +118,8 @@ class EditableCalloutField extends EditableLiteralField {
      * Hide the label
      * @inheritdoc
      */
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
         $this->HideLabel = 1;
         $this->HideFromReports = 1;
@@ -130,7 +133,7 @@ class EditableCalloutField extends EditableLiteralField {
     public function getFormField()
     {
 
-        if(Controller::curr() instanceof LeftAndMain) {
+        if (Controller::curr() instanceof LeftAndMain) {
             // avoid theme issues with templates not being found
             $content = "";
         } else {

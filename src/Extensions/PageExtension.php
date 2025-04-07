@@ -17,7 +17,6 @@ use SilverStripe\View\ArrayData;
 
 class PageExtension extends DataExtension
 {
-
     /**
      * @var array
      */
@@ -86,14 +85,15 @@ class PageExtension extends DataExtension
      * Return the sidebar navigation parent for the current page or null if none exists
      * @param int $level
      */
-    public function getSidebarNavigation(int $level = 1) : ?SiteTree {
+    public function getSidebarNavigation(int $level = 1): ?SiteTree
+    {
         $parent = null;
-        if( !( $parent = $this->owner->getSidebarSectionParent() ) ) {
+        if (!($parent = $this->owner->getSidebarSectionParent())) {
             $parent = $this->owner->Level($level);
         }
-        if($parent) {
+        if ($parent) {
             $children = $parent->Children();
-            if($children && $children->count() > 0) {
+            if ($children && $children->count() > 0) {
                 return $parent;
             }
         }
@@ -105,8 +105,9 @@ class PageExtension extends DataExtension
      * Returns the parent record, or false
      * @return SiteTree|bool
      */
-    public function getSidebarSectionParent() {
-        if($this->owner->isCurrent() && $this->owner->ShowSectionNav == 1) {
+    public function getSidebarSectionParent()
+    {
+        if ($this->owner->isCurrent() && $this->owner->ShowSectionNav == 1) {
             // Current record is set to show it's own children
             return $this->owner;
         } else {
@@ -243,7 +244,7 @@ class PageExtension extends DataExtension
      * If LastUpdated has no value, use record LastEdited value
      * @return ArrayData|null
      */
-    public function PageLastUpdated() : ?ArrayData
+    public function PageLastUpdated(): ?ArrayData
     {
         $showLastUpdated = $this->owner->config()->get('show_last_updated');
         $disableDateOnPage = $this->owner->DisableLastUpdated;
@@ -252,7 +253,7 @@ class PageExtension extends DataExtension
         } else {
             $format = $this->owner->config()->get('last_updated_format');
             $publicDateOnPage = $this->owner->dbObject('PublicLastUpdated');
-            if($publicDateOnPage->getValue()) {
+            if ($publicDateOnPage->getValue()) {
                 $displayDate = $publicDateOnPage;
             } else {
                 $displayDate = $this->owner->dbObject('LastEdited');
