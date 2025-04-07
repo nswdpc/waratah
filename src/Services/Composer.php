@@ -42,7 +42,7 @@ class Composer
      */
     public static function buildDesignSystem(ScriptEvent $event = null): bool
     {
-        $build = realpath(dirname(__FILE__) . "/../../build.sh");
+        $build = realpath(__DIR__ . "/../../build.sh");
         if ($build && file_exists($build) && is_executable($build)) {
             $cmd = escapeshellcmd($build);
             passthru($cmd, $output);

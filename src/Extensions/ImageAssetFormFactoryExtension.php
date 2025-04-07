@@ -19,6 +19,7 @@ class ImageAssetFormFactoryExtension extends Extension
         if ($titleField && $titleField->isReadonly()) {
             $creditField = $creditField->performReadonlyTransformation();
         }
+
         $fields->insertAfter(
             'Title',
             $creditField

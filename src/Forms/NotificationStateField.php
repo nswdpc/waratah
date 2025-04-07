@@ -27,6 +27,7 @@ class NotificationStateSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $this->source = $this->getColourSelectionOptions('notificationstate');
@@ -39,18 +40,12 @@ class NotificationStateSelectionField extends DropdownField
      */
     public static function getIconCode($state): string
     {
-        switch ($state) {
-            case 'warning':
-                return 'error';
-            case 'error':
-                // critical
-                return 'cancel';
-            case 'success':
-                return 'check_circle';
-            case 'info':
-            default:
-                return 'info';
-        }
+        return match ($state) {
+            'warning' => 'error',
+            'error' => 'cancel',
+            'success' => 'check_circle',
+            default => 'info',
+        };
     }
 
 }

@@ -10,30 +10,23 @@ use SilverStripe\ORM\SS_List;
 /**
  * Provide decoration options for
  * {@link Dynamic\Elements\Section\Elements\ElementSectionNavigation}
+ * @property ?string $CardColumns
+ * @property ?string $CardStyle
  */
 class ElementSectionNavigationExtension extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'CardColumns' => 'Varchar(64)',
         'CardStyle' => 'Varchar(64)'
     ];
 
-    /**
-     * @var array
-     */
-    private static $card_columns = [
+    private static array $card_columns = [
         '2' => 'Two',
         '3' => 'Three',
         '4' => 'Four',
     ];
 
-    /**
-     * @var array
-     */
-    private static $card_styles = [
+    private static array $card_styles = [
         'title' => 'Title only',
         'title-abstract' => 'Title and abstract',
         'title-image-abstract' => 'Title, image, abstract',
@@ -43,13 +36,14 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Implement CMS fields for card display
      */
+    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
-        $cardColumns = DropdownField::create('CardColumns', _t(__CLASS__ . '.CARDCOLUMNS', 'Card columns'), $this->owner->config()->card_columns);
+        $cardColumns = DropdownField::create('CardColumns', _t(self::class . '.CARDCOLUMNS', 'Card columns'), $this->getOwner()->config()->card_columns);
         $cardColumns->setEmptyString('none');
 
-        $cardStyle = DropdownField::create('CardStyle', _t(__CLASS__ . '.CARDSTYLE', 'Card style'), $this->owner->config()->card_styles);
+        $cardStyle = DropdownField::create('CardStyle', _t(self::class . '.CARDSTYLE', 'Card style'), $this->getOwner()->config()->card_styles);
         $cardStyle->setEmptyString('none');
 
         $fields->addFieldsToTab(
@@ -67,14 +61,16 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getColumns(): ?string
     {
-        $columns = $this->owner->CardColumns;
+        $columns = $this->getOwner()->CardColumns;
 
         if ($columns == 2) {
             return "nsw-col-sm-6";
         }
+
         if ($columns == 3) {
             return "nsw-col-md-4";
         }
+
         if ($columns == 4) {
             return "nsw-col-sm-6 nsw-col-md-4 nsw-col-lg-3";
         }
@@ -88,11 +84,11 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getSortedSectionNavigation(): ?SS_List
     {
-        $list = $this->owner->getSectionNavigation();
+        $list = $this->getOwner()->getSectionNavigation();
         if ($list) {
-            $list = $list->sort('Sort');
-            return $list;
+            return $list->sort('Sort');
         }
+
         return null;
     }
 
@@ -101,7 +97,7 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getIsHorizontal(): bool
     {
-        return $this->owner->CardStyle == 'promo';
+        return $this->getOwner()->CardStyle == 'promo';
     }
 
     /**
@@ -109,7 +105,7 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getShowAbstract(): bool
     {
-        return $this->owner->CardStyle != 'title';
+        return $this->getOwner()->CardStyle != 'title';
     }
 
     /**
@@ -117,7 +113,7 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getShowImage(): bool
     {
-        return $this->owner->CardStyle == 'promo' || $this->owner->CardStyle == 'title-image-abstract';
+        return $this->getOwner()->CardStyle == 'promo' || $this->getOwner()->CardStyle == 'title-image-abstract';
     }
 
 }

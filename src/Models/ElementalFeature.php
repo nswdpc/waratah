@@ -13,71 +13,50 @@ use gorriecoe\LinkField\LinkField;
 
 /**
  * Feature element that aligns with the NSWDS 'Content Block' component
+ * @property int $IconSVGID
+ * @property int $IconImageID
+ * @method \SilverStripe\Assets\File IconSVG()
+ * @method \SilverStripe\Assets\Image IconImage()
+ * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> Links()
  */
 class ElementalFeature extends ElementContent
 {
-    /**
-     * @var bool
-     */
-    private static $inline_editable = false;
+    private static bool $inline_editable = false;
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementalFeature';
+    private static string $table_name = 'ElementalFeature';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Content block';
+    private static string $singular_name = 'Content block';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Content blocks';
+    private static string $plural_name = 'Content blocks';
 
-    /**
-     * @var string
-     */
-    private static $description = 'Create a Content block';
+    private static string $description = 'Create a Content block';
 
     /**
      * @inheritdoc
      */
-    private static $icon = 'font-icon-block-promo-2';
+    private static string $icon = 'font-icon-block-promo-2';
 
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         'IconSVG' => File::class,
         'IconImage' => Image::class
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many = [
+    private static array $many_many = [
         'Links' => Link::class
     ];
 
-    /**
-     * @var array
-     */
-    private static $many_many_extraFields = [
+    private static array $many_many_extraFields = [
         'Links' => [
             'Sort' => 'Int'
         ]
     ];
 
-    /**
-     * @var array
-     */
-    private static $owns = ['IconSVG','IconImage'];
+    private static array $owns = ['IconSVG','IconImage'];
 
     /**
      * Provide fields for editing
      */
+    #[\Override]
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -147,6 +126,7 @@ class ElementalFeature extends ElementContent
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getType()
     {
         return _t(static::class . '.BlockType', 'Content block');

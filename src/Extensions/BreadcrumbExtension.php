@@ -18,6 +18,6 @@ class BreadcrumbExtension extends DataExtension
 {
     public function BreadcrumbLink()
     {
-        return $this->owner->Link();
+        return $this->getOwner()->Link();
     }
 }
