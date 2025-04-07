@@ -43,9 +43,6 @@ trait FilterFormTrait {
      */
     public $showFilterCount = true;
 
-    /**
-     * @var string
-     */
     public function getTemplate()
     {
         return 'nswds/FilterForm';
@@ -61,7 +58,6 @@ trait FilterFormTrait {
 
     /**
      * Allow runtime overriding of isFilterForm
-     * @param bool
      */
     public function setIsFilterForm(bool $is) : Form {
         $this->getExtendedForm()->isFilterForm = $is;
@@ -137,7 +133,6 @@ trait FilterFormTrait {
 
     /**
      * Set filters collapsed option
-     * @param bool
      */
     public function setFiltersCollapsed(bool $collapsed) : Form {
         $this->getExtendedForm()->filtersCollapsed = $collapsed;
@@ -153,7 +148,6 @@ trait FilterFormTrait {
 
     /**
      * Set show filter count option
-     * @param bool
      */
     public function setShowFilterCount(bool $show) : Form {
         $this->getExtendedForm()->showFilterCount = $show;

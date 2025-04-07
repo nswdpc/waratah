@@ -42,18 +42,14 @@ class NotificationStateSelectionField extends DropdownField
         switch($state) {
             case 'warning':
                 return 'error';
-                break;
             case 'error':
                 // critical
                 return 'cancel';
-                break;
             case 'success':
                 return 'check_circle';
-                break;
             case 'info':
             default:
                 return 'info';
-                break;
         }
     }
 

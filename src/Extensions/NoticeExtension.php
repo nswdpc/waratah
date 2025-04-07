@@ -7,7 +7,7 @@ use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\DB;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\Fieldlist;
+use SilverStripe\Forms\FieldList;
 
 /**
  * Extension for generic notice module/record
@@ -52,7 +52,7 @@ class NoticeExtension extends DataExtension {
     /**
      * @return void
      */
-    public function updateCmsFields(Fieldlist $fields) {
+    public function updateCmsFields(FieldList $fields) {
         $fields->insertAfter(
             'Description',
             CheckboxField::create(

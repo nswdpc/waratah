@@ -28,9 +28,8 @@ class Composer {
 
     /**
      * Called via post-create-project-cmd
-     * @return boolean
      */
-    public static function postCreateProject(ScriptEvent $event) {
+    public static function postCreateProject(ScriptEvent $event): bool {
         return self::buildDesignSystem($event);
     }
 
@@ -38,9 +37,8 @@ class Composer {
      * Execute the build script for the design system
      * Usage: `composer run-script build-nswds`
      * Gotcha: build.sh requires npm to be available on the host
-     * @return boolean
      */
-     public static function buildDesignSystem(ScriptEvent $event = null) {
+     public static function buildDesignSystem(ScriptEvent $event = null): bool {
          $build = realpath(dirname(__FILE__) . "/../../build.sh");
          if($build && file_exists($build) && is_executable($build)) {
              $cmd = escapeshellcmd($build);

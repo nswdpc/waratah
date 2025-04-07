@@ -2,8 +2,8 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
-use Silverstripe\Control\Controller;
-use Silverstripe\ORM\DataExtension;
+use SilverStripe\Control\Controller;
+use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Versioned\Versioned;
 
@@ -24,7 +24,7 @@ class SiteTreeExtension extends DataExtension
         if (Permission::check('CMS_ACCESS_CMSMain')
             && $this->owner->ID > 0
             && Versioned::get_stage() === Versioned::DRAFT
-            && $request->getVar('CMSPreview') == 1
+            && $request->getVar('CMSPreview') == '1'
         ) {
             $tags['pageId'] = [
                 'attributes' => [

@@ -4,7 +4,7 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
-use Silverstripe\Forms\TextField;
+use SilverStripe\Forms\TextField;
 
 class ImageAssetFormFactoryExtension extends Extension
 {

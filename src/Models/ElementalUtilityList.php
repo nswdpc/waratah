@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Models;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\CheckboxsetField;
+use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\FieldType\DBField;
@@ -150,7 +150,7 @@ class ElementalUtilityList extends BaseElement
 
         $fields->addFieldToTab(
             'Root.Main',
-            CheckboxsetField::create(
+            CheckboxSetField::create(
                 'Features',
                 _t('nswds.UTILITY_LIST_FEATURES', 'Features'),
                 $this->getSupportedFeatures()
@@ -159,7 +159,7 @@ class ElementalUtilityList extends BaseElement
 
         $fields->addFieldToTab(
             'Root.Main',
-            CheckboxsetField::create(
+            CheckboxSetField::create(
                 'Networks',
                 _t('nswds.UTILITY_LIST_NETWORKS', 'Supported networks'),
                 $this->getSupportedNetworks()

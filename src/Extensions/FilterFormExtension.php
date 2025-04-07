@@ -17,7 +17,6 @@ class FilterFormExtension extends Extension
 
     /**
      * Return the owner Form, overrides trait method of same name
-     * @return
      */
     public function getExtendedForm() : Form {
         return $this->owner;

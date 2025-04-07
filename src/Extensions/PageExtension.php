@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use Page;
 use SilverStripe\Control\Director;
 use SilverStripe\CMS\Model\SiteTree;
-use Silverstripe\ORM\DataExtension;
+use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\TextareaField;
@@ -239,7 +239,6 @@ class PageExtension extends DataExtension
     /**
      * Return Last Updated date for record, if enabled
      * If LastUpdated has no value, use record LastEdited value
-     * @param string|null optional date format, if none passed the configured date format is used
      * @return ArrayData|null
      */
     public function PageLastUpdated() : ?ArrayData
