@@ -10,7 +10,7 @@ use SilverStripe\Forms\Form;
  * Apply this extension to specific forms via configuration, to apply
  * filter form smarts to a form
  * @author James
- * @extends \SilverStripe\Core\Extension<(\SilverStripe\Forms\Form & static)>
+ * @extends \SilverStripe\Core\Extension<static>
  */
 class FilterFormExtension extends Extension
 {

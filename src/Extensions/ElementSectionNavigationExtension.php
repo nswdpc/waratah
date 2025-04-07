@@ -48,7 +48,7 @@ class ElementSectionNavigationExtension extends DataExtension
                 self::class . '.CARDCOLUMNS',
                 'Card columns'
             ),
-            Config::inst()->get(get_class($this->getOwner()), 'card_columns')
+            Config::inst()->get($this->getOwner()::class, 'card_columns')
         )->setEmptyString(_t('nswds.NONE', 'none'));
 
         $cardStyle = DropdownField::create(
@@ -57,7 +57,7 @@ class ElementSectionNavigationExtension extends DataExtension
                 self::class . '.CARDSTYLE',
                 'Card style'
             ),
-            Config::inst()->get(get_class($this->getOwner()), 'card_styles')
+            Config::inst()->get($this->getOwner()::class, 'card_styles')
         )->setEmptyString(_t('nswds.NONE', 'none'));
 
         $fields->addFieldsToTab(

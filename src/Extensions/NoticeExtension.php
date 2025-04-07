@@ -34,7 +34,7 @@ class NoticeExtension extends DataExtension
         parent::onAfterWrite();
         if ($this->getOwner()->IsAcknowledgementOfCountry == 1) {
             DB::prepared_query(
-                "UPDATE \"SiteNotice\" SET \"IsAcknowledgementOfCountry\" = 0 WHERE ID <> ?",
+                'UPDATE "SiteNotice" SET "IsAcknowledgementOfCountry" = 0 WHERE ID <> ?',
                 [ $this->getOwner()->ID ]
             );
         }
