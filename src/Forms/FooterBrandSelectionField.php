@@ -27,6 +27,7 @@ class FooterBrandSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $this->source = $this->getColourSelectionOptions('footerbrand');

@@ -10,12 +10,13 @@ use SilverStripe\CMS\Model\SiteTreeExtension;
  */
 class ErrorPageExtension extends SiteTreeExtension
 {
-    public function canView()
+    public function canView(): bool
     {
         return true;
     }
 
-    public function includeElemental() {
+    public function includeElemental(): bool
+    {
         return false;
     }
 }

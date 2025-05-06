@@ -12,27 +12,22 @@ use SilverStripe\ORM\DataExtension;
 /**
  * Decorate \gorriecoe\Link\Models\Link with extra fields and other
  * requirements
+ * @property ?string $Description
+ * @property int $ImageID
+ * @method \SilverStripe\Assets\Image Image()
+ * @extends \SilverStripe\ORM\DataExtension<(\gorriecoe\Link\Models\Link & static)>
  */
 class LinkExtension extends DataExtension
 {
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'Description' => 'Text'
     ];
 
-    /**
-     * @var array
-     */
-    private static $has_one = [
+    private static array $has_one = [
         "Image" => Image::class,
     ];
 
-    /**
-     * @var array
-     */
-    private static $allowed_file_types = [
+    private static array $allowed_file_types = [
         "jpg",
         "jpeg",
         "gif",
@@ -40,29 +35,27 @@ class LinkExtension extends DataExtension
         "webp"
     ];
 
-    /**
-     * @var array
-     */
-    private static $owns = [
+    private static array $owns = [
         "Image"
     ];
 
     /**
      * Get allowed file types
      */
-    public function getAllowedFileTypes() : array
+    public function getAllowedFileTypes(): array
     {
-        $types = $this->owner->config()->get("allowed_file_types");
+        $types = $this->getOwner()->config()->get("allowed_file_types");
         if (empty($types)) {
             $types = ["jpg", "jpeg", "gif", "png", "webp"];
         }
-        $types = array_unique($types);
-        return $types;
+
+        return array_unique($types);
     }
 
     /**
      * Update CMS fields for administration of link
      */
+    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -84,14 +77,14 @@ class LinkExtension extends DataExtension
                 UploadField::create(
                     "Image",
                     _t("nswds.IMAGE", "Image")
-                )->setAllowedExtensions($this->owner->getAllowedFileTypes())
+                )->setAllowedExtensions($this->getOwner()->getAllowedFileTypes())
                 ->setIsMultiUpload(false)
                 ->setDescription(
                     _t(
                         "nswds.ALLOWED_FILE_TYPES",
                         "Allowed file types: {types}",
                         [
-                            'types' => implode(",", $this->owner->getAllowedFileTypes())
+                            'types' => implode(",", $this->getOwner()->getAllowedFileTypes())
                         ]
                     )
                 )->setRightTitle(
@@ -110,15 +103,17 @@ class LinkExtension extends DataExtension
      * for a link from the linked SiteTree record, if the link is of type SiteTree
      * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
      */
-    public function LinkDescription() {
-        $type = $this->owner->Type;
-        $description = $this->owner->Description;
-        if(!$description && $type == 'SiteTree') {
-            $record = $this->owner->SiteTree();
-            if($record && $record->isInDB() && $record->hasField('Abstract')) {
+    public function LinkDescription()
+    {
+        $type = $this->getOwner()->Type;
+        $description = $this->getOwner()->Description;
+        if (!$description && $type == 'SiteTree') {
+            $record = $this->getOwner()->SiteTree();
+            if ($record && $record->isInDB() && $record->hasField('Abstract')) {
                 $description = trim($record->Abstract ?? '');
             }
         }
+
         return $description;
     }
 
@@ -127,15 +122,18 @@ class LinkExtension extends DataExtension
      * for a link from the linked SiteTree record, if the link is of type SiteTree
      * @see gorriecoe\Link\Extensions\LinkSiteTree::SiteTree()
      */
-    public function LinkImage() : ?Image {
-        $type = $this->owner->Type;
-        $image = $this->owner->Image();
-        if((!$image || !$image->exists()) && $type == 'SiteTree') {
-            $record = $this->owner->SiteTree();
-            if($record && $record->isInDB() && $record->hasField('Image')) {
+    public function LinkImage(): ?Image
+    {
+        $type = $this->getOwner()->Type;
+        $image = $this->getOwner()->Image();
+        if ((!$image || !$image->exists()) && $type == 'SiteTree') {
+            $record = $this->getOwner()->SiteTree();
+            if ($record && $record->isInDB() && $record->hasField('Image')) {
+                /* @phpstan-ignore method.notFound */
                 $image = $record->Image();
             }
         }
+
         return $image;
     }
 
