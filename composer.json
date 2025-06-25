@@ -27,12 +27,6 @@
             ]
         }
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/nswdpc/ci-files.git"
-        }
-    ],
     "replace": {
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
@@ -50,7 +44,9 @@
         "phpunit/phpunit": "^9.5",
         "cambis/silverstan": "^1",
         "nswdpc/ci-files": "dev-v-3",
-        "friendsofphp/php-cs-fixer": "^3"
+        "friendsofphp/php-cs-fixer": "^3",
+        "phpstan/phpstan": "^1",
+        "rector/rector": "^1"
     },
     "extra": {
         "expose": [
