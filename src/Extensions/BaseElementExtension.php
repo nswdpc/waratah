@@ -13,15 +13,20 @@ use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\View\Requirements;
 
-
 /**
  * Provide additional elemental integration with DS
  * @author Mark Taylor
  * @author James Ellis
+ * @property ?string $HeadingLevel
+ * @property bool $ShowInMenus
+ * @property bool $AddContainer
+ * @property ?string $AddBackground
+ * @property bool $IsBoxed
+ * @property ?string $VerticalSpacing
+ * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\BaseElement & static)>
  */
 class BaseElementExtension extends DataExtension
 {
-
     use DesignSystemSelections;
 
     /**
@@ -29,9 +34,8 @@ class BaseElementExtension extends DataExtension
      * The AddBackground option '1' is a legacy option that triggered 'light-10' background. This now triggers 'off-white'
      * The AddBackground value of 0, the default, produces a nsw-section without suffixed classes
      * See the getBackground method which templates should use to retrieve the correct background class for the section ({$Background})
-     * @var array
      */
-    private static $db = [
+    private static array $db = [
         'HeadingLevel' => 'Varchar(4)',
         'ShowInMenus'  => 'Boolean',
         'AddContainer' => 'Boolean',
@@ -43,19 +47,15 @@ class BaseElementExtension extends DataExtension
     /**
      * By default all elements have a container, elements not on landing/full width pages
      * will ignore the container value and never be in a container, in any case
-     * @var array
      */
-    private static $defaults = [
+    private static array $defaults = [
         'AddContainer' => 1,
         'AddBackground' => 0,
         'IsBoxed' => 0,
         'VerticalSpacing' => null,// default
     ];
 
-    /**
-     * @var array
-     */
-    private static $headings = [
+    private static array $headings = [
         'h3' => 'Heading Three',
         'h4' => 'Heading Four',
         'h5' => 'Heading Five',
@@ -64,9 +64,8 @@ class BaseElementExtension extends DataExtension
 
     /**
      * @deprecated v1.0
-     * @var array
      */
-    private static $backgrounds = [
+    private static array $backgrounds = [
         'white' => 'White',
         'light-10' => 'Light 10',
         'light-20' => 'Light 20',
@@ -76,15 +75,17 @@ class BaseElementExtension extends DataExtension
     /**
      * Use Reflection to get the element shortname for a CSS class
      */
-    public function ElementShortName() : string {
-        $rc = new \ReflectionClass($this->owner);
+    public function ElementShortName(): string
+    {
+        $rc = new \ReflectionClass($this->getOwner());
         $short = $rc->getShortName();
-        return strtolower(preg_replace("[^A-Za-z_0-9]", "", $short));
+        return strtolower((string) preg_replace("[^A-Za-z_0-9]", "", $short));
     }
 
     /**
      * Add CMS fields for element
      */
+    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -101,12 +102,12 @@ class BaseElementExtension extends DataExtension
             )
         );
 
-        $headings = $this->owner->config()->get('headings');
-        if(!is_array($headings)) {
+        $headings = $this->getOwner()->config()->get('headings');
+        if (!is_array($headings)) {
             $headings = [];
         }
 
-        $fields->addFieldsToTab(
+        $fields->addFieldToTab(
             'Root.Settings',
             DropdownField::create(
                 'HeadingLevel',
@@ -130,7 +131,7 @@ class BaseElementExtension extends DataExtension
                 )->setDescription(
                     _t(
                         'nswds.IGNORED_ON_CERTAIN_PAGES',
-                        'Applicable to landing page \'Main content\' area, only.'
+                        "Applicable to landing page 'Main content' area, only."
                     )
                 ),
                 SectionSelectionField::create(
@@ -142,7 +143,7 @@ class BaseElementExtension extends DataExtension
                 )->setDescription(
                     _t(
                         'nswds.BACKGROUND_APPLICATION_NOTES',
-                        'Backgrounds are applied to blocks in the landing page \'Main content\' area, only.'
+                        "Backgrounds are applied to blocks in the landing page 'Main content' area, only."
                     )
                 )->setRightTitle(
                     _t(
@@ -198,11 +199,13 @@ class BaseElementExtension extends DataExtension
      * Return an array of available backgrounds
      * See: https://nswdesignsystem.surge.sh/styles/section/index.html
      */
-    protected function getBackgrounds() : array {
+    protected function getBackgrounds(): array
+    {
         $backgrounds = $this->getColourSelectionOptions('section');
-        if(!is_array($backgrounds)) {
+        if (!is_array($backgrounds)) {
             $backgrounds = [];
         }
+
         return $backgrounds;
     }
 
@@ -210,7 +213,8 @@ class BaseElementExtension extends DataExtension
      * Return the supported background value, if it exists
      * Return an empty string if the value is not supported
      */
-    protected function getSupportedBackground(string $bg) : string {
+    protected function getSupportedBackground(string $bg): string
+    {
         $backgrounds = $this->getBackgrounds();
         return array_key_exists($bg, $backgrounds) ? $bg : '';
     }
@@ -221,25 +225,29 @@ class BaseElementExtension extends DataExtension
      * Use by a template as $Background
      * Invert is automatically added when a dark BG is selected
      */
-    public function getBackground() : string {
-        $bg = $this->owner->AddBackground;
+    public function getBackground(): string
+    {
+        $bg = $this->getOwner()->AddBackground;
         $bg = $this->getSupportedBackground(strval($bg));
+
         $spacing = DesignSystemConfiguration::get_spacing_class();
         $invert = DesignSystemConfiguration::is_invert_background($bg);
         $classes = [];
         // nsw-section
         $classes[] = 'nsw-section';
-        if($bg) {
+        if ($bg !== '') {
             $classes[] = 'nsw-section--' . $bg;
-            if($spacing) {
+            if ($spacing !== '') {
                 $classes[] = $spacing;
             }
-        } else if($spacing) {
+        } elseif ($spacing !== '') {
             $classes[] = $spacing;
         }
-        if($invert) {
+
+        if ($invert) {
             $classes[] = "nsw-section--invert";
         }
+
         return implode(" ", $classes);
     }
 

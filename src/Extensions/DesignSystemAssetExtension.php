@@ -17,20 +17,18 @@ use SilverStripe\View\SSViewer;
 /**
  * Provide NSW Design System asset requirement functionality
  * @author James
+ * @extends \SilverStripe\Core\Extension<((\PageController & static) | (\SilverStripe\ShareDraftContent\Controllers\ShareDraftController & static))>
  */
-class DesignSystemAssetExtension extends Extension {
-
-    /**
-     * @var DesignSystemConfiguration|null
-     */
-    private $configurator = null;
+class DesignSystemAssetExtension extends Extension
+{
+    private ?\NSWDPC\Waratah\Models\DesignSystemConfiguration $configurator = null;
 
     /**
      * Include the Design System after controller init (once)
      */
     public function onAfterInit()
     {
-        if(!$this->getConfigurationValue('frontend_provided')) {
+        if (!$this->getConfigurationValue('frontend_provided')) {
             $this->requireDesignSystem();
         }
     }
@@ -38,10 +36,12 @@ class DesignSystemAssetExtension extends Extension {
     /**
      * Get the configuration model
      */
-    final protected function getConfigurator() : DesignSystemConfiguration {
-        if(!$this->configurator) {
+    final protected function getConfigurator(): DesignSystemConfiguration
+    {
+        if (!$this->configurator instanceof \NSWDPC\Waratah\Models\DesignSystemConfiguration) {
             $this->configurator = new DesignSystemConfiguration();
         }
+
         return $this->configurator;
     }
 
@@ -49,7 +49,8 @@ class DesignSystemAssetExtension extends Extension {
      * Get the config value for a key
      * @return mixed
      */
-    final protected function getConfigurationValue(string $key) {
+    final protected function getConfigurationValue(string $key)
+    {
         return $this->getConfigurator()->config()->get($key);
     }
 
@@ -57,11 +58,12 @@ class DesignSystemAssetExtension extends Extension {
      * Return DS asset path in the format required for the Requirements API
      * @throws \Exception
      */
-    protected function getAsset(string $asset) : string {
+    protected function getAsset(string $asset): string
+    {
         $vendor = $this->getConfigurationValue('vendor');
         $module = $this->getConfigurationValue('module');
         $theme = $this->getConfigurationValue('theme');
-        if($vendor && $module && $theme) {
+        if ($vendor && $module && $theme) {
             // Silverstripe vendormodule theme
             return $vendor
              . "/"
@@ -69,20 +71,21 @@ class DesignSystemAssetExtension extends Extension {
              . ":"
              . "themes/" . $theme
              . "/" . ltrim($asset, "/");
-         } else if($theme) {
-             // Silverstripe theme
-             return "themes/" . $theme
-              . "/" . ltrim($asset, "/");
-         } else {
-             throw new \Exception("Invalid Design System configuration");
-         }
+        } elseif ($theme) {
+            // Silverstripe theme
+            return "themes/" . $theme
+             . "/" . ltrim($asset, "/");
+        } else {
+            throw new \Exception("Invalid Design System configuration");
+        }
     }
 
     /**
      * Require default font stack for the NSWDS
      * @return void
      */
-    protected function requireFonts() {
+    protected function requireFonts()
+    {
 
         Requirements::css(
             "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap"
@@ -97,19 +100,20 @@ class DesignSystemAssetExtension extends Extension {
     /**
      * Require the built assets
      */
-    protected function requireDesignSystem() : void {
+    protected function requireDesignSystem(): void
+    {
 
         // JS loads prior to </body>
         Requirements::set_force_js_to_bottom(true);
 
-        if(Config::inst()->get(DesignSystemConfiguration::class, 'enable_jquery')) {
+        if (Config::inst()->get(DesignSystemConfiguration::class, 'enable_jquery')) {
             static::requireJquery();
         }
 
         $this->requireFonts();
 
         // The built NSW DS CSS, with supporting CSS
-        if(Director::isLive()) {
+        if (Director::isLive()) {
             Requirements::css(
                 $this->getAsset("app/frontend/dist/css/app.min.css")
             );
@@ -120,7 +124,7 @@ class DesignSystemAssetExtension extends Extension {
         }
 
         // The built NSWDS,  with supporting JS and window.NSW.initSite() called
-        if(Director::isLive()) {
+        if (Director::isLive()) {
             Requirements::javascript(
                 $this->getAsset("app/frontend/dist/js/app.min.js"),
                 [
@@ -142,7 +146,8 @@ class DesignSystemAssetExtension extends Extension {
      * Handling for blocking know jquery versions and then requiring a specific version
      * @todo check requirements and block external jquery found via pattern?
      */
-    public static function requireJquery() {
+    public static function requireJquery()
+    {
 
         Requirements::block("//code.jquery.com/jquery-3.3.1.min.js");
         Requirements::block("//code.jquery.com/jquery-3.4.1.min.js");

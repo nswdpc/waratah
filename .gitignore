@@ -9,3 +9,8 @@
 .DS_Store
 Thumbs.db
 /.php-cs-fixer.cache
+/.phpunit.result.cache
+/.htaccess
+/app/
+/composer.lock
+/public/
