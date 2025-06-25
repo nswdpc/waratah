@@ -40,13 +40,41 @@
         "nswdpc/silverstripe-analytics-chooser": ">=0.2"
     },
     "require-dev": {
+        "cambis/silverstripe-rector": "^1",
         "phpunit/phpunit": "^9.5",
-        "friendsofphp/php-cs-fixer": "^3"
+        "cambis/silverstan": "^1",
+        "nswdpc/ci-files": "dev-v-3",
+        "friendsofphp/php-cs-fixer": "^3",
+        "phpstan/phpstan": "^1",
+        "rector/rector": "^1"
     },
     "extra": {
         "expose": [
             "themes/nswds/app/static",
             "themes/nswds/app/frontend/dist"
+        ],
+        "project-files-installed": [
+            ".htaccess",
+            "app/.htaccess",
+            "app/_config/mimevalidator.yml",
+            "app/_config/mysite.yml",
+            "app/src/Page.php",
+            "app/src/PageController.php"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "web.config"
         ]
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/recipe-plugin": true,
+            "silverstripe/vendor-plugin": true,
+            "phpstan/extension-installer": true
+        }
     }
 }
