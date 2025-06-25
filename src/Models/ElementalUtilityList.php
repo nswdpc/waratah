@@ -187,7 +187,7 @@ class ElementalUtilityList extends BaseElement
     public function SelectedHashTags(): array
     {
         try {
-            $hashTags = explode(",", $this->HashTags);
+            $hashTags = explode(",", $this->HashTags ?? '');
             if (is_array($hashTags)) {
                 return array_filter(array_unique($hashTags));
             } else {
