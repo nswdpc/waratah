@@ -11,22 +11,24 @@ use SilverStripe\View\Requirements;
  * Provides lazy-loading support for videos added
  * via the nswdpc/silverstripe-elemental-feature-video module
  * @todo improve the module to use a lazy-loading trait provided by the elemental-iframe module
+ * @extends \SilverStripe\Core\Extension<((\NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo & static) | (\NSWDPC\Elemental\Models\FeaturedVideo\GalleryVideo & static))>
  */
 class IframeVideoExtension extends Extension
 {
-
     /**
      * Provide a method to handle lazy loading flag, this is on for everything, for now
      */
-    public function WillLazyLoad() {
+    public function WillLazyLoad(): bool
+    {
         return true;
     }
 
     /**
      * Provide a polyfill method, accessible from a template
      */
-    public function Polyfill() {
-        if($this->owner->WillLazyLoad()) {
+    public function Polyfill(): string
+    {
+        if ($this->getOwner()->WillLazyLoad()) {
             Requirements::javascript(
                 "https://cdnjs.cloudflare.com/ajax/libs/loading-attribute-polyfill/1.5.4/loading-attribute-polyfill.min.js",
                 [
@@ -35,6 +37,7 @@ class IframeVideoExtension extends Extension
                 ]
             );
         }
+
         return '';
     }
 }

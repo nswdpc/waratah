@@ -4,11 +4,13 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
-use Silverstripe\Forms\TextField;
+use SilverStripe\Forms\TextField;
 
+/**
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\AssetAdmin\Forms\ImageFormFactory & static)>
+ */
 class ImageAssetFormFactoryExtension extends Extension
 {
-
     public function updateFormFields(FieldList $fields)
     {
 
@@ -17,9 +19,10 @@ class ImageAssetFormFactoryExtension extends Extension
             _t('nswds.PHOTO_CREDIT_COPYRIGHT', 'Photo credit/copyright')
         );
         $titleField = $fields->fieldByName('Editor.Details.Title');
-        if($titleField && $titleField->isReadonly()) {
+        if ($titleField && $titleField->isReadonly()) {
             $creditField = $creditField->performReadonlyTransformation();
         }
+
         $fields->insertAfter(
             'Title',
             $creditField

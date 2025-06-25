@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class SectionSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**
@@ -28,13 +27,15 @@ class SectionSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $options = $this->getColourSelectionOptions('section');
         $source = [];
-        foreach($options as $k => $v) {
+        foreach ($options as $k => $v) {
             $source[ $k ] = _t('nswds.BACKGROUND_' . strtoupper($k), $v);
         }
+
         $this->source = $source;
         return parent::getSource();
     }
