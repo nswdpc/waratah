@@ -66,7 +66,6 @@ DNADesign\ElementalList\Model\ElementList:
     - 'NSWDPC\Waratah\Models\ElementalFeature'
     - 'NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent'
     - 'NSWDPC\Elemental\Models\QuickGallery\ElementQuickGallery'
-    - 'NSWDPC\Chimple\Models\Elements\ElementChimpleSubscribe'
     - 'NSWDPC\Waratah\Models\ElementalUtilityList'
 
 Dynamic\Elements\Section\Elements\ElementSectionNavigation:
