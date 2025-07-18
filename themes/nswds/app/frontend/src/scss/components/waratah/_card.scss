@@ -6,6 +6,10 @@
  *  message/priority, favourite, featured-card, location, date, time
  *
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .nsw-body-content {
 
   .wrth-card {
@@ -15,7 +19,7 @@
     // Card messages
     &__message {
 
-      padding: rem(16px);
+      padding: nswdsFunctions.rem(16px);
       margin: 1px 0 0 0;
       background-color: var(--nsw-status-info-bg);
       color : var(--nsw-status-info);
@@ -45,14 +49,16 @@
     /* content treatment */
     .nsw-card__content {
 
-      border: none;
+      & {
+        border: none;
+      }
 
-      @include breakpoint('lg') {
-        padding: rem(32px) rem(16px) rem(16px) rem(16px);
+      @include nswdsMixins.breakpoint('lg') {
+        padding: nswdsFunctions.rem(32px) nswdsFunctions.rem(16px) nswdsFunctions.rem(16px) nswdsFunctions.rem(16px);
       }
 
       .nsw-card__title {
-        margin : 0 0 rem(16px) 0;
+        margin : 0 0 nswdsFunctions.rem(16px) 0;
       }
     }
 
@@ -86,7 +92,7 @@
 
       .wrth-card__image-placeholder {
         width: 100%;
-        height: #{rem(200px)};
+        height: #{nswdsFunctions.rem(200px)};
         background-color: var(--nsw-grey-04);
         display: block;
       }
@@ -95,22 +101,24 @@
 
     /* Favourite icon */
     &__favourite  {
-
-      position: absolute;
-      @include z-index('middle');/* above card (base) */
-      right: rem(12px);
-      top: rem(12px);
-      width: rem(32px);
-      height: rem(32px);
-      color: var(--nsw-white);
-      cursor: pointer;
-      background-color: var(--nsw-brand-dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: var(--nsw-box-shadow);
+      /* above card (base) */
+      @include nswdsMixins.z-index('middle');
+      & {
+        position: absolute;
+        right: nswdsFunctions.rem(12px);
+        top: nswdsFunctions.rem(12px);
+        width: nswdsFunctions.rem(32px);
+        height: nswdsFunctions.rem(32px);
+        color: var(--nsw-white);
+        cursor: pointer;
+        background-color: var(--nsw-brand-dark);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: var(--nsw-box-shadow);
+      }
 
       &-icon {
         font-size: 1rem;
@@ -139,20 +147,24 @@
 
     /* Card item location */
     &__location {
-      background-color: var(--nsw-brand-supplementary);
-      display: block;
-      @include font-size('sm');
-      padding: rem(2px) rem(9px);
-      color: var(--nsw-white);
-      position: absolute;
-      left: #{rem(16px)};
-      @include z-index('base');
-      top: calc(#{rem(200px)} - #{rem(16px)});
-      max-width: calc(100% - #{rem(32px)});
-      margin : 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @include nswdsMixins.font-size('sm');
+      & {
+        @include nswdsMixins.z-index('base');
+      }
+      & {
+        background-color: var(--nsw-brand-supplementary);
+        display: block;
+        padding: nswdsFunctions.rem(2px) nswdsFunctions.rem(9px);
+        color: var(--nsw-white);
+        position: absolute;
+        left: #{nswdsFunctions.rem(16px)};
+        top: calc(#{nswdsFunctions.rem(200px)} - #{nswdsFunctions.rem(16px)});
+        max-width: calc(100% - #{nswdsFunctions.rem(32px)});
+        margin : 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     /* featured card, location is static */
@@ -161,15 +173,17 @@
       .wrth-card__location {
         position: static;
         margin: 0 0 1rem 0;
-        max-width: calc(100% - #{rem(48px)});
+        max-width: calc(100% - #{nswdsFunctions.rem(48px)});
       }
     }
 
     .nsw-card__date {
 
-      margin: 0;
-      font-weight: var(--nsw-font-bold);
-      @include font-size('sm');
+      & {
+        margin: 0;
+        font-weight: var(--nsw-font-bold);
+      }
+      @include nswdsMixins.font-size('sm');
 
 
       // Card item time

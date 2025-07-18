@@ -1,5 +1,4 @@
-// Declarations for Silverstripe integration
-@import './components/silverstripe/form-message';
-@import './components/silverstripe/mfa';
-@import './components/silverstripe/userforms';
-@import './components/silverstripe/htmleditorfield';
+@use './form-message';
+@use './mfa';
+@use './userforms';
+@use './htmleditorfield';

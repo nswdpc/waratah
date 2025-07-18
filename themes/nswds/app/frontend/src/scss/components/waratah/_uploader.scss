@@ -1,12 +1,19 @@
 /**
  * Provides some styles for an Uppy uploader
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+@forward '../../../../node_modules/nsw-design-system/src/components/button/button';
+
 .nsw-body-content {
 
   .uppy-Root {
 
-    @include font-size('md');
-    font-family: var(--nsw-font-family);
+    @include nswdsMixins.font-size('md');
+    & {
+      font-family: var(--nsw-font-family);
+    }
 
     .uppy-StatusBar {
 
@@ -46,7 +53,7 @@
       &.is-waiting {
 
         .uppy-StatusBar-actions {
-          padding: rem(16px);
+          padding: nswdsFunctions.rem(16px);
         }
 
         .uppy-StatusBar-actionBtn--upload {

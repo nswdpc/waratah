@@ -1,3 +1,8 @@
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+@forward '../../../../node_modules/nsw-design-system/src/components/form/form';
+@forward '../../../../node_modules/nsw-design-system/src/components/select/select';
+
 /**
  * SlimSelect styling for listbox fields
  */
@@ -18,8 +23,8 @@ select.ss-listbox {
 .ss-main {
 
   @extend .nsw-form__select;
-  margin-top: rem(4px);
-  padding-left: rem(11px);
+  margin-top: nswdsFunctions.rem(4px);
+  padding-left: nswdsFunctions.rem(11px);
 
   .ss-arrow {
     display: none;
@@ -28,15 +33,17 @@ select.ss-listbox {
   .ss-values {
 
     .ss-value {
-      padding: rem(4px) rem(8px);
+      padding: nswdsFunctions.rem(4px) nswdsFunctions.rem(8px);
       margin: 0;
       background-color: var(--nsw-brand-dark);
       color: var(--nsw-text-light);
       border-radius: var(--nsw-border-radius);
 
       .ss-value-text {
-        @include font-size('sm');
-        padding: 0px rem(4px) 0 0;
+        @include nswdsMixins.font-size('sm');
+        & {
+          padding: 0px nswdsFunctions.rem(4px) 0 0;
+        }
       }
 
       .ss-value-delete {
@@ -60,7 +67,7 @@ select.ss-listbox {
 
   .ss-search {
 
-    padding: rem(16px);
+    padding: nswdsFunctions.rem(16px);
     align-items: center;
 
     input {
@@ -71,9 +78,9 @@ select.ss-listbox {
       background-color: var(--nsw-palette-green-02);
       border: none;
       border-radius: 50%;
-      width: rem(32px);
-      height: rem(32px);
-      margin-left: rem(16px);
+      width: nswdsFunctions.rem(32px);
+      height: nswdsFunctions.rem(32px);
+      margin-left: nswdsFunctions.rem(16px);
 
       svg {
         path {
@@ -90,10 +97,12 @@ select.ss-listbox {
 
     .ss-option {
 
-      @include font-size('sm');
-      padding: rem(8px);
-      margin-bottom: 1px;
-      white-space: break-spaces;
+      @include nswdsMixins.font-size('sm');
+      & {
+        padding: nswdsFunctions.rem(8px);
+        margin-bottom: 1px;
+        white-space: break-spaces;
+      }
 
       &:hover {
         background-color: var(--nsw-brand-light);

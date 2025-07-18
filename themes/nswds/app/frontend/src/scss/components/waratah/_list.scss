@@ -1,6 +1,10 @@
 /**
  * List component
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .wrth-list {
   &--icons {
     margin: 0;
@@ -9,13 +13,13 @@
       display: flex;
       align-items: center;
       list-style-type: none;
-      margin: rem(8px) 0 0 0;
+      margin: nswdsFunctions.rem(8px) 0 0 0;
       padding: 0;
       &:first-child {
         margin-top: 0;
       }
       .icon {
-        margin-right: rem(8px);
+        margin-right: nswdsFunctions.rem(8px);
       }
     }
   }
@@ -26,7 +30,7 @@
         vertical-align: middle;
       }
       .nsw-material-icons {
-        margin-left: rem(-12px);
+        margin-left: nswdsFunctions.rem(-12px);
       }
     }
   }
@@ -43,15 +47,15 @@
   }
 
   &--8 {
-    gap: rem(4px);
+    gap: nswdsFunctions.rem(4px);
   }
 
   &--16 {
-    gap: rem(8px);
+    gap: nswdsFunctions.rem(8px);
   }
 
   &--32 {
-    gap: rem(16px);
+    gap: nswdsFunctions.rem(16px);
   }
 
 }

@@ -1,7 +1,11 @@
 /**
  * Ensure filters-open does not cause hidden overflow
  */
-@include breakpoint("lg") {
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
+@include nswdsMixins.breakpoint("lg") {
   body.filters-open {
     overflow: auto;
   }
