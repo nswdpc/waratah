@@ -5,13 +5,10 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Models\DesignSystemConfiguration;
 use NSWDPC\Waratah\Forms\SectionSelectionField;
 use NSWDPC\Waratah\Traits\DesignSystemSelections;
-use SilverStripe\Assets\Image;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\View\Requirements;
 
 /**
  * Provide additional elemental integration with DS

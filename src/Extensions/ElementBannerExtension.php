@@ -4,13 +4,10 @@ namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\HeroBannerBrandSelectionField;
 use SilverStripe\ORM\DataExtension;
-use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
