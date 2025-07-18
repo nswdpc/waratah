@@ -5,49 +5,49 @@
 @use '../../node_modules/nsw-design-system/src/main';
 
 // Apply typography eg Public Sans
-@use 'components/waratah/typography';
+@use './components/waratah/typography';
 
 // Silverstripe components - MFA, userforms, editor field
-@use 'components/silverstripe/silverstripe';
+@use './components/silverstripe/silverstripe';
 
 // Third party components
-@use 'components/thirdparty/slimselect';
+@use './components/thirdparty/slimselect';
 
 // nswdpc/waratah components
-@use 'components/waratah/brand';
-@use 'components/waratah/canvas';
-@use 'components/waratah/card';
-@use 'components/waratah/date';
-@use 'components/waratah/details';
-@use 'components/waratah/dl';
-@use 'components/waratah/grid';
-@use 'components/waratah/feature';
-@use 'components/waratah/filters';
-@use 'components/waratah/form';
-@use 'components/waratah/icon-button';
-@use 'components/waratah/image';
-@use 'components/waratah/list';
-@use 'components/waratah/logo';
-@use 'components/waratah/main-navigation';
-@use 'components/waratah/micromodal';
-@use 'components/waratah/mapping';
-@use 'components/waratah/scale';
-@use 'components/waratah/search';
-@use 'components/waratah/sharedraft';
-@use 'components/waratah/slider';
-@use 'components/waratah/social-links';
-@use 'components/waratah/trumbowyg';
-@use 'components/waratah/uploader';
-@use 'components/waratah/video';
+@use './components/waratah/brand';
+@use './components/waratah/canvas';
+@use './components/waratah/card';
+@use './components/waratah/date';
+@use './components/waratah/details';
+@use './components/waratah/dl';
+@use './components/waratah/grid';
+@use './components/waratah/feature';
+@use './components/waratah/filters';
+@use './components/waratah/form';
+@use './components/waratah/icon-button';
+@use './components/waratah/image';
+@use './components/waratah/list';
+@use './components/waratah/logo';
+@use './components/waratah/main-navigation';
+@use './components/waratah/micromodal';
+@use './components/waratah/mapping';
+@use './components/waratah/scale';
+@use './components/waratah/search';
+@use './components/waratah/sharedraft';
+@use './components/waratah/slider';
+@use './components/waratah/social-links';
+@use './components/waratah/trumbowyg';
+@use './components/waratah/uploader';
+@use './components/waratah/video';
 
 // Generic content overrides, load last
-@use 'components/waratah/content';
+@use './components/waratah/content';
 
 // Backward compatibility rules
-@use 'components/waratah/bc';
+@use './components/waratah/bc';
 
 // Fixes to be applied to nswds, could be empty
-@use 'components/waratah/fixes';
+@use './components/waratah/fixes';
 
 // Finally, import project app.scss
 @use '../../../../../../../../../waratah-branding/frontend/src/app.scss'
