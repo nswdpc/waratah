@@ -5,7 +5,6 @@ namespace NSWDPC\Waratah\Tasks;
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\ORM\DB;
 use SilverStripe\Core\Convert;
-use DNADesign\Elemental\Models\BaseElement;
 
 /**
  * @author James

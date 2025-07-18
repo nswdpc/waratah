@@ -2,13 +2,10 @@
 
 namespace NSWDPC\Waratah\Models\EditableFormField;
 
-use gorriecoe\Link\Models\Link;
-use NSWDPC\InlineLinker\InlineLinkField;
 use NSWDPC\Waratah\Forms\NotificationStateSelectionField;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\LiteralField;
-use SilverStripe\Forms\TextField;
 use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
 
 /**

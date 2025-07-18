@@ -7,7 +7,6 @@ use SilverStripe\Security\Permission;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\LiteralField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 

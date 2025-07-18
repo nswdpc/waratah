@@ -2,12 +2,7 @@
 
 namespace NSWDPC\Waratah\Services;
 
-use Composer\DependencyResolver\Operation\OperationInterface;
-use Composer\DependencyResolver\Operation\InstallOperation;
-use Composer\DependencyResolver\Operation\UpdateOperation;
-use Composer\EventDispatcher\Event as BaseEvent;
 use Composer\Script\Event as ScriptEvent;
-use Composer\Installer\PackageEvent;
 
 /**
  * Composer integration for this module

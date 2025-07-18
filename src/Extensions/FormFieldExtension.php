@@ -4,7 +4,6 @@ namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\CompositeField;
-use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\ListboxField;
 
 /**
