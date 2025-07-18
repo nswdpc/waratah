@@ -1,6 +1,6 @@
 # Aboriginal Colour Palette
 
-As of nsw-design-system 3.21.0, an Aboriginal colour palette is provided, with examples at [designsystem.nsw.gov.au](https://designsystem.nsw.gov.au/docs/content/design/theming.html#aboriginal-palette).
+As of [nsw-design-system 3.21.0](https://github.com/digitalnsw/nsw-design-system/releases/tag/v3.21.0), an Aboriginal colour palette is provided, with examples at [designsystem.nsw.gov.au](https://designsystem.nsw.gov.au/docs/content/design/theming.html#aboriginal-palette).
 
 When implementing a palette, please follow the guidelines at the above link, including colour contrast rules to maintain accessibility.
 
@@ -39,8 +39,10 @@ In the app.scss alongside this file, include the palette:
 }
 ```
 
-All palette colours can be found at [https://github.com/digitalnsw/nsw-design-system/blob/master/src/global/scss/settings/_aboriginal-palette.scss](_aboriginal-palette.scss - Github) with example colour groups at [https://designsystem.nsw.gov.au/templates/theming/full-page.html?palette=aboriginal](theme examples - designsystem.nsw.gov.au).
+All palette colours can be found at [_aboriginal-palette.scss - Github](https://github.com/digitalnsw/nsw-design-system/blob/master/src/global/scss/settings/_aboriginal-palette.scss) with example colour groups at [theme examples - designsystem.nsw.gov.au](https://designsystem.nsw.gov.au/templates/theming/full-page.html?palette=aboriginal).
 
 ### 4. Build the frontend
 
-Use one of the build options to build the frontend. As `waratah-branding/frontend/src/app.scss` is added last in then build process, the palette selection will override the default NSW Government branding.
+Use one of the documented build options to build the frontend.
+
+As `waratah-branding/frontend/src/app.scss` is added last in the build process, the palette selection will override the default NSW Government branding.
