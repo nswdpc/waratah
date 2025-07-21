@@ -74,6 +74,7 @@ class SpecialAnnouncementExtension extends DataExtension implements TemplateGlob
                 $linkURL = $link->getLinkURL();
                 $linkTitle = $link->Title;
             }
+
             $alerts->push(ArrayData::create([
                 'GlobalAlert_AlertState' => $announcement->AlertState,
                 'GlobalAlert_CookieName' => "_wrth_a_{$announcement->ID}",
@@ -86,6 +87,7 @@ class SpecialAnnouncementExtension extends DataExtension implements TemplateGlob
                 'GlobalAlert_SchemaJSON' => null
             ]));
         }
+
         return $alerts;
     }
 
