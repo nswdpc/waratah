@@ -61,16 +61,16 @@ class SpecialAnnouncementExtension extends DataExtension implements TemplateGlob
             'Title','IsGlobal','LinkID','ImageID',
             'AlertState','ShortDescription'
         ]);
-        if($announcements->count() == 0) {
+        if ($announcements->count() == 0) {
             return null;
         }
 
         $alerts = ArrayList::create();
-        foreach($announcements as $announcement) {
+        foreach ($announcements as $announcement) {
             $linkURL = '';
             $linkTitle = '';
             $link = $announcement->Link();
-            if($link && $link->isInDB()) {
+            if ($link && $link->isInDB()) {
                 $linkURL = $link->getLinkURL();
                 $linkTitle = $link->Title;
             }
