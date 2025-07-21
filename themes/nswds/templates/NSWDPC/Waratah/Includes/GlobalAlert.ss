@@ -1,1 +1,1 @@
-<% include nswds/GlobalAlert %>
+<% include nswds/GlobalAlert GlobalSpecialAnnouncements=$WaratahGlobalAlerts %>
