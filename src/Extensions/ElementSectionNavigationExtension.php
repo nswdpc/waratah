@@ -6,6 +6,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataList;
 
 /**
@@ -96,14 +97,23 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Return the section navigation sorted by the Sort order in SiteTree
      */
-    public function getSortedSectionNavigation(): ?\SilverStripe\ORM\DataList
+    public function getSortedSectionNavigation(): DataList|ArrayList|null
     {
         $list = $this->getOwner()->getSectionNavigation();
-        if ($list instanceof DataList) {
-            return $list->sort('Sort');
+        if ($list instanceof DataList || $list instanceof ArrayList) {
+            $list =  $list->sort(['Sort' => 'ASC']);
+            return $list;
+        } else {
+            return null;
         }
+    }
 
-        return null;
+    /**
+     * Template method for self::getSortedSectionNavigation()
+     */
+    public function SortedSectionNavigation(): DataList|ArrayList|null
+    {
+        return $this->getSortedSectionNavigation();
     }
 
     /**
