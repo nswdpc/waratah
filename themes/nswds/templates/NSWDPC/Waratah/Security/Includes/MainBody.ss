@@ -2,16 +2,20 @@
     <div class="nsw-layout">
 
 
-        <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+        <aside class="nsw-layout__sidebar">
 
             <% if $CurrentMember %>
-            <nav class="nsw-side-nav" aria-labelledby="private-links">
+            <nav class="nsw-side-nav js-side-nav" aria-labelledby="private-links">
+
+                <button class="nsw-side-nav__toggle" aria-expanded="false">
+                    <span><%t nswds.MENU 'Menu' %></span>
+                </button>
 
                 <div class="nsw-side-nav__header">
                     <a href="#" id="private-links"><%t nswds.MENU 'Menu' %></a>
                 </div>
 
-                <ul>
+                <ul class="nsw-side-nav__content">
                     <% if $ProfileProvider %>
                         <% with $ProfileProvider %>
                             <li><a href="{$EditProfileLink}"><%t nswds.Profile 'Profile' %></a></li>
@@ -29,13 +33,17 @@
 
             </nav>
             <% else %>
-            <nav class="nsw-side-nav" aria-labelledby="public-links">
+            <nav class="nsw-side-nav js-side-nav" aria-labelledby="public-links">
+
+                <button class="nsw-side-nav__toggle" aria-expanded="false">
+                    <span><%t nswds.MENU 'Menu' %></span>
+                </button>
 
                 <div class="nsw-side-nav__header">
                     <a href="#" id="public-links"><%t nswds.MENU 'Menu' %></a>
                 </div>
 
-                <ul>
+                <ul class="nsw-side-nav__content">
                     <li><a class="<% if $Action =='login' %>current<% end_if %>" href="{$Link('login')}"><%t nswds.SIGN_IN 'Sign in' %></a></li>
                     <% if $LostPasswordProvider %>
                     <li><a class="<% if $Action == 'lostpassword' %>current<% end_if %>" href="{$Link('lostpassword')}"><%t nswds.LOST_PASSWORD 'Lost password' %></a></li>
