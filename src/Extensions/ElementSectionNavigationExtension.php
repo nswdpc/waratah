@@ -101,8 +101,7 @@ class ElementSectionNavigationExtension extends DataExtension
     {
         $list = $this->getOwner()->getSectionNavigation();
         if ($list instanceof DataList || $list instanceof ArrayList) {
-            $list =  $list->sort(['Sort' => 'ASC']);
-            return $list;
+            return $list->sort(['Sort' => 'ASC']);
         } else {
             return null;
         }
