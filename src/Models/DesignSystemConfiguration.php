@@ -119,7 +119,8 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
         'supplementary' => 'Brand supplementary',
-        'accent' => 'Brand Accent'
+        'accent' => 'Brand Accent',
+        'accent-light' => 'Brand Accent Light'
     ];
 
     /**
