@@ -1,8 +1,8 @@
 # Filter form
 
-Turn a standard Silverstripe form into a [NSWDS Filter Form](https://digitalnsw.github.io/nsw-design-system/components/filters/index.html) quickly using the `FilterForm` trait.
+Turn a standard Silverstripe form into a [NSWDS Filter Form](https://designsystem.nsw.gov.au/components/filters/index.html) quickly using the `FilterForm` trait.
 
-How your application filters requests and displays results is entirely up to you. The recommended result layout is a [list item](https://digitalnsw.github.io/nsw-design-system/templates/search/filters.html) template.
+How your application filters requests and displays results is entirely up to you. The recommended result layout is a [list item](https://designsystem.nsw.gov.au/templates/search/filters.html) template.
 
 ## Via a custom form and template
 
@@ -22,7 +22,7 @@ class SomeFilterForm extends Form
 {
 
     use \NSWDPC\Waratah\Traits\FilterFormTrait;
-    
+
     /**
      * Clear link used for filter form
      */
@@ -50,7 +50,7 @@ use SilverStripe\Forms\TextField;
  * This controller provides a form to help with searching for something
  */
 class MyController extends \PageController {
-    
+
     /**
      * @var array
      */
@@ -58,7 +58,7 @@ class MyController extends \PageController {
         'SomeFilterForm',
         'doSearch'
     }
-    
+
     /**
      * Do the filtered search
      */
@@ -104,7 +104,7 @@ class MyController extends \PageController {
         );
         return $form;
     }
-    
+
 }
 ```
 
