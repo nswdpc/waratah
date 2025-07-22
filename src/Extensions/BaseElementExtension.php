@@ -194,7 +194,7 @@ class BaseElementExtension extends DataExtension
 
     /**
      * Return an array of available backgrounds
-     * See: https://nswdesignsystem.surge.sh/styles/section/index.html
+     * See: https://designsystem.nsw.gov.au/core/section/index.html
      */
     protected function getBackgrounds(): array
     {
