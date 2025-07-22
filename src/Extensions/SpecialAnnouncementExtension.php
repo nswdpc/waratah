@@ -66,6 +66,7 @@ class SpecialAnnouncementExtension extends DataExtension implements TemplateGlob
         }
 
         $alerts = ArrayList::create();
+        /** @var \NSWDPC\Schema\SpecialAnnouncement\SpecialAnnouncement $announcement */
         foreach ($announcements as $announcement) {
             $linkURL = '';
             $linkTitle = '';
