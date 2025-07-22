@@ -28,7 +28,7 @@
 
         <div class="nsw-progress-indicator__bar">
             <% loop $ProgressIndicator_Items %>
-            <div<% if $IsActive %> class="active"<% end_if %>></div>
+            <div<% if $Pos <= $Up.ProgressIndicator_Step %> class="active"<% end_if %>></div>
             <% end_loop %>
         </div>
 

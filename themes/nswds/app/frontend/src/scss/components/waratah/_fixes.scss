@@ -3,6 +3,9 @@
  * These should be marked with an issue in the nswds github and removed when fixed
  */
 
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .nsw-media {
   img {
     /**
@@ -43,8 +46,8 @@
 .nsw-content-block__image {
   .nsw-content-block__icon {
     img {
-      height: rem(64px);
-      width: rem(64px);
+      height: nswdsFunctions.rem(64px);
+      width: nswdsFunctions.rem(64px);
     }
   }
 }

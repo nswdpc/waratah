@@ -9,10 +9,11 @@ This module is maintained by the PD Digital Team. We're a friendly crew that wel
 ## Features
 
 + ✅ Implements all components from the NSW Design System v3
-+ ✅ Branding: full support for Masterbrand, Co-brand and Independent entities within [the NSW branding guidelines](https://digitalnsw.github.io/nsw-design-system/core/logo/index.html).
-+ ✅ BSD-3 licensed. Can be used in all projects, including proprietary projects.
++ ✅ Branding: full support for Masterbrand, Co-brand and Independent entities within [the NSW branding guidelines](https://designsystem.nsw.gov.au/core/logo/index.html).
++ ✅ [Aboriginal colour palette support](./docs/en/102_aboriginal_colour_palette.md)
++ ✅ **BSD-3 licensed**. Can be used in all projects, including proprietary projects.
 + ✅ Completely extendable using standard development practices via Silverstripe templating, configuration and Composer module management
-+ ✅ Standard page layouts based on [template examples](https://digitalnsw.github.io/nsw-design-system/templates/index.html)
++ ✅ Standard page layouts based on [template examples](https://designsystem.nsw.gov.au/templates/index.html)
 + ✅ Integrates our supported [Elemental content blocks](https://github.com/silverstripe/silverstripe-elemental)
 + ✅ Includes our [Silverstripe content authoring boilerplate](https://github.com/nswdpc/silverstripe-content-boilerplate) containing our supported content authoring tools.
 + ✅ Form building - supports all Silverstripe form fields plus our supported form field extensions

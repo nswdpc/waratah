@@ -14,7 +14,7 @@ After installation, you will need to build the frontend assets using one of our 
 1. Add/update theme configuration
 1. Run the standard Silverstripe dev/build when required
 
-### 1. Build the frontend assets 
+### 1. Build the frontend assets
 
 You can build the frontend in a variety of ways, depending on your build system toolkit.
 
@@ -69,6 +69,26 @@ When the module is updated or installed `composer run-script build-nswds` should
 
 Both script targets run ./build.sh which expects npm to be available.
 
+
+### Development tools
+
+If you use a tool such as Lando for your development, add a tooling command to assist with automation of the build process:
+
+```yml
+tooling:
+  buildnswds:
+    service: node
+    description: Build the NSW Design System using build.sh
+    cmd: ./vendor/nswdpc/waratah/build.sh
+```
+
+And build:
+```sh
+lando buildnswds
+```
+
+You can also build the frontend assets by invoking the build.sh script in the lando `post-start` command.
+
 #### Loading CSS and JS assets
 
 Once built, assets are available in the `vendor/nswdpc/waratah/themes/nswds/app/frontend/dist` location. This path is vendor-exposed in `composer.json` and automatically exposed when the module is installed.
@@ -102,7 +122,7 @@ SilverStripe\View\SSViewer:
     - '$default'
 ```
 
-If you have a custom theme in your project that provides custom templates, specify that before `nswdpc/waratah:nswds` 
+If you have a custom theme in your project that provides custom templates, specify that before `nswdpc/waratah:nswds`
 
 ```yaml
 # app/_config/theme.yml

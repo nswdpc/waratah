@@ -1,6 +1,12 @@
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+@forward '../../../../node_modules/nsw-design-system/src/global/scss/helpers/list';
+@forward '../../../../node_modules/nsw-design-system/src/components/button/button';
+@forward '../../../../node_modules/nsw-design-system/src/components/form/form';
+
 .nsw-body-content .mfa-app {
 
-    padding : 1rem 0 0 0;
+    padding : 0;
     min-width: 0 !important;
     max-width: 100% !important;
     width: 100%;
@@ -12,19 +18,25 @@
     }
 
     .mfa-app-title {
-      @include font-size('xxl');
-      color: var(--nsw-grey-01);
-      display : none;
+      @include nswdsMixins.font-size('xxl');
+      & {
+        color: var(--nsw-grey-01);
+        display : none;
+      }
     }
 
     .mfa-section-title {
-      @include font-size('lg');
-      color: var(--nsw-grey-01);
+      @include nswdsMixins.font-size('lg');
+      & {
+        color: var(--nsw-grey-01);
+      }
     }
 
     .mfa-feature-list-title {
-      @include font-size('md');
-      color: var(--nsw-grey-01);
+      @include nswdsMixins.font-size('md');
+      & {
+        color: var(--nsw-grey-01);
+      }
     }
 
     label {
@@ -45,7 +57,7 @@
     }
 
     .mfa-totp__validate-code p {
-      margin: 0 0 rem(16px) 0;
+      margin: 0 0 nswdsFunctions.rem(16px) 0;
     }
 
     img {
@@ -54,21 +66,27 @@
 
     .mfa-feature-list {
       &-item {
-        @include font-size('sm');
-        color: var(--nsw-grey-01);
+        @include nswdsMixins.font-size('sm');
+        & {
+          color: var(--nsw-grey-01);
+        }
 
         &__content {
           color: var(--nsw-grey-01);
         }
 
         &__title {
-          @include font-size('sm');
-          color: var(--nsw-grey-01);
+          @include nswdsMixins.font-size('sm');
+          & {
+            color: var(--nsw-grey-01);
+          }
         }
 
         &__description {
-          @include font-size('sm');
-          color: var(--nsw-grey-01);
+          @include nswdsMixins.font-size('sm');
+          & {
+            color: var(--nsw-grey-01);
+          }
         }
 
       }
@@ -98,43 +116,72 @@
 
     }
 
-    .mfa-verify-select-method__actions {
-      margin: 0 0 rem(16px) 0;
+    .mfa-verify-select-method {
 
-      a.mfa-verify-select-method__back {
-        @extend .nsw-button;
-        @extend .nsw-button--dark;
+      &__content {
+        padding-top: 0;
+        margin: 0;
+
+        p {
+          margin: 0 0 nswdsFunctions.rem(16px) 0;
+        }
       }
+
+      &__method-list {
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
+      }
+
+      &__actions {
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
+
+        a.mfa-verify-select-method__back {
+          @extend .nsw-button;
+          @extend .nsw-button--dark;
+        }
+      }
+
     }
 
-    .mfa-register-backup-codes__container {
+    .mfa-register-backup-codes {
 
-      .mfa-register-backup-codes__helper-links {
+        &__container {
 
-        // use nsw-list
-        @extend .nsw-list;
-        @extend .nsw-list--32;
+          .btn {
+            @extend .nsw-button;
+          }
 
-        // ensure margin below
-        margin-bottom: rem(32px) !important;
+          .btn-primary {
+            @extend .nsw-button--dark;
+          }
 
-        .btn {
-          @extend .nsw-button;
+          p {
+            margin: 0 0 nswdsFunctions.rem(16px) 0;
+          }
+
         }
 
-        .btn-link {
-          @extend .nsw-button--dark-outline-solid;
+        &__code-grid {
+          margin: 0 0 nswdsFunctions.rem(16px) 0;
         }
 
-      }
+        &__helper-links {
 
-      .btn {
-        @extend .nsw-button;
-      }
+          // use nsw-list
+          @extend .nsw-list;
+          @extend .nsw-list--32;
 
-      .btn-primary {
-        @extend .nsw-button--dark;
-      }
+          // ensure margin below
+          margin-bottom: nswdsFunctions.rem(32px) !important;
+
+          .btn {
+            @extend .nsw-button;
+          }
+
+          .btn-link {
+            @extend .nsw-button--dark-outline-solid;
+          }
+
+        }
 
     }
 
@@ -143,13 +190,15 @@
       margin : 0;
 
       .mfa-register-confirmation__title {
-        margin: 0 0 rem(16px) 0;
-        @include font-size('lg');
-        color: var(--nsw-grey-01);
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
+        @include nswdsMixins.font-size('lg');
+        & {
+          color: var(--nsw-grey-01);
+        }
       }
 
       .mfa-register-confirmation__description {
-        margin: 0 0 rem(16px) 0;
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
       }
 
       .btn {

@@ -3,8 +3,6 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Extension;
-use NSWDPC\Elemental\Models\FeaturedVideo\GalleryVideo;
-use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
 use SilverStripe\View\Requirements;
 
 /**

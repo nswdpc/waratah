@@ -112,19 +112,20 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
     private static string $masthead_brand = "dark";
 
     /**
-     * @var array brand options
-     * https://nswdesignsystem.surge.sh/styles/colour/index.html
+     * @var array brand options for "Brand colours"
+     * https://designsystem.nsw.gov.au/core/colour/index.html
      */
     private static array $colour_brand_options = [
         'dark' => 'Brand Dark',
         'light' => 'Brand Light',
         'supplementary' => 'Brand supplementary',
-        'accent' => 'Brand Accent'
+        'accent' => 'Brand Accent',
+        'accent-light' => 'Brand Accent Light'
     ];
 
     /**
      * @var array card branding options
-     * https://nswdesignsystem.surge.sh/components/card/index.html
+     * https://designsystem.nsw.gov.au/components/card/index.html
      */
     private static array $colour_cardbrand_options = [
         'dark' => 'Brand Dark',
@@ -133,7 +134,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
 
     /**
      * @var array media branding options
-     * https://nswdesignsystem.surge.sh/components/media/index.html
+     * https://designsystem.nsw.gov.au/components/media/index.html
      */
     private static array $colour_mediabrand_options = [
         'dark' => 'Brand Dark',
@@ -141,10 +142,9 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
         'transparent' => 'Transparent'
     ];
 
-
     /**
      * @var array hero banner branding options
-     * https://digitalnsw.github.io/nsw-design-system/components/hero-banner/index.html
+     * https://designsystem.nsw.gov.au/components/hero-banner/index.html
      */
     private static array $colour_herobannerbrand_options = [
         'dark' => 'Brand Dark',
@@ -154,8 +154,8 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
     ];
 
     /**
-     * @var array alert state options
-     * https://nswdesignsystem.surge.sh/components/site-wide-message/index.html
+     * @var array alert state options for Global Alert component
+     * https://designsystem.nsw.gov.au/components/global-alert/index.html
      */
     private static array $colour_alertstate_options = [
         '' => 'Information',
@@ -164,8 +164,8 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
     ];
 
     /**
-     * @var array alert state options
-     * https://nswdesignsystem.surge.sh/components/notification/index.html
+     * @var array alert state options for In-page alert component
+     * https://designsystem.nsw.gov.au/components/in-page-alert/index.html
      */
     private static array $colour_notificationstate_options = [
         'info' => 'Information',
@@ -176,7 +176,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
 
     /**
      * @var array card branding options
-     * https://nswdesignsystem.surge.sh/components/button/index.html
+     * https://designsystem.nsw.gov.au/components/button/index.html
      */
     private static array $colour_buttonstate_options = [
         'dark' => 'Brand Dark',
@@ -191,7 +191,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
 
     /**
      * @var array section options
-     * https://nswdesignsystem.surge.sh/styles/section/index.html
+     * https://designsystem.nsw.gov.au/styles/section/index.html
      */
     private static array $colour_section_options = [
         'brand-dark' => 'Brand dark',
@@ -208,6 +208,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
 
     /**
      * @var array section options that can have invert applied
+     * https://designsystem.nsw.gov.au/styles/section/index.html (Inverted colours)
      */
     private static array $invert_section_options = [
         'brand-dark',
@@ -218,8 +219,8 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
     ];
 
     /**
-     * @var array hero banner branding options
-     * https://digitalnsw.github.io/nsw-design-system/components/footer/index.html
+     * @var array footer branding options
+     * https://designsystem.nsw.gov.au/components/footer/index.html
      */
     private static array $colour_footerbrand_options = [
         'dark' => 'Brand Dark',

@@ -4,21 +4,17 @@ namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
 use SilverStripe\Assets\File;
-use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\CompositeField;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use SilverStripe\ORM\FieldType\DBHTMLText;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 

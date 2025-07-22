@@ -5,13 +5,10 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Models\DesignSystemConfiguration;
 use NSWDPC\Waratah\Forms\SectionSelectionField;
 use NSWDPC\Waratah\Traits\DesignSystemSelections;
-use SilverStripe\Assets\Image;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\View\Requirements;
 
 /**
  * Provide additional elemental integration with DS
@@ -150,7 +147,7 @@ class BaseElementExtension extends DataExtension
                         'nswds.BACKGROUND_EXAMPLE',
                         'Example default section backgrounds are available at {exampleURL}',
                         [
-                            'exampleURL' => 'https://digitalnsw.github.io/nsw-design-system/core/section/index.html'
+                            'exampleURL' => 'https://designsystem.nsw.gov.au/core/section/index.html'
                         ]
                     )
                 ),
@@ -174,7 +171,7 @@ class BaseElementExtension extends DataExtension
                         'nswds.VERTICAL_SPACING_EXAMPLE',
                         'Spacing examples are available at {exampleURL}',
                         [
-                            'exampleURL' => 'https://digitalnsw.github.io/nsw-design-system/core/section/index.html'
+                            'exampleURL' => 'https://designsystem.nsw.gov.au/core/section/index.html'
                         ]
                     )
                 )->setEmptyString(_t('nswds.SELECT_OPTION', 'Select an option')),
@@ -197,7 +194,7 @@ class BaseElementExtension extends DataExtension
 
     /**
      * Return an array of available backgrounds
-     * See: https://nswdesignsystem.surge.sh/styles/section/index.html
+     * See: https://designsystem.nsw.gov.au/core/section/index.html
      */
     protected function getBackgrounds(): array
     {
@@ -221,7 +218,7 @@ class BaseElementExtension extends DataExtension
 
     /**
      * Return the nswds background value or an empty value if not supported
-     * https://digitalnsw.github.io/nsw-design-system/core/section/index.html
+     * https://designsystem.nsw.gov.au/core/section/index.html
      * Use by a template as $Background
      * Invert is automatically added when a dark BG is selected
      */

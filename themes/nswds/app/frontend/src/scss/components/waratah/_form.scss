@@ -1,6 +1,12 @@
 /**
  * Form overrides
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+@forward '../../../../node_modules/nsw-design-system/src/components/button/button';
+@forward '../../../../node_modules/nsw-design-system/src/components/form/form';
+
 form {
 
   /**
@@ -8,7 +14,7 @@ form {
    */
   .wrth-form__helper-info {
     @extend .nsw-form__helper;
-    margin: rem(4px) 0 0 0;
+    margin: nswdsFunctions.rem(4px) 0 0 0;
   }
 
   /**
@@ -16,7 +22,7 @@ form {
    */
   .wrth-form__groupfield {
     @extend .nsw-form__group;
-    margin-bottom: rem(32px);
+    margin-bottom: nswdsFunctions.rem(32px);
   }
 
   /**
@@ -45,7 +51,7 @@ form {
   }
 
 
-  @include breakpoint("sm") {
+  @include nswdsMixins.breakpoint("sm") {
     /**
      * Composite field grid options
      */
@@ -58,7 +64,7 @@ form {
           flex-wrap: wrap;
           align-items: flex-end;
           justify-content: space-between;
-          gap: rem(16px);
+          gap: nswdsFunctions.rem(16px);
 
           > * {
             margin-top: 0;
@@ -89,7 +95,7 @@ form {
 
           > * {
             /* grow shrink basis */
-            flex: 0 1 calc(50% - rem(16px));
+            flex: 0 1 calc(50% - nswdsFunctions.rem(16px));
           }
         }
       }
@@ -101,7 +107,7 @@ form {
 
           > * {
             /* grow shrink basis */
-            flex: 0 1 calc((100%/3) - rem(16px));
+            flex: 0 1 calc((100%/3) - nswdsFunctions.rem(16px));
           }
         }
       }

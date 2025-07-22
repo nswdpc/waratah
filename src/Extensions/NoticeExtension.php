@@ -3,7 +3,6 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Notices\Notice;
-use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\DB;
 use SilverStripe\Forms\CheckboxField;

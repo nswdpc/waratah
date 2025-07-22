@@ -1,9 +1,3 @@
 /**
  * Backward compatibility support for items dropped from previous versions
  */
-.nsw-button--primary {
-  @extend .nsw-button--dark;
-}
-.nsw-button--secondary {
-  @extend .nsw-button--light;
-}

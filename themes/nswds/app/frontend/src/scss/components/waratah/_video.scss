@@ -2,6 +2,9 @@
  * Video and video gallery
  */
 
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .wrth-media__video {
 
   iframe {
@@ -17,7 +20,7 @@
   }
 
   .more-link {
-    @include breakpoint("lg") {
+    @include nswdsMixins.breakpoint("lg") {
       text-align: right;
     }
   }
@@ -43,7 +46,7 @@
   &-gallery {
 
     h4 {
-        margin-bottom: rem(16px);
+        margin-bottom: nswdsFunctions.rem(16px);
     }
 
   }
@@ -51,9 +54,11 @@
   &-featured {
 
     h2 {
-        margin-bottom: rem(16px);
-        @include breakpoint("lg") {
-            margin-bottom: rem(40px);
+        & {
+          margin-bottom: nswdsFunctions.rem(16px);
+        }
+        @include nswdsMixins.breakpoint("lg") {
+            margin-bottom: nswdsFunctions.rem(40px);
         }
     }
 
@@ -66,7 +71,7 @@
  * Embedded media - iframe/video
  */
 .ss-htmleditorfield-file.embed {
-  margin: rem(16px) 0 0 0;
+  margin: nswdsFunctions.rem(16px) 0 0 0;
   width: 100% !important;
 
   iframe,
@@ -78,7 +83,7 @@
   }
 
   .caption {
-    margin: rem(16px) 0 0 0;
+    margin: nswdsFunctions.rem(16px) 0 0 0;
   }
 
 }

@@ -6,7 +6,6 @@ use DNADesign\Elemental\Models\ElementalArea;
 use NSWDPC\Waratah\Models\SideElementalArea;
 use NSWDPC\Waratah\Models\TopElementalArea;
 use NSWDPC\Elemental\Models\Banner\ElementBanner;
-use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\DB;
 use SilverStripe\Forms\FieldList;

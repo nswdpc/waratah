@@ -4,6 +4,9 @@
  * nswdpc/waratah sets  block_default_userforms_css: true
  * Note that the SS userforms step process uses buttons within each step (reason for height 0)
  */
+
+@forward '../../../../node_modules/nsw-design-system/src/components/form/form';
+
 .userform {
 
   .nsw-progress-indicator__bar {
