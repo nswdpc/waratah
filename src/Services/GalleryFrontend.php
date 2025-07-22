@@ -15,13 +15,13 @@ use SilverStripe\View\Requirements;
  */
 class GalleryFrontend extends Frontend
 {
-
     /**
      * @inheritdoc
      * Add jQuery requirement prior to adding module's gallery requirements
      */
     #[\Override]
-    public function addRequirements(ElementQuickGallery $element) {
+    public function addRequirements(ElementQuickGallery $element)
+    {
         DesignSystemAssetExtension::requireJquery();
         parent::addRequirements($element);
     }
