@@ -17,7 +17,7 @@
 
 <% include nswds/SkipToNav %>
 
-<% include nswds/GlobalAlert %>
+<% include NSWDPC/Waratah/GlobalAlert %>
 
 <% include nswds/Masthead %>
 
