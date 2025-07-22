@@ -6,7 +6,7 @@
 
 .nsw-body-content .mfa-app {
 
-    padding : 1rem 0 0 0;
+    padding : 0;
     min-width: 0 !important;
     max-width: 100% !important;
     width: 100%;
@@ -116,43 +116,72 @@
 
     }
 
-    .mfa-verify-select-method__actions {
-      margin: 0 0 nswdsFunctions.rem(16px) 0;
+    .mfa-verify-select-method {
 
-      a.mfa-verify-select-method__back {
-        @extend .nsw-button;
-        @extend .nsw-button--dark;
+      &__content {
+        padding-top: 0;
+        margin: 0;
+
+        p {
+          margin: 0 0 nswdsFunctions.rem(16px) 0;
+        }
       }
+
+      &__method-list {
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
+      }
+
+      &__actions {
+        margin: 0 0 nswdsFunctions.rem(16px) 0;
+
+        a.mfa-verify-select-method__back {
+          @extend .nsw-button;
+          @extend .nsw-button--dark;
+        }
+      }
+
     }
 
-    .mfa-register-backup-codes__container {
+    .mfa-register-backup-codes {
 
-      .mfa-register-backup-codes__helper-links {
+        &__container {
 
-        // use nsw-list
-        @extend .nsw-list;
-        @extend .nsw-list--32;
+          .btn {
+            @extend .nsw-button;
+          }
 
-        // ensure margin below
-        margin-bottom: nswdsFunctions.rem(32px) !important;
+          .btn-primary {
+            @extend .nsw-button--dark;
+          }
 
-        .btn {
-          @extend .nsw-button;
+          p {
+            margin: 0 0 nswdsFunctions.rem(16px) 0;
+          }
+
         }
 
-        .btn-link {
-          @extend .nsw-button--dark-outline-solid;
+        &__code-grid {
+          margin: 0 0 nswdsFunctions.rem(16px) 0;
         }
 
-      }
+        &__helper-links {
 
-      .btn {
-        @extend .nsw-button;
-      }
+          // use nsw-list
+          @extend .nsw-list;
+          @extend .nsw-list--32;
 
-      .btn-primary {
-        @extend .nsw-button--dark;
-      }
+          // ensure margin below
+          margin-bottom: nswdsFunctions.rem(32px) !important;
+
+          .btn {
+            @extend .nsw-button;
+          }
+
+          .btn-link {
+            @extend .nsw-button--dark-outline-solid;
+          }
+
+        }
 
     }
 
