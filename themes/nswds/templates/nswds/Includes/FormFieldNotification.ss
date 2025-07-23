@@ -6,10 +6,5 @@
     <% else %>
         <% include nswds/Icon Icon_Icon='info', Icon_IconExtraClass='nsw-form__helper__icon' %>
     <% end_if %>
-    <% if $FormFieldNotification_MessageCast == 'html' %>
-        {$FormFieldNotification_Message.RAW}
-    <% else %>
-        <%-- TODO: limit HTML allowed ? --%>
-        {$FormFieldNotification_Message.RAW}
-    <% end_if %>
+    {$FormFieldNotification_Message}
 </div>
