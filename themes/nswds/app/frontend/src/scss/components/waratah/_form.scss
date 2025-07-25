@@ -50,6 +50,13 @@ form {
     @extend .nsw-button--danger;
   }
 
+  input[type=color] {
+    @extend .nsw-form__input;
+    padding: 1px 2px;
+    margin: 0;
+    background-color: transparent;
+    min-height: nswdsFunctions.rem(48px);
+  }
 
   @include nswdsMixins.breakpoint("sm") {
     /**
