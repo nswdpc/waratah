@@ -198,12 +198,7 @@ class BaseElementExtension extends DataExtension
      */
     protected function getBackgrounds(): array
     {
-        $backgrounds = $this->getColourSelectionOptions('section');
-        if (!is_array($backgrounds)) {
-            $backgrounds = [];
-        }
-
-        return $backgrounds;
+        return $this->getColourSelectionOptions('section');
     }
 
     /**
