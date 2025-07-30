@@ -188,11 +188,7 @@ class ElementalUtilityList extends BaseElement
     {
         try {
             $hashTags = explode(",", $this->HashTags ?? '');
-            if (is_array($hashTags)) {
-                return array_filter(array_unique($hashTags));
-            } else {
-                return [];
-            }
+            return array_filter(array_unique($hashTags));
         } catch (\Exception) {
             return [];
         }
