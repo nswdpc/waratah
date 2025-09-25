@@ -33,7 +33,7 @@ class SectionSelectionField extends DropdownField
         $options = $this->getColourSelectionOptions('section');
         $source = [];
         foreach ($options as $k => $v) {
-            $source[ $k ] = _t('nswds.BACKGROUND_' . strtoupper($k), $v);
+            $source[ $k ] = _t('nswds.BACKGROUND_' . strtoupper((string) $k), $v);
         }
 
         $this->source = $source;
