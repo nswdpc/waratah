@@ -276,7 +276,7 @@ class ElementalUtilityList extends BaseElement
             $url = $current->AbsoluteLink($action);
         }
 
-        return $url;
+        return is_string($url) ? $url : '';
     }
 
     /**
