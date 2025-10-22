@@ -17,14 +17,14 @@ class FormFieldExtension extends Extension
      */
     public function ParentExtraClass(): string
     {
-        $extraClasses = $this->getOwner()->extraClasses;
-        if (empty($extraClasses) || !is_array($extraClasses)) {
+        $extraClasses = $this->getOwner()->getField('extraClasses');
+        if (!is_array($extraClasses) || $extraClasses === []) {
             return "";
         }
 
         $defaultClasses = $this->getOwner()->config()->get('default_classes');
-        if (empty($defaultClasses) || !is_array($defaultClasses)) {
-            return "";
+        if (!is_array($defaultClasses)) {
+            $defaultClasses = [];
         }
 
         // values in extraClasses not present in defaultClasses
