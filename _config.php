@@ -92,7 +92,7 @@ try {
                 'title' => 'Buttons',
                 'items' => [
                     [
-                        'title' => 'Dark',
+                        'title' => 'Dark button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--dark'
@@ -100,14 +100,14 @@ try {
                     ],
                     /*
                     [
-                        'title' => 'Dark Outline',
+                        'title' => 'Dark Outline button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--dark-outline'
                         ]
                     ],
                     [
-                        'title' => 'Dark Outline Solid',
+                        'title' => 'Dark Outline Solid button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--dark-outline-solid'
@@ -115,7 +115,7 @@ try {
                     ],
                     */
                     [
-                        'title' => 'Light',
+                        'title' => 'Light button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--light'
@@ -123,21 +123,21 @@ try {
                     ],
                     /*
                     [
-                        'title' => 'Light Outline',
+                        'title' => 'Light Outline button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--light-outline'
                         ]
                     ],
                     [
-                        'title' => 'White',
+                        'title' => 'White button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--white'
                         ]
                     ],
                     [
-                        'title' => 'White Outline',
+                        'title' => 'White Outline button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--white-outline'
@@ -145,7 +145,7 @@ try {
                     ],
                     */
                     [
-                        'title' => 'Danger',
+                        'title' => 'Danger button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--danger'
