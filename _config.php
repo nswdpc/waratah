@@ -26,7 +26,7 @@ TinyMCEConfig::get('cms')->setOptions([
     'importcss_append' => true,
     'style_formats' => [
         [
-            'title' => 'Blocks',
+            'title' => 'Text',
             'items' => [
                 [
                     'title' => 'Paragraph',
@@ -35,18 +35,6 @@ TinyMCEConfig::get('cms')->setOptions([
                         'class' => ''
                     ]
                 ],
-                [
-                    'title' => 'Paragraph (Intro)',
-                    'selector' => 'p',
-                    'attributes' => [
-                        'class' => 'nsw-intro'
-                    ]
-                ],
-            ]
-        ],
-        [
-            'title' => 'Headings',
-            'items' => [
                 [
                     'title' => 'Heading 1',
                     'block' => 'h1',
@@ -88,7 +76,14 @@ TinyMCEConfig::get('cms')->setOptions([
                     'attributes' => [
                         'class' => ''
                     ]
-                ]
+                ],
+                [
+                    'title' => 'Paragraph (Intro)',
+                    'selector' => 'p',
+                    'attributes' => [
+                        'class' => 'nsw-intro'
+                    ]
+                ],
             ]
         ],
         [
