@@ -1,9 +1,8 @@
 <?php
 
 use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
-use SilverStripe\Forms\HTMLEditor\HtmlEditorConfig;
 
-HtmlEditorConfig::get('cms')->setOption('table_class_list', [
+TinyMCEConfig::get('cms')->setOption('table_class_list', [
     [
         'title' => 'Table',
         'value' => 'nsw-table'
