@@ -388,7 +388,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
         // do not include requirements when parsing the template
         $viewer->includeRequirements(false);
         // process template with current controller
-        $result = $viewer->process($controller, null, null);
+        $result = $viewer->process($controller);
         return DBField::create_field(
             DBHTMLText::class,
             $result
