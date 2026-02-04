@@ -1,9 +1,12 @@
-<div class="nsw-accordion js-accordion">
-    <% include nswds/Accordion_ExpandContract Accordion_ExpandContract=1 %>
-    <div class="nsw-accordion__title">{$Title.XML}</div>
-    <div class="nsw-accordion__content">
-        <% loop $FieldList %>
-            $FieldHolder
-        <% end_loop %>
-    </div>
+<div class="nsw-accordion--details js-accordion-details" id="wrth-accordion-{$ID}">
+    <details class="nsw-accordion__item" id="wrth-accordion-{$ID}-1">
+        <summary class="nsw-accordion__title">{$Title.XML}</summary>
+        <div class="nsw-accordion__content-wrap">
+            <div class="nsw-accordion__content">
+                <% loop $FieldList %>
+                    {$FieldHolder}
+                <% end_loop %>
+            </div>
+        </div>
+    </details>
 </div>
