@@ -1,7 +1,7 @@
 <% if $Accordion_Items %>
     <% if $Accordion_Details && $Accordion_ID %>
         <div class="nsw-accordion--details js-accordion-details" id="wrth-accordion-{$Accordion_ID}">
-            <% include nswds/Accordion_ExpandContract Accordion_ExpandContract=$Accordion_ExpandContract, AccordionID=$Accordion_ID %>
+            <% include nswds/Accordion_ExpandContract Accordion_ExpandContract=$Accordion_ExpandContract, Accordion_ID=$Accordion_ID %>
             <% loop $Accordion_Items %>
             <details class="nsw-accordion__item" id="wrth-accordion-{$Up.Accordion_ID}-{$Pos}">
                 <summary class="nsw-accordion__title">{$Title.XML}</summary>
