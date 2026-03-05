@@ -1,6 +1,6 @@
 <% if $Id == 'global-exit-button' %>
     <%-- this implementation mirrors the quick exit component, we use our own JS implementation, see _exitbutton.scss for styling --%>
-    <a class="wrth-exit__button wrth-exit__global-button" href="{$Url}" data-url="{$Url}" rel="nofollow noopener" id="{$Id}" aria-label="Quick exit" aria-describedby="wrth-exit__global-desc" data-use-esc="{$UseEscVal}">
+    <a class="wrth-exit__button wrth-exit__global-button" href="{$Url}" data-url="{$Url}" rel="nofollow noopener" id="{$Id}" aria-label="Quick exit" aria-describedby="wrth-exit__global-desc" data-use-esc="1">
         <div class="wrth-exit__global-content">
             <span id="wrth-exit__global-desc" class="nsw-quick-exit__description-text">
                 <%t nswds.QUICK_EXIT_LEAVE_INSTRUCTIONS 'Leave quickly using this banner or press' %> <kbd aria-label="<%t nswds.QUICK_EXIT_ESCAPE_KEY_TEXT 'Escape key' %>"><%t nswds.QUICK_EXIT_ESCAPE_KEY_NAME 'Esc' %></kbd> <%t nswds.QUICK_EXIT_ESCAPE_KEY_TWICE '2 times' %>.
