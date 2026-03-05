@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Models;
 
 use DNADesign\Elemental\Models\BaseElement;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\CheckboxSetField;
@@ -83,6 +84,8 @@ class ElementalUtilityList extends BaseElement
         'Body' => 'Text',
         'HashTags' => 'Text'
     ];
+
+    private string $_cache_page_url = '';
 
     /**
      * @inheritdoc
@@ -266,33 +269,50 @@ class ElementalUtilityList extends BaseElement
     }
 
     /**
-     * Returns the current URL, via Director
+     * Returns the current URL, via the Element's page area owner
+     * The 'owner' may not be a \Page record - elements can be added via areas to non-Page records
      */
-    protected static function getCurrentPageUrl($action = null): string
+    protected function getCurrentPageUrl(?string $action = null): string
     {
-        $current = Director::get_current_page();
-        $url = '';
-        if ($current && $current->hasMethod('AbsoluteLink')) {
-            $url = $current->AbsoluteLink($action);
+
+        if($this->_cache_page_url !== '') {
+            return $this->_cache_page_url;
         }
 
-        return is_string($url) ? $url : '';
+        $url = '';
+
+        /** @var ?\SilverStripe\ORM\DataObject $owner */
+        $owner = $this->getPage();
+        if(is_null($owner)) {
+            return '';
+        }
+        
+        if($owner instanceof SiteTree) {
+            // a SiteTree record or child
+            $url = $owner->AbsoluteLink($action);
+        } else if($page->hasMethod('AbsoluteLink')) {
+            // not a page - the record must specify an AbsoluteLink method
+            $url = $page->AbsoluteLink($action);
+        }
+
+        $this->_cache_page_url = is_string($url) ? $url : '';
+        return $this->_cache_page_url;
     }
 
     /**
      * Returns the current URL, as a template variable
      */
-    public function CurrentPageURL($action = null): DBVarchar
+    public function CurrentPageURL(?string $action = null): DBVarchar
     {
-        return DBField::create_field(DBVarchar::class, static::getCurrentPageUrl($action));
+        return DBField::create_field(DBVarchar::class, $this->getCurrentPageUrl($action));
     }
 
     /**
      * Returns the body with the URL
      */
-    public function BodyWithURL($action = null): DBVarchar
+    public function BodyWithURL(?string $action = null): DBVarchar
     {
-        $url = static::getCurrentPageUrl($action);
+        $url = $this->getCurrentPageUrl($action);
         $value = _t(
             'nswds.UTILITY_LIST_BODY_WITH_URL',
             '{body} Link: {url}',
