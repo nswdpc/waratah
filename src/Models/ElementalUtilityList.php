@@ -287,10 +287,10 @@ class ElementalUtilityList extends BaseElement
             return '';
         }
         
-        if($owner instanceof SiteTree) {
+        if ($owner instanceof SiteTree) {
             // a SiteTree record or child
             $url = $owner->AbsoluteLink($action);
-        } else if($page->hasMethod('AbsoluteLink')) {
+        } elseif ($page->hasMethod('AbsoluteLink')) {
             // not a page - the record must specify an AbsoluteLink method
             $url = $page->AbsoluteLink($action);
         }
