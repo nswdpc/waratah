@@ -10,7 +10,7 @@
     </a>
 <% else %>
 <div class="wrth-exit__button">
-    <a class="nsw-button nsw-button--full-width" type="button" aria-expanded="true" id="{$Id}" class="page-exit" data-url="{$Url}" href="{$Url}" rel="nofollow noopener" data-use-esc="{$UseEscVal}">
+    <a class="nsw-button nsw-button--full-width" id="{$Id}" class="page-exit" data-url="{$Url}" href="{$Url}" rel="nofollow noopener" data-use-esc="{$UseEscVal}">
         <span><% if $Label %>{$Label}<% else %><%t nswds.QUICK_EXIT_DEFAULT_ACTION_LABEL 'Exit now' %><% end_if %></span>
         <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">logout</span>
     </a>
