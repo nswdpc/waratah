@@ -4,7 +4,6 @@ namespace NSWDPC\Waratah\Models;
 
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\Control\Director;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\TextField;
@@ -275,7 +274,7 @@ class ElementalUtilityList extends BaseElement
     protected function getCurrentPageUrl(?string $action = null): string
     {
 
-        if($this->_cache_page_url !== '') {
+        if ($this->_cache_page_url !== '') {
             return $this->_cache_page_url;
         }
 
@@ -283,10 +282,10 @@ class ElementalUtilityList extends BaseElement
 
         /** @var ?\SilverStripe\ORM\DataObject $owner */
         $owner = $this->getPage();
-        if(is_null($owner)) {
+        if (is_null($owner)) {
             return '';
         }
-        
+
         if ($owner instanceof SiteTree) {
             // a SiteTree record or child
             $url = $owner->AbsoluteLink($action);
