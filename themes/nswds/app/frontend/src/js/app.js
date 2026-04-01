@@ -1,3 +1,6 @@
+// NSW Design System
+import 'nsw-design-system/dist/js/main.js';
+
 // Core components
 import initSlimSelect from './components/slimselect';
 import initSideNav from './components/sidenav';
