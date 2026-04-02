@@ -1,9 +1,11 @@
-import { $, build, write } from "bun";
-import { transform, bundle } from "lightningcss";
+import { $ } from "bun";
 import * as sass from 'sass-embedded';
+import { transform } from "lightningcss";
 
 const DIST_JS = "./dist/js";
 const DIST_CSS = "./dist/css";
+const SRC_JS = "./src/js/app.js";
+const SRC_SCSS = "./src/scss/app.scss";
 
 async function clean() {
   console.log("🪥 Clean");
@@ -14,24 +16,23 @@ async function clean() {
 async function buildJS() {
   console.log("🚀 Building JS...");
   
-  await build({
-    entrypoints: [
-      "./src/js/app.js"
-    ],
+  const config = {
+    entrypoints: [SRC_JS],
     outdir: DIST_JS,
     naming: "[name].[ext]",
-    minify: false,
-    sourcemap: "external"
+    sourcemap: "external" as const,
+  };
+
+  await Bun.build({
+    ...config,
+    minify: false
   });
 
-  await build({
-    entrypoints: [
-      "./src/js/app.js"
-    ],
-    outdir: DIST_JS,
-    naming: "[name].min.[ext]",
+  await Bun.build({
+    ...config,
     minify: true,
-    sourcemap: "none",
+    naming: "[name].min.[ext]",
+    sourcemap: "none" as const
   });
 }
 
@@ -39,7 +40,7 @@ async function buildCSS() {
   console.log("🎨 Build CSS");
   
   const result = await sass.compileAsync(
-    "./src/scss/app.scss",
+    SRC_SCSS,
     {
       loadPaths: [
         "node_modules"
@@ -73,6 +74,8 @@ async function buildCSS() {
 }
 
 // Orchestrate
+console.time("Build took");
 await clean();
 await Promise.all([buildJS(), buildCSS()]);
+console.timeEnd("Build took");
 console.log("✅ Build Complete");
