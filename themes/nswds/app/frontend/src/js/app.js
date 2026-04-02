@@ -1,6 +1,5 @@
 // NSW Design System
-import 'nsw-design-system/dist/js/main.js';
-
+import * as NSW from 'nsw-design-system/dist/js/main.js';
 // Core components
 import initSlimSelect from './components/slimselect';
 import initSideNav from './components/sidenav';
@@ -22,6 +21,8 @@ function initAppMain() {
     initMicroModal();
     initVideoPlayer();
 }
+
+window.NSW = NSW;
 initAppMain();
 
 // Project components
