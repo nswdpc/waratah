@@ -79,15 +79,30 @@
         <% end_if %>
     <% end_if %>
 
-    <% if $Media_Transcript %>
-        <div class="nsw-accordion js-accordion">
-            <div class="nsw-accordion__title"><%t nswds.READ_TRANSCRIPT "Read transcript of the '{videoTitle}' video" videoTitle=$Title %></div>
-            <div class="nsw-accordion__content">
-                {$Media_Transcript}
-            </div>
-        </div>
-    <% end_if %>
-
 <% end_if %>
 
 </figure>
+
+<% if $Media_Video && $Media_Transcript %>
+    <% if $Media_ID %>
+    <div class="nsw-accordion--details js-accordion-details" id="wrth-accordion-{$Media_ID}">
+        <details class="nsw-accordion__item" id="wrth-accordion-{$Media_ID}-1">
+            <summary class="nsw-accordion__title">
+                <%t nswds.READ_TRANSCRIPT "Read transcript of the '{videoTitle}' video" videoTitle=$Title %>
+            </summary>
+            <div class="nsw-accordion__content-wrap">
+                <div class="nsw-accordion__content">
+                    {$Media_Transcript}
+                </div>
+            </div>
+        </details>
+    </div>
+    <% else %>
+    <div class="nsw-accordion js-accordion">
+        <div class="nsw-accordion__title"><%t nswds.READ_TRANSCRIPT "Read transcript of the '{videoTitle}' video" videoTitle=$Title %></div>
+        <div class="nsw-accordion__content">
+            {$Media_Transcript}
+        </div>
+    </div>
+    <% end_if %>
+<% end_if %>    
