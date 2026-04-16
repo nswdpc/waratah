@@ -98,22 +98,20 @@ try {
                             'class' => 'nsw-button nsw-button--dark'
                         ]
                     ],
-                    /*
                     [
-                        'title' => 'Dark Outline button',
+                        'title' => 'Dark outline button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--dark-outline'
                         ]
                     ],
                     [
-                        'title' => 'Dark Outline Solid button',
+                        'title' => 'Dark outline solid button',
                         'selector' => 'a',
                         'attributes' => [
                             'class' => 'nsw-button nsw-button--dark-outline-solid'
                         ]
                     ],
-                    */
                     [
                         'title' => 'Light button',
                         'selector' => 'a',
