@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\CMS\Model\SiteTreeExtension;
