@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class ButtonStateSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**
@@ -28,6 +27,7 @@ class ButtonStateSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $this->source = $this->getColourSelectionOptions('buttonstate');

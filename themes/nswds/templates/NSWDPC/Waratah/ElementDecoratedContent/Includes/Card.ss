@@ -1,6 +1,6 @@
 <%-- render this decorated content element into a card --%>
 <div class="nsw-card nsw-card--highlight<% if $Brand %> nsw-card--{$Brand.XML}<% end_if %>">
-    <% if $Up.Up.CardStyle == "title-image-abstract" %>
+    <% if $Top.CardStyle == "title-image-abstract" %>
         <% if $Image %>
             <div class="nsw-card__image">
                 <img src="$Image.FocusFillMax(600,400).URL" alt="{$Image.Title.XML}" loading="lazy">
@@ -15,7 +15,7 @@
         <div class="nsw-card__title">
             <a href="{$LinkURL}">{$Title.XML}</a>
         </div>
-        <% if $Up.Up.CardStyle == "title-abstract" || $Up.Up.CardStyle == "title-image-abstract" %>
+        <% if $Top.CardStyle == "title-abstract" || $Top.CardStyle == "title-image-abstract" %>
             <% if $Description %>
                 <div class="nsw-card__copy">
                     <p>{$Description.XML}</p>

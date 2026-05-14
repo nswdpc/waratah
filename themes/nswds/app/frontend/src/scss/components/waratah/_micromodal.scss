@@ -3,15 +3,18 @@
  * Refer to documentation for use
  */
 
- @keyframes mmfadeIn {
-     from { opacity: 0; }
-       to { opacity: 1; }
- }
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
 
- @keyframes mmfadeOut {
-     from { opacity: 1; }
-       to { opacity: 0; }
- }
+@keyframes mmfadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+  from { opacity: 1; }
+    to { opacity: 0; }
+}
 
 .wrth-mm {
 
@@ -34,17 +37,19 @@
   }
 
   &__overlay {
-    @include z-index('top');
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--nsw-brand-dark);
-    color: var(--nsw-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include nswdsMixins.z-index('top');
+    & {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--nsw-brand-dark);
+      color: var(--nsw-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &__container {
@@ -55,8 +60,8 @@
     height: 100%;
     width: 70%;
 
-    @include breakpoint('sm', 'max-width') {
-      padding: rem(32px);
+    @include nswdsMixins.breakpoint('sm', 'max-width') {
+      padding: nswdsFunctions.rem(32px);
       width: auto;
 
       .wrth-mm__content,
@@ -78,7 +83,7 @@
 
   button {
     &:focus {
-      @include nsw-focus(true, var(--nsw-white));
+      @include nswdsMixins.nsw-focus(true, var(--nsw-white));
     }
   }
 
@@ -92,7 +97,7 @@
     }
 
     .wrth-mm__content {
-      @include font-size('md');
+      @include nswdsMixins.font-size('md');
     }
 
   }

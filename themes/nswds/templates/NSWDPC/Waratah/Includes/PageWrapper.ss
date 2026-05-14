@@ -30,7 +30,7 @@
 
         <% if $SidebarNavigation(1) %>
             <% with $SidebarNavigation(1) %>
-                <aside class="nsw-layout__sidebar nsw-layout__sidebar--desktop">
+                <aside class="nsw-layout__sidebar">
                     <% include NSWDPC/Waratah/SidebarNav Children=$Children, URLSegment=$URLSegment, Link=$Link, MenuTitle=$MenuTitle %>
                 </aside>
             <% end_with %>

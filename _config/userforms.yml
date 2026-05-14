@@ -8,3 +8,6 @@ SilverStripe\UserForms\Model\UserDefinedForm:
   block_default_userforms_css: true
 DNADesign\ElementalUserForms\Model\ElementForm:
   block_default_userforms_css: true
+SilverStripe\UserForms\Control\UserDefinedFormController:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\UserDefinedFormControllerExtension'

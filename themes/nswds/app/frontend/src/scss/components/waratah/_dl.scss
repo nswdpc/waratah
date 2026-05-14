@@ -5,32 +5,45 @@
  * Above sm viewport, in the flex row direction
  */
 
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 dl.wrth__flex_list {
 
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
+  & {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 
-  @include breakpoint("sm") {
+  @include nswdsMixins.breakpoint("sm") {
     flex-direction: row;
   }
 
   dt {
-    flex-basis: 25%;
-    padding : 0 0 rem(16px) 0;
-    margin: 0;
-    @include font-size('sm');
-    font-weight: var(--nsw-font-bold);
+    & {
+      flex-basis: 25%;
+      padding : 0 0 nswdsFunctions.rem(16px) 0;
+      margin: 0;
+    }
+    @include nswdsMixins.font-size('sm');
+    & {
+      font-weight: var(--nsw-font-bold);
+    }
   }
 
   dd {
-    flex-basis: 75%;
-    padding : 0 0 rem(16px) 0;
-    margin: 0;
-    @include font-size('sm');
-    font-weight: var(--nsw-font-normal);
+    & {
+      flex-basis: 75%;
+      padding : 0 0 nswdsFunctions.rem(16px) 0;
+      margin: 0;
+    }
+    @include nswdsMixins.font-size('sm');
+    & {
+      font-weight: var(--nsw-font-normal);
+    }
   }
 
 }

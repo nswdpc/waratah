@@ -1,6 +1,6 @@
 <% if $LinkOrSection == 'section' %>
 <% if $SideNavigation_Children %>
-<ul>
+<ul<% if $SideNavigation_IsTop == 1 %> class="nsw-side-nav__content"<% end_if %>>
     <% loop $SideNavigation_Children %>
     <li<% if $IsCurrent %> class="active"<% end_if %>>
         <a href="{$Link}"<% if $IsCurrent %> class="current" aria-current="page"<% end_if %>>

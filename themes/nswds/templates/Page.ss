@@ -16,8 +16,6 @@
 
 <% include NSWDPC/Waratah/GlobalAlert %>
 
-<% include NSWDPC/Waratah/PageAlert %>
-
 <% include nswds/Masthead %>
 
 <% include nswds/Header %>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\ORM\DataExtension;
@@ -9,12 +11,11 @@ use SilverStripe\ORM\DataExtension;
  * TODO: PR
  * See WorkflowService::getWorkflowFor()
  * @author James
+ * @extends \SilverStripe\ORM\DataExtension<(static & \Symbiote\AdvancedWorkflow\DataObjects\WorkflowInstance)>
  */
-class WorkflowInstance extends DataExtension {
-    /**
-     * @var array
-     */
-    private static $indexes = [
+class WorkflowInstance extends DataExtension
+{
+    private static array $indexes = [
         'TargetID' => [
             'type' => 'index',
             'columns' => ['TargetID','TargetClass']

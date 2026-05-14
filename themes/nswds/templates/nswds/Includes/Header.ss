@@ -33,7 +33,7 @@
         <% if $SearchForm %>
 
             <% with $SearchForm %>
-            <% include SilverStripe/CMS/Search/SearchForm SearchFormContext='nsw-header-search' %>
+                <% include NSWDPC/Waratah/GlobalSearch %>
             <% end_with %>
 
         <% end_if %>

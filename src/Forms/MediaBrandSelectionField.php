@@ -11,7 +11,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class MediaBrandSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**
@@ -28,6 +27,7 @@ class MediaBrandSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $this->source = $this->getColourSelectionOptions('mediabrand');

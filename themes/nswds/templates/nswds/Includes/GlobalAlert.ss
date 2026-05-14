@@ -2,7 +2,7 @@
 
     <% loop $GlobalSpecialAnnouncements %>
 
-    <div class="nsw-global-alert<% if $GlobalAlert_AlertState=='critical' %> nsw-global-alert--critical<% else_if $GlobalAlert_AlertState=='light' %> nsw-global-alert--light<% end_if %> js-sitewide-message" role="alert">
+    <div class="nsw-global-alert<% if $GlobalAlert_AlertState=='critical' %> nsw-global-alert--critical<% else_if $GlobalAlert_AlertState=='light' %> nsw-global-alert--light<% end_if %> js-global-alert" role="alert" data-cookie-name="{$GlobalAlert_CookieName}">
 
         <div class="nsw-global-alert__wrapper">
 
@@ -43,7 +43,7 @@
 
         <% if $GlobalAlert_SchemaJSON %>
         <script type="application/ld+json">
-            $GlobalAlert_SchemaJSON.RAW
+            {$GlobalAlert_SchemaJSON.RAW}
         </script>
         <% end_if %>
 

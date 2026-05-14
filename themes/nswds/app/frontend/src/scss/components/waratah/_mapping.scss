@@ -1,9 +1,13 @@
 /**
  * Mapping styles
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .wrth-infowindow {
   .nsw-list-item {
     border: none;
-    padding: rem(12px);
+    padding: nswdsFunctions.rem(12px);
   }
 }

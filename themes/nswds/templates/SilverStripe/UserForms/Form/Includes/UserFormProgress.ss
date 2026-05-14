@@ -10,7 +10,7 @@
         <nav aria-label="<%t nswds.STEPS_IN_THIS_FORM 'Steps in this form' %>" class="progress-bar step-buttons nsw-progress-indicator__bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="{$Steps.Count}">
 
             <% loop $Steps %>
-            <div class="step-button-wrapper<% if $First %> current<% end_if %>" data-for="{$Name}">
+            <div class="step-button-wrapper<% if $IsFirst %> current<% end_if %>" data-for="{$Name}">
                 <button class="step-button-jump" disabled="disabled" data-step="{$Pos}">
                     <span><% if $Top.ButtonText %>{$Top.ButtonText} <% end_if %>{$Pos}</span>
                 </button>

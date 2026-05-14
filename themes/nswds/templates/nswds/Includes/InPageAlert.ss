@@ -11,7 +11,7 @@
         <%-- compact view --%>
 
         <p class="nsw-small">
-            <% if $InPageAlert_Title %><strong>{$InPageAlert_Title.XML}</strong> <% end_if %><% if $InPageAlert_Content %><% if $InPageAlert_Cast == 'html' %>{$InPageAlert_Content.RAW}<% else %>{$InPageAlert_Content.XML}<% end_if %><% end_if %>
+            <% if $InPageAlert_Title %><strong>{$InPageAlert_Title.XML}</strong> <% end_if %><% if $InPageAlert_Content %><% if $InPageAlert_Cast == 'html' %>{$InPageAlert_Content}<% else %>{$InPageAlert_Content.XML}<% end_if %><% end_if %>
         </p>
 
     <% else %>
@@ -22,8 +22,7 @@
 
         <% if $InPageAlert_Content %>
             <% if $InPageAlert_Cast == 'html' %>
-                <%-- TODO: limited HTML? --%>
-                <div>{$InPageAlert_Content.RAW}</div>
+                <div>{$InPageAlert_Content}</div>
             <% else %>
                 <p>{$InPageAlert_Content.XML}</p>
             <% end_if %>

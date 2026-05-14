@@ -5,30 +5,39 @@
  * Then add a div with wrth-off-canvas
  * The rest is up to you - add the open class to both elements to style a slide in sidebar from the right
  */
-.wrth-off-canvas{
-  width: 100vw;
-  margin-right: -100vw;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  right: 0;
-  background-color: var(--nsw-off-white);
-  height: 100vh;
-  overflow: auto;
 
-  @include breakpoint("sm"){
-    margin-right: rem(-410px);
-    width: rem(410px);
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
+.wrth-off-canvas {
+
+  & {
+    width: 100vw;
+    margin-right: -100vw;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: var(--nsw-off-white);
+    height: 100vh;
+    overflow: auto;
+  }
+
+  @include nswdsMixins.breakpoint("sm") {
+    margin-right: nswdsFunctions.rem(-410px);
+    width: nswdsFunctions.rem(410px);
   }
 }
 
 .wrth-canvas,
 .wrth-off-canvas {
   &.open {
-    transition-duration: 300ms;
-    transform: translateX(-100vw);
-    @include breakpoint("sm"){
-      transform: translateX(rem(-410px));
+    & {
+      transition-duration: 300ms;
+      transform: translateX(-100vw);
+    }
+    @include nswdsMixins.breakpoint("sm"){
+      transform: translateX(nswdsFunctions.rem(-410px));
     }
   }
 

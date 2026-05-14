@@ -7,11 +7,11 @@ use SilverStripe\Forms\DropdownField;
 
 /**
  * Provide a alert state selection dropdown
+ * This can be used for the Global Alert component
  * @author James
  */
 class AlertStateSelectionField extends DropdownField
 {
-
     use DesignSystemSelections;
 
     /**
@@ -28,6 +28,7 @@ class AlertStateSelectionField extends DropdownField
      *
      * @inheritdoc
      */
+    #[\Override]
     public function getSource()
     {
         $this->source = $this->getColourSelectionOptions('alertstate');

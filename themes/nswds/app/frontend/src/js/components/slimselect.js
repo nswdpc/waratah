@@ -20,6 +20,7 @@ export function applySlimSelect(listbox) {
     let minSelected = listbox.dataset.hasOwnProperty('minSelected') ? listbox.dataset.minSelected : null;
     let maxSelected = listbox.dataset.hasOwnProperty('maxSelected') ? listbox.dataset.maxSelected : null;
     let matching = listbox.dataset.hasOwnProperty('matching') ? listbox.dataset.matching : 'default';
+    let addable = listbox.dataset.hasOwnProperty('addable');
     let settings = {
       searchHighlight: true,
       allowDeselect: true,
@@ -50,6 +51,14 @@ export function applySlimSelect(listbox) {
       listBoxFilterHandler(listbox, n);
       return true;
     };
+    if(addable) {
+      events.addable = function(value) {
+        return {
+          text: value,
+          value: 'new=' + value
+        }
+      };
+    }
     listbox.classList.add('ss-listbox');
     let slim = new SlimSelect({
       select: listbox,

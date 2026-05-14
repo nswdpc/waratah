@@ -1,14 +1,18 @@
 <?php
+
+declare(strict_types=1);
+
 namespace NSWDPC\Waratah\Extensions;
 
-use Silverstripe\ORM\DataExtension;
-use Silverstripe\Forms\FieldList;
-use Silverstripe\Forms\TextField;
-use Silverstripe\Assets\Image;
+use SilverStripe\ORM\DataExtension;
 
-class ImageExtension extends DataExtension {
-
-    private static $db = array(
+/**
+ * @property ?string $PhotoCredit
+ * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\Assets\Image & static)>
+ */
+class ImageExtension extends DataExtension
+{
+    private static array $db = [
         'PhotoCredit' => 'Varchar(255)'
-    );
+    ];
 }

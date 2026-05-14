@@ -1,8 +1,12 @@
 /**
  * Logo and logo link
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 .nsw-header__logo-link > .nsw-header__logo {
-  @include breakpoint('lg') {
+  @include nswdsMixins.breakpoint('lg') {
     width: auto;
   }
 }

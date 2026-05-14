@@ -1,14 +1,19 @@
 /**
  * Scale utility class(es)
- * Appies font size modifier to the first child of the parent
+ * Applies font size modifier to the first child of the parent
+ * Usage .wrth-scale-xl
  */
+
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/mixins' as nswdsMixins;
+@use '../../../../node_modules/nsw-design-system/src/global/scss/base/functions' as nswdsFunctions;
+
 $wrth-scale-sizes: ('xxs','xs','sm','md','lg','xl','xxl');
 .wrth-scale {
 
   @each $scaleSize in $wrth-scale-sizes {
     &-#{$scaleSize} {
       & > * {
-        @include font-size($scaleSize);
+        @include nswdsMixins.font-size($scaleSize);
       }
     }
   }
