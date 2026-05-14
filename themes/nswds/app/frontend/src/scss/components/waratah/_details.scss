@@ -19,8 +19,8 @@ details {
     line-height: var(--nsw-line-height-sm-desktop);
     font-weight: var(--nsw-font-bold);
 
-    // next sibling
-    & + * {
+    // adjacent sibling
+    & ~ * {
       display: block;
       box-sizing: border-box;
     }
