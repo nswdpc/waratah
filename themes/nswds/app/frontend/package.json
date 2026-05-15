@@ -15,10 +15,11 @@
     "prebuildall": "npm run-script project-defaults",
     "project-defaults": "./defaults.sh",
     "start": "node_modules/.bin/gulp",
-    "build": "node_modules/.bin/gulp build",
+    "build": "npm run-script version && node_modules/.bin/gulp build",
     "rebuild-node-sass": "npm rebuild node-sass",
     "buildall": "npm install --no-fund --prefer-offline --silent --no-audit && npm run-script build",
-    "audit": "npm audit"
+    "audit": "npm audit",
+    "version": "npm view nsw-design-system version"
   },
   "author": "NSWDPC Digital",
   "contributors": [
@@ -28,7 +29,7 @@
   ],
   "dependencies": {
     "micromodal": "^0.4.10",
-    "nsw-design-system": "^3.22.11",
+    "nsw-design-system": "^3.24.5",
     "slim-select": "^2.10.0"
   },
   "devDependencies": {
