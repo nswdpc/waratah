@@ -18,7 +18,7 @@
     "build": "npm run-script bun-build",
     "buildall": "npm install --no-fund --prefer-offline --silent --no-audit && npm run-script build && npm run-script version",
     "audit": "npm audit",
-    "version": "npm view nsw-design-system version",
+    "version": "npm list nsw-design-system",
     "bun-build": "node_modules/.bin/bun run build.ts"
   },
   "author": "NSWDPC Digital",
