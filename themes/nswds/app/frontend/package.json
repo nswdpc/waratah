@@ -1,7 +1,7 @@
 {
   "name": "@nswdpc/waratah",
   "license": "BSD-3-Clause",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/nswdpc/waratah.git"
@@ -9,17 +9,16 @@
   "description": "Frontend integration of the NSW Design System for Silverstripe websites. This package.json adds extra libraries beyond those provided by nsw-design-system",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install",
-    "prestart": "npm run-script project-defaults",
-    "prebuild": "npm run-script project-defaults",
-    "prebuildall": "npm run-script project-defaults",
+    "setup": "bun install",
+    "prestart": "bun run project-defaults",
+    "prebuild": "bun run project-defaults",
+    "prebuildall": "bun run project-defaults",
     "project-defaults": "./defaults.sh",
-    "start": "node_modules/.bin/bun run --watch build.ts",
-    "build": "npm run-script bun-build",
-    "buildall": "npm install --no-fund --prefer-offline --silent --no-audit && npm run-script build && npm run-script version",
-    "audit": "npm audit",
-    "version": "npm list nsw-design-system",
-    "bun-build": "node_modules/.bin/bun run build.ts"
+    "start": "bun run --watch build.ts",
+    "build": "npm run build.ts",
+    "buildall": "bun install --no-fund --prefer-offline --silent --no-audit && bun run build && bun run version",
+    "audit": "bun audit",
+    "version": "bun pm ls | grep nsw-design-system"
   },
   "author": "NSWDPC Digital",
   "contributors": [
@@ -29,12 +28,10 @@
   ],
   "dependencies": {
     "micromodal": "^0.4.10",
-    "nsw-design-system": "^3.22.11",
+    "nsw-design-system": "3.22.11",
     "slim-select": "^2.10.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.3.11",
-    "bun": "^1.3",
     "lightningcss": "^1.32.0",
     "sass-embedded": "^1.98.0"
   }
