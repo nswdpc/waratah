@@ -15,7 +15,7 @@
     "prebuildall": "bun run project-defaults",
     "project-defaults": "./defaults.sh",
     "start": "bun run --watch build.ts",
-    "build": "npm run build.ts",
+    "build": "bun run build.ts",
     "buildall": "bun install --no-fund --prefer-offline --silent --no-audit && bun run build && bun run version",
     "audit": "bun audit",
     "version": "bun pm ls | grep nsw-design-system"
