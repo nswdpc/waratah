@@ -1,0 +1,44 @@
+@forward '../../../../node_modules/nsw-design-system/src/components/quick-exit/quick-exit';
+
+.wrth-exit {
+
+  &__button {
+
+    a,
+    button {
+      background-color: var(--nsw-palette-yellow-02);
+      color: var(--nsw-text-dark);
+      .nsw-material-icons {
+        color: var(--nsw-text-dark);
+      }
+
+      &:active,
+      &:hover {
+        background-color: var(--nsw-palette-yellow-03);
+        color: var(--nsw-text-dark);
+        .nsw-material-icons {
+          color: var(--nsw-text-dark);
+        }
+      }
+
+      &:focus {
+        outline-color: var(--nsw-palette-yellow-02);
+      }
+
+    }
+
+  }
+
+  &__global {
+
+    &-button {
+      @extend .nsw-quick-exit;
+    }
+
+    &-content {
+      @extend .nsw-quick-exit__content;
+    }
+  }
+
+
+}
