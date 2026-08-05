@@ -15,7 +15,6 @@ use SilverStripe\View\TemplateGlobalProvider;
  */
 class StickyContainer implements TemplateGlobalProvider
 {
-
     use Injectable;
     use Extensible;
 
@@ -23,26 +22,26 @@ class StickyContainer implements TemplateGlobalProvider
      * Return a boolean value to flag that the StickContainer
      * should be applied to a page
      */
-     public static function has_sticky_container(): bool
-     {
+    public static function has_sticky_container(): bool
+    {
         $has = false;
         // Test whether ExitButton implementation is available
-        if(\class_exists(ExitButton::class)) {
+        if (\class_exists(ExitButton::class)) {
             $has = ExitButton::has_global_exit_button();
         }
 
         // allow project code to override this
         Injector::inst()->get(self::class)->extend('hasStickyContainer', $has);
         return (bool) $has;
-     }
+    }
 
-     /**
-      * @inheritdoc
-      */
-     public static function get_template_global_variables()
-     {
-         return [
-             'HasStickyContainer' => 'has_sticky_container'
-         ];
-     }
+    /**
+     * @inheritdoc
+     */
+    public static function get_template_global_variables()
+    {
+        return [
+            'HasStickyContainer' => 'has_sticky_container'
+        ];
+    }
 }
