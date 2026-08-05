@@ -30,6 +30,7 @@ class StickyContainer implements TemplateGlobalProvider
         if(\class_exists(ExitButton::class)) {
             $has = ExitButton::has_global_exit_button();
         }
+
         // allow project code to override this
         Injector::inst()->get(self::class)->extend('hasStickyContainer', $has);
         return (bool) $has;
