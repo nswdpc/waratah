@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NSWDPC\Waratah\Forms;
 
 use NSWDPC\Waratah\Traits\DesignSystemSelections;
