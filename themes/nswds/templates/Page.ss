@@ -31,6 +31,8 @@
 
 {$Layout}
 
+<% include NSWDPC/Waratah/StickyContainer %>
+
 <% include nswds/Footer %>
 
 <% include NSWDPC/Waratah/GlobalNotice %>
