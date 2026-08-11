@@ -85,8 +85,9 @@ export default function initVideoPlayer() {
               switch(mutation.type) {
                 case "attributes":
                   switch(mutation.attributeName) {
-                    case "aria-hidden":
-                      if(mutation.oldValue == 'false') {
+                    case "class":
+                      wasActive = mutation.oldValue.split(/\s+/).includes("active");
+                      if(wasActive) {
                         // was true
                         pauseVideo(mutation.target);
                       } else {
@@ -107,7 +108,7 @@ export default function initVideoPlayer() {
             attributes: true,
             attributeOldValue: true,
             attributeFilter: [
-              'aria-hidden'
+              'class'
             ]
           }
         );
