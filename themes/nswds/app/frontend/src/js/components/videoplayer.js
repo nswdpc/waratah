@@ -85,8 +85,8 @@ export default function initVideoPlayer() {
               switch(mutation.type) {
                 case "attributes":
                   switch(mutation.attributeName) {
-                    case "aria-expanded":
-                      if(mutation.oldValue == 'true') {
+                    case "aria-hidden":
+                      if(mutation.oldValue == 'false') {
                         // was true
                         pauseVideo(mutation.target);
                       } else {
@@ -107,7 +107,7 @@ export default function initVideoPlayer() {
             attributes: true,
             attributeOldValue: true,
             attributeFilter: [
-              'aria-expanded'
+              'aria-hidden'
             ]
           }
         );
