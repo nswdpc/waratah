@@ -1,10 +1,10 @@
-// NSW Design System
-import * as NSW from 'nsw-design-system/dist/js/main.js';
 // Core components
 import initSlimSelect from './components/slimselect';
 import initSideNav from './components/sidenav';
 import initMicroModal from './components/micromodal';
 import initVideoPlayer from './components/videoplayer';
+// Project components
+import '../../../../../../../../../waratah-branding/frontend/src/app.js';
 
 function initAppMain() {
     try {
@@ -22,8 +22,4 @@ function initAppMain() {
     initVideoPlayer();
 }
 
-window.NSW = NSW;
 initAppMain();
-
-// Project components
-import '../../../../../../../../../waratah-branding/frontend/src/app.js';
