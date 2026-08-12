@@ -40,9 +40,8 @@ class FormFieldExtension extends Extension
         $form = $this->getOwner()->getForm();
         if ($form && $form->hasMethod('IsFilterForm')) {
             return (bool) $form->IsFilterForm();
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**

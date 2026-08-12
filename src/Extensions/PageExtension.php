@@ -111,19 +111,17 @@ class PageExtension extends DataExtension
         if ($this->getOwner()->isCurrent() && $this->getOwner()->ShowSectionNav == 1) {
             // Current record is set to show it's own children
             return $this->getOwner();
-        } else {
-            // Check parents in the hierarchy
-            $page = Director::get_current_page();
-            while ($page instanceof SiteTree && $page->exists()) {
-                if ($page->owner->ShowSectionNav == 1) {
-                    return $page;
-                }
-
-                $page = $page->Parent();
+        }
+        // Check parents in the hierarchy
+        $page = Director::get_current_page();
+        while ($page instanceof SiteTree && $page->exists()) {
+            if ($page->owner->ShowSectionNav == 1) {
+                return $page;
             }
 
-            return false;
+            $page = $page->Parent();
         }
+        return false;
     }
 
     #[\Override]
@@ -253,15 +251,14 @@ class PageExtension extends DataExtension
         $disableDateOnPage = $this->getOwner()->DisableLastUpdated;
         if (!$showLastUpdated || $disableDateOnPage) {
             return null;
-        } else {
-            $format = $this->getOwner()->config()->get('last_updated_format');
-            $publicDateOnPage = $this->getOwner()->dbObject('PublicLastUpdated');
-            /** @var \SilverStripe\ORM\FieldType\DBDatetime $displayDate */
-            $displayDate = $publicDateOnPage->getValue() ? $publicDateOnPage : $this->getOwner()->dbObject('LastEdited');
-            return ArrayData::create([
-                'Machine' => $displayDate->Format('yyyy-MM-dd'),
-                'Human' => $displayDate->Format($format)
-            ]);
         }
+        $format = $this->getOwner()->config()->get('last_updated_format');
+        $publicDateOnPage = $this->getOwner()->dbObject('PublicLastUpdated');
+        /** @var \SilverStripe\ORM\FieldType\DBDatetime $displayDate */
+        $displayDate = $publicDateOnPage->getValue() ? $publicDateOnPage : $this->getOwner()->dbObject('LastEdited');
+        return ArrayData::create([
+            'Machine' => $displayDate->Format('yyyy-MM-dd'),
+            'Human' => $displayDate->Format($format)
+        ]);
     }
 }

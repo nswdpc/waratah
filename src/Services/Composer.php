@@ -44,9 +44,8 @@ class Composer
             $cmd = escapeshellcmd($build);
             passthru($cmd, $output);
             return $output === 0;
-        } else {
-            print "build.sh not found, or is not executable\n";
-            return false;
         }
+        print "build.sh not found, or is not executable\n";
+        return false;
     }
 }

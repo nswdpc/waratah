@@ -42,11 +42,11 @@ class ElementalAreaExtension extends DataExtension
     {
         if ($this->getOwner()->IsSideArea == 1) {
             return _t('nswds.SIDE_CONTENT', 'Side content');
-        } elseif ($this->getOwner()->IsTopArea == 1) {
-            return _t('nswds.TOP_CONTENT', 'Top content');
-        } else {
-            return _t('nswds.MAIN_CONTENT', 'Main content');
         }
+        if ($this->getOwner()->IsTopArea == 1) {
+            return _t('nswds.TOP_CONTENT', 'Top content');
+        }
+        return _t('nswds.MAIN_CONTENT', 'Main content');
     }
 
 }
