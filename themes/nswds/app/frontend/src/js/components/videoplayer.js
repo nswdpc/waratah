@@ -86,7 +86,7 @@ export default function initVideoPlayer() {
                 case "attributes":
                   switch(mutation.attributeName) {
                     case "class":
-                      wasActive = mutation.oldValue.split(/\s+/).includes("active");
+                      let wasActive = mutation.oldValue.split(/\s+/).includes("active");
                       if(wasActive) {
                         // was true
                         pauseVideo(mutation.target);
