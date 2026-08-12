@@ -29,10 +29,10 @@
   "dependencies": {
     "micromodal": "^0.4.10",
     "nsw-design-system": "^3.25.2",
-    "slim-select": "^2.10.0"
+    "slim-select": "^2.13.1"
   },
   "devDependencies": {
-    "lightningcss": "^1.32.0",
-    "sass-embedded": "^1.98.0"
+    "lightningcss": "^1.33.0",
+    "sass-embedded": "^1.100.0"
   }
 }
