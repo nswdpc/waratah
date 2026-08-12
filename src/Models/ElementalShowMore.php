@@ -12,7 +12,6 @@ use SilverStripe\Forms\TextField;
  */
 class ElementalShowMore extends ElementContent
 {
-
     private static bool $inline_editable = true;
 
     private static string $table_name = 'ElementalShowMore';
