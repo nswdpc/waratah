@@ -25,6 +25,7 @@ class PageControllerExtension extends Extension
         if ($list->count()) {
             return $list;
         }
+
         return false;
 
     }

@@ -41,6 +41,7 @@ class FormFieldExtension extends Extension
         if ($form && $form->hasMethod('IsFilterForm')) {
             return (bool) $form->IsFilterForm();
         }
+
         return false;
     }
 

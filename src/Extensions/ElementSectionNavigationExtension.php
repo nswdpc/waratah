@@ -103,6 +103,7 @@ class ElementSectionNavigationExtension extends DataExtension
         if ($list instanceof DataList || $list instanceof ArrayList) {
             return $list->sort(['Sort' => 'ASC']);
         }
+
         return null;
     }
 

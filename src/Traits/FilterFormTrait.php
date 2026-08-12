@@ -194,6 +194,7 @@ trait FilterFormTrait
                 ]
             );
         }
+
         return _t(
             'nswds.FILTER_RESULTS_EMPTY',
             '{filterResultsString}',
