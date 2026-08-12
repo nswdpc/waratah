@@ -6,7 +6,7 @@
       "name": "@nswdpc/waratah",
       "dependencies": {
         "micromodal": "^0.4.10",
-        "nsw-design-system": "3.24.16",
+        "nsw-design-system": "^3.25.2",
         "slim-select": "^2.10.0",
       },
       "devDependencies": {
@@ -94,7 +94,7 @@
 
     "node-addon-api": ["node-addon-api@7.1.1", "", {}, "sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ=="],
 
-    "nsw-design-system": ["nsw-design-system@3.24.16", "", { "dependencies": { "@floating-ui/dom": "^1.6.13", "vanilla-cookieconsent": "^3.1.0" } }, "sha512-WNeY1LHRnM3DjCrPnz+1lFhU0gTgc5wYY27JfQxBTy+rcTincmD1S7o0hOtjClEIF+u7Pf1vH5Xe/ntFUmxPbw=="],
+    "nsw-design-system": ["nsw-design-system@3.25.2", "", { "dependencies": { "@floating-ui/dom": "^1.6.13", "vanilla-cookieconsent": "^3.1.0" } }, "sha512-7rHdQTgU/v0sVbNmWy0nC8ZhHL2zxkEjrBATi2M4qf8jCsFYTahjG6VY3rCwdfvK3ZGH9DYPbtRDuhvHf15o5w=="],
 
     "picomatch": ["picomatch@4.0.4", "", {}, "sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A=="],
 
