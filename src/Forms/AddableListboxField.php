@@ -11,7 +11,6 @@ use SilverStripe\Forms\ListboxField;
  */
 class AddableListboxField extends ListboxField
 {
-
     public const PREFIX = 'new=';
 
     /**
@@ -36,7 +35,7 @@ class AddableListboxField extends ListboxField
      */
     public static function getAddableValue(string $value): string
     {
-        if(self::isAddableValue($value)) {
+        if (self::isAddableValue($value)) {
             $output = substr($value, strlen(self::PREFIX));
         } else {
             $output = $value;
@@ -51,7 +50,7 @@ class AddableListboxField extends ListboxField
     public function isSelectedValue($dataValue, $userValue)
     {
         $isSelected = parent::isSelectedValue($dataValue, $userValue);
-        if($this->getAttribute('data-addable') === '1' && self::isAddableValue($userValue)) {
+        if ($this->getAttribute('data-addable') === '1' && self::isAddableValue($userValue)) {
             return true;
         }
         return $isSelected;
