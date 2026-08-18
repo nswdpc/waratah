@@ -41,6 +41,7 @@ class AddableListboxField extends ListboxField
         } else {
             $output = $value;
         }
+
         return trim(strip_tags($output));
     }
 
@@ -52,9 +53,8 @@ class AddableListboxField extends ListboxField
         $isSelected = parent::isSelectedValue($dataValue, $userValue);
         if($this->getAttribute('data-addable') === '1' && self::isAddableValue($userValue)) {
             return true;
-        } else {
-            return $isSelected;
         }
+        return $isSelected;
     }
 
 }

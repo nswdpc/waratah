@@ -193,15 +193,14 @@ trait FilterFormTrait
                     'filterResultsCount' => $this->FilterFormResultCount()
                 ]
             );
-        } else {
-            return _t(
-                'nswds.FILTER_RESULTS_EMPTY',
-                '{filterResultsString}',
-                [
-                    'filterResultsString' => $this->FilterResultsString()
-                ]
-            );
         }
+        return _t(
+            'nswds.FILTER_RESULTS_EMPTY',
+            '{filterResultsString}',
+            [
+                'filterResultsString' => $this->FilterResultsString()
+            ]
+        );
     }
 
     /**
