@@ -53,6 +53,7 @@ class AddableListboxField extends ListboxField
         if ($this->getAttribute('data-addable') === '1' && self::isAddableValue($userValue)) {
             return true;
         }
+
         return $isSelected;
     }
 

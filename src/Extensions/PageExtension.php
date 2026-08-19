@@ -112,6 +112,7 @@ class PageExtension extends DataExtension
             // Current record is set to show it's own children
             return $this->getOwner();
         }
+
         // Check parents in the hierarchy
         $page = Director::get_current_page();
         while ($page instanceof SiteTree && $page->exists()) {
@@ -121,6 +122,7 @@ class PageExtension extends DataExtension
 
             $page = $page->Parent();
         }
+
         return false;
     }
 
@@ -252,6 +254,7 @@ class PageExtension extends DataExtension
         if (!$showLastUpdated || $disableDateOnPage) {
             return null;
         }
+
         $format = $this->getOwner()->config()->get('last_updated_format');
         $publicDateOnPage = $this->getOwner()->dbObject('PublicLastUpdated');
         /** @var \SilverStripe\ORM\FieldType\DBDatetime $displayDate */

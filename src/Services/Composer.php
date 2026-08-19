@@ -45,6 +45,7 @@ class Composer
             passthru($cmd, $output);
             return $output === 0;
         }
+
         print "build.sh not found, or is not executable\n";
         return false;
     }

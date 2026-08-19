@@ -337,6 +337,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
             // cobrand or endorsed cancel masterbrand
             return false;
         }
+
         return self::config()->get('masterbrand');
     }
 
