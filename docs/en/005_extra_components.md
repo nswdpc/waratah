@@ -35,7 +35,7 @@ You can modify the Slim Select handling of a select element to an extent via its
 + data-min-selected - sets SlimSelect settings.minSelected
 + data-max-selected - sets SlimSelect settings.maxSelected
 + data-matching - sets the searchFilter event function to use. The only current option is 'start', which matches options from the start of the text. If this is not set, the default Slim Select matching filter is used.
-+ data-addable - adds an 'addable' event to the SlimSelect settings, supporting creation of new options in the element. New option values are prefixed "new=". You must handle removal of this prefix and sanitise the remaining input when saving user-supplied values.
++ data-addable - adds an 'addable' event to the SlimSelect settings, supporting creation of new options in the element. New option values are prefixed "new=". You must handle removal of this prefix and sanitisation of the remaining input when saving user-supplied values - use the `AddableListboxField` for this with a `save<Fieldname>` method in the relevant DataObject.
 
 You can access the SlimSelect object on each `<select>` element via `element.slim`. See SlimSelect documentation for assistance.
 

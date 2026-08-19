@@ -336,9 +336,9 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
         if (self::waratah_cobrand() || self::waratah_endorsed()) {
             // cobrand or endorsed cancel masterbrand
             return false;
-        } else {
-            return self::config()->get('masterbrand');
         }
+
+        return self::config()->get('masterbrand');
     }
 
     /**

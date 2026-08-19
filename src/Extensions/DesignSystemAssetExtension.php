@@ -66,13 +66,15 @@ class DesignSystemAssetExtension extends Extension
              . ":"
              . "themes/" . $theme
              . "/" . ltrim($asset, "/");
-        } elseif ($theme) {
+        }
+
+        if ($theme) {
             // Silverstripe theme
             return "themes/" . $theme
              . "/" . ltrim($asset, "/");
-        } else {
-            throw new \Exception("Invalid Design System configuration");
         }
+
+        throw new \Exception("Invalid Design System configuration");
     }
 
     /**

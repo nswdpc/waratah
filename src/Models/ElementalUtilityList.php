@@ -236,9 +236,9 @@ class ElementalUtilityList extends BaseElement
                 }
 
                 return $data;
-            } else {
-                return null;
             }
+
+            return null;
         } catch (\Exception) {
             return null;
         }
@@ -259,9 +259,9 @@ class ElementalUtilityList extends BaseElement
                 }
 
                 return $data;
-            } else {
-                return null;
             }
+
+            return null;
         } catch (\Exception) {
             return null;
         }

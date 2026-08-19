@@ -278,7 +278,7 @@ class SiteConfigExtension extends DataExtension
     {
         $value = $this->getOwner()->getField('WelcomeToCountry');
         if (!$value) {
-            $value = _t(
+            return _t(
                 'nswds.WELCOME_TO_COUNTRY',
                 'We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.'
             );

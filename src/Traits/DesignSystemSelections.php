@@ -19,7 +19,7 @@ trait DesignSystemSelections
         $configKey = "colour_{$key}_options";
         $options = DesignSystemConfiguration::config()->get($configKey);
         if (!is_array($options)) {
-            $options = [];
+            return [];
         }
 
         return $options;
