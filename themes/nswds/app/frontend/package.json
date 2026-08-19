@@ -1,7 +1,7 @@
 {
   "name": "@nswdpc/waratah",
   "license": "BSD-3-Clause",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/nswdpc/waratah.git"
@@ -9,17 +9,16 @@
   "description": "Frontend integration of the NSW Design System for Silverstripe websites. This package.json adds extra libraries beyond those provided by nsw-design-system",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install",
-    "prestart": "npm run-script project-defaults",
-    "prebuild": "npm run-script project-defaults",
-    "prebuildall": "npm run-script project-defaults",
+    "setup": "bun install",
+    "prestart": "bun run project-defaults",
+    "prebuild": "bun run project-defaults",
+    "prebuildall": "bun run project-defaults",
     "project-defaults": "./defaults.sh",
-    "start": "node_modules/.bin/gulp",
-    "build": "npm run-script version && node_modules/.bin/gulp build",
-    "rebuild-node-sass": "npm rebuild node-sass",
-    "buildall": "npm install --no-fund --prefer-offline --silent --no-audit && npm run-script build",
-    "audit": "npm audit",
-    "version": "npm view nsw-design-system version"
+    "start": "bun run --watch build.ts",
+    "build": "bun run build.ts",
+    "buildall": "bun install --no-fund --prefer-offline --silent --no-audit && bun run build && bun run version",
+    "audit": "bun audit",
+    "version": "bun pm ls | grep nsw-design-system"
   },
   "author": "NSWDPC Digital",
   "contributors": [
@@ -30,39 +29,10 @@
   "dependencies": {
     "micromodal": "^0.4.10",
     "nsw-design-system": "^3.25.2",
-    "slim-select": "^2.10.0"
+    "slim-select": "^2.13.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
-    "@babel/register": "^7.22.15",
-    "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^24.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "core-js": "^3.9",
-    "cssnano": "^6.0.0",
-    "del": "^5.1.0",
-    "gulp": "^5.0.0",
-    "gulp-babel": "^8",
-    "gulp-better-rollup": "^4.0.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-debug": "^4.0.0",
-    "gulp-filter": "^6.0.0",
-    "gulp-postcss": "^9.0.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^6.0.1",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-terser": "^2.0.1",
-    "minimist": "^1.2.5",
-    "mkdirp": "^1.0.4",
-    "rollup": "^3.21.0",
-    "sass": "^1.89.2",
-    "terser": "^5.7.1",
-    "yargs": "^16.2.0"
-  },
-  "overrides": {
-    "gulp-better-rollup": {
-      "rollup": "^1||^2||^3"
-    }
+    "lightningcss": "^1.33.0",
+    "sass-embedded": "^1.100.0"
   }
 }
