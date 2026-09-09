@@ -29,7 +29,7 @@ Node >= 24, Bun >= 1.3
 #### Build directly via Bun
 
 ```shell
-bun run --cwd ./vendor/nswdpc/waratah/themes/nswds/app/frontend run-script buildall
+bun run --cwd ./vendor/nswdpc/waratah/themes/nswds/app/frontend buildall
 ```
 
 #### Use build.sh
