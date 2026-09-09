@@ -5,9 +5,10 @@ namespace NSWDPC\Waratah\Services;
 use Composer\Script\Event as ScriptEvent;
 
 /**
- * Composer integration for this module
- * Can be used by composer to automatically build the DS via npm and gulp during install and update
+ * Optional composer integration for this module
+ * Can be used by composer to automatically build the frontend based on specific events
  * Example: composer.json (at the project level)
+ * See: https://getcomposer.org/doc/articles/scripts.md#command-events
  ```json
  "scripts": {
      "post-create-project-cmd": [
@@ -34,7 +35,7 @@ class Composer
     /**
      * Execute the build script for the design system
      * Usage: `composer run-script build-nswds`
-     * Gotcha: build.sh requires npm to be available on the host
+     * Gotcha: build.sh requires the build tool to be available on the host running this command
      * @phpstan-ignore class.notFound
      */
     public static function buildDesignSystem(ScriptEvent $event = null): bool
