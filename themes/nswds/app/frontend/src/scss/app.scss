@@ -11,6 +11,7 @@
 @use './components/silverstripe/silverstripe';
 
 // Third party components
+@use '../../node_modules/slim-select/src/slim-select/slimselect.scss' as slimSelectCore;
 @use './components/thirdparty/slimselect';
 
 // nswdpc/waratah components
