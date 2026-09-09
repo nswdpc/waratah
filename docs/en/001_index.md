@@ -20,33 +20,29 @@ You can build the frontend in a variety of ways, depending on your build system 
 
 The `buildall` target script in package.json defines how distribution assets are created in a `themes/app/frontend/dist` directory, which is automatically [vendor-exposed](https://github.com/silverstripe/vendor-plugin) upon installation of this module.
 
-This module does not ship built assets in version control. Your deployment build process should create these for distribution.
+This module does not ship built assets in version control (see customisation below). Your deployment build process should create these for distribution. The frontend build process produces both minified and unminified assets and they are included via the Requirements API in `live` and `dev` environments respectively.
 
 #### Requirements
 
-node >= 18 / npm >= 8
+Node >= 24, Bun >= 1.3
 
-#### Build directly via npm
-
-```shell
-npm --prefix ./vendor/nswdpc/waratah/themes/nswds/app/frontend run-script buildall
-```
-
-#### Build directly via yarn
+#### Build directly via Bun
 
 ```shell
-yarn --cwd ./vendor/nswdpc/waratah/themes/nswds/app/frontend run buildall
+bun run --cwd ./vendor/nswdpc/waratah/themes/nswds/app/frontend run-script buildall
 ```
 
 #### Use build.sh
 
-The build.sh shell script uses `npm` on the system to run the buildall script:
+The build.sh shell script uses `bun` on the system to run the buildall script:
 
 ```shell
 ./vendor/nswdpc/waratah/build.sh
 ```
 
-If you see `Error: npm is not installed on host` this means the script could not find npm on the system you are running the script on. The script expects `npm` to be in the PATH environment variable.
+If you see `Error: bun is not installed on host` this means the script could not find `bun` on the system you are running the script on. The script expects `bun` to be in the PATH environment variable.
+
+Tip: if you are using development containers such as lando, the script should be run in the service containing `bun`.
 
 #### Composer scripts
 
@@ -67,7 +63,7 @@ The `post-create-project-cmd` scripts will run after `composer create-project` i
 
 When the module is updated or installed `composer run-script build-nswds` should be run.
 
-Both script targets run ./build.sh which expects npm to be available.
+Both script targets run `./build.sh`.
 
 
 ### Development tools
@@ -75,9 +71,16 @@ Both script targets run ./build.sh which expects npm to be available.
 If you use a tool such as Lando for your development, add a tooling command to assist with automation of the build process:
 
 ```yml
+services:
+  bun:
+    api: 3
+    type: lando
+    services:
+      image: oven/bun:1-debian
+      command: tail -f /dev/null
 tooling:
   buildnswds:
-    service: node
+    service: bun
     description: Build the NSW Design System using build.sh
     cmd: ./vendor/nswdpc/waratah/build.sh
 ```
@@ -93,7 +96,7 @@ You can also build the frontend assets by invoking the build.sh script in the la
 
 Once built, assets are available in the `vendor/nswdpc/waratah/themes/nswds/app/frontend/dist` location. This path is vendor-exposed in `composer.json` and automatically exposed when the module is installed.
 
-After build you will notice a `waratah-branding` directory in the project root. This is created by the build process and allows further branding customisation.
+After build you will notice a `waratah-branding` directory in the project root. This is created by the build process and allows further branding customisation and should be committed to version control.
 
 Development environments will automatically load non-minified assets.
 
@@ -150,7 +153,7 @@ Depending on your project, you may also need to bypass/flush your browser cache.
 
 ## Subsequent builds
 
-When updating the module, project modules or your project requirements in `waratah-branding` as you develop, simply run the required build steps.
+When updating the module, project modules or your project requirements in `waratah-branding` as you develop, simply run the required frontend build steps.
 
 ## Further branding / custom integration
 
