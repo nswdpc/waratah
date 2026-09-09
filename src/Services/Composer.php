@@ -38,7 +38,7 @@ class Composer
      * Gotcha: build.sh requires the build tool to be available on the host running this command
      * @phpstan-ignore class.notFound
      */
-    public static function buildDesignSystem(ScriptEvent $event = null): bool
+    public static function buildDesignSystem(?ScriptEvent $event = null): bool
     {
         $build = realpath(__DIR__ . "/../../build.sh");
         if ($build && file_exists($build) && is_executable($build)) {
