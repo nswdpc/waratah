@@ -78,7 +78,8 @@ async function buildCSS() {
 
   await Bun.write(`${DIST_CSS}/app.css`, componentCss);
   if (code) {
-    await Bun.write(`${DIST_CSS}/app.min.css`, code);
+    const minifiedCss = code.toString('utf-8');
+    await Bun.write(`${DIST_CSS}/app.min.css`, minifiedCss.startsWith('@charset') ? minifiedCss : '@charset "UTF-8";' + minifiedCss);
   }
   if (map) {
     await Bun.write(`${DIST_CSS}/app.css.map`, map);
