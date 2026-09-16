@@ -3,6 +3,8 @@ import initSlimSelect from './components/slimselect';
 import initSideNav from './components/sidenav';
 import initMicroModal from './components/micromodal';
 import initVideoPlayer from './components/videoplayer';
+// Project components
+import '../../../../../../../../../waratah-branding/frontend/src/app.js';
 
 function initAppMain() {
     try {
@@ -19,7 +21,5 @@ function initAppMain() {
     initMicroModal();
     initVideoPlayer();
 }
-initAppMain();
 
-// Project components
-import '../../../../../../../../../waratah-branding/frontend/src/app.js';
+initAppMain();
