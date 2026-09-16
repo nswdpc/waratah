@@ -27,6 +27,8 @@ async function buildJS() {
     entrypoints: [SRC_JS],
     outdir: BUILD_JS,
     naming: "app.build.js",
+    format: "iife",
+    target: "browser",
     sourcemap: "none",
   });
 
