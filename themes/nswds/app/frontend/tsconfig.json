@@ -9,10 +9,13 @@
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "noEmit": true,
     "types": [
         "bun"
     ]
-  }
+  },
+  "include": ["build.ts"]
 }
