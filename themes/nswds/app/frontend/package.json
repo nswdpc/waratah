@@ -2,6 +2,9 @@
   "name": "@nswdpc/waratah",
   "license": "BSD-3-Clause",
   "version": "4.0.0",
+  "patchedDependencies": {
+    "nsw-design-system@3.27.0": "patches/nsw-design-system@3.27.0.patch"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nswdpc/waratah.git"

@@ -16,6 +16,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "nsw-design-system@3.27.0": "patches/nsw-design-system@3.27.0.patch",
+  },
   "packages": {
     "@bufbuild/protobuf": ["@bufbuild/protobuf@2.12.0", "", {}, "sha512-B/XlCaFIP8LOwzo+bz5uFzATYokcwCKQcghqnlfwSmM5eX/qTkvDBnDPs+gXtX/RyjxJ4DRikECcPJbyALA8FA=="],
 
