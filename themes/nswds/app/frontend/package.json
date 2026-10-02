@@ -2,9 +2,6 @@
   "name": "@nswdpc/waratah",
   "license": "BSD-3-Clause",
   "version": "4.0.0",
-  "patchedDependencies": {
-    "nsw-design-system@3.27.0": "patches/nsw-design-system@3.27.0.patch"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nswdpc/waratah.git"
@@ -31,7 +28,7 @@
   ],
   "dependencies": {
     "micromodal": "^0.4.10",
-    "nsw-design-system": "^3.27.0",
+    "nsw-design-system": "^3.28.1",
     "slim-select": "^2.13.1"
   },
   "devDependencies": {
