@@ -15,7 +15,7 @@ class SiteTreeExtension extends Extension
     /**
      * Update meta components as required
      */
-    public function MetaComponents(array &$tags)
+    public function updateMetaComponents(array &$tags)
     {
 
         // conditionally add these components based on CMS preview mode being in place
@@ -37,7 +37,7 @@ class SiteTreeExtension extends Extension
             $tags['cmsEditLink'] = [
                 'attributes' => [
                     'name' => 'x-cms-edit-link',
-                    'content' => $this->getOwner()->CMSEditLink(),
+                    'content' => $this->getOwner()->getCMSEditLink(),
                 ],
             ];
         }

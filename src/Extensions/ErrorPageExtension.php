@@ -9,6 +9,7 @@ use SilverStripe\Core\Extension;
 /**
  * Make all ErrorPages visible regardless of site settings
  *
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\ErrorPage\ErrorPage & static)>
  */
 class ErrorPageExtension extends Extension
 {

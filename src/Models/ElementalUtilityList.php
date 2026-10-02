@@ -71,7 +71,7 @@ class ElementalUtilityList extends BaseElement
 
     private static string $plural_name = 'Utility lists (NSW Design System)';
 
-    private static string $description = 'Create a utility list';
+    private static string $class_description = 'Create a utility list';
 
     private static string $icon = 'font-icon-list';
 

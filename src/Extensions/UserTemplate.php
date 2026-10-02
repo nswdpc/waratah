@@ -12,7 +12,7 @@ use SilverStripe\Core\Extension;
  * and UserTemplate::get()->filter('User'....)
  * TODO: PR
  * @author James
- * @extends \SilverStripe\Core\Extension<(static & \Symbiote\UserTemplates\UserTemplate)> // @phpstan-ignore class.notFound
+ * @extends \SilverStripe\Core\Extension<static>
  */
 class UserTemplate extends Extension
 {
