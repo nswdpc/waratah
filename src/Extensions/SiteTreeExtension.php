@@ -3,14 +3,14 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Control\Controller;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Versioned\Versioned;
 
 /**
- * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\CMS\Model\SiteTree & static)>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\CMS\Model\SiteTree & static)>
  */
-class SiteTreeExtension extends DataExtension
+class SiteTreeExtension extends Extension
 {
     /**
      * Update meta components as required

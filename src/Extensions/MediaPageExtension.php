@@ -2,13 +2,13 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use nglasl\mediawesome\MediaPage;
 
 /**
- * @extends \SilverStripe\ORM\DataExtension<(\nglasl\mediawesome\MediaPage & static)>
+ * @extends \SilverStripe\Core\Extension<(\nglasl\mediawesome\MediaPage & static)>
  */
-class MediaPageExtension extends DataExtension
+class MediaPageExtension extends Extension
 {
     public function getRecentPosts()
     {

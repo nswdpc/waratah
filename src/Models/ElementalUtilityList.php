@@ -10,7 +10,7 @@ use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBVarchar;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 
 /**
  * Implement NSWDS Utility List component as a content block that can be placed in pages
@@ -211,6 +211,7 @@ class ElementalUtilityList extends BaseElement
             );
         }
 
+        // @phpstan-ignore return.type
         return DBField::create_field(DBVarchar::class, implode($delimiter, $hashTags));
     }
 
@@ -303,6 +304,7 @@ class ElementalUtilityList extends BaseElement
      */
     public function CurrentPageURL(?string $action = null): DBVarchar
     {
+        // @phpstan-ignore return.type
         return DBField::create_field(DBVarchar::class, $this->getCurrentPageUrl($action));
     }
 
@@ -320,6 +322,7 @@ class ElementalUtilityList extends BaseElement
                 'url' => $url
             ]
         );
+        // @phpstan-ignore return.type
         return DBField::create_field(DBVarchar::class, $value);
     }
 

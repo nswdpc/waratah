@@ -31,17 +31,16 @@
         "nswdpc/silverstripe-nsw-design-system": "self.version"
     },
     "require": {
-        "nswdpc/silverstripe-content-boilerplate": "^1.1",
-        "nswdpc/silverstripe-feedback-assist": "^1",
-        "nswdpc/silverstripe-field-hint": "^1",
-        "nswdpc/silverstripe-grid-helpers": "^1",
-        "nswdpc/silverstripe-datetime-inputs": "^1",
-        "nswdpc/silverstripe-notices": "^1",
-        "nswdpc/silverstripe-analytics-chooser": ">=0.2"
+        "nswdpc/silverstripe-content-boilerplate": "dev-ss6",
+        "nswdpc/silverstripe-field-hint": "^2",
+        "nswdpc/silverstripe-grid-helpers": "^2",
+        "nswdpc/silverstripe-datetime-inputs": "^2",
+        "nswdpc/silverstripe-notices": "^2",
+        "nswdpc/silverstripe-analytics-chooser": "^1"
     },
     "require-dev": {
         "cambis/silverstripe-rector": "^2",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^11.5",
         "cambis/silverstan": "^2",
         "nswdpc/ci-files": "dev-v-4",
         "friendsofphp/php-cs-fixer": "^3",
@@ -49,6 +48,36 @@
         "phpstan/phpstan-phpunit": "^2",
         "rector/rector": "^2"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-mediawesome.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-misdirection.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-elemental-section-navigation.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-contentreplace.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-dynamiclists.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-listingpage.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-elemental-listingpagelisting.git"
+        }
+    ],
     "extra": {
         "expose": [
             "themes/nswds/app/static",
@@ -80,8 +109,8 @@
     },
     "scripts": {
         "phpstan-analyse": "./vendor/bin/phpstan analyse --ansi --no-progress --no-interaction --configuration vendor/nswdpc/ci-files/phpstan/.phpstan.silverstripe.neon src/",
-        "rector-dryrun": "./vendor/bin/rector process --dry-run --ansi --config vendor/nswdpc/ci-files/rector/.rector.silverstripe_53_83.php src/",
-        "rector-process": "./vendor/bin/rector process --no-diffs --ansi --config vendor/nswdpc/ci-files/rector/.rector.silverstripe_53_83.php src/",
+        "rector-dryrun": "./vendor/bin/rector process --dry-run --ansi --config vendor/nswdpc/ci-files/rector/.rector.silverstripe_6_83.php src/",
+        "rector-process": "./vendor/bin/rector process --no-diffs --ansi --config vendor/nswdpc/ci-files/rector/.rector.silverstripe_6_83.php src/",
         "phpcsfixer-fix": "./vendor/bin/php-cs-fixer fix --ansi --no-interaction --config vendor/nswdpc/ci-files/php-cs-fixer/.php-cs-fixer.php src/"
     }
 }

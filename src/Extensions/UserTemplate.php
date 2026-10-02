@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * Improve performance of UserTemplate queries
@@ -12,9 +12,9 @@ use SilverStripe\ORM\DataExtension;
  * and UserTemplate::get()->filter('User'....)
  * TODO: PR
  * @author James
- * @extends \SilverStripe\ORM\DataExtension<(static & \Symbiote\UserTemplates\UserTemplate)>
+ * @extends \SilverStripe\Core\Extension<(static & \Symbiote\UserTemplates\UserTemplate)> // @phpstan-ignore class.notFound
  */
-class UserTemplate extends DataExtension
+class UserTemplate extends Extension
 {
     private static array $indexes = [
         'Use' => true

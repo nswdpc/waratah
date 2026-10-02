@@ -6,7 +6,7 @@ use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Control\Controller;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\ORM\ValidationResult;
+use SilverStripe\Core\Validation\ValidationResult;
 use SilverStripe\View\TemplateGlobalProvider;
 use SilverStripe\View\SSViewer;
 
@@ -372,9 +372,9 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
      * Example: <% include NSWDPC/Waratah/PageWrapper PerLayoutContentTemplate='Template/Location/TheTemplate' %>
      * @param string $template an SS template path eg App/Directory/Person
      */
-    public static function get_per_layout_content($template): ?DBHTMLText
+    public static function get_per_layout_content(string $template): ?DBHTMLText
     {
-        $controller = Controller::has_curr() ? Controller::curr() : null;
+        $controller = Controller::curr();
         if (!$controller) {
             return null;
         }
@@ -389,6 +389,7 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
         $viewer->includeRequirements(false);
         // process template with current controller
         $result = $viewer->process($controller);
+        // @phpstan-ignore return.type
         return DBField::create_field(
             DBHTMLText::class,
             $result

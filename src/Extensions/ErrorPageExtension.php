@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\CMS\Model\SiteTreeExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * Make all ErrorPages visible regardless of site settings
  *
  */
-class ErrorPageExtension extends SiteTreeExtension
+class ErrorPageExtension extends Extension
 {
     public function canView(): bool
     {

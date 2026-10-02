@@ -3,7 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Waratah\Forms\HeroBannerBrandSelectionField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
@@ -22,9 +22,9 @@ use UncleCheese\DisplayLogic\Forms\Wrapper;
  * @property ?string $HTML
  * @property ?string $BannerLinksTitle
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> BannerLinks()
- * @extends \SilverStripe\ORM\DataExtension<(\NSWDPC\Elemental\Models\Banner\ElementBanner & static)>
+ * @extends \SilverStripe\Core\Extension<(\NSWDPC\Elemental\Models\Banner\ElementBanner & static)>
  */
-class ElementBannerExtension extends DataExtension
+class ElementBannerExtension extends Extension
 {
     /**
      * Branding constants
@@ -63,7 +63,6 @@ class ElementBannerExtension extends DataExtension
         'links-list' => 'Links list'
     ];
 
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -153,10 +152,8 @@ class ElementBannerExtension extends DataExtension
 
     }
 
-    #[\Override]
     public function onBeforeWrite()
     {
-        parent::onBeforeWrite();
         /*
          * Backwards compatibility
          * AltStyle in 2.13 was interpreted as "light" by template
