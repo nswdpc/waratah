@@ -3,19 +3,19 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Control\Controller;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Versioned\Versioned;
 
 /**
- * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\CMS\Model\SiteTree & static)>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\CMS\Model\SiteTree & static)>
  */
-class SiteTreeExtension extends DataExtension
+class SiteTreeExtension extends Extension
 {
     /**
      * Update meta components as required
      */
-    public function MetaComponents(array &$tags)
+    public function updateMetaComponents(array &$tags)
     {
 
         // conditionally add these components based on CMS preview mode being in place
@@ -37,7 +37,7 @@ class SiteTreeExtension extends DataExtension
             $tags['cmsEditLink'] = [
                 'attributes' => [
                     'name' => 'x-cms-edit-link',
-                    'content' => $this->getOwner()->CMSEditLink(),
+                    'content' => $this->getOwner()->getCMSEditLink(),
                 ],
             ];
         }

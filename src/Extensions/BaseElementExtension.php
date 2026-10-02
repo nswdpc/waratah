@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Models\DesignSystemConfiguration;
 use NSWDPC\Waratah\Forms\SectionSelectionField;
 use NSWDPC\Waratah\Traits\DesignSystemSelections;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
@@ -20,9 +20,9 @@ use SilverStripe\Forms\CheckboxField;
  * @property ?string $AddBackground
  * @property bool $IsBoxed
  * @property ?string $VerticalSpacing
- * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\BaseElement & static)>
+ * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\BaseElement & static)>
  */
-class BaseElementExtension extends DataExtension
+class BaseElementExtension extends Extension
 {
     use DesignSystemSelections;
 
@@ -82,7 +82,6 @@ class BaseElementExtension extends DataExtension
     /**
      * Add CMS fields for element
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

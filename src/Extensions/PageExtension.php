@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use Page;
 use SilverStripe\Control\Director;
 use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\TextareaField;
@@ -13,7 +13,7 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\DateField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 
 /**
  * @property ?string $Abstract
@@ -27,9 +27,9 @@ use SilverStripe\View\ArrayData;
  * @property bool $ShowBackToTop
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
- * @extends \SilverStripe\ORM\DataExtension<(\Page & static)>
+ * @extends \SilverStripe\Core\Extension<(\Page & static)>
  */
-class PageExtension extends DataExtension
+class PageExtension extends Extension
 {
     private static array $allowed_file_types = ["jpg", "jpeg", "gif", "png", "webp"];
 
@@ -126,7 +126,6 @@ class PageExtension extends DataExtension
         return false;
     }
 
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

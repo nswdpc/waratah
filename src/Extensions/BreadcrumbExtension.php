@@ -2,14 +2,14 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * Provide an extension to allow pages to override aspects of Breacrumb-ing
  * @author James
- * @extends \SilverStripe\ORM\DataExtension<(\Page & static)>
+ * @extends \SilverStripe\Core\Extension<(\Page & static)>
  */
-class BreadcrumbExtension extends DataExtension
+class BreadcrumbExtension extends Extension
 {
     public function BreadcrumbLink()
     {

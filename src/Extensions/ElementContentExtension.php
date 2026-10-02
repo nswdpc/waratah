@@ -3,7 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use DNADesign\Elemental\Models\ElementContent;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
@@ -28,9 +28,9 @@ use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
  * @property int $ContentLinkID
  * @method \SilverStripe\Assets\Image ContentImage()
  * @method \gorriecoe\Link\Models\Link ContentLink()
- * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\ElementContent & static)>
+ * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\ElementContent & static)>
  */
-class ElementContentExtension extends DataExtension
+class ElementContentExtension extends Extension
 {
     private static array $has_one = [
         'ContentImage' => Image::class,//avoid collision with ElementDecoratedContent
@@ -77,7 +77,6 @@ class ElementContentExtension extends DataExtension
     /**
      * Apply image and link fields to the Settings tab
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

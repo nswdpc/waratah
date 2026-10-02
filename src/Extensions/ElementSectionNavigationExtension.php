@@ -3,10 +3,10 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Config\Config;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\ORM\DataList;
 
 /**
@@ -14,9 +14,9 @@ use SilverStripe\ORM\DataList;
  * {@link Dynamic\Elements\Section\Elements\ElementSectionNavigation}
  * @property ?string $CardColumns
  * @property ?string $CardStyle
- * @extends \SilverStripe\ORM\DataExtension<(\Dynamic\Elements\Section\Elements\ElementSectionNavigation & static)>
+ * @extends \SilverStripe\Core\Extension<(\Dynamic\Elements\Section\Elements\ElementSectionNavigation & static)>
  */
-class ElementSectionNavigationExtension extends DataExtension
+class ElementSectionNavigationExtension extends Extension
 {
     private static array $db = [
         'CardColumns' => 'Varchar(64)',
@@ -39,7 +39,6 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Implement CMS fields for card display
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

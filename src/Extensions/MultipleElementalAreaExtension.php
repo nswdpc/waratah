@@ -6,7 +6,7 @@ use DNADesign\Elemental\Models\ElementalArea;
 use NSWDPC\Waratah\Models\SideElementalArea;
 use NSWDPC\Waratah\Models\TopElementalArea;
 use NSWDPC\Elemental\Models\Banner\ElementBanner;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\ORM\DB;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Tab;
@@ -18,9 +18,9 @@ use SilverStripe\Forms\Tab;
  * @property int $TopElementalAreaID
  * @method \DNADesign\Elemental\Models\ElementalArea SideElementalArea()
  * @method \DNADesign\Elemental\Models\ElementalArea TopElementalArea()
- * @extends \SilverStripe\ORM\DataExtension<(\Page & static)>
+ * @extends \SilverStripe\Core\Extension<(\Page & static)>
  */
-class MultipleElementalAreaExtension extends DataExtension
+class MultipleElementalAreaExtension extends Extension
 {
     private static array $has_one = [
         'SideElementalArea' => ElementalArea::class,
@@ -58,10 +58,8 @@ class MultipleElementalAreaExtension extends DataExtension
      * Ensure the records are correctly applied, when the owner is saved
      * As ensureElementalAreasExist creates ElementalArea classes only and not a subclass
      */
-    #[\Override]
     public function onAfterWrite()
     {
-        parent::onAfterWrite();
         $this->ensureCorrectSettings();
     }
 
@@ -143,7 +141,6 @@ class MultipleElementalAreaExtension extends DataExtension
     /**
      * Add additional elements to the CMS fields
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

@@ -28,7 +28,7 @@ class ElementalFeature extends ElementContent
 
     private static string $plural_name = 'Content blocks';
 
-    private static string $description = 'Create a Content block';
+    private static string $class_description = 'Create a Content block';
 
     /**
      * @inheritdoc
