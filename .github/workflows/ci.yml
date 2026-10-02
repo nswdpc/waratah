@@ -9,5 +9,5 @@ jobs:
     uses: nswdpc/ci-files/.github/workflows/silverstripe_6_83.yml@v-4
   PHPStan:
     name: 'PHPStan (analyse)'
-    uses: nswdpc/ci-files/.github/workflows/phpstan.silverstripe_6.yml@v-4
+    uses: nswdpc/ci-files/.github/workflows/phpstan.silverstripe_83.yml@v-4
     needs: Silverstripe
