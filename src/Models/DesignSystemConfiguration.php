@@ -9,6 +9,8 @@ use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Core\Validation\ValidationResult;
 use SilverStripe\View\TemplateGlobalProvider;
 use SilverStripe\View\SSViewer;
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\View\TemplateEngine;
 
 /**
  *
@@ -379,8 +381,9 @@ class DesignSystemConfiguration implements TemplateGlobalProvider
             return null;
         }
 
-        $chosenTemplate = SSViewer::chooseTemplate($template);
-        if (!$chosenTemplate) {
+        // Check if template exists via the TemplateEngine
+        $engine = Injector::inst()->get(TemplateEngine::class);
+        if (!$engine->hasTemplate($template)) {
             return null;
         }
 
