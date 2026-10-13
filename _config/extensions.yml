@@ -65,5 +65,9 @@ NSWDPC\Notices\Notice:
     - 'NSWDPC\Waratah\Extensions\NoticeExtension'
 
 SilverStripe\ShareDraftContent\Controllers\ShareDraftController:
-    extensions:
-      - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'
+
+SilverStripe\Dev\Command\DbBuild:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\DbBuildExtension'
