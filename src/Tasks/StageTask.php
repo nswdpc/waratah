@@ -35,6 +35,7 @@ class StageTask extends BuildTask
         if(is_null($stage)) {
             $stage = "NULL";
         }
+
         $output->writeln(_t("nswds.CURRENT_STAGE_IS", "Current stage is '{stage}'", ['stage' => $stage]));
         return Command::SUCCESS;
     }
