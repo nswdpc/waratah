@@ -32,7 +32,7 @@ class StageTask extends BuildTask
     protected function execute(InputInterface $input, PolyOutput $output): int
     {
         $stage = Versioned::get_stage();
-        if(is_null($stage)) {
+        if (is_null($stage)) {
             $stage = "NULL";
         }
 
