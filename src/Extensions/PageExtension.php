@@ -129,6 +129,9 @@ class PageExtension extends Extension
     public function updateCMSFields(FieldList $fields)
     {
 
+        // Remove fields that appear on settings
+        $fields->removeByName(['DisableLastUpdated','PublicLastUpdated','ShowBackToTop']);
+
         /** @var \SilverStripe\Forms\TextareaField $abstractField */
         $abstractField = TextareaField::create(
             'Abstract',
