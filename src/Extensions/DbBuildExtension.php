@@ -13,7 +13,6 @@ use SilverStripe\Versioned\Versioned;
  */
 class DbBuildExtension extends Extension
 {
-
     protected static ?string $originalStage = null;
 
     /**
@@ -30,7 +29,7 @@ class DbBuildExtension extends Extension
      */
     public function onAfterBuild(PolyOutput $output, bool $populate = true, bool $testMode = false)
     {
-        if(is_string(static::$originalStage)) {
+        if (is_string(static::$originalStage)) {
             Versioned::set_stage(static::$originalStage);
         }
     }
