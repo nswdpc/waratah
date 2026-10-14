@@ -133,11 +133,11 @@ class ElementContentExtension extends Extension
     protected function getLinkField(): CoreLinkField|LinkField
     {
         $contentLink = $this->getContentLink();
-        if($contentLink instanceof CoreLink) {
-            return CoreLinkField::create('CoreContentLink', _t('nswds.LINK','Link'));
+        if ($contentLink instanceof CoreLink) {
+            return CoreLinkField::create('CoreContentLink', _t('nswds.LINK', 'Link'));
         }
 
-        return LinkField::create('ContentLink', _t('nswds.LINK','Link'), $this->getOwner());
+        return LinkField::create('ContentLink', _t('nswds.LINK', 'Link'), $this->getOwner());
     }
 
     /**
@@ -149,7 +149,7 @@ class ElementContentExtension extends Extension
     public function getContentLink(): null|CoreLink|Link
     {
         $coreContentLink = $this->getOwner()->CoreContentLink();
-        if($coreContentLink && $coreContentLink->isInDB()) {
+        if ($coreContentLink && $coreContentLink->isInDB()) {
             return $coreContentLink;
         }
 
