@@ -132,12 +132,17 @@ class ElementContentExtension extends Extension
      */
     protected function getLinkField(): CoreLinkField|LinkField
     {
-        $contentLink = $this->getContentLink();
+        $contentLink = $this->getDerivedContentLink();
         if ($contentLink instanceof CoreLink) {
             return CoreLinkField::create('CoreContentLink', _t('nswds.LINK', 'Link'));
         }
 
         return LinkField::create('ContentLink', _t('nswds.LINK', 'Link'), $this->getOwner());
+    }
+
+    public function getContentLink(): CoreLink|Link
+    {
+        return $this->getDerivedContentLink();
     }
 
     /**
@@ -146,15 +151,17 @@ class ElementContentExtension extends Extension
      * anywhere the link is consumed - templates, controllers, other modules.
      * This handle migration to the core silverstripe/linkfield model
      */
-    public function getContentLink(): null|CoreLink|Link
+    public function getDerivedContentLink(): CoreLink|Link
     {
         $coreContentLink = $this->getOwner()->CoreContentLink();
-        if ($coreContentLink && $coreContentLink->isInDB()) {
+        /** @var Link $legacyContentLink */
+        $legacyContentLink = $this->getOwner()->getComponent('ContentLink');
+        if($coreContentLink->isInDB() || !$legacyContentLink->isInDB()) {
             return $coreContentLink;
         }
 
         // @phpstan-ignore return.type
-        return $this->getOwner()->getComponent('ContentLink');
+        return $legacyContentLink;
     }
 
 }
