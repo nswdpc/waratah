@@ -36,7 +36,8 @@
         "nswdpc/silverstripe-grid-helpers": "^2",
         "nswdpc/silverstripe-datetime-inputs": "^2",
         "nswdpc/silverstripe-notices": "^2",
-        "nswdpc/silverstripe-analytics-chooser": "^1"
+        "nswdpc/silverstripe-analytics-chooser": "^1",
+        "nswdpc/silverstripe-linkfield": "dev-feat-link-migrator-staged as 2.1.0"
     },
     "require-dev": {
         "cambis/silverstripe-rector": "^2",
@@ -47,9 +48,6 @@
         "phpstan/phpstan": "^2",
         "phpstan/phpstan-phpunit": "^2",
         "rector/rector": "^2"
-    },
-    "suggest": {
-        "nswdpc/silverstripe-linkfield": "A fork of gorriecoe/silverstripe-linkfield that provides a migration path to silverstripe/linkfield, currently via a dev branch"
     },
     "repositories": [
         {
