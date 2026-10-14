@@ -48,6 +48,9 @@
         "phpstan/phpstan-phpunit": "^2",
         "rector/rector": "^2"
     },
+    "suggest": {
+        "nswdpc/silverstripe-linkfield": "A fork of gorriecoe/silverstripe-linkfield that provides a migration path to silverstripe/linkfield, currently via a dev branch"
+    },
     "repositories": [
         {
             "type": "vcs",
