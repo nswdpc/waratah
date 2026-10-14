@@ -8,7 +8,7 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use gorriecoe\Link\Models\Link;
-use NSWDPC\InlineLinker\InlineLinkCompositeField;
+use gorriecoe\LinkField\LinkField;
 use NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent;
 use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
 
@@ -40,6 +40,8 @@ class ElementContentExtension extends Extension
     private static array $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
 
     private static array $owns = ['ContentImage', 'ContentLink'];
+
+    private static bool $inline_editable = false;
 
     public function getAllowedFileTypes(): array
     {
@@ -112,9 +114,9 @@ class ElementContentExtension extends Extension
     /**
      * Return the inline link field to handle link selection
      */
-    protected function getLinkField(): InlineLinkCompositeField
+    protected function getLinkField(): LinkField
     {
-        return InlineLinkCompositeField::create(
+        return LinkField::create(
             'ContentLink',
             _t(
                 'nswds.LINK',
