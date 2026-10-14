@@ -42,7 +42,15 @@ class ElementContentExtension extends Extension
 
     private static array $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
 
-    private static array $owns = ['ContentImage', 'ContentLink'];
+    private static array $owns = ['ContentImage', 'ContentLink', 'CoreContentLink'];
+
+    private static array $cascade_deletes = [
+        'CoreContentLink'
+    ];
+
+    private static array $cascade_duplicates = [
+        'CoreContentLink'
+    ];
 
     private static bool $inline_editable = false;
 
