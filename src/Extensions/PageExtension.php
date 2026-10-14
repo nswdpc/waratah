@@ -129,6 +129,10 @@ class PageExtension extends Extension
     public function updateCMSFields(FieldList $fields)
     {
 
+        // AdvancedWorkflow auto-scaffolder field management
+        // this field value is managed via workflow
+        $fields->removeByName(['AllowEmbargoedEditing']);
+
         // Remove fields that appear on settings
         $fields->removeByName(['DisableLastUpdated','PublicLastUpdated','ShowBackToTop']);
 
