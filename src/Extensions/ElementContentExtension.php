@@ -152,7 +152,7 @@ class ElementContentExtension extends Extension
         if ($coreContentLink && $coreContentLink->isInDB()) {
             return $coreContentLink;
         }
-
+        // @phpstan-ignore return.type
         return $this->getOwner()->getComponent('ContentLink');
     }
 
