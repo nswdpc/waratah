@@ -31,6 +31,8 @@ use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
  * @method \SilverStripe\Assets\Image ContentImage()
  * @method \gorriecoe\Link\Models\Link ContentLink()
  * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\ElementContent & static)>
+ * @property int $CoreContentLinkID
+ * @method \SilverStripe\LinkField\Models\Link CoreContentLink()
  */
 class ElementContentExtension extends Extension
 {
@@ -132,11 +134,10 @@ class ElementContentExtension extends Extension
     {
         $contentLink = $this->getContentLink();
         if($contentLink instanceof CoreLink) {
-            $linkField = CoreLinkField::create('CoreContentLink', _t('nswds.LINK','Link'));
-        } else {
-            $linkField = LinkField::create('ContentLink', _t('nswds.LINK','Link'), $this->getOwner());
+            return CoreLinkField::create('CoreContentLink', _t('nswds.LINK','Link'));
         }
-        return $linkField;
+
+        return LinkField::create('ContentLink', _t('nswds.LINK','Link'), $this->getOwner());
     }
 
     /**
@@ -151,6 +152,7 @@ class ElementContentExtension extends Extension
         if($coreContentLink && $coreContentLink->isInDB()) {
             return $coreContentLink;
         }
+
         return $this->getOwner()->getComponent('ContentLink');
     }
 
