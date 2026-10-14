@@ -1,0 +1,9 @@
+---
+Name: nswdpc-waratah-linkmigration
+Only:
+   classexists: 'gorriecoe\LinkField\Migration\LinkMigrator'
+---
+gorriecoe\LinkField\Migration\LinkMigrator:
+  relation_map:
+    DNADesign\Elemental\Models\ElementContent:
+      ContentLink: CoreContentLink

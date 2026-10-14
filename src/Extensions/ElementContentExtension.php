@@ -9,6 +9,8 @@ use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
+use SilverStripe\LinkField\Models\Link as CoreLink;
+use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
 use NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent;
 use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
 
@@ -35,6 +37,7 @@ class ElementContentExtension extends Extension
     private static array $has_one = [
         'ContentImage' => Image::class,//avoid collision with ElementDecoratedContent
         'ContentLink' => Link::class,
+        'CoreContentLink' => CoreLink::class
     ];
 
     private static array $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
@@ -105,6 +108,8 @@ class ElementContentExtension extends Extension
                     )
                 )
         );
+
+        $fields->removeByName(['CoreContentLink']);
         $fields->addFieldToTab(
             'Root.Link',
             $this->getLinkField()
@@ -112,18 +117,33 @@ class ElementContentExtension extends Extension
     }
 
     /**
-     * Return the inline link field to handle link selection
+     * Return the field used to render the link
+     * This handles migration to the core silverstripe/linkfield model
      */
-    protected function getLinkField(): LinkField
+    protected function getLinkField(): CoreLinkField|LinkField
     {
-        return LinkField::create(
-            'ContentLink',
-            _t(
-                'nswds.LINK',
-                'Link'
-            ),
-            $this->getOwner()
-        );
+        $contentLink = $this->getContentLink();
+        if($contentLink instanceof CoreLink) {
+            $linkField = CoreLinkField::create('CoreContentLink', _t('nswds.LINK','Link'));
+        } else {
+            $linkField = LinkField::create('ContentLink', _t('nswds.LINK','Link'), $this->getOwner());
+        }
+        return $linkField;
+    }
+
+    /**
+     * Returns the migrated core Link if one exists, falling back to the
+     * legacy gorriecoe Link otherwise. Use this (not ContentLink()/ContentLinkID)
+     * anywhere the link is consumed - templates, controllers, other modules.
+     * This handle migration to the core silverstripe/linkfield model
+     */
+    public function getContentLink(): null|CoreLink|Link
+    {
+        $coreContentLink = $this->getOwner()->CoreContentLink();
+        if($coreContentLink && $coreContentLink->isInDB()) {
+            return $coreContentLink;
+        }
+        return $this->getOwner()->getComponent('ContentLink');
     }
 
 }
