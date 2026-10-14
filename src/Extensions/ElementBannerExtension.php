@@ -11,7 +11,6 @@ use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
-use NSWDPC\InlineLinker\InlineLinkCompositeField;
 use UncleCheese\DisplayLogic\Forms\Wrapper;
 
 /**
@@ -99,7 +98,7 @@ class ElementBannerExtension extends Extension
             ->isEqualTo('title-content-image')
             ->orIf()->isEqualTo('call-to-action-image');
 
-        $linkField = Wrapper::create(InlineLinkCompositeField::create(
+        $linkField = Wrapper::create(LinkField::create(
             'BannerLink',
             _t(
                 'nswds.LINK',
