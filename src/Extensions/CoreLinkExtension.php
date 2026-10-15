@@ -13,19 +13,21 @@ use SilverStripe\Core\Extension;
 /**
  * Decorate \SilverStripe\LinkField\Models\Link with extra fields and other
  * requirements
- * @property ?string $Description
- * @property int $ImageID
+ * @property ?string $CoreLinkDescription
+ * @property int $CoreLinkImageID
  * @method \SilverStripe\Assets\Image Image()
  * @extends \SilverStripe\Core\Extension<(\SilverStripe\LinkField\Models\Link & static)>
  */
 class CoreLinkExtension extends Extension
 {
     private static array $db = [
-        'Description' => 'Text'
+        // use a specific field name to avoid generic field clashes
+        'CoreLinkDescription' => 'Text'
     ];
 
     private static array $has_one = [
-        "Image" => Image::class,
+        // use a specific field name to avoid generic field clashes
+        "CoreLinkImage" => Image::class,
     ];
 
     private static array $allowed_file_types = [
@@ -37,7 +39,7 @@ class CoreLinkExtension extends Extension
     ];
 
     private static array $owns = [
-        "Image"
+        "CoreLinkImage"
     ];
 
     /**
@@ -60,7 +62,7 @@ class CoreLinkExtension extends Extension
     {
 
         $descriptionField = TextareaField::create(
-            'Description',
+            'CoreLinkDescription',
             _t(
                 'nswds.DESCRIPTION',
                 'Description'
@@ -79,7 +81,7 @@ class CoreLinkExtension extends Extension
 
         $fields->push(
             UploadField::create(
-                "Image",
+                "CoreLinkImage",
                 _t("nswds.IMAGE", "Image")
             )->setAllowedExtensions($this->getOwner()->getAllowedFileTypes())
             ->setIsMultiUpload(false)
@@ -102,13 +104,21 @@ class CoreLinkExtension extends Extension
     }
 
     /**
-     * Provides a compatibility method for returning the description
-     * for a link from the linked SiteTree record, if the link is of type SiteTreeLink
+     * Template method for getLinkDescription()
      */
     public function LinkDescription()
     {
+        return $this->getLinkDescription();
+    }
+
+    /**
+     * Provides a compatibility method for returning the description
+     * for a link from the linked SiteTree record, if the link is of type SiteTreeLink
+     */
+    public function getLinkDescription()
+    {
         $owner = $this->getOwner();
-        $description = $owner->Description;
+        $description = $owner->CoreLinkDescription;
         if (!$description && ($owner instanceof SiteTreeLink)) {
             $record = $owner->Page();
             if ($record && $record->isInDB() && $record->hasField('Abstract')) {
@@ -120,13 +130,21 @@ class CoreLinkExtension extends Extension
     }
 
     /**
+     * Template method for getLinkImage()
+     */
+    public function LinkImage()
+    {
+        return $this->getLinkImage();
+    }
+
+    /**
      * Provides a compatibility method for returning the image
      * for a link from the linked SiteTree record, if the link is of type SiteTree
      */
-    public function LinkImage(): ?Image
+    public function getLinkImage(): ?Image
     {
         $owner = $this->getOwner();
-        $image = $owner->Image();
+        $image = $owner->CoreLinkImage();
         if ((!$image || !$image->exists()) && ($owner instanceof SiteTreeLink)) {
             $record = $owner->Page();
             if ($record && $record->isInDB() && $record->hasField('Image')) {
