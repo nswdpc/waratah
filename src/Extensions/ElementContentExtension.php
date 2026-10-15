@@ -140,7 +140,10 @@ class ElementContentExtension extends Extension
         return LinkField::create('ContentLink', _t('nswds.LINK', 'Link'), $this->getOwner());
     }
 
-    public function getContentLink(): CoreLink|Link
+    /**
+     * Template method for getDerivedContentLink
+     */
+    public function DerivedContentLink(): CoreLink|Link
     {
         return $this->getDerivedContentLink();
     }
