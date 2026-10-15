@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\LinkField\Models\Link;
+use SilverStripe\LinkField\Models\PhoneLink;
 use SilverStripe\LinkField\Models\SiteTreeLink;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
@@ -154,6 +155,51 @@ class CoreLinkExtension extends Extension
         }
 
         return $image;
+    }
+
+    /**
+     * Template method for getOpenInNewWindow()
+     */
+    public function OpenInNewWindow()
+    {
+        return $this->getOpenInNewWindow();
+    }
+
+    /**
+     * Provides a compatibility method for returning OpenInNew when $OpenInNewWindow is called from templates
+     */
+    public function getOpenInNewWindow()
+    {
+        return $this->getOwner()->OpenInNew;
+    }
+
+    /**
+     * Compatibility with gorriecoe\Link\Models\Link::getLinkURL()
+     */
+    public function getLinkURL(): ?string
+    {
+        return $this->getOwner()->getURL();
+    }
+
+    /**
+     * Provides a compatibility method for returning the URL when $LinkURL is called from templates
+     */
+    public function LinkURL(): ?string
+    {
+        return $this->getLinkURL();
+    }
+
+    /**
+     * Provides a compatibility method for the formatted phone link
+     * In this extension, the phone link is returned as-is
+     */
+    public function getFormattedPhoneLink(): ?string
+    {
+        if ($this->getOwner() instanceof PhoneLink) {
+            return $this->getOwner()->getURL();
+        }
+
+        return null;
     }
 
 }
