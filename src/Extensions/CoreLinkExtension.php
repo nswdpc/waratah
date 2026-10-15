@@ -17,6 +17,7 @@ use SilverStripe\Core\Extension;
  * @property int $CoreLinkImageID
  * @method \SilverStripe\Assets\Image Image()
  * @extends \SilverStripe\Core\Extension<(\SilverStripe\LinkField\Models\Link & static)>
+ * @method \SilverStripe\Assets\Image CoreLinkImage()
  */
 class CoreLinkExtension extends Extension
 {
@@ -132,7 +133,7 @@ class CoreLinkExtension extends Extension
     /**
      * Template method for getLinkImage()
      */
-    public function LinkImage()
+    public function LinkImage(): ?\SilverStripe\Assets\Image
     {
         return $this->getLinkImage();
     }

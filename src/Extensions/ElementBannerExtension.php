@@ -25,6 +25,7 @@ use UncleCheese\DisplayLogic\Forms\Wrapper;
  * @property ?string $BannerLinksTitle
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> BannerLinks()
  * @extends \SilverStripe\Core\Extension<(\NSWDPC\Elemental\Models\Banner\ElementBanner & static)>
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreBannerLinks()
  */
 class ElementBannerExtension extends Extension
 {
@@ -237,6 +238,7 @@ class ElementBannerExtension extends Extension
         foreach($coreBannerLinks as $coreBannerLink) {
             $result->push($coreBannerLink);
         }
+
         // add on any unmigrated records
         foreach($unmigratedBannerLinks as $unmigratedBannerLink) {
             // not yet migrated
