@@ -156,7 +156,7 @@ class ElementContentExtension extends Extension
         $coreContentLink = $this->getOwner()->CoreContentLink();
         /** @var Link $legacyContentLink */
         $legacyContentLink = $this->getOwner()->getComponent('ContentLink');
-        if($coreContentLink->isInDB() || !$legacyContentLink->isInDB()) {
+        if ($coreContentLink->isInDB() || !$legacyContentLink->isInDB()) {
             return $coreContentLink;
         }
 

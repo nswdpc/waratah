@@ -170,7 +170,7 @@ class ElementBannerExtension extends Extension
         );
 
         // Legacy field, only show if there are actual links remaining
-        if($this->getOwner()->BannerLinks()->count() > 0) {
+        if ($this->getOwner()->BannerLinks()->count() > 0) {
             $linksCompositeField->push(
                 LinkField::create(
                     'BannerLinks',
@@ -228,19 +228,19 @@ class ElementBannerExtension extends Extension
 
         $coreBannerLinks = $this->getOwner()->CoreBannerLinks()->sort(['Sort' => 'ASC']);
         $unmigratedBannerLinks = $this->getOwner()->BannerLinks()->filter(['IsMigrated' => 0]);
-        if($unmigratedBannerLinks->count() == 0) {
+        if ($unmigratedBannerLinks->count() == 0) {
             // all migrated, show all core links found
             return $coreBannerLinks;
         }
 
         $result = \SilverStripe\Model\List\ArrayList::create();
         // get all new 'core' record links
-        foreach($coreBannerLinks as $coreBannerLink) {
+        foreach ($coreBannerLinks as $coreBannerLink) {
             $result->push($coreBannerLink);
         }
 
         // add on any unmigrated records
-        foreach($unmigratedBannerLinks as $unmigratedBannerLink) {
+        foreach ($unmigratedBannerLinks as $unmigratedBannerLink) {
             // not yet migrated
             $result->push($unmigratedBannerLink);
         }
