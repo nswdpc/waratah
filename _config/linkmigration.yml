@@ -7,3 +7,5 @@ gorriecoe\LinkField\Migration\LinkMigrator:
   relation_map:
     DNADesign\Elemental\Models\ElementContent:
       ContentLink: CoreContentLink
+    NSWDPC\Elemental\Models\Banner\ElementBanner:
+      BannerLinks: CoreBannerLinks

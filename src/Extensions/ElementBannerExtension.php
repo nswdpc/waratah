@@ -5,12 +5,15 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Forms\HeroBannerBrandSelectionField;
 use SilverStripe\Core\Extension;
 use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
+use SilverStripe\LinkField\Models\Link as CoreLink;
+use SilverStripe\LinkField\Form\MultiLinkField as CoreMultiLinkField;
 use UncleCheese\DisplayLogic\Forms\Wrapper;
 
 /**
@@ -45,7 +48,25 @@ class ElementBannerExtension extends Extension
     ];
 
     private static array $many_many = [
+        // legacy links
         'BannerLinks' => Link::class
+    ];
+
+    private static array $has_many = [
+        // migrated links
+        'CoreBannerLinks' => CoreLink::class . '.Owner'
+    ];
+
+    private static array $owns = [
+        'CoreBannerLinks'
+    ];
+
+    private static array $cascade_deletes = [
+        'CoreBannerLinks',
+    ];
+
+    private static array $cascade_duplicates = [
+        'CoreBannerLinks',
     ];
 
     private static array $many_many_extraFields = [
@@ -65,8 +86,13 @@ class ElementBannerExtension extends Extension
     public function updateCMSFields(FieldList $fields)
     {
 
-        $fields->removeByName(['BannerLinks','BannerLink', 'AltStyle']);
+        $fields->removeByName([
+            'BannerLinks', 'BannerLinksTitle',
+            'CoreBannerLinks',
+            'AltStyle'
+        ]);
 
+        // NSWDS style and branding options
         $bannerStyleField = DropdownField::create(
             'BannerStyle',
             _t('nswds.BANNERSTYLE', 'Layout'),
@@ -78,6 +104,17 @@ class ElementBannerExtension extends Extension
             _t('nswds.BANNERBRAND', 'Brand')
         );
 
+        // the content field
+        $contentField = HTMLEditorField::create(
+            'HTML',
+            _t(
+                'nswds.HTML',
+                'Content'
+            )
+        );
+        $contentField->setRows(6);
+
+        // Image for use in banner
         $imageField = UploadField::create(
             "Image",
             _t("nswds.SLIDE_IMAGE", "Image")
@@ -98,55 +135,63 @@ class ElementBannerExtension extends Extension
             ->isEqualTo('title-content-image')
             ->orIf()->isEqualTo('call-to-action-image');
 
-        $linkField = Wrapper::create(LinkField::create(
-            'BannerLink',
-            _t(
-                'nswds.LINK',
-                'Link'
-            ),
-            $this->getOwner()
-        ));
-        $linkField
+
+        // BannerLink field provided by ElementBanner module
+        // it's assumed link migration happens in ElementBanner module
+        $linkField = $fields->dataFieldByName('BannerLink');
+        $fields->removeByName(['BannerLink']);
+        $linkField->setTitle(_t('nswds.LINK', 'Link'));
+        // add the field to a Wrapper
+        $linkFieldWrapper = Wrapper::create($linkField);
+        $linkFieldWrapper
             ->displayIf('BannerStyle')
             ->isEqualTo('call-to-action')
             ->orIf()->isEqualTo('call-to-action-image');
 
-        $linksFieldTitle = TextField::create(
-            'BannerLinksTitle',
-            _t('nswds.LINKSTITLE', 'Links title'),
-        );
-        $linksFieldTitle
-            ->displayIf('BannerStyle')
-            ->isEqualTo('links-list');
-
-        $linksField = LinkField::create(
-            'BannerLinks',
-            _t('nswds.LINKS', 'Links'),
-            $this->getOwner()
-        );
-        $linksField->setSortColumn('Sort');
-        $linksField
-            ->displayIf('BannerStyle')
-            ->isEqualTo('links-list');
-
-        $contentField = HTMLEditorField::create(
-            'HTML',
-            _t(
-                'nswds.HTML',
-                'Content'
+        // BannerLinks
+        // The new field is always shown, so a CMS author can migrate
+        // (via LinkMigrationAdmin) and immediately manage the result here.
+        $linksCompositeField = CompositeField::create([])
+            ->setTitle(_t('nswds.LINKS', 'Links'));
+        // text to use for the title of the banner links
+        $linksCompositeField->push(
+            TextField::create(
+                'BannerLinksTitle',
+                _t('nswds.LINKSTITLE', 'Title of link list'),
             )
         );
-        $contentField->setRows(6);
+        // the new links field (migration target)
+        $linksCompositeField->push(
+            CoreMultiLinkField::create(
+                'CoreBannerLinks',
+                _t('nswds.LINKS', 'Links (new)')
+            )
+        );
+
+        // Legacy field, only show if there are actual links remaining
+        if($this->getOwner()->BannerLinks()->count() > 0) {
+            $linksCompositeField->push(
+                LinkField::create(
+                    'BannerLinks',
+                    _t('nswds.LINKS', 'Links (legacy)'),
+                    $this->getOwner()
+                )->setSortColumn('Sort')
+            );
+        }
+
+        // fire on display logic choice
+        $linksFieldWrapper = Wrapper::create($linksCompositeField);
+        $linksFieldWrapper->displayIf('BannerStyle')->isEqualTo('links-list');
 
 
+        // apply fields to tabs
         $fields->addFieldsToTab("Root.Main", [
             $bannerStyleField,
             $bannerBrandingField,
             $contentField,
             $imageField,
-            $linkField,
-            $linksFieldTitle,
-            $linksField
+            $linkFieldWrapper,// wrapper for single BannerLink
+            $linksFieldWrapper // wrapper for multi BannerLinks
         ]);
 
     }
@@ -164,6 +209,42 @@ class ElementBannerExtension extends Extension
             $this->getOwner()->BannerBrand = self::BRAND_NONE;
             $this->getOwner()->AltStyle = 0;// turn off
         }
+    }
+
+    /**
+     * Template method for getBannerLinksList()
+     */
+    public function BannerLinksList(): \SilverStripe\Model\List\SS_List
+    {
+        return $this->getBannerLinksList();
+    }
+
+    /**
+     * Returns the relevant list of links for the banner
+     */
+    public function getBannerLinksList(): \SilverStripe\Model\List\SS_List
+    {
+
+        $coreBannerLinks = $this->getOwner()->CoreBannerLinks()->sort(['Sort' => 'ASC']);
+        $unmigratedBannerLinks = $this->getOwner()->BannerLinks()->filter(['IsMigrated' => 0]);
+        if($unmigratedBannerLinks->count() == 0) {
+            // all migrated, show all core links found
+            return $coreBannerLinks;
+        }
+
+        $result = \SilverStripe\Model\List\ArrayList::create();
+        // get all new 'core' record links
+        foreach($coreBannerLinks as $coreBannerLink) {
+            $result->push($coreBannerLink);
+        }
+        // add on any unmigrated records
+        foreach($unmigratedBannerLinks as $unmigratedBannerLink) {
+            // not yet migrated
+            $result->push($unmigratedBannerLink);
+        }
+
+        // return sorted result
+        return $result->sort(['Sort' => 'ASC']);
     }
 
 }
