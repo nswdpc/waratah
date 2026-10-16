@@ -71,7 +71,7 @@
             <% if $Media_AltVideoURL %>
                 <p class="alt-url">
                     <a href="$Media_AltVideoURL">
-                        <% _t('nswds.WATCHWITHAUDIODESC','Watch this video with an audio description') %>
+                        <%t nswds.WATCHWITHAUDIODESC "Watch this video with an audio description" %>
                     </a>
                 </p>
             <% end_if %>
@@ -105,4 +105,4 @@
         </div>
     </div>
     <% end_if %>
-<% end_if %>    
+<% end_if %>

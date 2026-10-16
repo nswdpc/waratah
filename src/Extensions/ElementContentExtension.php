@@ -3,12 +3,14 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use DNADesign\Elemental\Models\ElementContent;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use gorriecoe\Link\Models\Link;
-use NSWDPC\InlineLinker\InlineLinkCompositeField;
+use gorriecoe\LinkField\LinkField;
+use SilverStripe\LinkField\Models\Link as CoreLink;
+use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
 use NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent;
 use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
 
@@ -28,18 +30,31 @@ use NSWDPC\Elemental\Models\FeaturedVideo\ElementFeaturedVideo;
  * @property int $ContentLinkID
  * @method \SilverStripe\Assets\Image ContentImage()
  * @method \gorriecoe\Link\Models\Link ContentLink()
- * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\ElementContent & static)>
+ * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\ElementContent & static)>
+ * @property int $CoreContentLinkID
+ * @method \SilverStripe\LinkField\Models\Link CoreContentLink()
  */
-class ElementContentExtension extends DataExtension
+class ElementContentExtension extends Extension
 {
     private static array $has_one = [
         'ContentImage' => Image::class,//avoid collision with ElementDecoratedContent
         'ContentLink' => Link::class,
+        'CoreContentLink' => CoreLink::class
     ];
 
     private static array $allowed_file_types = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
 
-    private static array $owns = ['ContentImage', 'ContentLink'];
+    private static array $owns = ['ContentImage', 'ContentLink', 'CoreContentLink'];
+
+    private static array $cascade_deletes = [
+        'CoreContentLink'
+    ];
+
+    private static array $cascade_duplicates = [
+        'CoreContentLink'
+    ];
+
+    private static bool $inline_editable = false;
 
     public function getAllowedFileTypes(): array
     {
@@ -77,7 +92,6 @@ class ElementContentExtension extends DataExtension
     /**
      * Apply image and link fields to the Settings tab
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
@@ -104,6 +118,8 @@ class ElementContentExtension extends DataExtension
                     )
                 )
         );
+
+        $fields->removeByName(['CoreContentLink']);
         $fields->addFieldToTab(
             'Root.Link',
             $this->getLinkField()
@@ -111,18 +127,43 @@ class ElementContentExtension extends DataExtension
     }
 
     /**
-     * Return the inline link field to handle link selection
+     * Return the field used to render the link
+     * This handles migration to the core silverstripe/linkfield model
      */
-    protected function getLinkField(): InlineLinkCompositeField
+    protected function getLinkField(): CoreLinkField|LinkField
     {
-        return InlineLinkCompositeField::create(
-            'ContentLink',
-            _t(
-                'nswds.LINK',
-                'Link'
-            ),
-            $this->getOwner()
-        );
+        $contentLink = $this->getDerivedContentLink();
+        if ($contentLink instanceof CoreLink) {
+            return CoreLinkField::create('CoreContentLink', _t('nswds.LINK', 'Link'));
+        }
+
+        return LinkField::create('ContentLink', _t('nswds.LINK', 'Link'), $this->getOwner());
+    }
+
+    /**
+     * Template method for getDerivedContentLink
+     */
+    public function DerivedContentLink(): CoreLink|Link
+    {
+        return $this->getDerivedContentLink();
+    }
+
+    /**
+     * Returns the migrated core Link if one exists, falling back to the
+     * legacy gorriecoe Link otherwise. Use this (not ContentLink()/ContentLinkID)
+     * anywhere the link is consumed - templates, controllers, other modules.
+     * This handle migration to the core silverstripe/linkfield model
+     */
+    public function getDerivedContentLink(): CoreLink|Link
+    {
+        $coreContentLink = $this->getOwner()->CoreContentLink();
+        /** @var Link $legacyContentLink */
+        $legacyContentLink = $this->getOwner()->getComponent('ContentLink');
+        if ($coreContentLink->isInDB() || !$legacyContentLink->isInDB()) {
+            return $coreContentLink;
+        }
+
+        return $legacyContentLink;
     }
 
 }

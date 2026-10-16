@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
 use SilverStripe\Assets\File;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxField;
@@ -40,9 +40,9 @@ use gorriecoe\LinkField\LinkField;
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> FooterLinksCol4()
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> FooterLinksSub()
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> SocialLinks()
- * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\SiteConfig\SiteConfig & static)>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\SiteConfig\SiteConfig & static)>
  */
-class SiteConfigExtension extends DataExtension
+class SiteConfigExtension extends Extension
 {
     private static array $db = [
 
@@ -99,7 +99,6 @@ class SiteConfigExtension extends DataExtension
         'DisplayWelcomeToCountry' => 1
     ];
 
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
