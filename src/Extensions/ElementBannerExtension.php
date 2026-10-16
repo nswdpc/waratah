@@ -169,8 +169,8 @@ class ElementBannerExtension extends Extension
             )
         );
 
-        // Legacy field, only show if there are actual links remaining
-        if ($this->getOwner()->BannerLinks()->count() > 0) {
+        // Legacy field, only show if there are actual unmigrated links remaining
+        if ($this->getOwner()->BannerLinks()->filter(['IsMigrated' => 0])->count() > 0) {
             $linksCompositeField->push(
                 LinkField::create(
                     'BannerLinks',
