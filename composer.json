@@ -37,7 +37,8 @@
         "nswdpc/silverstripe-datetime-inputs": "^2",
         "nswdpc/silverstripe-notices": "^2",
         "nswdpc/silverstripe-analytics-chooser": "^1",
-        "nswdpc/silverstripe-linkfield": "dev-feat-link-migrator-staged as 2.1.0"
+        "nswdpc/silverstripe-linkfield": "dev-feat-link-migrator-staged as 2.1.0",
+        "nswdpc/silverstripe-elemental-banner": "dev-feat-link-migration as 2.1.0"
     },
     "require-dev": {
         "cambis/silverstripe-rector": "^2",

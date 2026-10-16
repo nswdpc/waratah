@@ -139,15 +139,17 @@ class ElementBannerExtension extends Extension
 
         // BannerLink field provided by ElementBanner module
         // it's assumed link migration happens in ElementBanner module
-        $linkField = $fields->dataFieldByName('BannerLink');
-        $fields->removeByName(['BannerLink']);
-        $linkField->setTitle(_t('nswds.LINK', 'Link'));
-        // add the field to a Wrapper
-        $linkFieldWrapper = Wrapper::create($linkField);
-        $linkFieldWrapper
-            ->displayIf('BannerStyle')
-            ->isEqualTo('call-to-action')
-            ->orIf()->isEqualTo('call-to-action-image');
+        $linkFieldWrapper = Wrapper::create([]);
+        if($linkField = $fields->dataFieldByName('BannerLink')) {
+            // remove field to avoid conflicts when added to wrapper/composite
+            $fields->removeByName(['BannerLink']);
+            // add the field to a Wrapper
+            $linkFieldWrapper->push($linkField);
+            $linkFieldWrapper
+                ->displayIf('BannerStyle')
+                ->isEqualTo('call-to-action')
+                ->orIf()->isEqualTo('call-to-action-image');
+        }
 
         // BannerLinks
         // The new field is always shown, so a CMS author can migrate
