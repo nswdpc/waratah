@@ -3,8 +3,10 @@
 namespace NSWDPC\Waratah\Models\EditableFormField;
 
 use gorriecoe\Link\Models\Link;
-use NSWDPC\InlineLinker\InlineLinkField;
-use SilverStripe\Admin\LeftAndMain;
+use gorriecoe\LinkField\LinkField;
+use SilverStripe\LinkField\Models\Link as CoreLink;
+use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
+use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TextField;
@@ -43,7 +45,18 @@ class EditableCalloutField extends EditableLiteralField
     ];
 
     private static array $has_one = [
-        'Link' => Link::class
+        'Link' => Link::class,
+        'CoreLink' => CoreLink::class
+    ];
+
+    private static array $owns = ['CoreLink'];
+
+    private static array $cascade_deletes = [
+        'CoreLink'
+    ];
+
+    private static array $cascade_duplicates = [
+        'CoreLink'
     ];
 
     /**
@@ -77,7 +90,8 @@ class EditableCalloutField extends EditableLiteralField
                 )
             )
         );
-        $fields->removeByName('LinkID');
+
+        $fields->removeByName(['LinkID', 'CoreLink']);
         $fields->insertAfter(
             'IconCode',
             $this->getLinkField()
@@ -89,15 +103,43 @@ class EditableCalloutField extends EditableLiteralField
     }
 
     /**
-     * Get the link chooser field
+     * Return the field used to render the link
+     * This handles migration to the core silverstripe/linkfield model
      */
-    public function getLinkField(): InlineLinkField
+    protected function getLinkField(): CoreLinkField|LinkField
     {
-        return InlineLinkField::create(
-            'Link',
-            _t('nswds.LINK', 'Link'),
-            $this
-        );
+        $contentLink = $this->getDerivedLink();
+        if ($contentLink instanceof CoreLink) {
+            return CoreLinkField::create('CoreLink', _t('nswds.LINK', 'Link'));
+        }
+
+        return LinkField::create('Link', _t('nswds.LINK', 'Link'), $this);
+    }
+
+    /**
+     * Template method for getDerivedLink
+     */
+    public function DerivedLink(): CoreLink|Link
+    {
+        return $this->getDerivedLink();
+    }
+
+    /**
+     * Returns the migrated core Link if one exists, falling back to the
+     * legacy gorriecoe Link otherwise. Use this (not Link()/LinkID)
+     * anywhere the link is consumed - templates, controllers, other modules.
+     * This handle migration to the core silverstripe/linkfield model
+     */
+    public function getDerivedLink(): CoreLink|Link
+    {
+        $coreLink = $this->CoreLink();
+        /** @var Link $legacyLink */
+        $legacyLink = $this->getComponent('Link');
+        if ($coreLink->isInDB() || !$legacyLink->isInDB()) {
+            return $coreLink;
+        }
+
+        return $legacyLink;
     }
 
     /**
@@ -120,11 +162,9 @@ class EditableCalloutField extends EditableLiteralField
     #[\Override]
     public function getFormField()
     {
-
-        if (Controller::curr() instanceof LeftAndMain) {
-            // avoid theme issues with templates not being found
-            $content = "";
-        } else {
+        $content = "";
+        if (Controller::curr() instanceof ContentController) {
+            // only render if page rendering
             $content = $this->renderWith(self::class);
         }
 

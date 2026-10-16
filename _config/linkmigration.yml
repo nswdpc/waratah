@@ -12,3 +12,5 @@ gorriecoe\LinkField\Migration\LinkMigrator:
       ContentLink: CoreContentLink
     NSWDPC\Elemental\Models\Banner\ElementBanner:
       BannerLinks: CoreBannerLinks
+    NSWDPC\Waratah\Models\EditableFormField\EditableCalloutField:
+      Link: CoreLink

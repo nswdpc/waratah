@@ -163,7 +163,6 @@ class ElementContentExtension extends Extension
             return $coreContentLink;
         }
 
-        // @phpstan-ignore return.type
         return $legacyContentLink;
     }
 
