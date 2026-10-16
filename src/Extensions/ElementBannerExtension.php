@@ -140,7 +140,7 @@ class ElementBannerExtension extends Extension
         // BannerLink field provided by ElementBanner module
         // it's assumed link migration happens in ElementBanner module
         $linkFieldWrapper = Wrapper::create([]);
-        if($linkField = $fields->dataFieldByName('BannerLink')) {
+        if ($linkField = $fields->dataFieldByName('BannerLink')) {
             // remove field to avoid conflicts when added to wrapper/composite
             $fields->removeByName(['BannerLink']);
             // add the field to a Wrapper
