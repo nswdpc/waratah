@@ -1,7 +1,7 @@
 ---
 Name: nswdpc-waratah-linkmigration
 Only:
-   classexists: 'gorriecoe\LinkField\Migration\LinkMigrator'
+  classexists: 'gorriecoe\LinkField\Migration\LinkMigrator'
 ---
 gorriecoe\LinkField\Migration\LinkMigrator:
   extensions:
