@@ -19,6 +19,8 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableLiteralField;
  * @property ?string $IconCode
  * @property int $LinkID
  * @method \gorriecoe\Link\Models\Link Link()
+ * @property int $CoreLinkID
+ * @method \SilverStripe\LinkField\Models\Link CoreLink()
  */
 class EditableCalloutField extends EditableLiteralField
 {
