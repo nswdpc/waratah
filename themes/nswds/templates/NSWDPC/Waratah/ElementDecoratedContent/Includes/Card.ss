@@ -13,7 +13,11 @@
     <% end_if %>
     <div class="nsw-card__content">
         <div class="nsw-card__title">
-            <a href="{$LinkURL}">{$Title.XML}</a>
+            <% if $DerivedLinkTarget %>
+                <a href="{$DerivedLinkTarget.LinkURL}"><% if $DerivedLinkTarget.OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
+            <% else %>
+                {$Title.XML}
+            <% end_if %>
         </div>
         <% if $Top.CardStyle == "title-abstract" || $Top.CardStyle == "title-image-abstract" %>
             <% if $Description %>
