@@ -41,7 +41,8 @@
         "nswdpc/silverstripe-elemental-banner": "dev-feat-link-migration as 2.1.0",
         "nswdpc/silverstripe-elemental-links": "dev-feat-linkmigration as 2.1.0",
         "nswdpc/silverstripe-elemental-decoratedcontent": "dev-feat-linkmigration as 2.1",
-        "nswdpc/silverstripe-notices": "dev-feat-linkmigration as 2.1"
+        "nswdpc/silverstripe-notices": "dev-feat-linkmigration as 2.1",
+        "nswdpc/silverstripe-elemental-publications": "dev-feat-linkmigration as 2.1"
     },
     "require-dev": {
         "cambis/silverstripe-rector": "^2",
