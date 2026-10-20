@@ -20,7 +20,7 @@ class ElementalShowMore extends ElementContent
 
     private static string $plural_name = 'Show more (NSW Design System)';
 
-    private static string $description = 'Create a show more component';
+    private static string $class_description = 'Create a show more component';
 
     private static string $icon = 'font-icon-block-promo-2';
 

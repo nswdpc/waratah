@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Models\DesignSystemConfiguration;
 use NSWDPC\Waratah\Forms\SectionSelectionField;
 use NSWDPC\Waratah\Traits\DesignSystemSelections;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxField;
@@ -20,16 +20,16 @@ use SilverStripe\Forms\CheckboxField;
  * @property ?string $AddBackground
  * @property bool $IsBoxed
  * @property ?string $VerticalSpacing
- * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\BaseElement & static)>
+ * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\BaseElement & static)>
  */
-class BaseElementExtension extends DataExtension
+class BaseElementExtension extends Extension
 {
     use DesignSystemSelections;
 
     /**
      * AddBackround - the options light-10,light-20,light-40 are nswds v2.13 options and will be deprecated in v1.0.
      * The AddBackground option '1' is a legacy option that triggered 'light-10' background. This now triggers 'off-white'
-     * The AddBackground value of 0, the default, produces a nsw-section without suffixed classes
+     * The AddBackground value of '', the default, produces a nsw-section without suffixed classes
      * See the getBackground method which templates should use to retrieve the correct background class for the section ({$Background})
      */
     private static array $db = [
@@ -47,7 +47,7 @@ class BaseElementExtension extends DataExtension
      */
     private static array $defaults = [
         'AddContainer' => 1,
-        'AddBackground' => 0,
+        'AddBackground' => '',
         'IsBoxed' => 0,
         'VerticalSpacing' => null,// default
     ];
@@ -82,7 +82,6 @@ class BaseElementExtension extends DataExtension
     /**
      * Add CMS fields for element
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

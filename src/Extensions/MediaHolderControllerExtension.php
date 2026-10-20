@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
- * @extends \SilverStripe\ORM\DataExtension<(\nglasl\mediawesome\MediaHolderController & static)>
+ * @extends \SilverStripe\Core\Extension<(\nglasl\mediawesome\MediaHolderController & static)>
  */
-class MediaHolderControllerExtension extends DataExtension
+class MediaHolderControllerExtension extends Extension
 {
 }

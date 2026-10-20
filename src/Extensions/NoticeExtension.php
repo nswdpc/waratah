@@ -3,7 +3,7 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Notices\Notice;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\ORM\DB;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;
@@ -12,9 +12,9 @@ use SilverStripe\Forms\FieldList;
  * Extension for generic notice module/record
  * @author James
  * @property bool $IsAcknowledgementOfCountry
- * @extends \SilverStripe\ORM\DataExtension<(\NSWDPC\Notices\Notice & static)>
+ * @extends \SilverStripe\Core\Extension<(\NSWDPC\Notices\Notice & static)>
  */
-class NoticeExtension extends DataExtension
+class NoticeExtension extends Extension
 {
     private static array $db = [
         'IsAcknowledgementOfCountry' => 'Boolean'
@@ -27,10 +27,8 @@ class NoticeExtension extends DataExtension
     /**
      * Post-write operations
      */
-    #[\Override]
     public function onAfterWrite()
     {
-        parent::onAfterWrite();
         if ($this->getOwner()->IsAcknowledgementOfCountry == 1) {
             DB::prepared_query(
                 'UPDATE "SiteNotice" SET "IsAcknowledgementOfCountry" = 0 WHERE ID <> ?',
@@ -52,7 +50,6 @@ class NoticeExtension extends DataExtension
     /**
      * @return void
      */
-    #[\Override]
     public function updateCmsFields(FieldList $fields)
     {
         $fields->insertAfter(

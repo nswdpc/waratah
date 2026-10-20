@@ -1,6 +1,6 @@
 <?php
 
-use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
+use SilverStripe\TinyMCE\TinyMCEConfig;
 
 try {
 
