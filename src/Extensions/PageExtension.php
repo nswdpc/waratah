@@ -270,7 +270,7 @@ class PageExtension extends DataExtension
     /**
      * BC method, see InPageNavigation
      */
-    public function ElementNav()
+    public function ElementNav(): ?\SilverStripe\ORM\ArrayList
     {
         return $this->InPageNavigation();
     }
