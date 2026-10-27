@@ -308,10 +308,13 @@ class PageExtension extends DataExtension
 
             // merge in any child elements in order
             if ($element instanceof ElementList) {
-                $children = $element->Elements()->Elements()->filter([
-                    "ShowInMenus" => 1
-                ])->sort(["Sort" => "ASC"]);
-                $navigation->merge($children);
+                $elementListArea = $element->Elements();
+                if($elementListArea->isInDB()) {
+                    $children = $elementListArea->Elements()->filter([
+                        "ShowInMenus" => 1
+                    ])->sort(["Sort" => "ASC"]);
+                    $navigation->merge($children);
+                }
             }
         }
 
