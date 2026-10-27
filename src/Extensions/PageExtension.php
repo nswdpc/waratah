@@ -309,7 +309,7 @@ class PageExtension extends DataExtension
             // merge in any child elements in order
             if ($element instanceof ElementList) {
                 $elementListArea = $element->Elements();
-                if($elementListArea->isInDB()) {
+                if ($elementListArea->isInDB()) {
                     $children = $elementListArea->Elements()->filter([
                         "ShowInMenus" => 1
                     ])->sort(["Sort" => "ASC"]);
