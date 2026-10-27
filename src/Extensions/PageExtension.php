@@ -299,15 +299,15 @@ class PageExtension extends DataExtension
         $list = $elementArea->Elements()->sort(["Sort" => "ASC"]);
 
         $navigation = ArrayList::create();
-        foreach($list as $element) {
+        foreach ($list as $element) {
 
             // only include if the option is checked
-            if($element->ShowInMenus == 1) {
+            if ($element->ShowInMenus == 1) {
                 $navigation->push($element);
             }
 
             // merge in any child elements in order
-            if($element instanceof ElementList) {
+            if ($element instanceof ElementList) {
                 $children = $element->Elements()->Elements()->filter([
                     "ShowInMenus" => 1
                 ])->sort(["Sort" => "ASC"]);
