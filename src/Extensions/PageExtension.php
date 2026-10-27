@@ -2,6 +2,7 @@
 
 namespace NSWDPC\Waratah\Extensions;
 
+use DNADesign\ElementalList\Model\ElementList;
 use Page;
 use SilverStripe\Control\Director;
 use SilverStripe\CMS\Model\SiteTree;
@@ -14,6 +15,7 @@ use SilverStripe\Forms\DateField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\ArrayList;
 
 /**
  * @property ?string $Abstract
@@ -263,5 +265,57 @@ class PageExtension extends DataExtension
             'Machine' => $displayDate->Format('yyyy-MM-dd'),
             'Human' => $displayDate->Format($format)
         ]);
+    }
+
+    /**
+     * BC method, see InPageNavigation
+     */
+    public function ElementNav()
+    {
+        return $this->InPageNavigation();
+    }
+
+    /**
+     * InPageNavigation is used by templates to provide an "On this page" function
+     * matching the "In-page navigation" component:
+     * https://designsystem.nsw.gov.au/components/in-page-nav/index.html
+     *
+     * This pulls all elements from the "Main" elemental area.
+     * Elements with the checkbox checked are included in the result
+     * If an ElementList is detected as a child element, the children of that list elenmet are included
+     * in order, in the resulting listing, assuming they also have "ShowInMenus" checked
+     */
+    public function InPageNavigation(): ?ArrayList
+    {
+
+        $elementArea = $this->getOwner()->data()->ElementalArea();
+
+        if (!$elementArea || !$elementArea->exists()) {
+            return null;
+        }
+
+        // Pull the list of elements
+        // Elements() is a cache aware accessor
+        $list = $elementArea->Elements()->sort(["Sort" => "ASC"]);
+
+        $navigation = ArrayList::create();
+        foreach($list as $element) {
+
+            // only include if the option is checked
+            if($element->ShowInMenus == 1) {
+                $navigation->push($element);
+            }
+
+            // merge in any child elements in order
+            if($element instanceof ElementList) {
+                $children = $element->Elements()->Elements()->filter([
+                    "ShowInMenus" => 1
+                ])->sort(["Sort" => "ASC"]);
+                $navigation->merge($children);
+            }
+        }
+
+        return $navigation;
+
     }
 }
