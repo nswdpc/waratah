@@ -428,7 +428,7 @@ class SiteConfigExtension extends Extension
         ];
         foreach ($navigationLinks as $navigationLink) {
             $links = $this->getLinksList($navigationLink);
-            if ($links && $links->count() > 0) {
+            if ($links->count() > 0) {
                 return true;
             }
         }
