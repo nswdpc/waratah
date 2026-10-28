@@ -4,7 +4,7 @@ namespace NSWDPC\Waratah\Models;
 
 use DNADesign\Elemental\Models\ElementContent;
 use NSWDPC\Waratah\Traits\DesignSystemComponent;
-use SilverStripe\Assets\Storage\DBFile;
+use SilverStripe\Assets\Storage\AssetContainer;
 
 /**
  * Implement NSWDS Callout component
@@ -48,7 +48,7 @@ class ElementalCallout extends ElementContent
     /**
      * Return the image resized to 48x48 dimensions
      */
-    public function Image(): ?DBFile
+    public function Image(): ?AssetContainer
     {
         $image = $this->ContentImage();
         if ($image && $image->exists()) {
