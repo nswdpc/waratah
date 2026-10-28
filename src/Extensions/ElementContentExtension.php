@@ -82,7 +82,11 @@ class ElementContentExtension extends Extension
         }
 
         if (in_array($this->getOwner()::class, $classes)) {
-            $fields->removeByName(['ContentLinkID','ContentLink','ContentImageID','ContentImage']);
+            $fields->removeByName([
+                'ContentLinkID','ContentLink',
+                'CoreContentLink',// link migration target
+                'ContentImageID','ContentImage'
+            ]);
             return true;
         }
 
