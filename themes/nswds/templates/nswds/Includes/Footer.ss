@@ -4,88 +4,72 @@
 
 <footer class="nsw-footer<% if $FooterBrand %> nsw-footer--{$FooterBrand.XML}<% else %> wrth-footer--default<% end_if %>">
 
-    <% if $FooterLinksCol1 || $FooterLinksCol2 || $FooterLinksCol3 || $FooterLinksCol4 %>
+    <% if $HasFooterLinks %>
         <div class="nsw-footer__upper">
             <div class="nsw-container">
 
-                <% if $FooterLinksCol1 %>
+                <% if $LinksList('FooterLinksCol1') %>
                     <div class="nsw-footer__group">
                         <% if $FooterLinksCol1Title %>
                             <div class="nsw-footer__heading">
                                 <h6>{$FooterLinksCol1Title.XML}</h6>
                             </div>
                         <% end_if %>
-                        <% if $FooterLinksCol1 %>
-                            <ul>
-                                <% loop $FooterLinksCol1.Sort('Sort') %>
-                                    <li>
-                                        <a href="{$LinkURL}">
-                                            {$Title.XML}
-                                        </a>
-                                    </li>
-                                <% end_loop %>
-                            </ul>
-                        <% end_if %>
+                        <ul>
+                            <% loop $LinksList('FooterLinksCol1') %>
+                                <li>
+                                    <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
+                                </li>
+                            <% end_loop %>
+                        </ul>
                     </div>
                 <% end_if %>
-                <% if $FooterLinksCol2 %>
+                <% if $LinksList('FooterLinksCol2') %>
                     <div class="nsw-footer__group">
                         <% if $FooterLinksCol2Title %>
                             <div class="nsw-footer__heading">
                                 <h6>{$FooterLinksCol2Title.XML}</h6>
                             </div>
                         <% end_if %>
-                        <% if $FooterLinksCol2 %>
-                            <ul>
-                                <% loop $FooterLinksCol2.Sort('Sort') %>
-                                    <li>
-                                        <a href="{$LinkURL}">
-                                            {$Title.XML}
-                                        </a>
-                                    </li>
-                                <% end_loop %>
-                            </ul>
-                        <% end_if %>
+                        <ul>
+                            <% loop $LinksList('FooterLinksCol2') %>
+                                <li>
+                                    <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
+                                </li>
+                            <% end_loop %>
+                        </ul>
                     </div>
                 <% end_if %>
-                <% if $FooterLinksCol3 %>
+                <% if $LinksList('FooterLinksCol3') %>
                     <div class="nsw-footer__group">
                         <% if $FooterLinksCol3Title %>
                             <div class="nsw-footer__heading">
                                 <h6>{$FooterLinksCol3Title.XML}</h6>
                             </div>
                         <% end_if %>
-                        <% if $FooterLinksCol3 %>
-                            <ul>
-                                <% loop $FooterLinksCol3.Sort('Sort') %>
-                                    <li>
-                                        <a href="{$LinkURL}">
-                                            {$Title.XML}
-                                        </a>
-                                    </li>
-                                <% end_loop %>
-                            </ul>
-                        <% end_if %>
+                        <ul>
+                            <% loop $LinksList('FooterLinksCol3') %>
+                                <li>
+                                    <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
+                                </li>
+                            <% end_loop %>
+                        </ul>
                     </div>
                 <% end_if %>
-                <% if $FooterLinksCol4 %>
+                <% if $LinksList('FooterLinksCol4') %>
                     <div class="nsw-footer__group">
                         <% if $FooterLinksCol4Title %>
                             <div class="nsw-footer__heading">
                                 <h6>{$FooterLinksCol4Title.XML}</h6>
                             </div>
                         <% end_if %>
-                        <% if $FooterLinksCol4 %>
-                            <ul>
-                                <% loop $FooterLinksCol4.Sort('Sort') %>
-                                    <li>
-                                        <a href="{$LinkURL}">
-                                            {$Title.XML}
-                                        </a>
-                                    </li>
-                                <% end_loop %>
-                            </ul>
-                        <% end_if %>
+                        <ul>
+                            <% loop $LinksList('FooterLinksCol4') %>
+                                <li>
+                                    <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
+                                </li>
+                            <% end_loop %>
+                        </ul>
                     </div>
                 <% end_if %>
             </div>
@@ -117,26 +101,24 @@
             <% end_if %>
 
 
-            <% if $FooterLinksSub  || $SocialLinks %>
+            <% if $LinksList('FooterLinksSub')  || $LinksList('SocialLinks') %>
             <div class="nsw-footer__links">
                 <% if $FooterLinksSub %>
                 <ul>
-                    <% loop $FooterLinksSub.Sort('Sort') %>
+                    <% loop $LinksList('FooterLinksSub') %>
                     <li>
-                        <a href="{$LinkURL}" class="nsw-footer-links__link">
-                            {$Title.XML}
-                        </a>
+                        <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a>
                     </li>
                     <% end_loop %>
                 </ul>
                 <% end_if %>
 
-                <% if $SocialLinks %>
+                <% if $LinksList('SocialLinks') %>
                 <div class="nsw-footer__social wrth-social-links">
-                    <% loop $SocialLinks.Sort('Sort') %>
-                        <a href="{$LinkURL}" rel="noopener" class="nsw-icon-button">
-                            <% if $Image %>
-                            {$Image.Fit(32,32)}
+                    <% loop $LinksList('SocialLinks') %>
+                        <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %> class="nsw-icon-button">
+                            <% if $LinkImage %>
+                            {$LinkImage.Fit(32,32)}
                             <span class="sr-only">{$Title.XML}</span>
                             <% else %>
                             {$Title.XML}

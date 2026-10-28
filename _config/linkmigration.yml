@@ -16,3 +16,10 @@ gorriecoe\LinkField\Migration\LinkMigrator:
       Link: CoreLink
     NSWDPC\Waratah\Models\ElementalFeature:
       Links: CoreLinks
+    SilverStripe\SiteConfig\SiteConfig:
+      FooterLinksCol1: CoreFooterLinksCol1
+      FooterLinksCol2: CoreFooterLinksCol2
+      FooterLinksCol3: CoreFooterLinksCol3
+      FooterLinksCol4: CoreFooterLinksCol4
+      FooterLinksSub: CoreFooterLinksSub
+      SocialLinks: CoreSocialLinks
