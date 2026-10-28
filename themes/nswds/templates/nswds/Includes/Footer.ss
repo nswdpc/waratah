@@ -131,9 +131,9 @@
             <% end_if %>
 
             <div class="nsw-footer__info">
-                <p class="nsw-footer__copyright">
+                <div class="nsw-footer__copyright">
                     <% if $CopyrightOwner %>{$CopyrightOwner.XML} <% else %><%t nswds.COPYRIGHT 'Copyright' %><% end_if %> &copy; {$Now.Year}
-                </p>
+                </div>
                 <% if $BuiltBy %>
                 <div class="nsw-footer__built"><%t nswds.BUILT_BY 'Built by' %> <% with $BuiltBy %><a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title.XML}</a><% end_with %></div>
                 <% end_if %>
