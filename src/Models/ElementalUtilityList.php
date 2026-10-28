@@ -24,7 +24,6 @@ use SilverStripe\View\ArrayData;
  */
 class ElementalUtilityList extends BaseElement
 {
-
     use DesignSystemComponent;
 
     /**

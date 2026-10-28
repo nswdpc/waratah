@@ -10,7 +10,6 @@ namespace NSWDPC\Waratah\Traits;
  */
 trait DesignSystemComponent
 {
-
     public function isNswDesignSystemComponent(): bool
     {
         return true;

@@ -13,7 +13,6 @@ use SilverStripe\Forms\TextField;
  */
 class ElementalShowMore extends ElementContent
 {
-
     use DesignSystemComponent;
 
     private static bool $inline_editable = true;

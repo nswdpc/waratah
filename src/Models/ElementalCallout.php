@@ -11,7 +11,6 @@ use SilverStripe\Assets\Storage\DBFile;
  */
 class ElementalCallout extends ElementContent
 {
-
     use DesignSystemComponent;
 
     private static bool $inline_editable = true;
@@ -37,7 +36,7 @@ class ElementalCallout extends ElementContent
     {
         $fields = parent::getCMSFields();
         $imageField = $fields->dataFieldByName('ContentImage');
-        if($imageField) {
+        if ($imageField) {
             $imageField->setDescription(
                 htmlspecialchars(_t('nswds.IMAGE_MUST_BE_SQUARE', 'The callout component requires a square image. Images without a 1:1 aspect ratio will be resized.'))
             );
@@ -52,8 +51,8 @@ class ElementalCallout extends ElementContent
     public function Image(): ?DBFile
     {
         $image = $this->ContentImage();
-        if($image && $image->exists()) {
-            return $image->Fill(48,48);
+        if ($image && $image->exists()) {
+            return $image->Fill(48, 48);
         }
 
         return null;
