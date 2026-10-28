@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Models;
 
 use DNADesign\Elemental\Models\BaseElement;
+use NSWDPC\Waratah\Traits\DesignSystemComponent;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\CheckboxSetField;
@@ -23,6 +24,8 @@ use SilverStripe\View\ArrayData;
  */
 class ElementalUtilityList extends BaseElement
 {
+    use DesignSystemComponent;
+
     /**
      * @var string
      */
@@ -67,13 +70,13 @@ class ElementalUtilityList extends BaseElement
 
     private static string $table_name = 'ElementalUtilityList';
 
-    private static string $singular_name = 'Utility list (NSW Design System)';
+    private static string $singular_name = 'Utility list';
 
-    private static string $plural_name = 'Utility lists (NSW Design System)';
+    private static string $plural_name = 'Utility lists';
 
     private static string $description = 'Create a utility list';
 
-    private static string $icon = 'font-icon-list';
+    private static string $icon = 'font-icon-nswds';
 
     private static array $db = [
         'Vertical' => 'Boolean',
@@ -92,7 +95,7 @@ class ElementalUtilityList extends BaseElement
     #[\Override]
     public function getType()
     {
-        return _t(static::class . '.BlockType', 'Utility list (NSW Design System)');
+        return _t(static::class . '.BlockType', 'Utility list');
     }
 
     /**

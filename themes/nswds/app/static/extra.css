@@ -1,0 +1,6 @@
+.font-icon-nswds::before {
+    content: "\00a0";
+    background: url("./nsw-digital-logos/svg/NSW-ONLY-nsw-government-logo.svg") center / contain no-repeat;
+    width: 32px;
+    display: inline-block;
+}

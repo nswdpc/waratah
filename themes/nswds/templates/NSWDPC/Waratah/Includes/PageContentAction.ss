@@ -1,5 +1,5 @@
-<% if $supportsElemental && $ElementNav %>
+<% if $supportsElemental && $InPageNavigation %>
 
-    <% include nswds/InPageNavigation InPageNavigation_Links=$ElementNav %>
+    <% include nswds/InPageNavigation InPageNavigation_Links=$InPageNavigation %>
 
 <% end_if %>

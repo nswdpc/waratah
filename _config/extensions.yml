@@ -17,7 +17,6 @@ SilverStripe\ErrorPage\ErrorPage:
 PageController:
   extensions:
     - 'NSWDPC\Waratah\Extensions\DesignSystemAssetExtension'
-    - 'NSWDPC\Waratah\Extensions\PageControllerExtension'
 nglasl\mediawesome\MediaPage:
   extensions:
     - 'NSWDPC\Waratah\Extensions\MediaPageExtension'

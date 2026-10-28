@@ -1,0 +1,20 @@
+# EasyRead configuration
+---
+Name: nswdpc-waratah-easyread-elemental
+Only:
+  moduleexists: 'nswdpc/silverstripe-easyread-cms'
+After:
+  - '#nswdpc-easyread-elemental'
+---
+NSWDPC\EasyRead\Models\EasyReadDetailPage:
+  allowed_elements:
+    - 'NSWDPC\Waratah\Models\ElementalUtilityList'
+    - 'NSWDPC\Waratah\Models\ElementalCallout'
+NSWDPC\EasyRead\Models\EasyReadCategoryPage:
+  allowed_elements:
+    - 'NSWDPC\Waratah\Models\ElementalUtilityList'
+    - 'NSWDPC\Waratah\Models\ElementalCallout'
+NSWDPC\EasyRead\Models\EasyReadLandingPage:
+  allowed_elements:
+    - 'NSWDPC\Waratah\Models\ElementalUtilityList'
+    - 'NSWDPC\Waratah\Models\ElementalCallout'
