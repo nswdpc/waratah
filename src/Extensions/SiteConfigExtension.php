@@ -44,6 +44,14 @@ use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> FooterLinksSub()
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> SocialLinks()
  * @extends \SilverStripe\Core\Extension<(\SilverStripe\SiteConfig\SiteConfig & static)>
+ * @property int $BuiltByID
+ * @method \SilverStripe\LinkField\Models\Link BuiltBy()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol1()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol2()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol3()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol4()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksSub()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreSocialLinks()
  */
 class SiteConfigExtension extends Extension
 {
