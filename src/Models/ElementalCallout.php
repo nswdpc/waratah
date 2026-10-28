@@ -42,6 +42,7 @@ class ElementalCallout extends ElementContent
                 htmlspecialchars(_t('nswds.IMAGE_MUST_BE_SQUARE', 'The callout component requires a square image. Images without a 1:1 aspect ratio will be resized.'))
             );
         }
+
         return $fields;
     }
 
@@ -54,6 +55,7 @@ class ElementalCallout extends ElementContent
         if($image && $image->exists()) {
             return $image->Fill(48,48);
         }
+
         return null;
     }
 
