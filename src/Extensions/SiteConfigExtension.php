@@ -426,9 +426,9 @@ class SiteConfigExtension extends Extension
             'FooterLinksCol3',
             'FooterLinksCol4'
         ];
-        foreach($navigationLinks as $navigationLink) {
+        foreach ($navigationLinks as $navigationLink) {
             $links = $this->getLinksList($navigationLink);
-            if($links && $links->count() > 0) {
+            if ($links && $links->count() > 0) {
                 return true;
             }
         }
