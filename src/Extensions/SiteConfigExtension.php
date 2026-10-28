@@ -19,6 +19,7 @@ use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
 use SilverStripe\LinkField\Models\Link as CoreLink;
 use SilverStripe\LinkField\Form\MultiLinkField as CoreMultiLinkField;
+use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
 
 /**
  * @property ?string $CopyrightOwner
@@ -71,7 +72,8 @@ class SiteConfigExtension extends Extension
 
     private static array $has_one = [
         'LogoSVG' => File::class,
-        'LogoImage' => File::class
+        'LogoImage' => File::class,
+        'BuiltBy' => CoreLink::class,
     ];
 
     private static array $owns = [
@@ -82,7 +84,8 @@ class SiteConfigExtension extends Extension
         'CoreFooterLinksCol3',
         'CoreFooterLinksCol4',
         'CoreFooterLinksSub',
-        'CoreSocialLinks'
+        'CoreSocialLinks',
+        'BuiltBy'
     ];
 
     private static array $many_many = [
@@ -119,7 +122,8 @@ class SiteConfigExtension extends Extension
         'CoreFooterLinksCol3',
         'CoreFooterLinksCol4',
         'CoreFooterLinksSub',
-        'CoreSocialLinks'
+        'CoreSocialLinks',
+        'BuiltBy'
     ];
 
     private static array $cascade_duplicates = [
@@ -128,7 +132,8 @@ class SiteConfigExtension extends Extension
         'CoreFooterLinksCol3',
         'CoreFooterLinksCol4',
         'CoreFooterLinksSub',
-        'CoreSocialLinks'
+        'CoreSocialLinks',
+        'BuiltBy'
     ];
 
     private static array $defaults = [
@@ -186,12 +191,19 @@ class SiteConfigExtension extends Extension
             )
         );
 
-        $fields->addFieldToTab(
+        $fields->removeByName(['BuiltBy']);
+        $fields->addFieldsToTab(
             'Root.Footer.Main',
-            FooterBrandSelectionField::create(
-                'FooterBrand',
-                _t('nswds.BRAND', 'Brand')
-            )
+            [
+                FooterBrandSelectionField::create(
+                    'FooterBrand',
+                    _t('nswds.BRAND', 'Brand')
+                ),
+                CoreLinkField::create(
+                    'BuiltBy',
+                    _t(self::class . ".BUILT_BY_TITLE", "Built by")
+                )
+            ]
         );
 
         $navigationLinks = [
