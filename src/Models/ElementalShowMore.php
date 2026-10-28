@@ -3,6 +3,7 @@
 namespace NSWDPC\Waratah\Models;
 
 use DNADesign\Elemental\Models\ElementContent;
+use NSWDPC\Waratah\Traits\DesignSystemComponent;
 use SilverStripe\Forms\TextField;
 
 /**
@@ -12,17 +13,20 @@ use SilverStripe\Forms\TextField;
  */
 class ElementalShowMore extends ElementContent
 {
+
+    use DesignSystemComponent;
+
     private static bool $inline_editable = true;
 
     private static string $table_name = 'ElementalShowMore';
 
-    private static string $singular_name = 'Show more (NSW Design System)';
+    private static string $singular_name = 'Show more';
 
-    private static string $plural_name = 'Show more (NSW Design System)';
+    private static string $plural_name = 'Show more';
 
     private static string $description = 'Create a show more component';
 
-    private static string $icon = 'font-icon-block-promo-2';
+    private static string $icon = 'font-icon-nswds';
 
     private static array $db = [
         'SummaryText' => 'Varchar',
@@ -32,7 +36,7 @@ class ElementalShowMore extends ElementContent
     #[\Override]
     public function getType()
     {
-        return _t(static::class . '.BlockType', 'Show more (NSW Design System)');
+        return _t(static::class . '.BlockType', 'Show more');
     }
 
     #[\Override]
