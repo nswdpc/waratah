@@ -1,4 +1,13 @@
 <div class="nsw-callout">
+    <% if $Callout_Image %>
+    <div class="nsw-callout__pictogram" aria-hidden="true">
+      {$Callout_Image}
+    </div>
+    <% else_if $Callout_Pictogram %>
+    <div class="nsw-callout__pictogram" aria-hidden="true">
+        {$Callout_Pictogram}
+    </div>
+    <% end_if %>
     <div class="nsw-callout__content">
         <p class="nsw-h4">{$Callout_Title.XML}</p>
         <% if $Callout_HTML %>
@@ -10,7 +19,7 @@
             <a href="{$Callout_LinkURL}">{$Callout_LinkText}</a>
         <% else_if $Callout_Link %>
             <% with $Callout_Link %>
-                <a href="{$LinkURL}">{$Title}</a>
+                <a href="{$LinkURL}"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title}</a>
             <% end_with %>
         <% end_if %>
     </div>
