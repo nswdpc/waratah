@@ -1,3 +1,6 @@
 ---
 Name: nswdpc-waratah-leftandmain
 ---
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - 'nswdpc/waratah:themes/nswds/app/static/extra.css'
