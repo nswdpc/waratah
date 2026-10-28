@@ -1,0 +1,25 @@
+---
+Name: nswdpc-waratah-linkmigration
+Only:
+  classexists: 'gorriecoe\LinkField\Migration\LinkMigrator'
+---
+gorriecoe\LinkField\Migration\LinkMigrator:
+  extensions:
+    # handle custom field migration
+    - 'NSWDPC\Waratah\Extensions\LinkMigratorExtension'
+  relation_map:
+    DNADesign\Elemental\Models\ElementContent:
+      ContentLink: CoreContentLink
+    NSWDPC\Elemental\Models\Banner\ElementBanner:
+      BannerLinks: CoreBannerLinks
+    NSWDPC\Waratah\Models\EditableFormField\EditableCalloutField:
+      Link: CoreLink
+    NSWDPC\Waratah\Models\ElementalFeature:
+      Links: CoreLinks
+    SilverStripe\SiteConfig\SiteConfig:
+      FooterLinksCol1: CoreFooterLinksCol1
+      FooterLinksCol2: CoreFooterLinksCol2
+      FooterLinksCol3: CoreFooterLinksCol3
+      FooterLinksCol4: CoreFooterLinksCol4
+      FooterLinksSub: CoreFooterLinksSub
+      SocialLinks: CoreSocialLinks

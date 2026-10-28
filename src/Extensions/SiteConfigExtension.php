@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Extensions;
 use NSWDPC\Waratah\Forms\FooterBrandSelectionField;
 use SilverStripe\Assets\File;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Permission;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxField;
@@ -17,6 +17,9 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use gorriecoe\Link\Models\Link;
 use gorriecoe\LinkField\LinkField;
+use SilverStripe\LinkField\Models\Link as CoreLink;
+use SilverStripe\LinkField\Form\MultiLinkField as CoreMultiLinkField;
+use SilverStripe\LinkField\Form\LinkField as CoreLinkField;
 
 /**
  * @property ?string $CopyrightOwner
@@ -40,9 +43,17 @@ use gorriecoe\LinkField\LinkField;
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> FooterLinksCol4()
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> FooterLinksSub()
  * @method \SilverStripe\ORM\ManyManyList<\gorriecoe\Link\Models\Link> SocialLinks()
- * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\SiteConfig\SiteConfig & static)>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\SiteConfig\SiteConfig & static)>
+ * @property int $BuiltByID
+ * @method \SilverStripe\LinkField\Models\Link BuiltBy()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol1()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol2()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol3()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksCol4()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreFooterLinksSub()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> CoreSocialLinks()
  */
-class SiteConfigExtension extends DataExtension
+class SiteConfigExtension extends Extension
 {
     private static array $db = [
 
@@ -69,12 +80,20 @@ class SiteConfigExtension extends DataExtension
 
     private static array $has_one = [
         'LogoSVG' => File::class,
-        'LogoImage' => File::class
+        'LogoImage' => File::class,
+        'BuiltBy' => CoreLink::class,
     ];
 
     private static array $owns = [
         'LogoSVG',
-        'LogoImage'
+        'LogoImage',
+        'CoreFooterLinksCol1',
+        'CoreFooterLinksCol2',
+        'CoreFooterLinksCol3',
+        'CoreFooterLinksCol4',
+        'CoreFooterLinksSub',
+        'CoreSocialLinks',
+        'BuiltBy'
     ];
 
     private static array $many_many = [
@@ -95,23 +114,45 @@ class SiteConfigExtension extends DataExtension
         'SocialLinks' => ['Sort' => 'Int']
     ];
 
+    private static array $has_many = [
+        // migrated links
+        'CoreFooterLinksCol1' => CoreLink::class . '.Owner',
+        'CoreFooterLinksCol2' => CoreLink::class . '.Owner',
+        'CoreFooterLinksCol3' => CoreLink::class . '.Owner',
+        'CoreFooterLinksCol4' => CoreLink::class . '.Owner',
+        'CoreFooterLinksSub' => CoreLink::class . '.Owner',
+        'CoreSocialLinks' =>  CoreLink::class . '.Owner',
+    ];
+
+    private static array $cascade_deletes = [
+        'CoreFooterLinksCol1',
+        'CoreFooterLinksCol2',
+        'CoreFooterLinksCol3',
+        'CoreFooterLinksCol4',
+        'CoreFooterLinksSub',
+        'CoreSocialLinks',
+        'BuiltBy'
+    ];
+
+    private static array $cascade_duplicates = [
+        'CoreFooterLinksCol1',
+        'CoreFooterLinksCol2',
+        'CoreFooterLinksCol3',
+        'CoreFooterLinksCol4',
+        'CoreFooterLinksSub',
+        'CoreSocialLinks',
+        'BuiltBy'
+    ];
+
     private static array $defaults = [
         'DisplayWelcomeToCountry' => 1
     ];
 
-    #[\Override]
+    /**
+     * Apply fields to the settings model
+     */
     public function updateCMSFields(FieldList $fields)
     {
-
-        // rm tabs
-        $fields->removeByName([
-            'FooterLinksCol1',
-            'FooterLinksCol2',
-            'FooterLinksCol3',
-            'FooterLinksCol4',
-            'FooterLinksSub',
-            'SocialLinks'
-        ]);
 
         // add copyright notice
         $fields->addFieldsToTab(
@@ -158,72 +199,55 @@ class SiteConfigExtension extends DataExtension
             )
         );
 
-        $fields->addFieldToTab(
+        $fields->removeByName(['BuiltBy']);
+        $fields->addFieldsToTab(
             'Root.Footer.Main',
-            FooterBrandSelectionField::create(
-                'FooterBrand',
-                _t('nswds.BRAND', 'Brand')
-            )
-        );
-
-        $fields->addFieldsToTab(
-            'Root.Footer.Navigation',
             [
-                CompositeField::create(
-                    TextField::create('FooterLinksCol1Title', _t('nswds.TITLE', 'Title')),
-                    LinkField::create(
-                        'FooterLinksCol1',
-                        _t('nswds.LINKS', 'Links'),
-                        $this->getOwner()
-                    )->setSortColumn('Sort')
-                )->setTitle(_t('nswds.COLUMN_ONE', 'Column one')),
-
-                CompositeField::create(
-                    TextField::create('FooterLinksCol2Title', _t('nswds.TITLE', 'Title')),
-                    LinkField::create(
-                        'FooterLinksCol2',
-                        _t('nswds.LINKS', 'Links'),
-                        $this->getOwner()
-                    )->setSortColumn('Sort')
-                )->setTitle(_t('nswds.COLUMN_TWO', 'Column two')),
-
-                CompositeField::create(
-                    TextField::create('FooterLinksCol3Title', _t('nswds.TITLE', 'Title')),
-                    LinkField::create(
-                        'FooterLinksCol3',
-                        _t('nswds.LINKS', 'Links'),
-                        $this->getOwner()
-                    )->setSortColumn('Sort'),
-                )->setTitle(_t('nswds.COLUMN_THREE', 'Column three')),
-
-                CompositeField::create(
-                    TextField::create('FooterLinksCol4Title', _t('nswds.TITLE', 'Title')),
-                    LinkField::create(
-                        'FooterLinksCol4',
-                        _t('nswds.LINKS', 'Links'),
-                        $this->getOwner()
-                    )->setSortColumn('Sort'),
-                )->setTitle(_t('nswds.COLUMN_FOUR', 'Column four')),
-
-                CompositeField::create(
-                    LinkField::create(
-                        'FooterLinksSub',
-                        _t('nswds.LINKS', 'Links'),
-                        $this->getOwner()
-                    )->setSortColumn('Sort')
-                )->setTitle(_t('nswds.LOWER_FOOTER_LEVEL', 'Lower level')),
+                FooterBrandSelectionField::create(
+                    'FooterBrand',
+                    _t('nswds.BRAND', 'Brand')
+                ),
+                CoreLinkField::create(
+                    'BuiltBy',
+                    _t(self::class . ".BUILT_BY_TITLE", "Built by")
+                )
             ]
         );
 
-        $fields->addFieldsToTab(
+        $navigationLinks = [
+            'FooterLinksCol1',
+            'FooterLinksCol2',
+            'FooterLinksCol3',
+            'FooterLinksCol4',
+            'FooterLinksSub'
+        ];
+
+        // handle link fields
+        foreach ($navigationLinks as $navigationLink) {
+
+            // remove fields, added to composites
+            $fields->removeByName([
+                $navigationLink,
+                "Core" . $navigationLink,
+                $navigationLink . "ID",
+                "Core" . $navigationLink . "ID"
+            ]);
+
+            $fields->addFieldToTab(
+                'Root.Footer.Navigation',
+                $this->getLinkFieldForRelation($navigationLink)
+            );
+        }
+
+        // Single SocialLinks relation
+        $fields->removeByName([
+            "SocialLinks",
+            "CoreSocialLinks",
+            "SocialLinksID"
+        ]);
+        $fields->addFieldToTab(
             'Root.Footer.Social',
-            [
-                LinkField::create(
-                    'SocialLinks',
-                    'Social Media links',
-                    $this->getOwner()
-                )->setSortColumn('Sort')
-            ]
+            $this->getLinkFieldForRelation('SocialLinks')
         );
 
         $fields->addFieldsToTab(
@@ -272,7 +296,7 @@ class SiteConfigExtension extends DataExtension
     }
 
     /**
-     * Get the default
+     * Get the default Welcome To Country / Acknowledgement of Country message
      */
     public function getWelcomeToCountry()
     {
@@ -285,6 +309,131 @@ class SiteConfigExtension extends DataExtension
         }
 
         return $value;
+    }
+
+    /**
+     * Get the relevant link field based on the migration state of a link
+     * @param string $relationName the name of a link e.g TravelBans
+     */
+    public function getLinkFieldForRelation(string $relationName): CompositeField
+    {
+
+        $linksCompositeField = CompositeField::create()
+            ->setTitle($this->getLinkDescription($relationName));
+
+        $linksCompositeField->push(
+            TextField::create(
+                $relationName . 'Title',
+                _t('nswds.TITLE', 'Title')
+            )
+        );
+
+        // the new links field always shows (migration target)
+        $linksCompositeField->push(
+            CoreMultiLinkField::create(
+                'Core' . $relationName,
+                _t(self::class . ".LINKS", "Links")
+            )
+        );
+
+        // Legacy field, only show if there are actual unmigrated links remaining
+        if ($this->getOwner()->getManyManyComponents($relationName)->filter(['IsMigrated' => 0])->count() > 0) {
+            $linksCompositeField->push(
+                LinkField::create(
+                    $relationName,
+                    _t(self::class . ".LINKS", "Links") . " " . _t(self::class . ".LINKS_LEGACY", "(legacy)"),
+                    $this->getOwner()
+                )->setSortColumn('Sort')
+            );
+        }
+
+        return $linksCompositeField;
+    }
+
+    /**
+     * Template method
+     * @param string $relationName the Link relation
+     */
+    public function LinksList(string $relationName): \SilverStripe\Model\List\SS_List
+    {
+        return $this->getLinksList($relationName);
+    }
+
+    /**
+     * Returns the relevant list of links based on a relation name
+     */
+    public function getLinksList(string $relationName): \SilverStripe\Model\List\SS_List
+    {
+
+        // core link relation is a has many
+        $coreLinks = $this->getOwner()->getComponents('Core' . $relationName)->sort(['Sort' => 'ASC']);
+        // legacy is a many many
+        $unmigratedLinks = $this->getOwner()->getManyManyComponents($relationName)->filter(['IsMigrated' => 0]);
+        if ($unmigratedLinks->count() == 0) {
+            // all migrated, show all core links found
+            return $coreLinks;
+        }
+
+        $result = \SilverStripe\Model\List\ArrayList::create();
+        // get all new 'core' record links
+        foreach ($coreLinks as $coreLink) {
+            $result->push($coreLink);
+        }
+
+        // add on any unmigrated records
+        foreach ($unmigratedLinks as $unmigratedLink) {
+            // not yet migrated
+            $result->push($unmigratedLink);
+        }
+
+        // return sorted result
+        return $result->sort(['Sort' => 'ASC']);
+    }
+
+    /**
+     * Return metadata about the links, for field labels and such
+     */
+    public function getLinkDescriptions(): array
+    {
+        return [
+            'FooterLinksCol1' => _t(self::class . '.FOOTER_LINK_COLUMN_1', 'Column one'),
+            'FooterLinksCol2' => _t(self::class . '.FOOTER_LINK_COLUMN_1', 'Column two'),
+            'FooterLinksCol3' => _t(self::class . '.FOOTER_LINK_COLUMN_1', 'Column three'),
+            'FooterLinksCol4' => _t(self::class . '.FOOTER_LINK_COLUMN_1', 'Column four'),
+            'FooterLinksSub' => _t(self::class . '.FOOTER_LINK_LOWER_LEVEL', 'Lower level'),
+            'SocialLinks' => _t(self::class . '.FOOTER_LINK_SOCIAL_MEDIA', 'Social media links'),
+        ];
+    }
+
+    /**
+     * Return metadata for one link defined by a key
+     */
+    public function getLinkDescription(string $key): string
+    {
+        $descriptions = $this->getLinkDescriptions();
+
+        return $descriptions[ $key ] ?? "";
+    }
+
+    /**
+     * Return whether at least one set of the main footer links 1-4 is available
+     */
+    public function HasFooterLinks(): bool
+    {
+        $navigationLinks = [
+            'FooterLinksCol1',
+            'FooterLinksCol2',
+            'FooterLinksCol3',
+            'FooterLinksCol4'
+        ];
+        foreach ($navigationLinks as $navigationLink) {
+            $links = $this->getLinksList($navigationLink);
+            if ($links->count() > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

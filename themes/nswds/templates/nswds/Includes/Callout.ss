@@ -7,10 +7,10 @@
             <p>{$Callout_Content.XML}</p>
         <% end_if %>
         <% if $Callout_LinkText && $Callout_LinkURL %>
-            <a href="{$Callout_LinkURL}">{$Callout_LinkText}</a>
+        <p><a href="{$Callout_LinkURL}">{$Callout_LinkText}</a></p>
         <% else_if $Callout_Link %>
             <% with $Callout_Link %>
-                <a href="{$LinkURL}">{$Title}</a>
+                <p><a href="{$LinkURL}"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>{$Title}</a></p>
             <% end_with %>
         <% end_if %>
     </div>

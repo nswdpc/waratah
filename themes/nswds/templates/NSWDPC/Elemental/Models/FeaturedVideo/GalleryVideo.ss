@@ -25,6 +25,16 @@
 
                     <% if $Title %><h4>{$Title.XML}</h4><% end_if %>
 
+                    <% if $DerivedLinkTarget %>
+                        <% with $DerivedLinkTarget %>
+                        <p>
+                            <a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>
+                                {$Title}
+                            </a>
+                        </p>
+                        <% end_with %>
+                    <% end_if %>
+
                 </div>
                 <div class="nsw-col nsw-col-xs-12 nsw-col-md-5">
                     <div class="more-link nsw-m-bottom-sm">

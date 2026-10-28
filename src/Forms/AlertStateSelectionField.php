@@ -16,6 +16,7 @@ class AlertStateSelectionField extends DropdownField
 
     /**
      * @inheritdoc
+     * @phpstan-ignore constructor.unusedParameter
      */
     public function __construct($name, $title = null, $source = [], $value = null)
     {

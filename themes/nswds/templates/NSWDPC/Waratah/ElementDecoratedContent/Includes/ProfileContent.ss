@@ -4,9 +4,9 @@
         {$HTML}
     </div>
 
-    <% if $LinkTarget %>
+    <% if $DerivedLinkTarget %>
         <div class="nsw-block">
-            <p><a href="{$LinkTarget.LinkURL}"><% if $CallToAction %>{$CallToAction}<% else %>{$LinkTarget.Title}<% end_if %></a></p>
+            <p><a href="{$DerivedLinkTarget.LinkURL}"<% if $DerivedLinkTarget.OpenInNewWindow %> target="_blank"<% end_if %>><% if $CallToAction %>{$CallToAction}<% else %>{$DerivedLinkTarget.Title}<% end_if %></a></p>
         </div>
     <% end_if %>
 

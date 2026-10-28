@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * @property ?string $PhotoCredit
- * @extends \SilverStripe\ORM\DataExtension<(\SilverStripe\Assets\Image & static)>
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\Assets\Image & static)>
  */
-class ImageExtension extends DataExtension
+class ImageExtension extends Extension
 {
     private static array $db = [
         'PhotoCredit' => 'Varchar(255)'
