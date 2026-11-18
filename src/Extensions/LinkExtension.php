@@ -7,7 +7,7 @@ use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * Decorate \gorriecoe\Link\Models\Link with extra fields and other
@@ -15,9 +15,9 @@ use SilverStripe\ORM\DataExtension;
  * @property ?string $Description
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
- * @extends \SilverStripe\ORM\DataExtension<(\gorriecoe\Link\Models\Link & static)>
+ * @extends \SilverStripe\Core\Extension<(\gorriecoe\Link\Models\Link & static)>
  */
-class LinkExtension extends DataExtension
+class LinkExtension extends Extension
 {
     private static array $db = [
         'Description' => 'Text'
@@ -55,25 +55,27 @@ class LinkExtension extends DataExtension
     /**
      * Update CMS fields for administration of link
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
+
+        $descriptionField = TextareaField::create(
+            'Description',
+            _t(
+                'nswds.DESCRIPTION',
+                'Description'
+            )
+        )->setRightTitle(
+            _t(
+                'nswds.DESCRIPTION_DESCRIPTION',
+                "Links to 'Pages on this website' will use their Abstract, if set. You can provide a specific description here, just for this link, to override the Page value."
+            )
+        );
+        $descriptionField->setTargetLength(100, 50, 150);
 
         $fields->addFieldsToTab(
             'Root.Main',
             [
-                TextareaField::create(
-                    'Description',
-                    _t(
-                        'nswds.DESCRIPTION',
-                        'Description'
-                    )
-                )->setRightTitle(
-                    _t(
-                        'nswds.DESCRIPTION_DESCRIPTION',
-                        "Links to 'Pages on this website' will use their Abstract, if set. You can provide a specific description here, just for this link, to override the Page value."
-                    )
-                )->setTargetLength(100, 50, 150),
+                $descriptionField,
                 UploadField::create(
                     "Image",
                     _t("nswds.IMAGE", "Image")

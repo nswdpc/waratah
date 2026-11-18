@@ -4,8 +4,8 @@
     {$HTML}
 </div>
 <% end_if %>
-<% if $ElementLinks.Sort('Sort') %>
+<% if $DerivedElementLinksList %>
 <div class="nsw-block">
-<% include nswds/LinkList LinkList_Items=$ElementLinks.Sort('Sort') %>
+<% include nswds/LinkList LinkList_Items=$DerivedElementLinksList %>
 </div>
 <% end_if %>

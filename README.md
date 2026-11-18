@@ -29,18 +29,16 @@ This module is maintained by the PD Digital Team. We're a friendly crew that wel
 
 Starting within a standard Silverstripe installation, install via [Composer](https://getcomposer.org/download/) in your chosen development environment.
 
-### Silverstripe >= 5
+### Silverstripe ^6
+
+Read [important changes in ^3](./docs/en/006_v3_changes.md)
+
+### Silverstripe ^5
 
 Read [important changes in ^2](./docs/en/006_v2_changes.md)
 
 ```sh
 composer require nswdpc/waratah:^2
-```
-
-### Silverstripe >= 4.13.0
-
-```sh
-composer require nswdpc/waratah:~1.1.0
 ```
 
 [Previous version history](./docs/en/404_previous_versions.md)

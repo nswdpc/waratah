@@ -1,23 +1,25 @@
 # Previous versions
 
-### Silverstripe < 4.13.0
+> These versions are unsupported.
 
-> This is a legacy version of Silverstripe and is no longer supported
+## Silverstripe ^4.13.0
 
-```shell
+```sh
+composer require nswdpc/waratah:~1.1.0
+```
+
+## Silverstripe < 4.13.0
+
+```sh
 composer require nswdpc/waratah:~1.0.0
 ```
 
 ## NSW Design System v2.14.x
 
-> From August 1 2022, no new features will be added to this branch
-
 + Version constraint: `nswdpc/waratah:^0.3-stable`
 + Branch: `nswds214`
 
 ## NSW Design System v2.13.x
-
-> No longer supported
 
 + Version constraint: `nswdpc/waratah:^0.2-stable`
 + Branch: `v2-13`

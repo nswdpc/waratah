@@ -4,10 +4,10 @@
     {$HTML}
 </div>
 <% end_if %>
-<% if $ElementLinks.Sort('Sort') %>
+<% if $DerivedElementLinksList %>
 <div class="nsw-block">
     <div class="nsw-grid">
-        <% loop $ElementLinks.Sort('Sort') %>
+        <% loop $DerivedElementLinksList %>
         <% include nswds/Card Card_ColumnOptions=$Top.Columns, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Top.CardStyle, Card_Image=$LinkImage, Card_Description=$LinkDescription %>
         <% end_loop %>
     </div>

@@ -4,7 +4,7 @@
     {$HTML}
 </div>
 <% end_if %>
-<% if $ElementLinks.Sort('Sort') %>
+<% if $DerivedElementLinksList %>
 <div class="nsw-block">
     <div class="nsw-carousel js-carousel"<% if $Abstract %> data-description="{$Abstract}"<% end_if %> data-navigation-pagination="on">
 
@@ -14,7 +14,7 @@
 
             <ol class="nsw-carousel__list">
 
-            <% loop $ElementLinks.Sort('Sort') %>
+            <% loop $DerivedElementLinksList %>
                 <li class="nsw-carousel__item">
                     <% include nswds/Card Card_Carousel=1, Card_Title=$Title, Card_LinkURL=$LinkURL, Card_LinkOpenInNewWindow=$OpenInNewWindow, Card_CardStyle=$Top.CardStyle, Card_Image=$LinkImage, Card_Description=$LinkDescription %>
                 </li>
