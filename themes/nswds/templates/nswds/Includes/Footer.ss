@@ -103,7 +103,7 @@
 
             <% if $LinksList('FooterLinksSub')  || $LinksList('SocialLinks') %>
             <div class="nsw-footer__links">
-                <% if $FooterLinksSub %>
+                <% if $LinksList('FooterLinksSub') %>
                 <ul>
                     <% loop $LinksList('FooterLinksSub') %>
                     <li>
