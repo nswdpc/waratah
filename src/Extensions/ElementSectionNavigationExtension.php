@@ -14,7 +14,7 @@ use SilverStripe\ORM\DataList;
  * {@link Dynamic\Elements\Section\Elements\ElementSectionNavigation}
  * @property ?string $CardColumns
  * @property ?string $CardStyle
- * @extends \SilverStripe\Core\Extension<(\Dynamic\Elements\Section\Elements\ElementSectionNavigation & static)> @phpstan-ignore class.notFound
+ * @extends \SilverStripe\Core\Extension<static>
  */
 class ElementSectionNavigationExtension extends Extension
 {

@@ -9,7 +9,7 @@ use SilverStripe\ORM\DataList;
 use nglasl\mediawesome\MediaPage;
 
 /**
- * @extends \SilverStripe\Core\Extension<(\nglasl\mediawesome\MediaPage & static)> @phpstan-ignore class.notFound
+ * @extends \SilverStripe\Core\Extension<static>
  */
 class MediaPageExtension extends Extension
 {
