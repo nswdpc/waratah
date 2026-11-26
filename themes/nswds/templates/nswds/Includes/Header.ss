@@ -15,7 +15,7 @@
                 </button>
             </div>
 
-            <% if $SearchForm %>
+            <% if $GlobalSearchForm %>
 
             <div class="nsw-header__search">
 
@@ -30,9 +30,9 @@
 
         </div>
 
-        <% if $SearchForm %>
+        <% if $GlobalSearchForm %>
 
-            <% with $SearchForm %>
+            <% with $GlobalSearchForm %>
                 <% include NSWDPC/Waratah/GlobalSearch %>
             <% end_with %>
 

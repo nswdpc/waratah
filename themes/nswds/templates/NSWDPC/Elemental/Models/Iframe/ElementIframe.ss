@@ -10,7 +10,7 @@
             id="{$Anchor.XML}-frame"
             <% if $DefaultAllowAttributes %>allow="$DefaultAllowAttributes"<% end_if %>
             <% if $IsLazy %>loading="lazy"<% end_if %>
-            src="{$URL.LinkURL.XML}"
+            src="<% if $URLValue %>{$URLValue.HTMLATT}<% else_if $URL %>{$URL.LinkURL.HTMLATT}<% end_if %>"
             frameborder="0">
         </iframe>
     <% if $IsLazy && $HasPolyfill %></noscript><% end_if %>

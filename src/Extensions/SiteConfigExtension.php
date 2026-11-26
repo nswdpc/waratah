@@ -239,6 +239,9 @@ class SiteConfigExtension extends Extension
             );
         }
 
+        // This is not required in nsw-design-system
+        $fields->removeByName(["FooterLinksSubTitle"]);
+
         // Single SocialLinks relation
         $fields->removeByName([
             "SocialLinks",
