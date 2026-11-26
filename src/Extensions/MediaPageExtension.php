@@ -13,13 +13,12 @@ use nglasl\mediawesome\MediaPage;
  */
 class MediaPageExtension extends Extension
 {
-
     public function getRecentPosts(): ?DataList
     {
-        if(\class_exists(MediaPage::class)) {
+        if (\class_exists(MediaPage::class)) {
             /** @var MediaPage $mediaPage */
             $mediaPage = $this->getOwner();
-            if($mediaPage && $mediaPage->isInDB() && $mediaPage->ParentID) {
+            if ($mediaPage && $mediaPage->isInDB() && $mediaPage->ParentID) {
                 $mediaHolderID = $mediaPage->ParentID;
                 $mediaPages = MediaPage::get()->filter('ParentID', $mediaHolderID)->sort('Date', 'DESC');
                 if ($mediaPages) {
