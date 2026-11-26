@@ -3,6 +3,6 @@ Name: nswdpc-waratah-tinymce
 After:
   - '#nswdpc-content-tinymce'
 ---
-SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
+SilverStripe\TinyMCE\TinyMCEConfig:
   editor_css:
     - 'nswdpc/waratah:themes/nswds/app/static/editor.css'
