@@ -3,10 +3,10 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use SilverStripe\Core\Config\Config;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\ORM\DataList;
 
 /**
@@ -14,9 +14,9 @@ use SilverStripe\ORM\DataList;
  * {@link Dynamic\Elements\Section\Elements\ElementSectionNavigation}
  * @property ?string $CardColumns
  * @property ?string $CardStyle
- * @extends \SilverStripe\ORM\DataExtension<(\Dynamic\Elements\Section\Elements\ElementSectionNavigation & static)>
+ * @extends \SilverStripe\Core\Extension<static>
  */
-class ElementSectionNavigationExtension extends DataExtension
+class ElementSectionNavigationExtension extends Extension
 {
     private static array $db = [
         'CardColumns' => 'Varchar(64)',
@@ -39,17 +39,20 @@ class ElementSectionNavigationExtension extends DataExtension
     /**
      * Implement CMS fields for card display
      */
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
         $cardColumns = DropdownField::create(
             'CardColumns',
             _t(
                 self::class . '.CARDCOLUMNS',
                 'Card columns'
             ),
-            Config::inst()->get($this->getOwner()::class, 'card_columns')
+            /** @phpstan-ignore class.notFound */
+            Config::inst()->get($owner::class, 'card_columns')
         )->setEmptyString(_t('nswds.NONE', 'none'));
 
         $cardStyle = DropdownField::create(
@@ -58,7 +61,8 @@ class ElementSectionNavigationExtension extends DataExtension
                 self::class . '.CARDSTYLE',
                 'Card style'
             ),
-            Config::inst()->get($this->getOwner()::class, 'card_styles')
+            /** @phpstan-ignore class.notFound */
+            Config::inst()->get($owner::class, 'card_styles')
         )->setEmptyString(_t('nswds.NONE', 'none'));
 
         $fields->addFieldsToTab(
@@ -76,7 +80,12 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getColumns(): ?string
     {
-        $columns = $this->getOwner()->CardColumns;
+
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
+        /** @phpstan-ignore class.notFound */
+        $columns = $owner->CardColumns;
 
         if ($columns == 2) {
             return "nsw-col-sm-6";
@@ -99,7 +108,11 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getSortedSectionNavigation(): DataList|ArrayList|null
     {
-        $list = $this->getOwner()->getSectionNavigation();
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
+        /** @phpstan-ignore class.notFound */
+        $list = $owner->getSectionNavigation();
         if ($list instanceof DataList || $list instanceof ArrayList) {
             return $list->sort(['Sort' => 'ASC']);
         }
@@ -120,7 +133,11 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getIsHorizontal(): bool
     {
-        return $this->getOwner()->CardStyle == 'promo';
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
+        /** @phpstan-ignore class.notFound */
+        return $owner->CardStyle == 'promo';
     }
 
     /**
@@ -128,7 +145,11 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getShowAbstract(): bool
     {
-        return $this->getOwner()->CardStyle != 'title';
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
+        /** @phpstan-ignore class.notFound */
+        return $owner->CardStyle != 'title';
     }
 
     /**
@@ -136,7 +157,11 @@ class ElementSectionNavigationExtension extends DataExtension
      */
     public function getShowImage(): bool
     {
-        return $this->getOwner()->CardStyle == 'promo' || $this->getOwner()->CardStyle == 'title-image-abstract';
+        /** @var \Dynamic\Elements\Section\Elements\ElementSectionNavigation $owner */
+        /** @phpstan-ignore class.notFound */
+        $owner = $this->getOwner();
+        /** @phpstan-ignore class.notFound, class.notFound */
+        return $owner->CardStyle == 'promo' || $owner->CardStyle == 'title-image-abstract';
     }
 
 }

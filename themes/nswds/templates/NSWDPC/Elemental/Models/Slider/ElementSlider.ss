@@ -10,9 +10,9 @@
     </div>
     <% end_if %>
 
-    <% if $HeroLink %>
+    <% if $DerivedHeroLink %>
     <div class="nsw-block">
-        <a href="$HeroLink.LinkURL" class="nsw-button nsw-button--dark">{$HeroLink.Title}</a>
+        <% with $DerivedHeroLink %><a href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %> class="nsw-button nsw-button--dark">{$Title}</a><% end_with %>
     </div>
     <% end_if %>
 

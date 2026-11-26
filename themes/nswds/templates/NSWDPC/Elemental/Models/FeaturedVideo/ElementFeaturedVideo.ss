@@ -18,7 +18,7 @@
 
             <figcaption>
 
-            <% if $FeatureLink || $Image %>
+            <% if $DerivedFeatureLink || $Image %>
 
                 <div class="nsw-row">
 
@@ -33,16 +33,20 @@
                     <p>{$Description.XML}</p>
                 <% end_if %>
 
-            <% if $FeatureLink || $Image %>
+            <% if $DerivedFeatureLink || $Image %>
 
                     </div>
 
                     <div class="nsw-col nsw-col-xs-12 nsw-col-lg-3">
                         <div class="more-link">
                             <% if $Image %>
-                                <a class="nsw-button nsw-button--light-outline nsw-button--full-width" href="{$WatchURL}"><% include nswds/Icon Icon_Icon='play_circle' %><%t nswds.WATCH_VIDEO 'Watch' %></a>
+                                <a class="nsw-button nsw-button--dark nsw-button--full-width" href="{$WatchURL}"><% include nswds/Icon Icon_Icon='play_circle' %><%t nswds.WATCH_VIDEO 'Watch' %></a>
                             <% else %>
-                                <a class="nsw-button nsw-button--light-outline nsw-button--full-width" href="{$FeatureLink.LinkURL}">{$FeatureLink.Title}</a>
+                                <% with $DerivedFeatureLink %>
+                                <a class="nsw-button nsw-button--dark nsw-button--full-width" href="{$LinkURL}" rel="noopener noreferrer"<% if $OpenInNewWindow %> target="_blank"<% end_if %>>
+                                    {$Title}
+                                </a>
+                                <% end_with %>
                             <% end_if %>
                         </div>
                     </div>

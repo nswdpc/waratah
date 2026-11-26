@@ -8,7 +8,13 @@
     <% end_if %>
 
     <% loop $Results %>
-        <% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Content=$MetaDescription, ListItem_Date=$LastEdited, ListItem_Tags=$Terms, ListItem_Image=$Image, ListItem_PrimaryLabel=$SearchResultLabel %>
+        <% if $SearchResultItem %>
+            <%-- the provider renders its own result --%>
+            {$Me}
+        <% else %>
+            <%-- the provider supplies generic data for the result --%>
+            <% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Content=$MetaDescription, ListItem_Date=$LastEdited, ListItem_Tags=$Terms, ListItem_Image=$Image, ListItem_PrimaryLabel=$SearchResultLabel %>
+        <% end_if %>
     <% end_loop %>
 
     <% include nswds/Pagination Pagination_PaginatedItems=$Results %>

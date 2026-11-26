@@ -1,0 +1,37 @@
+---
+Name: nswdpc-waratah-sectionnavigation
+Only:
+  moduleexists: 'dynamic/silverstripe-elemental-section-navigation'
+---
+Page:
+  allowed_elements:
+    - 'Dynamic\Elements\Section\Elements\ElementSectionNavigation'
+Dynamic\Elements\Section\Elements\ElementSectionNavigation:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\ElementSectionNavigationExtension'
+
+---
+Name: nswdpc-waratah-mediawesome
+Only:
+  moduleexists: 'nswdpc/silverstripe-elemental-mediawesome'
+---
+Page:
+  allowed_elements:
+    - 'NSWDPC\Elemental\Models\Mediawesome\ElementMediawesome'
+DNADesign\ElementalList\Model\ElementList:
+  allowed_elements:
+    - 'NSWDPC\Elemental\Models\Mediawesome\ElementMediawesome'
+nglasl\mediawesome\MediaPage:
+  type_defaults:
+    Video:
+      - 'Author'
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\MediaPageExtension'
+---
+Name: nswdpc-waratah-listingpage
+Only:
+  moduleexists: 'symbiote/silverstripe-elemental-listingpagelisting'
+---
+Page:
+  allowed_elements:
+    - 'Symbiote\ListingPageElement\Model\ElementListingPageListing'

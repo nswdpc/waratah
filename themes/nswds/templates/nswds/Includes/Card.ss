@@ -28,9 +28,9 @@
                 <% if $Card_Image %>
                     <% if $Card_ImageWidth || $Card_ImageHeight %>
                         <% if not $Card_ImageHeight %>
-                            {$Card_Image.ScaleWidth($Card_ImageWidth)}
+                            {$Card_Image.ScaleWidth($Card_ImageWidth.Value)}
                         <% else %>
-                            {$Card_Image.Fill($Card_ImageWidth, $Card_ImageHeight)}
+                            {$Card_Image.Fill($Card_ImageWidth.Value, $Card_ImageHeight.Value)}
                         <% end_if %>
                     <% else %>
                          {$Card_Image.ScaleHeight(200)}

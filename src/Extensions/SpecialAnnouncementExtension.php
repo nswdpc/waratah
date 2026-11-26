@@ -3,24 +3,23 @@
 namespace NSWDPC\Waratah\Extensions;
 
 use NSWDPC\Schema\SpecialAnnouncement\SpecialAnnouncement;
-use SilverStripe\ORM\ArrayList;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\DropdownField;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 use SilverStripe\View\TemplateGlobalProvider;
 
 /**
  * @property ?string $AlertState
- * @extends \SilverStripe\ORM\DataExtension<(\NSWDPC\Schema\SpecialAnnouncement\SpecialAnnouncement & static)>
+ * @extends \SilverStripe\Core\Extension<(\NSWDPC\Schema\SpecialAnnouncement\SpecialAnnouncement & static)>
  */
-class SpecialAnnouncementExtension extends DataExtension implements TemplateGlobalProvider
+class SpecialAnnouncementExtension extends Extension implements TemplateGlobalProvider
 {
     private static array $db = [
         'AlertState' => 'Varchar(16)'
     ];
 
-    #[\Override]
     public function updateCMSFields(FieldList $fields)
     {
 

@@ -1,0 +1,9 @@
+---
+Name: nswdpc-waratah-links
+---
+gorriecoe\Link\Models\Link:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\LinkExtension'
+SilverStripe\LinkField\Models\Link:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\CoreLinkExtension'

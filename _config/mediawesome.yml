@@ -1,7 +1,1 @@
----
-Name: nswdpc-waratah-mediawesome
----
-nglasl\mediawesome\MediaPage:
-  type_defaults:
-    Video:
-      - 'Author'
+# TODO remove

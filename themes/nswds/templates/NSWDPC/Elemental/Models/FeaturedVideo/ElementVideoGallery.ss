@@ -6,7 +6,7 @@
 
 <div class="wrth-video-gallery">
 
-    <div class="nsw-grid" data-video-gallery="1" data-gallery="grid">
+    <div class="nsw-grid" data-video-gallery="1">
 
         <% loop SortedVideos %>
 

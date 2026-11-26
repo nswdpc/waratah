@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NSWDPC\Waratah\Extensions;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * Provide additional configuration options for Elemental Areas
@@ -15,9 +15,9 @@ use SilverStripe\ORM\DataExtension;
  * @property bool $AllowContainer
  * @property bool $AllowSectionModification
  * @property bool $RenderElementDirectly
- * @extends \SilverStripe\ORM\DataExtension<(\DNADesign\Elemental\Models\ElementalArea & static)>
+ * @extends \SilverStripe\Core\Extension<(\DNADesign\Elemental\Models\ElementalArea & static)>
  */
-class ElementalAreaExtension extends DataExtension
+class ElementalAreaExtension extends Extension
 {
     private static array $db = [
         'IsSideArea' => 'Boolean',
