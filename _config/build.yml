@@ -1,0 +1,6 @@
+---
+Name: nswdpc-waratah-dbbuild
+---
+SilverStripe\Dev\Command\DbBuild:
+  extensions:
+    - 'NSWDPC\Waratah\Extensions\DbBuildExtension'

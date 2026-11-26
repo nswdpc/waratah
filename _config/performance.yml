@@ -7,12 +7,3 @@ Only:
 Symbiote\AdvancedWorkflow\DataObjects\WorkflowInstance:
   extensions:
     - 'NSWDPC\Waratah\Extensions\WorkflowInstance'
----
-Name: nswdpc-waratah-usertemplates
-Only:
-  moduleexists:
-    - 'symbiote/silverstripe-usertemplates'
----
-Symbiote\UserTemplates\UserTemplate:
-  extensions:
-    - 'NSWDPC\Waratah\Extensions\UserTemplate'

@@ -22,8 +22,6 @@ Page:
     - 'DNADesign\Elemental\Models\ElementContent'
     - 'DNADesign\ElementalUserForms\Model\ElementForm'
     - 'DNADesign\ElementalList\Model\ElementList'
-    - 'Symbiote\ListingPageElement\Model\ElementListingPageListing'
-    - 'Dynamic\Elements\Section\Elements\ElementSectionNavigation'
     - 'NSWDPC\Elemental\Models\Banner\ElementBanner'
     - 'DNADesign\ElementalVirtual\Model\ElementVirtual'
     - 'NSWDPC\Elemental\Models\Publications\ElementPublicationList'
@@ -31,7 +29,6 @@ Page:
     - 'NSWDPC\Elemental\Models\QuickGallery\ElementQuickGallery'
     - 'NSWDPC\Waratah\Models\ElementalUtilityList'
     - 'NSWDPC\Waratah\Models\ElementalShowMore'
-
   extensions:
     - 'DNADesign\Elemental\Extensions\ElementalPageExtension'
 # as dnadesign/silverstripe-elemental-userforms is available
@@ -57,7 +54,6 @@ DNADesign\ElementalList\Model\ElementList:
     - 'NSWDPC\Elemental\Models\Image\ElementImage'
     - 'NSWDPC\Elemental\Models\LinksBlock\ElementalLinks'
     - 'NSWDPC\Elemental\Models\Iframe\ElementIframe'
-    - 'NSWDPC\Elemental\Models\Mediawesome\ElementMediawesome'
     - 'NSWDPC\Elemental\Models\FeaturedVideo\ElementVideo'
     - 'DNADesign\Elemental\Models\ElementContent'
     - 'DNADesign\ElementalList\Model\ElementList'
@@ -68,11 +64,6 @@ DNADesign\ElementalList\Model\ElementList:
     - 'NSWDPC\Elemental\Models\DecoratedContent\ElementDecoratedContent'
     - 'NSWDPC\Elemental\Models\QuickGallery\ElementQuickGallery'
     - 'NSWDPC\Waratah\Models\ElementalUtilityList'
-
-Dynamic\Elements\Section\Elements\ElementSectionNavigation:
-  extensions:
-    - 'NSWDPC\Waratah\Extensions\ElementSectionNavigationExtension'
-
 ---
 Name: 'nswdpc-waratah-elemental-links-subtypes'
 ---
