@@ -1,6 +1,6 @@
 <?php
 
-namespace NSWDPC\Search\Typesense\Jobs;
+namespace NSWDPC\Waratah\Tasks;
 
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\PolyExecution\PolyOutput;
