@@ -13,7 +13,7 @@ use SilverStripe\Core\Extension;
 
 /**
  * Decorate \SilverStripe\LinkField\Models\Link with extra fields and other
- * requirements
+ * requirements to provide backwards compatibility
  * @property ?string $CoreLinkDescription
  * @property int $CoreLinkImageID
  * @method \SilverStripe\Assets\Image Image()
